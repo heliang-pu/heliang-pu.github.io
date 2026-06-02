@@ -1313,13 +1313,13 @@
 
           <article class="demo-card">
             <div class="demo-media">
-              <video controls muted playsinline preload="metadata" poster="assets/posters/demo4.jpg" aria-label="播放单臂物体抓取与放置多任务">
+              <video controls muted playsinline preload="metadata" poster="assets/posters/demo4.jpg" aria-label="播放单臂物体抓取与放置多任务切换">
                 <source src="assets/videos/demo4.mp4" type="video/mp4">
               </video>
             </div>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 04</span><span>00:23</span></div>
-              <h3 data-i18n="demo4Title">单臂物体抓取与放置多任务</h3>
+              <h3 data-i18n="demo4Title">单臂物体抓取与放置多任务切换</h3>
               <p data-i18n="demo4Desc">单臂在多目标、多位置场景下完成抓取、搬运和放置，验证策略在不同物体上的执行稳定性。</p>
               <div class="demo-tags">
                 <span class="demo-tag" data-i18n="demoTagSingleArm">单臂</span>
@@ -1349,18 +1349,18 @@
 
           <article class="demo-card">
             <div class="demo-media">
-              <video controls muted playsinline preload="metadata" poster="assets/posters/demo6.jpg" aria-label="播放灵巧手杯状物抓取演示">
+              <video controls muted playsinline preload="metadata" poster="assets/posters/demo6.jpg" aria-label="播放傅利叶人形机器人灵巧手杯状物抓取">
                 <source src="assets/videos/demo6.mp4" type="video/mp4">
               </video>
             </div>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 06</span><span>00:14</span></div>
-              <h3 data-i18n="demo6Title">灵巧手杯状物抓取演示</h3>
-              <p data-i18n="demo6Desc">灵巧手针对杯状物完成稳定包络抓取，验证末端接触控制和形状适配能力。</p>
+              <h3 data-i18n="demo6Title">傅利叶人形机器人灵巧手杯状物抓取</h3>
+              <p data-i18n="demo6Desc">傅利叶人形机器人通过灵巧手完成杯状物稳定包络抓取，验证末端接触控制和真实平台执行能力。</p>
               <div class="demo-tags">
+                <span class="demo-tag" data-i18n="demoTagFourier">傅利叶</span>
+                <span class="demo-tag" data-i18n="demoTagHumanoid">人形机器人</span>
                 <span class="demo-tag" data-i18n="demoTagDexterous">灵巧手</span>
-                <span class="demo-tag" data-i18n="demoTagObjectGrasp">物体抓取</span>
-                <span class="demo-tag" data-i18n="demoTagShape">形状适配</span>
               </div>
             </div>
           </article>
@@ -1556,12 +1556,12 @@
         demo2Desc: '通过手内相机视角观察末端接触与目标位置，用于遥操作示教和数据采集链路验证。',
         demo3Title: 'MediaPipe 手部关键点与关节角解析',
         demo3Desc: '基于手部关键点估计实时解析关节角，为灵巧手映射、遥操作控制和动作数据生成提供输入。',
-        demo4Title: '单臂物体抓取与放置多任务',
+        demo4Title: '单臂物体抓取与放置多任务切换',
         demo4Desc: '单臂在多目标、多位置场景下完成抓取、搬运和放置，验证策略在不同物体上的执行稳定性。',
         demo5Title: '单臂桌面物品整理',
         demo5Desc: '单臂围绕桌面物品进行抓取、移动与放置，展示任务空间规划和真实平台执行稳定性。',
-        demo6Title: '灵巧手杯状物抓取演示',
-        demo6Desc: '灵巧手针对杯状物完成稳定包络抓取，验证末端接触控制和形状适配能力。',
+        demo6Title: '傅利叶人形机器人灵巧手杯状物抓取',
+        demo6Desc: '傅利叶人形机器人通过灵巧手完成杯状物稳定包络抓取，验证末端接触控制和真实平台执行能力。',
         demo7Title: '人形机器人井字棋对弈演示',
         demo7Desc: '人形机器人与人类进行井字棋交互，覆盖棋盘感知、落子决策、末端定位和动作执行。',
         demoTagDualArm: '双臂协作', demoTagDexterous: '灵巧手', demoTagFine: '精细操作',
@@ -1569,7 +1569,7 @@
         demoTagJoint: '关节角', demoTagGesture: '手势解析',
         demoTagSingleArm: '单臂', demoTagMultiTask: '多任务', demoTagPickPlace: '抓取放置',
         demoTagPlanning: '任务编排', demoTagDesktop: '桌面操作',
-        demoTagObjectGrasp: '物体抓取', demoTagShape: '形状适配',
+        demoTagObjectGrasp: '物体抓取', demoTagShape: '形状适配', demoTagFourier: '傅利叶',
         demoTagHumanoid: '人形机器人', demoTagHri: '人机交互', demoTagReasoning: '任务推理',
         /* skills */
         secSkills: '能力矩阵', kickerSkills: '工程、模型、数据、部署四线闭环',
@@ -1656,12 +1656,12 @@
         demo2Desc: 'In-hand RGB camera view captures fingertip contact and target position for teleoperation teaching and data collection validation.',
         demo3Title: 'MediaPipe Hand Keypoints & Joint-Angle Parsing',
         demo3Desc: 'Real-time hand keypoint estimation parses joint angles for dexterous-hand mapping, teleoperation control, and action data generation.',
-        demo4Title: 'Single-Arm Multi-Task Pick and Place',
+        demo4Title: 'Single-Arm Multi-Task Pick-and-Place Switching',
         demo4Desc: 'A single arm completes grasping, transport, and placement across multiple targets and positions, validating execution stability across objects.',
         demo5Title: 'Single-Arm Desktop Object Organization',
         demo5Desc: 'A single arm grasps, moves, and places desktop objects, showing task-space planning and real-platform execution stability.',
-        demo6Title: 'Dexterous-Hand Cup-Shaped Object Grasp',
-        demo6Desc: 'The dexterous hand performs a stable enveloping grasp on a cup-shaped object, validating contact control and shape adaptation.',
+        demo6Title: 'Fourier Humanoid Dexterous-Hand Cup Grasp',
+        demo6Desc: 'A Fourier humanoid robot uses its dexterous hand for a stable enveloping cup grasp, validating end-effector contact control on a real platform.',
         demo7Title: 'Humanoid Robot Tic-Tac-Toe Interaction',
         demo7Desc: 'A humanoid robot plays tic-tac-toe with a person, covering board perception, move decision, end-effector positioning, and action execution.',
         demoTagDualArm: 'Dual-Arm', demoTagDexterous: 'Dexterous Hand', demoTagFine: 'Fine Manipulation',
@@ -1669,7 +1669,7 @@
         demoTagJoint: 'Joint Angles', demoTagGesture: 'Gesture Parsing',
         demoTagSingleArm: 'Single Arm', demoTagMultiTask: 'Multi-Task', demoTagPickPlace: 'Pick & Place',
         demoTagPlanning: 'Task Planning', demoTagDesktop: 'Desktop Ops',
-        demoTagObjectGrasp: 'Object Grasp', demoTagShape: 'Shape Adaptation',
+        demoTagObjectGrasp: 'Object Grasp', demoTagShape: 'Shape Adaptation', demoTagFourier: 'Fourier',
         demoTagHumanoid: 'Humanoid', demoTagHri: 'HRI', demoTagReasoning: 'Task Reasoning',
         /* skills */
         secSkills: 'Skills', kickerSkills: 'Engineering, Models, Data & Deployment in Closed Loop',
