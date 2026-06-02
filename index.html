@@ -16,6 +16,8 @@
   <meta name="twitter:image" content="https://aurorabot-ai.github.io/assets/portrait.jpg">
   <link rel="canonical" href="https://aurorabot-ai.github.io">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <title>蒲贺良 - 具身智能 / VLA 工程师</title>
   <style>
     :root {
@@ -27,7 +29,6 @@
       --green: #0f766e;
       --red: #b83a36;
       --amber: #b7791f;
-      --blue: #2563eb;
       --soft-green: #e7f3ef;
       --soft-red: #f8e9e7;
       --soft-amber: #fbf0d4;
@@ -86,7 +87,7 @@
 
     .portrait-wrap {
       padding: 24px 24px 18px;
-      background: linear-gradient(135deg, #173c37 0%, #f5ead2 100%);
+      background: linear-gradient(135deg, #0f766e 0%, #2c8b80 55%, #e7f3ef 100%);
     }
 
     .portrait {
@@ -166,7 +167,7 @@
       height: 8px;
       flex: 0 0 auto;
       border-radius: 50%;
-      background: var(--red);
+      background: var(--green);
     }
 
     .chip-list {
@@ -223,9 +224,10 @@
     .hero h2 {
       max-width: 820px;
       margin: 0;
-      font-size: clamp(2rem, 4vw, 4.2rem);
-      line-height: 1.08;
+      font-size: clamp(2rem, 2.4vw + 1rem, 3.2rem);
+      line-height: 1.12;
       letter-spacing: 0;
+      text-wrap: balance;
     }
 
     .hero .lead {
@@ -254,6 +256,7 @@
       color: white;
       font-weight: 700;
       font-size: 0.92rem;
+      font-family: inherit;
       transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
     }
 
@@ -424,7 +427,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--red);
+      background: var(--muted);
     }
 
     .project-grid {
@@ -507,11 +510,12 @@
       color: #6f4c11;
       font-size: 0.78rem;
       font-weight: 750;
-      transition: transform 0.15s;
+      transition: transform 0.15s, box-shadow 0.15s;
     }
 
     .tech:hover {
-      transform: scale(1.08);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     }
 
     .tech.green {
@@ -684,49 +688,139 @@
       }
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --ink: #e2e8f0;
-        --muted: #94a3b8;
-        --paper: #0f172a;
-        --panel: #1e293b;
-        --line: #334155;
-        --green: #5eead4;
-        --red: #fca5a5;
-        --amber: #fcd34d;
-        --blue: #60a5fa;
-        --soft-green: #134e4a;
-        --soft-red: #451a1a;
-        --soft-amber: #422006;
-        --shadow: 0 18px 55px rgba(0, 0, 0, 0.3);
-      }
+    html.theme-dark {
+      --ink: #e2e8f0;
+      --muted: #94a3b8;
+      --paper: #0f172a;
+      --panel: #1e293b;
+      --line: #334155;
+      --green: #5eead4;
+      --red: #fca5a5;
+      --amber: #fcd34d;
+      --soft-green: #134e4a;
+      --soft-red: #451a1a;
+      --soft-amber: #422006;
+      --shadow: 0 18px 55px rgba(0, 0, 0, 0.3);
+    }
 
-      body {
-        background:
-          linear-gradient(90deg, rgba(94, 234, 212, 0.04) 1px, transparent 1px),
-          linear-gradient(0deg, rgba(252, 165, 165, 0.03) 1px, transparent 1px),
-          var(--paper);
-        background-size: 36px 36px;
-      }
+    html.theme-dark body {
+      background:
+        linear-gradient(90deg, rgba(94, 234, 212, 0.04) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(252, 165, 165, 0.03) 1px, transparent 1px),
+        var(--paper);
+      background-size: 36px 36px;
+    }
 
-      .hero, .section { background: rgba(30, 41, 59, 0.94); }
-      .metric, .summary-item, .timeline-card, .project-card, .capability, .chip { background: #1a2433; }
-      .result { background: var(--soft-green); border-color: #1a4a44; }
-      .result strong { color: var(--green); }
-      .result span { color: #94a3b8; }
-      .tech { background: var(--soft-amber); color: #fcd34d; }
-      .tech.green { background: var(--soft-green); color: #5eead4; }
-      .tech.red { background: var(--soft-red); color: #fca5a5; }
-      .portrait-wrap { background: linear-gradient(135deg, #0f2b27 0%, #2a2520 100%); }
-      .button { background: #e2e8f0; color: #0f172a; border-color: #e2e8f0; }
-      .button.secondary { background: #1e293b; color: #e2e8f0; border-color: #334155; }
-      .summary-item:hover, .timeline-card:hover, .project-card:hover, .capability:hover {
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-      }
-      .chip:hover { background: var(--soft-green); }
+    html.theme-dark .hero, html.theme-dark .section { background: rgba(30, 41, 59, 0.94); }
+    html.theme-dark .metric, html.theme-dark .summary-item, html.theme-dark .timeline-card, html.theme-dark .project-card, html.theme-dark .capability, html.theme-dark .chip { background: #1a2433; }
+    html.theme-dark .result { background: var(--soft-green); border-color: #1a4a44; }
+    html.theme-dark .result strong { color: var(--green); }
+    html.theme-dark .result span { color: #cbd5e1; }
+    html.theme-dark .tech { background: var(--soft-amber); color: #fcd34d; }
+    html.theme-dark .tech.green { background: var(--soft-green); color: #5eead4; }
+    html.theme-dark .tech.red { background: var(--soft-red); color: #fca5a5; }
+    html.theme-dark .portrait-wrap { background: linear-gradient(135deg, #0f2b27 0%, #2a2520 100%); }
+    html.theme-dark .button { background: #e2e8f0; color: #0f172a; border-color: #e2e8f0; }
+    html.theme-dark .button.secondary { background: #1e293b; color: #e2e8f0; border-color: #334155; }
+    html.theme-dark .summary-item:hover, html.theme-dark .timeline-card:hover, html.theme-dark .project-card:hover, html.theme-dark .capability:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+    html.theme-dark .chip:hover { background: var(--soft-green); }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -56px;
+      z-index: 200;
+      padding: 9px 16px;
+      border-radius: 8px;
+      background: var(--green);
+      color: #fff;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      transition: top 0.18s;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      z-index: 120;
+      background: var(--green);
+      transition: width 0.1s linear;
+    }
+
+    .control-btn {
+      position: fixed;
+      z-index: 110;
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      font-size: 1.15rem;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      transition: transform 0.15s, opacity 0.2s, visibility 0.2s;
+    }
+
+    .control-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .theme-toggle {
+      top: 18px;
+      right: 18px;
+    }
+
+    .to-top {
+      bottom: 22px;
+      right: 18px;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-links {
+      display: grid;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      padding: 5px 0 5px 12px;
+      border-left: 2px solid transparent;
+      color: var(--muted);
+      font-size: 0.9rem;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+      border-left-color: var(--green);
+    }
+
+    .hero, .section {
+      scroll-margin-top: 18px;
     }
 
     @media print {
+      .skip-link, .scroll-progress, .theme-toggle, .to-top { display: none !important; }
+
       body {
         background: white;
         color: #000;
@@ -763,18 +857,40 @@
     "worksFor": { "@type": "Organization", "name": "FMC3-Robotics" },
     "url": "https://aurorabot-ai.github.io",
     "email": "puheliang122@gmail.com",
+    "image": "https://aurorabot-ai.github.io/assets/portrait.jpg",
+    "description": "具身智能 / VLA 工程师，专注 LeRobot、VLA/VLM Policy、ACT、Diffusion Policy 与机器人真机部署。",
+    "address": { "@type": "PostalAddress", "addressLocality": "上海", "addressCountry": "CN" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "华东师范大学" },
+      { "@type": "CollegeOrUniversity", "name": "江苏科技大学苏州理工学院" }
+    ],
+    "knowsAbout": ["LeRobot", "VLA Policy", "VLM", "ACT", "Diffusion Policy", "π0", "π0.5", "GR00T", "LoRA", "机器人真机部署", "异步推理"],
     "sameAs": [
       "https://github.com/AuroraBot-AI",
-      "https://huggingface.co/puheliang"
+      "https://huggingface.co/puheliang",
+      "https://space.bilibili.com/389273511"
     ]
   }
   </script>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        if (t === 'dark') document.documentElement.classList.add('theme-dark');
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">跳到主内容</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <button class="control-btn theme-toggle" type="button" aria-pressed="false" aria-label="切换深色 / 浅色模式" title="切换深色 / 浅色模式" onclick="toggleTheme()"><span aria-hidden="true">🌓</span></button>
+  <button class="control-btn to-top" type="button" aria-label="回到顶部" title="回到顶部" onclick="scrollToTop()"><span aria-hidden="true">↑</span></button>
   <div class="shell">
     <aside class="sidebar">
       <div class="portrait-wrap">
-        <img class="portrait" src="assets/portrait.jpg" alt="蒲贺良证件照" width="124" height="124">
+        <img class="portrait" src="assets/portrait.jpg" alt="蒲贺良头像" width="124" height="124" decoding="async">
       </div>
 
       <div class="identity">
@@ -787,7 +903,19 @@
         <a href="mailto:puheliang122@gmail.com" aria-label="邮箱 puheliang122@gmail.com"><span class="dot" aria-hidden="true"></span>puheliang122@gmail.com</a>
         <a href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer" aria-label="GitHub AuroraBot-AI"><span class="dot" aria-hidden="true"></span>GitHub: AuroraBot-AI</a>
         <a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer" aria-label="HuggingFace puheliang"><span class="dot" aria-hidden="true"></span>Hugging Face: puheliang</a>
+        <a href="https://space.bilibili.com/389273511" target="_blank" rel="noreferrer" aria-label="哔哩哔哩主页"><span class="dot" aria-hidden="true"></span>哔哩哔哩: 389273511</a>
       </div>
+
+      <nav class="side-section" aria-label="页面导航">
+        <p class="side-title">目录</p>
+        <div class="nav-links">
+          <a href="#overview">个人概览</a>
+          <a href="#experience">工作与教育</a>
+          <a href="#projects">项目经历</a>
+          <a href="#skills">能力矩阵</a>
+          <a href="#awards">竞赛与荣誉</a>
+        </div>
+      </nav>
 
       <div class="side-section">
         <p class="side-title">技术关键词</p>
@@ -815,7 +943,7 @@
       </div>
     </aside>
 
-    <main class="main">
+    <main class="main" id="main">
       <section class="hero">
         <p class="eyebrow">Embodied AI Engineer</p>
         <h2>从策略到动作，让机器人真正动起来。</h2>
@@ -824,6 +952,7 @@
           <a class="button" href="mailto:puheliang122@gmail.com">联系我</a>
           <a class="button secondary" href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer">查看 GitHub</a>
           <a class="button secondary" href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer">查看模型与数据</a>
+          <button class="button secondary" type="button" onclick="window.print()">下载 / 打印 PDF</button>
         </div>
         <div class="metric-grid">
           <div class="metric">
@@ -839,13 +968,13 @@
             <span>机械臂、灵巧手、人形机器人平台适配与部署经验</span>
           </div>
           <div class="metric">
-            <strong>1st</strong>
+            <strong>No.1</strong>
             <span>本科综合排名第一，2024 年国家奖学金获得者</span>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" id="overview">
         <div class="section-head">
           <h2>个人概览</h2>
           <span class="section-kicker">能把研究模型接到真实设备上的工程型选手</span>
@@ -866,7 +995,7 @@
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" id="experience">
         <div class="section-head">
           <h2>工作与教育</h2>
           <span class="section-kicker">机器人实践 + 软件工程训练</span>
@@ -903,7 +1032,7 @@
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" id="projects">
         <div class="section-head">
           <h2>项目经历</h2>
           <span class="section-kicker">从策略到真机，从单臂到人形</span>
@@ -979,7 +1108,7 @@
               <h3>S101 单臂抓取策略验证</h3>
               <p class="desc">围绕 S101 机械臂“异形物体夹取入盒”任务，完成数采、训练到真实机械臂推理部署的端到端验证。</p>
               <ul class="plain-list">
-                <li>完成机械臂、夹爪、相机与示教采集链路联调，采集 500 条 demonstration。</li>
+                <li>完成机械臂、夹爪、相机与示教采集链路联调，采集 500+ 条 demonstration。</li>
                 <li>基于 ACT、Diffusion Policy、π0 开展策略训练与验证，完成模型训练、推理部署和闭环测试。</li>
                 <li>对比不同策略在异形物体抓取、夹取入盒场景下的动作稳定性、任务完成效果与部署流程。</li>
               </ul>
@@ -1007,7 +1136,7 @@
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" id="skills">
         <div class="section-head">
           <h2>能力矩阵</h2>
           <span class="section-kicker">工程、模型、平台三线并行</span>
@@ -1032,7 +1161,7 @@
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" id="awards">
         <div class="section-head">
           <h2>竞赛与荣誉</h2>
           <span class="section-kicker">算法、机器人与综合能力积累</span>
@@ -1079,5 +1208,39 @@
       <footer class="footer">© 2026 蒲贺良 · Last updated: 2026.06</footer>
     </main>
   </div>
+
+  <script>
+    function applyTheme(t) {
+      document.documentElement.classList.toggle('theme-dark', t === 'dark');
+      try { localStorage.setItem('theme', t); } catch (e) {}
+      var btn = document.querySelector('.theme-toggle');
+      if (btn) btn.setAttribute('aria-pressed', String(t === 'dark'));
+    }
+    function toggleTheme() {
+      var isDark = document.documentElement.classList.contains('theme-dark');
+      applyTheme(isDark ? 'light' : 'dark');
+    }
+    function scrollToTop() {
+      var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: rm ? 'auto' : 'smooth' });
+    }
+    (function () {
+      var toTop = document.querySelector('.to-top');
+      var bar = document.querySelector('.scroll-progress');
+      var btn = document.querySelector('.theme-toggle');
+      if (btn) btn.setAttribute('aria-pressed', String(document.documentElement.classList.contains('theme-dark')));
+      function onScroll() {
+        var y = window.scrollY || document.documentElement.scrollTop || 0;
+        if (toTop) toTop.classList.toggle('show', y > 400);
+        if (bar) {
+          var h = document.documentElement.scrollHeight - window.innerHeight;
+          bar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+{
+  "name": "蒲贺良 · 具身智能 / VLA 工程师",
+  "short_name": "蒲贺良",
+  "description": "具身智能 / VLA 工程师，专注 LeRobot、VLA Policy 与机器人真机部署。",
+  "lang": "zh-CN",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f5ef",
+  "theme_color": "#0f766e",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
