@@ -19,7 +19,6 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <title>蒲贺良 - 具身智能 / VLA 工程师</title>
-  <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.css">
   <style>
     :root {
       --ink: #17211f;
@@ -961,34 +960,6 @@
       a[href]::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #666; }
       a[href^="mailto"]::after { content: none; }
     }
-
-    .gh-calendar {
-      overflow: hidden;
-      border-radius: 6px;
-    }
-
-    .gh-calendar .calendar {
-      width: 100% !important;
-      max-width: 100% !important;
-      border: none !important;
-      padding: 0 !important;
-    }
-
-    .gh-calendar .calendar .width-full {
-      max-width: 100% !important;
-    }
-
-    html.theme-dark .gh-calendar .calendar {
-      background: transparent !important;
-    }
-
-    html.theme-dark .gh-calendar .calendar text {
-      fill: var(--muted) !important;
-    }
-
-    html.theme-dark .gh-calendar .calendar .ContributionCalendar-day {
-      stroke: var(--line) !important;
-    }
   </style>
   <script type="application/ld+json">
   {
@@ -1084,11 +1055,6 @@
           <span class="chip">CET-6</span>
           <span class="chip" data-i18n="city">上海</span>
         </div>
-      </div>
-
-      <div class="side-section">
-        <p class="side-title" data-i18n="ghActivity">GitHub 活跃度</p>
-        <div class="gh-calendar" id="gh-calendar"></div>
       </div>
     </aside>
 
@@ -1540,7 +1506,6 @@
         techKeywords: '技术关键词',
         kw_async: '异步推理', kw_deploy: '机器人真机部署',
         basicInfo: '基本信息',
-        ghActivity: 'GitHub 活跃度',
         edu_bachelor: '本科', edu_major: '软件工程方向', city: '上海',
         name: '蒲贺良',
         /* hero */
@@ -1652,7 +1617,6 @@
         techKeywords: 'Keywords',
         kw_async: 'Async Inference', kw_deploy: 'Real-Robot Deployment',
         basicInfo: 'Basic Info',
-        ghActivity: 'GitHub Activity',
         edu_bachelor: "Bachelor's", edu_major: 'Software Engineering', city: 'Shanghai',
         name: 'Puheliang',
         /* hero */
@@ -1842,10 +1806,6 @@
         document.querySelectorAll('.demo-media video').forEach(function (v) { vidObs.observe(v); });
       }
     })();
-  </script>
-  <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
-  <script>
-    GitHubCalendar("#gh-calendar", "AuroraBot-AI", { responsive: true, global_stats: false });
   </script>
 </body>
 </html>
