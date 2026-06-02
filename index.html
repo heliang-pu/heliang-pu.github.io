@@ -511,6 +511,90 @@
       gap: 12px;
     }
 
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .demo-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fffdfa;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .demo-media {
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: #111816;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .demo-media video {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #111816;
+    }
+
+    .demo-body {
+      padding: 16px;
+    }
+
+    .demo-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+      color: var(--red);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .demo-body h3 {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.3;
+    }
+
+    .demo-body p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .demo-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .demo-tag {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--soft-green);
+      color: #16665e;
+      font-size: 0.74rem;
+      font-weight: 750;
+    }
+
     .tech-row {
       display: flex;
       flex-wrap: wrap;
@@ -626,6 +710,7 @@
     .main > .section:nth-child(4) { animation: fadeUp 0.5s 0.34s ease both; }
     .main > .section:nth-child(5) { animation: fadeUp 0.5s 0.42s ease both; }
     .main > .section:nth-child(6) { animation: fadeUp 0.5s 0.50s ease both; }
+    .main > .section:nth-child(7) { animation: fadeUp 0.5s 0.58s ease both; }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -677,6 +762,7 @@
       .summary-grid,
       .metric-grid,
       .capability-grid,
+      .demo-grid,
       .project-card,
       .timeline-item {
         grid-template-columns: 1fr;
@@ -726,17 +812,18 @@
     }
 
     html.theme-dark .hero, html.theme-dark .section { background: rgba(30, 41, 59, 0.94); }
-    html.theme-dark .metric, html.theme-dark .summary-item, html.theme-dark .timeline-card, html.theme-dark .project-card, html.theme-dark .capability, html.theme-dark .chip { background: #1a2433; }
+    html.theme-dark .metric, html.theme-dark .summary-item, html.theme-dark .timeline-card, html.theme-dark .project-card, html.theme-dark .demo-card, html.theme-dark .capability, html.theme-dark .chip { background: #1a2433; }
     html.theme-dark .result { background: var(--soft-green); border-color: #1a4a44; }
     html.theme-dark .result strong { color: var(--green); }
     html.theme-dark .result span { color: #cbd5e1; }
     html.theme-dark .tech { background: var(--soft-amber); color: #fcd34d; }
     html.theme-dark .tech.green { background: var(--soft-green); color: #5eead4; }
     html.theme-dark .tech.red { background: var(--soft-red); color: #fca5a5; }
+    html.theme-dark .demo-tag { color: #5eead4; }
     html.theme-dark .portrait-wrap { background: linear-gradient(135deg, #0f2b27 0%, #2a2520 100%); }
     html.theme-dark .button { background: #e2e8f0; color: #0f172a; border-color: #e2e8f0; }
     html.theme-dark .button.secondary { background: #1e293b; color: #e2e8f0; border-color: #334155; }
-    html.theme-dark .summary-item:hover, html.theme-dark .timeline-card:hover, html.theme-dark .project-card:hover, html.theme-dark .capability:hover {
+    html.theme-dark .summary-item:hover, html.theme-dark .timeline-card:hover, html.theme-dark .project-card:hover, html.theme-dark .demo-card:hover, html.theme-dark .capability:hover {
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
     html.theme-dark .chip:hover { background: var(--soft-green); }
@@ -866,6 +953,10 @@
         break-inside: avoid;
       }
 
+      .demo-media {
+        display: none;
+      }
+
       a[href]::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #666; }
       a[href^="mailto"]::after { content: none; }
     }
@@ -935,6 +1026,7 @@
           <a href="#overview" data-i18n="navOverview">个人概览</a>
           <a href="#experience" data-i18n="navExp">工作与教育</a>
           <a href="#projects" data-i18n="navProjects">项目经历</a>
+          <a href="#demos" data-i18n="navDemos">Demo 视频</a>
           <a href="#skills" data-i18n="navSkills">能力矩阵</a>
           <a href="#awards" data-i18n="navAwards">竞赛与荣誉</a>
         </div>
@@ -1128,12 +1220,12 @@
 
           <article class="project-card">
             <div>
-              <h3 data-i18n=”p3t”>S101 单臂抓取策略验证</h3>
-              <p class=”desc” data-i18n=”p3d”>围绕 S101 机械臂”异形物体夹取入盒”任务，完成数采、训练到真实机械臂推理部署的端到端验证。</p>
-              <ul class=”plain-list”>
-                <li data-i18n=”p3b1”>完成机械臂、夹爪、相机与示教采集链路联调，采集 500+ 条 demonstration。</li>
-                <li data-i18n=”p3b2”>基于 ACT、Diffusion Policy、π0 开展策略训练与验证，完成模型训练、推理部署和闭环测试。</li>
-                <li data-i18n=”p3b3”>对比不同策略在异形物体抓取、夹取入盒场景下的动作稳定性、任务完成效果与部署流程。</li>
+              <h3 data-i18n="p3t">S101 单臂抓取策略验证</h3>
+              <p class="desc" data-i18n="p3d">围绕 S101 机械臂"异形物体夹取入盒"任务，完成数采、训练到真实机械臂推理部署的端到端验证。</p>
+              <ul class="plain-list">
+                <li data-i18n="p3b1">完成机械臂、夹爪、相机与示教采集链路联调，采集 500+ 条 demonstration。</li>
+                <li data-i18n="p3b2">基于 ACT、Diffusion Policy、π0 开展策略训练与验证，完成模型训练、推理部署和闭环测试。</li>
+                <li data-i18n="p3b3">对比不同策略在异形物体抓取、夹取入盒场景下的动作稳定性、任务完成效果与部署流程。</li>
               </ul>
             </div>
             <div class="project-side">
@@ -1153,6 +1245,140 @@
                   <strong data-i18n="p3r2k">闭环</strong>
                   <span data-i18n="p3r2v">训练、部署、测试完整打通</span>
                 </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="demos">
+        <div class="section-head">
+          <h2 data-i18n="secDemos">Demo 视频</h2>
+          <span class="section-kicker" data-i18n="kickerDemos">真实平台、遥操作与人机交互演示</span>
+        </div>
+        <div class="demo-grid">
+          <article class="demo-card">
+            <div class="demo-media">
+              <video controls muted playsinline preload="metadata" poster="assets/posters/demo1.jpg" aria-label="播放双臂灵巧手小物品精细抓取">
+                <source src="assets/videos/demo1.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="demo-body">
+              <div class="demo-meta"><span>Demo 01</span><span>00:18</span></div>
+              <h3 data-i18n="demo1Title">双臂灵巧手小物品精细抓取</h3>
+              <p data-i18n="demo1Desc">双臂平台完成小目标定位、夹取与放置，展示灵巧手精细控制与真实任务稳定性。</p>
+              <div class="demo-tags">
+                <span class="demo-tag" data-i18n="demoTagDualArm">双臂协作</span>
+                <span class="demo-tag" data-i18n="demoTagDexterous">灵巧手</span>
+                <span class="demo-tag" data-i18n="demoTagFine">精细操作</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="demo-card">
+            <div class="demo-media">
+              <video controls muted playsinline preload="metadata" poster="assets/posters/demo2.jpg" aria-label="播放手内 RGB 视角遥操作演示">
+                <source src="assets/videos/demo2.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="demo-body">
+              <div class="demo-meta"><span>Demo 02</span><span>00:28</span></div>
+              <h3 data-i18n="demo2Title">手内 RGB 视角遥操作演示</h3>
+              <p data-i18n="demo2Desc">通过手内相机视角观察末端接触与目标位置，用于遥操作示教和数据采集链路验证。</p>
+              <div class="demo-tags">
+                <span class="demo-tag" data-i18n="demoTagHandRgb">手内 RGB</span>
+                <span class="demo-tag" data-i18n="demoTagTeleop">遥操作</span>
+                <span class="demo-tag" data-i18n="demoTagData">数据采集</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="demo-card">
+            <div class="demo-media">
+              <video controls muted playsinline preload="metadata" poster="assets/posters/demo3.jpg" aria-label="播放 MediaPipe 手部关键点与关节角解析">
+                <source src="assets/videos/demo3.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="demo-body">
+              <div class="demo-meta"><span>Demo 03</span><span>01:03</span></div>
+              <h3 data-i18n="demo3Title">MediaPipe 手部关键点与关节角解析</h3>
+              <p data-i18n="demo3Desc">基于手部关键点估计实时解析关节角，为灵巧手映射、遥操作控制和动作数据生成提供输入。</p>
+              <div class="demo-tags">
+                <span class="demo-tag">MediaPipe</span>
+                <span class="demo-tag" data-i18n="demoTagJoint">关节角</span>
+                <span class="demo-tag" data-i18n="demoTagGesture">手势解析</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="demo-card">
+            <div class="demo-media">
+              <video controls muted playsinline preload="metadata" poster="assets/posters/demo4.jpg" aria-label="播放单臂物体抓取与放置多任务">
+                <source src="assets/videos/demo4.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="demo-body">
+              <div class="demo-meta"><span>Demo 04</span><span>00:23</span></div>
+              <h3 data-i18n="demo4Title">单臂物体抓取与放置多任务</h3>
+              <p data-i18n="demo4Desc">单臂在多目标、多位置场景下完成抓取、搬运和放置，验证策略在不同物体上的执行稳定性。</p>
+              <div class="demo-tags">
+                <span class="demo-tag" data-i18n="demoTagSingleArm">单臂</span>
+                <span class="demo-tag" data-i18n="demoTagMultiTask">多任务</span>
+                <span class="demo-tag" data-i18n="demoTagPickPlace">抓取放置</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="demo-card">
+            <div class="demo-media">
+              <video controls muted playsinline preload="metadata" poster="assets/posters/demo5.jpg" aria-label="播放双臂协作桌面物品整理">
+                <source src="assets/videos/demo5.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="demo-body">
+              <div class="demo-meta"><span>Demo 05</span><span>01:10</span></div>
+              <h3 data-i18n="demo5Title">双臂协作桌面物品整理</h3>
+              <p data-i18n="demo5Desc">双臂围绕桌面物品进行协作整理与位置调整，展示任务空间规划和左右臂协调能力。</p>
+              <div class="demo-tags">
+                <span class="demo-tag" data-i18n="demoTagDualArm">双臂协作</span>
+                <span class="demo-tag" data-i18n="demoTagPlanning">任务编排</span>
+                <span class="demo-tag" data-i18n="demoTagDesktop">桌面操作</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="demo-card">
+            <div class="demo-media">
+              <video controls muted playsinline preload="metadata" poster="assets/posters/demo6.jpg" aria-label="播放灵巧手杯状物抓取演示">
+                <source src="assets/videos/demo6.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="demo-body">
+              <div class="demo-meta"><span>Demo 06</span><span>00:14</span></div>
+              <h3 data-i18n="demo6Title">灵巧手杯状物抓取演示</h3>
+              <p data-i18n="demo6Desc">灵巧手针对杯状物完成稳定包络抓取，验证末端接触控制和形状适配能力。</p>
+              <div class="demo-tags">
+                <span class="demo-tag" data-i18n="demoTagDexterous">灵巧手</span>
+                <span class="demo-tag" data-i18n="demoTagObjectGrasp">物体抓取</span>
+                <span class="demo-tag" data-i18n="demoTagShape">形状适配</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="demo-card">
+            <div class="demo-media">
+              <video controls muted playsinline preload="metadata" poster="assets/posters/demo7.jpg" aria-label="播放人形机器人井字棋对弈演示">
+                <source src="assets/videos/demo7.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="demo-body">
+              <div class="demo-meta"><span>Demo 07</span><span>00:43</span></div>
+              <h3 data-i18n="demo7Title">人形机器人井字棋对弈演示</h3>
+              <p data-i18n="demo7Desc">人形机器人与人类进行井字棋交互，覆盖棋盘感知、落子决策、末端定位和动作执行。</p>
+              <div class="demo-tags">
+                <span class="demo-tag" data-i18n="demoTagHumanoid">人形机器人</span>
+                <span class="demo-tag" data-i18n="demoTagHri">人机交互</span>
+                <span class="demo-tag" data-i18n="demoTagReasoning">任务推理</span>
               </div>
             </div>
           </article>
@@ -1276,7 +1502,7 @@
         pitch: '关注机器人从数据采集、策略训练到真机部署的完整闭环，擅长把模型能力落到可运行、可复现、可迭代的机器人系统里。',
         bilibili: '哔哩哔哩',
         navTitle: '目录',
-        navOverview: '个人概览', navExp: '工作与教育', navProjects: '项目经历', navSkills: '能力矩阵', navAwards: '竞赛与荣誉',
+        navOverview: '个人概览', navExp: '工作与教育', navProjects: '项目经历', navDemos: 'Demo 视频', navSkills: '能力矩阵', navAwards: '竞赛与荣誉',
         techKeywords: '技术关键词',
         kw_async: '异步推理', kw_deploy: '机器人真机部署',
         basicInfo: '基本信息',
@@ -1322,6 +1548,29 @@
         p3b2: '基于 ACT、Diffusion Policy、π0 开展策略训练与验证，完成模型训练、推理部署和闭环测试。',
         p3b3: '对比不同策略在异形物体抓取、夹取入盒场景下的动作稳定性、任务完成效果与部署流程。',
         tech_real: '真实部署', p3r1v: '示教数据采集', p3r2k: '闭环', p3r2v: '训练、部署、测试完整打通',
+        /* demos */
+        secDemos: 'Demo 视频', kickerDemos: '真实平台、遥操作与人机交互演示',
+        demo1Title: '双臂灵巧手小物品精细抓取',
+        demo1Desc: '双臂平台完成小目标定位、夹取与放置，展示灵巧手精细控制与真实任务稳定性。',
+        demo2Title: '手内 RGB 视角遥操作演示',
+        demo2Desc: '通过手内相机视角观察末端接触与目标位置，用于遥操作示教和数据采集链路验证。',
+        demo3Title: 'MediaPipe 手部关键点与关节角解析',
+        demo3Desc: '基于手部关键点估计实时解析关节角，为灵巧手映射、遥操作控制和动作数据生成提供输入。',
+        demo4Title: '单臂物体抓取与放置多任务',
+        demo4Desc: '单臂在多目标、多位置场景下完成抓取、搬运和放置，验证策略在不同物体上的执行稳定性。',
+        demo5Title: '双臂协作桌面物品整理',
+        demo5Desc: '双臂围绕桌面物品进行协作整理与位置调整，展示任务空间规划和左右臂协调能力。',
+        demo6Title: '灵巧手杯状物抓取演示',
+        demo6Desc: '灵巧手针对杯状物完成稳定包络抓取，验证末端接触控制和形状适配能力。',
+        demo7Title: '人形机器人井字棋对弈演示',
+        demo7Desc: '人形机器人与人类进行井字棋交互，覆盖棋盘感知、落子决策、末端定位和动作执行。',
+        demoTagDualArm: '双臂协作', demoTagDexterous: '灵巧手', demoTagFine: '精细操作',
+        demoTagHandRgb: '手内 RGB', demoTagTeleop: '遥操作', demoTagData: '数据采集',
+        demoTagJoint: '关节角', demoTagGesture: '手势解析',
+        demoTagSingleArm: '单臂', demoTagMultiTask: '多任务', demoTagPickPlace: '抓取放置',
+        demoTagPlanning: '任务编排', demoTagDesktop: '桌面操作',
+        demoTagObjectGrasp: '物体抓取', demoTagShape: '形状适配',
+        demoTagHumanoid: '人形机器人', demoTagHri: '人机交互', demoTagReasoning: '任务推理',
         /* skills */
         secSkills: '能力矩阵', kickerSkills: '工程、模型、数据、部署四线闭环',
         cap1t: '数据采集与数据集工程', cap1d: 'Teleoperation、外骨骼采集、多相机数据、数据清洗、Replay、LeRobot Dataset、Demonstration 管理。',
@@ -1353,7 +1602,7 @@
         pitch: 'Full-loop robotics from data collection and policy training to real-robot deployment. Specializing in turning model capabilities into runnable, reproducible, and iterable robotic systems.',
         bilibili: 'Bilibili',
         navTitle: 'Contents',
-        navOverview: 'Overview', navExp: 'Experience', navProjects: 'Projects', navSkills: 'Skills', navAwards: 'Awards',
+        navOverview: 'Overview', navExp: 'Experience', navProjects: 'Projects', navDemos: 'Demos', navSkills: 'Skills', navAwards: 'Awards',
         techKeywords: 'Keywords',
         kw_async: 'Async Inference', kw_deploy: 'Real-Robot Deployment',
         basicInfo: 'Basic Info',
@@ -1399,6 +1648,29 @@
         p3b2: 'Trained and validated policies with ACT, Diffusion Policy, and π0; completed model training, inference deployment, and closed-loop testing.',
         p3b3: 'Compared different policies on irregular object grasping and box-insertion for motion stability, task completion, and deployment workflow.',
         tech_real: 'Real Deployment', p3r1v: 'Demonstration data collected', p3r2k: 'Closed-Loop', p3r2v: 'Training, deployment & testing fully connected',
+        /* demos */
+        secDemos: 'Demo Videos', kickerDemos: 'Real-platform, teleoperation & human-robot interaction demos',
+        demo1Title: 'Dual-Arm Dexterous-Hand Fine Grasping',
+        demo1Desc: 'A dual-arm platform localizes, grasps, and places small objects, showing fine dexterous-hand control and real-task stability.',
+        demo2Title: 'In-Hand RGB Teleoperation View',
+        demo2Desc: 'In-hand RGB camera view captures fingertip contact and target position for teleoperation teaching and data collection validation.',
+        demo3Title: 'MediaPipe Hand Keypoints & Joint-Angle Parsing',
+        demo3Desc: 'Real-time hand keypoint estimation parses joint angles for dexterous-hand mapping, teleoperation control, and action data generation.',
+        demo4Title: 'Single-Arm Multi-Task Pick and Place',
+        demo4Desc: 'A single arm completes grasping, transport, and placement across multiple targets and positions, validating execution stability across objects.',
+        demo5Title: 'Dual-Arm Collaborative Desktop Organization',
+        demo5Desc: 'Dual arms coordinate desktop object organization and repositioning, showing task-space planning and left-right arm coordination.',
+        demo6Title: 'Dexterous-Hand Cup-Shaped Object Grasp',
+        demo6Desc: 'The dexterous hand performs a stable enveloping grasp on a cup-shaped object, validating contact control and shape adaptation.',
+        demo7Title: 'Humanoid Robot Tic-Tac-Toe Interaction',
+        demo7Desc: 'A humanoid robot plays tic-tac-toe with a person, covering board perception, move decision, end-effector positioning, and action execution.',
+        demoTagDualArm: 'Dual-Arm', demoTagDexterous: 'Dexterous Hand', demoTagFine: 'Fine Manipulation',
+        demoTagHandRgb: 'In-Hand RGB', demoTagTeleop: 'Teleoperation', demoTagData: 'Data Collection',
+        demoTagJoint: 'Joint Angles', demoTagGesture: 'Gesture Parsing',
+        demoTagSingleArm: 'Single Arm', demoTagMultiTask: 'Multi-Task', demoTagPickPlace: 'Pick & Place',
+        demoTagPlanning: 'Task Planning', demoTagDesktop: 'Desktop Ops',
+        demoTagObjectGrasp: 'Object Grasp', demoTagShape: 'Shape Adaptation',
+        demoTagHumanoid: 'Humanoid', demoTagHri: 'HRI', demoTagReasoning: 'Task Reasoning',
         /* skills */
         secSkills: 'Skills', kickerSkills: 'Engineering, Models, Data & Deployment in Closed Loop',
         cap1t: 'Data Collection & Dataset Engineering', cap1d: 'Teleoperation, exoskeleton capture, multi-camera data, data cleaning, replay, LeRobot Dataset, and demonstration management.',
