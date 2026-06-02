@@ -3,435 +3,920 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>蒲贺良 - VLA / 具身智能工程师</title>
+  <title>蒲贺良 - 具身智能 / VLA 工程师</title>
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-light: #3b82f6;
-      --dark: #1e293b;
-      --gray: #64748b;
-      --light: #f8fafc;
-      --border: #e2e8f0;
+      --ink: #17211f;
+      --muted: #62706d;
+      --paper: #f6f5ef;
+      --panel: #ffffff;
+      --line: #d9ded7;
+      --green: #0f766e;
+      --red: #b83a36;
+      --amber: #b7791f;
+      --blue: #2563eb;
+      --soft-green: #e7f3ef;
+      --soft-red: #f8e9e7;
+      --soft-amber: #fbf0d4;
+      --shadow: 0 18px 55px rgba(23, 33, 31, 0.08);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
-      color: var(--dark);
-      line-height: 1.6;
-      background: var(--light);
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(15, 118, 110, 0.06) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(184, 58, 54, 0.045) 1px, transparent 1px),
+        var(--paper);
+      background-size: 36px 36px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 24px;
-    }
-
-    /* Header */
-    .header {
-      text-align: center;
-      margin-bottom: 48px;
-      padding-bottom: 32px;
-      border-bottom: 2px solid var(--border);
-    }
-
-    .header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--dark);
-    }
-
-    .header .title {
-      font-size: 1.15rem;
-      color: var(--primary);
-      font-weight: 500;
-      margin-bottom: 16px;
-    }
-
-    .header .tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-
-    .tag {
-      background: var(--primary);
-      color: white;
-      padding: 4px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      font-size: 0.95rem;
-      color: var(--gray);
-    }
-
-    .contact-info a {
-      color: var(--gray);
+    a {
+      color: inherit;
       text-decoration: none;
-      transition: color 0.2s;
     }
 
-    .contact-info a:hover {
-      color: var(--primary);
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto;
+      display: grid;
+      grid-template-columns: 330px minmax(0, 1fr);
+      gap: 18px;
     }
 
-    .contact-info span::before {
-      margin-right: 6px;
+    .sidebar {
+      position: sticky;
+      top: 28px;
+      align-self: start;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    /* Section */
-    .section {
-      margin-bottom: 40px;
+    .portrait-wrap {
+      padding: 24px 24px 18px;
+      background: linear-gradient(135deg, #173c37 0%, #f5ead2 100%);
     }
 
-    .section-title {
-      font-size: 1.4rem;
+    .portrait {
+      display: block;
+      width: 124px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      object-position: center 18%;
+      border-radius: 8px;
+      border: 4px solid rgba(255, 255, 255, 0.88);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .identity {
+      padding: 22px 24px 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .identity h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .identity .role {
+      margin: 10px 0 0;
+      color: var(--green);
+      font-size: 1rem;
       font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 20px;
-      padding-bottom: 8px;
-      border-bottom: 3px solid var(--primary);
-      display: inline-block;
     }
 
-    /* Education */
-    .edu-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .edu-left h3 {
-      font-size: 1.05rem;
-      font-weight: 600;
-    }
-
-    .edu-left .major {
-      color: var(--gray);
+    .identity .pitch {
+      margin: 16px 0 0;
+      color: var(--muted);
       font-size: 0.95rem;
     }
 
-    .edu-right {
-      color: var(--gray);
-      font-size: 0.9rem;
+    .contact, .side-section {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .side-section:last-child {
+      border-bottom: 0;
+    }
+
+    .side-title {
+      margin: 0 0 12px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .contact a, .contact span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 30px;
+      color: var(--ink);
+      font-size: 0.92rem;
+      word-break: break-word;
+    }
+
+    .contact a + a, .contact span + a {
+      margin-top: 8px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fffdfa;
+      color: var(--ink);
+      font-size: 0.82rem;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+
+    .main {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero, .section {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 32px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--red);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero h2 {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 4.2rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .hero .lead {
+      max-width: 760px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 9px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: white;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .button.secondary {
+      background: white;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .metric {
+      min-height: 116px;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fffdfa;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.55rem;
+      line-height: 1.1;
+      color: var(--green);
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .section {
+      padding: 26px 28px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: 1.35rem;
+      line-height: 1.2;
+    }
+
+    .section-kicker {
+      color: var(--muted);
+      font-size: 0.88rem;
       text-align: right;
     }
 
-    /* Work */
-    .work-item {
-      margin-bottom: 24px;
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
     }
 
-    .work-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 4px;
+    .summary-item {
+      min-height: 144px;
+      padding: 18px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fffdfa;
     }
 
-    .work-header h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
+    .summary-item h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
     }
 
-    .work-header .date {
-      color: var(--gray);
-      font-size: 0.9rem;
+    .summary-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
     }
 
-    .work-header .company {
-      color: var(--primary);
-      font-weight: 500;
+    .timeline {
+      display: grid;
+      gap: 18px;
     }
 
-    /* Projects */
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .time {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .timeline-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fffdfa;
+    }
+
+    .timeline-card h3 {
+      margin: 0;
+      font-size: 1.08rem;
+    }
+
+    .timeline-card .meta {
+      margin-top: 4px;
+      color: var(--green);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .plain-list {
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .plain-list li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .plain-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .project-grid {
+      display: grid;
+      gap: 14px;
+    }
+
     .project-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 20px;
-      transition: box-shadow 0.2s;
-    }
-
-    .project-card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+      gap: 20px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fffdfa;
     }
 
     .project-card h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 4px;
-    }
-
-    .project-card .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 12px;
-    }
-
-    .tech-tag {
-      background: #eff6ff;
-      color: var(--primary);
-      padding: 2px 10px;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      font-weight: 500;
+      margin: 0;
+      font-size: 1.08rem;
     }
 
     .project-card .desc {
-      color: var(--gray);
-      font-size: 0.95rem;
-      margin-bottom: 12px;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.94rem;
     }
 
-    .project-card ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .project-card li {
-      position: relative;
-      padding-left: 20px;
-      margin-bottom: 8px;
-      font-size: 0.95rem;
-      color: #475569;
-    }
-
-    .project-card li::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: var(--primary);
-      font-weight: bold;
-    }
-
-    .project-result {
-      background: #f0fdf4;
-      border-left: 3px solid #22c55e;
-      padding: 10px 14px;
-      margin-top: 12px;
-      border-radius: 0 8px 8px 0;
-      font-size: 0.9rem;
-      color: #166534;
-    }
-
-    /* Awards */
-    .awards-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .awards-list li {
-      position: relative;
-      padding-left: 24px;
-      margin-bottom: 12px;
-      font-size: 0.95rem;
-    }
-
-    .awards-list li::before {
-      content: '🏆';
-      position: absolute;
-      left: 0;
-    }
-
-    /* Basic Info */
-    .basic-info {
+    .result-strip {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-
-    .info-item {
-      display: flex;
-      align-items: center;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
-      font-size: 0.95rem;
+      margin-top: 14px;
     }
 
-    .info-label {
-      color: var(--gray);
-      min-width: 70px;
+    .result {
+      min-height: 72px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--soft-green);
+      border: 1px solid #cce3dc;
     }
 
-    /* Footer */
+    .result strong {
+      display: block;
+      color: var(--green);
+      font-size: 1.12rem;
+      line-height: 1.2;
+    }
+
+    .result span {
+      display: block;
+      margin-top: 4px;
+      color: #42645e;
+      font-size: 0.8rem;
+    }
+
+    .project-side {
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+
+    .tech-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tech {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--soft-amber);
+      color: #6f4c11;
+      font-size: 0.78rem;
+      font-weight: 750;
+    }
+
+    .tech.green {
+      background: var(--soft-green);
+      color: #16665e;
+    }
+
+    .tech.red {
+      background: var(--soft-red);
+      color: #8e2e2a;
+    }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .capability {
+      padding: 18px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fffdfa;
+    }
+
+    .capability h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .capability p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .awards {
+      display: grid;
+      gap: 10px;
+    }
+
+    .award {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .award:last-child {
+      border-bottom: 0;
+    }
+
+    .award-year {
+      color: var(--red);
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .award strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 0.96rem;
+    }
+
+    .award span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
     .footer {
+      color: var(--muted);
+      font-size: 0.84rem;
       text-align: center;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-      color: var(--gray);
-      font-size: 0.85rem;
+      padding: 12px 0 24px;
     }
 
-    @media (max-width: 600px) {
-      .container { padding: 24px 16px; }
-      .header h1 { font-size: 2rem; }
-      .edu-item { flex-direction: column; }
-      .edu-right { text-align: left; margin-top: 4px; }
+    @media (max-width: 980px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .portrait-wrap {
+        display: flex;
+        justify-content: center;
+      }
+
+      .identity {
+        text-align: center;
+      }
+
+      .contact {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .contact a + a, .contact span + a {
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(100% - 20px, 1180px);
+        margin: 10px auto;
+      }
+
+      .hero, .section {
+        padding: 22px 18px;
+      }
+
+      .contact,
+      .summary-grid,
+      .metric-grid,
+      .capability-grid,
+      .project-card,
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-kicker {
+        margin-top: 6px;
+        text-align: left;
+      }
+
+      .result-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .shell {
+        width: 100%;
+        margin: 0;
+        grid-template-columns: 285px minmax(0, 1fr);
+      }
+
+      .sidebar, .hero, .section {
+        box-shadow: none;
+      }
+
+      .hero-actions {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="portrait-wrap">
+        <img class="portrait" src="assets/portrait.jpg" alt="蒲贺良证件照">
+      </div>
 
-    <!-- Header -->
-    <header class="header">
-      <h1>蒲贺良</h1>
-      <div class="title">VLA / 具身智能工程师</div>
-      <div class="tags">
-        <span class="tag">LeRobot</span>
-        <span class="tag">VLA/VLM Policy</span>
-        <span class="tag">ACT</span>
-        <span class="tag">Diffusion Policy</span>
-        <span class="tag">π0</span>
-        <span class="tag">机器人真机部署</span>
+      <div class="identity">
+        <h1>蒲贺良</h1>
+        <p class="role">具身智能 / VLA 工程师</p>
+        <p class="pitch">关注机器人从数据采集、策略训练到真机部署的完整闭环，擅长把模型能力落到可运行、可复现、可迭代的机器人系统里。</p>
       </div>
-      <div class="contact-info">
-        <a href="mailto:puheliang122@gmail.com">📧 puheliang122@gmail.com</a>
-        <a href="https://github.com/AuroraBot-AI" target="_blank">GitHub: AuroraBot-AI</a>
-        <a href="https://huggingface.co/puheliang" target="_blank">🤗 puheliang</a>
-      </div>
-    </header>
 
-    <!-- Basic Info -->
-    <div class="basic-info">
-      <div class="info-item">
-        <span class="info-label">学历</span>
-        <span>本科（华东师范大学软件工程已录取）</span>
+      <div class="contact">
+        <a href="mailto:puheliang122@gmail.com"><span class="dot"></span>puheliang122@gmail.com</a>
+        <a href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer"><span class="dot"></span>GitHub: AuroraBot-AI</a>
+        <a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer"><span class="dot"></span>Hugging Face: puheliang</a>
       </div>
-      <div class="info-item">
-        <span class="info-label">英语</span>
-        <span>CET-6</span>
-      </div>
-    </div>
 
-    <!-- Education -->
-    <section class="section">
-      <h2 class="section-title">教育背景</h2>
-      <div class="edu-item">
-        <div class="edu-left">
-          <h3>华东师范大学</h3>
-          <span class="major">软件工程（统招非全日制）</span>
-        </div>
-        <div class="edu-right">2026.09 - 2029.06</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-left">
-          <h3>江苏科技大学苏州理工学院</h3>
-          <span class="major">计算机科学与技术（统招全日制） · 成绩均分：90</span>
-        </div>
-        <div class="edu-right">2021.09 - 2025.06</div>
-      </div>
-    </section>
-
-    <!-- Work -->
-    <section class="section">
-      <h2 class="section-title">工作经历</h2>
-      <div class="work-item">
-        <div class="work-header">
-          <h3>具身智能全栈工程师</h3>
-          <span class="date">2026.01 - 至今</span>
-        </div>
-        <div class="work-header">
-          <span class="company">FMC3-Robotics（上海）</span>
+      <div class="side-section">
+        <p class="side-title">技术关键词</p>
+        <div class="chip-list">
+          <span class="chip">LeRobot</span>
+          <span class="chip">ACT</span>
+          <span class="chip">Diffusion Policy</span>
+          <span class="chip">π0 / π0.5</span>
+          <span class="chip">GR00T</span>
+          <span class="chip">VLM / VLA</span>
+          <span class="chip">LoRA</span>
+          <span class="chip">异步推理</span>
+          <span class="chip">机器人真机部署</span>
         </div>
       </div>
-    </section>
 
-    <!-- Projects -->
-    <section class="section">
-      <h2 class="section-title">项目经历</h2>
-
-      <div class="project-card">
-        <h3>机械臂 + 智元灵巧手双臂协作操作</h3>
-        <div class="tech-stack">
-          <span class="tech-tag">ACT</span>
-          <span class="tech-tag">Diffusion Policy</span>
-          <span class="tech-tag">π0.5</span>
-          <span class="tech-tag">RTC</span>
-          <span class="tech-tag">LoRA</span>
-          <span class="tech-tag">LeRobot</span>
+      <div class="side-section">
+        <p class="side-title">基本信息</p>
+        <div class="chip-list">
+          <span class="chip">本科</span>
+          <span class="chip">软件工程方向</span>
+          <span class="chip">CET-6</span>
+          <span class="chip">上海</span>
         </div>
-        <p class="desc">基于 LeRobot 搭建机械臂与带触觉感知的智元灵巧手双臂协作平台，完成控制、数采、训练与推理部署链路验证。</p>
-        <ul>
-          <li>基于三家机器人产品独立完成 teleoperation、data collection、inference 与 replay 模块适配，结合 Cursor、Claude Code、Codex 等 AI 编程工具提升开发效率</li>
-          <li>采集双臂协同抓取与精细操作任务数据，基于 ACT、Diffusion Policy 与 π0.5 完成模型训练、策略验证和真实平台部署</li>
-          <li>在 π0.5 中引入 tactile encoder 融合触觉反馈，结合 RTC 与异步推理优化执行链路</li>
-        </ul>
-        <div class="project-result">项目成果：将双臂精细操作任务成功率由 30% 提升至 70%，形成可复用机器人适配层</div>
       </div>
+    </aside>
 
-      <div class="project-card">
-        <h3>傅利叶 GR2 人形机器人分拣任务</h3>
-        <div class="tech-stack">
-          <span class="tech-tag">π0</span>
-          <span class="tech-tag">GR00T</span>
-          <span class="tech-tag">DDS</span>
-          <span class="tech-tag">RoboOS</span>
-          <span class="tech-tag">LeRobot</span>
+    <main class="main">
+      <section class="hero">
+        <p class="eyebrow">Embodied AI Engineer</p>
+        <h2>把 VLA 策略训练成真实机器人可以稳定执行的动作能力。</h2>
+        <p class="lead">具备机械臂、灵巧手与人形机器人项目经验，覆盖 teleoperation、数据集构建、模型训练、推理服务、技能调度和真实平台验证。近期重点在 LeRobot 生态、π0/π0.5、GR00T、触觉反馈融合与异步推理部署。</p>
+        <div class="hero-actions">
+          <a class="button" href="mailto:puheliang122@gmail.com">联系我</a>
+          <a class="button secondary" href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer">查看 GitHub</a>
+          <a class="button secondary" href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer">查看模型与数据</a>
         </div>
-        <p class="desc">面向傅利叶 GR2 人形机器人货物分拣场景，完成操作策略向人形机器人本体的迁移适配，并打通感知、控制、推理与技能调度链路。</p>
-        <ul>
-          <li>设计 GR2 人形机器人本体腕部相机支架，使用外骨骼完成分拣场景数据采集，编写数据集转换与模型训练脚本</li>
-          <li>基于 π0 与 GR00T 开展操作策略验证，适配 get_state / send_action 接口，编写 inference server 支持 RoboOS 调用不同任务 Skill</li>
-          <li>集成 RoboOS 并接入 RoboBrain VLM，实现高层任务分解、多技能调度与分拣流程控制</li>
-        </ul>
-        <div class="project-result">项目成果：完成 GR2 人形机器人分拣任务从策略推理到多技能调度的端到端闭环验证</div>
-      </div>
-
-      <div class="project-card">
-        <h3>S101 单臂抓取策略验证</h3>
-        <div class="tech-stack">
-          <span class="tech-tag">ACT</span>
-          <span class="tech-tag">Diffusion Policy</span>
-          <span class="tech-tag">π0</span>
-          <span class="tech-tag">异步推理</span>
+        <div class="metric-grid">
+          <div class="metric">
+            <strong>70%</strong>
+            <span>双臂精细操作任务成功率，较初始方案提升约 40 个百分点</span>
+          </div>
+          <div class="metric">
+            <strong>500+</strong>
+            <span>S101 单臂抓取任务 demonstration 采集与策略验证</span>
+          </div>
+          <div class="metric">
+            <strong>3 类</strong>
+            <span>机械臂、灵巧手、人形机器人平台适配与部署经验</span>
+          </div>
+          <div class="metric">
+            <strong>1st</strong>
+            <span>本科综合排名第一，2024 年国家奖学金获得者</span>
+          </div>
         </div>
-        <p class="desc">围绕 S101 机械臂"异形物体夹取入盒"任务，完成数采、训练到真实机械臂推理部署的端到端验证。</p>
-        <ul>
-          <li>完成机械臂、夹爪、相机与示教采集链路联调，完成 500 条 demonstration 采集</li>
-          <li>基于 ACT、Diffusion Policy、π0 开展策略训练与验证，完成模型训练、推理部署和闭环测试</li>
-          <li>对比不同策略在异形物体抓取、夹取入盒场景下的动作稳定性、任务完成效果与部署流程</li>
-        </ul>
-        <div class="project-result">项目成果：打通 S101 单臂 manipulation 任务从数据采集、策略训练到真实部署的完整闭环</div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Awards -->
-    <section class="section">
-      <h2 class="section-title">竞赛与荣誉</h2>
-      <ul class="awards-list">
-        <li><strong>2024 国家奖学金</strong>（综合排名第一）；连续三次人民奖学金、三好学生，国家励志奖学金</li>
-        <li><strong>全国大学生智能车竞赛智慧物流创意组</strong>（队长），全国三等奖 / 华东赛区二等奖</li>
-        <li><strong>全国大学生智能车竞赛智慧医疗创意组</strong>（模型训练与量化），华东赛区二等奖</li>
-        <li><strong>航天杯移动机器人 AI 创新技术挑战赛</strong>（队长），全国三等奖</li>
-        <li><strong>江苏省大学生创新创业训练计划项目</strong> / 期刊：基于 OpenMV 的新型智能门锁设计</li>
-      </ul>
-    </section>
+      <section class="section">
+        <div class="section-head">
+          <h2>个人概览</h2>
+          <span class="section-kicker">能把研究模型接到真实设备上的工程型选手</span>
+        </div>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <h3>端到端闭环</h3>
+            <p>熟悉机器人任务从示教采集、数据清洗、训练配置、评估对比到真机推理的完整流程，能快速定位数据、模型和控制链路问题。</p>
+          </div>
+          <div class="summary-item">
+            <h3>真实平台适配</h3>
+            <p>完成多家机器人产品的 teleoperation、data collection、inference、replay 模块适配，关注接口稳定性与部署可维护性。</p>
+          </div>
+          <div class="summary-item">
+            <h3>多模态策略</h3>
+            <p>围绕 VLA/VLM Policy、触觉 encoder、RTC 与异步推理进行实验验证，推动策略从离线训练走向实时任务执行。</p>
+          </div>
+        </div>
+      </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>© 2025 蒲贺良 · Last updated: June 2025</p>
-    </footer>
+      <section class="section">
+        <div class="section-head">
+          <h2>工作与教育</h2>
+          <span class="section-kicker">机器人实践 + 软件工程训练</span>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">2026.01 - 至今</div>
+            <div class="timeline-card">
+              <h3>具身智能全栈工程师</h3>
+              <div class="meta">FMC3-Robotics · 上海</div>
+              <ul class="plain-list">
+                <li>负责机器人真实平台适配、数据采集链路、策略训练脚本、推理服务与部署验证。</li>
+                <li>在机械臂、灵巧手、人形机器人项目中推进 VLA/VLM Policy 的工程落地。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">2026.09 - 2029.06</div>
+            <div class="timeline-card">
+              <h3>华东师范大学</h3>
+              <div class="meta">软件工程（统招非全日制）</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">2021.09 - 2025.06</div>
+            <div class="timeline-card">
+              <h3>江苏科技大学苏州理工学院</h3>
+              <div class="meta">计算机科学与技术（统招全日制） · 成绩均分 90</div>
+              <ul class="plain-list">
+                <li>本科综合排名第一，参与智能车、移动机器人、OpenMV 视觉应用等实践项目。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <section class="section">
+        <div class="section-head">
+          <h2>项目经历</h2>
+          <span class="section-kicker">从策略到真机，从单臂到人形</span>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div>
+              <h3>机械臂 + 智元灵巧手双臂协作操作</h3>
+              <p class="desc">基于 LeRobot 搭建机械臂与带触觉感知的智元灵巧手双臂协作平台，完成控制、数采、训练与推理部署链路验证。</p>
+              <ul class="plain-list">
+                <li>独立完成 teleoperation、data collection、inference、replay 模块适配，沉淀可复用机器人适配层。</li>
+                <li>采集双臂协同抓取与精细操作任务数据，基于 ACT、Diffusion Policy、π0.5 完成策略训练与真实平台部署。</li>
+                <li>在 π0.5 中引入 tactile encoder 融合触觉反馈，结合 RTC 与异步推理优化执行链路。</li>
+              </ul>
+            </div>
+            <div class="project-side">
+              <div class="tech-row">
+                <span class="tech green">LeRobot</span>
+                <span class="tech">ACT</span>
+                <span class="tech">Diffusion Policy</span>
+                <span class="tech red">π0.5</span>
+                <span class="tech">Tactile Encoder</span>
+                <span class="tech green">LoRA</span>
+                <span class="tech">RTC</span>
+              </div>
+              <div class="result-strip">
+                <div class="result">
+                  <strong>30% → 70%</strong>
+                  <span>双臂精细操作成功率提升</span>
+                </div>
+                <div class="result">
+                  <strong>可复用</strong>
+                  <span>形成跨平台机器人适配层</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <h3>傅利叶 GR2 人形机器人分拣任务</h3>
+              <p class="desc">面向傅利叶 GR2 人形机器人货物分拣场景，完成操作策略向人形机器人本体的迁移适配，并打通感知、控制、推理与技能调度链路。</p>
+              <ul class="plain-list">
+                <li>设计 GR2 腕部相机支架，使用外骨骼完成分拣场景数据采集，编写数据集转换与训练脚本。</li>
+                <li>基于 π0 与 GR00T 开展操作策略验证，适配 get_state / send_action 接口，编写 inference server。</li>
+                <li>集成 RoboOS 并接入 RoboBrain VLM，实现高层任务分解、多技能调度与分拣流程控制。</li>
+              </ul>
+            </div>
+            <div class="project-side">
+              <div class="tech-row">
+                <span class="tech red">π0</span>
+                <span class="tech">GR00T</span>
+                <span class="tech green">DDS</span>
+                <span class="tech">RoboOS</span>
+                <span class="tech">RoboBrain VLM</span>
+                <span class="tech green">LeRobot</span>
+              </div>
+              <div class="result-strip">
+                <div class="result">
+                  <strong>端到端</strong>
+                  <span>策略推理到技能调度闭环</span>
+                </div>
+                <div class="result">
+                  <strong>人形迁移</strong>
+                  <span>完成 GR2 本体接口适配</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <h3>S101 单臂抓取策略验证</h3>
+              <p class="desc">围绕 S101 机械臂“异形物体夹取入盒”任务，完成数采、训练到真实机械臂推理部署的端到端验证。</p>
+              <ul class="plain-list">
+                <li>完成机械臂、夹爪、相机与示教采集链路联调，采集 500 条 demonstration。</li>
+                <li>基于 ACT、Diffusion Policy、π0 开展策略训练与验证，完成模型训练、推理部署和闭环测试。</li>
+                <li>对比不同策略在异形物体抓取、夹取入盒场景下的动作稳定性、任务完成效果与部署流程。</li>
+              </ul>
+            </div>
+            <div class="project-side">
+              <div class="tech-row">
+                <span class="tech">ACT</span>
+                <span class="tech">Diffusion Policy</span>
+                <span class="tech red">π0</span>
+                <span class="tech green">异步推理</span>
+                <span class="tech">真实部署</span>
+              </div>
+              <div class="result-strip">
+                <div class="result">
+                  <strong>500+</strong>
+                  <span>示教数据采集</span>
+                </div>
+                <div class="result">
+                  <strong>闭环</strong>
+                  <span>训练、部署、测试完整打通</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>能力矩阵</h2>
+          <span class="section-kicker">工程、模型、平台三线并行</span>
+        </div>
+        <div class="capability-grid">
+          <div class="capability">
+            <h3>机器人系统适配</h3>
+            <p>teleoperation、data collection、replay、get_state / send_action、相机与夹爪联调、外骨骼数采链路。</p>
+          </div>
+          <div class="capability">
+            <h3>策略训练与评估</h3>
+            <p>ACT、Diffusion Policy、π0/π0.5、GR00T，覆盖训练脚本、配置管理、任务评估与策略对比。</p>
+          </div>
+          <div class="capability">
+            <h3>推理与部署服务</h3>
+            <p>inference server、异步推理、RTC、LoRA 微调、RoboOS 技能调用与真实设备闭环测试。</p>
+          </div>
+          <div class="capability">
+            <h3>AI 辅助开发</h3>
+            <p>结合 Cursor、Claude Code、Codex 等工具提升机器人接口适配、数据脚本与实验迭代效率。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>竞赛与荣誉</h2>
+          <span class="section-kicker">算法、机器人与综合能力积累</span>
+        </div>
+        <div class="awards">
+          <div class="award">
+            <div class="award-year">2024</div>
+            <div>
+              <strong>国家奖学金</strong>
+              <span>综合排名第一；连续三次人民奖学金、三好学生，国家励志奖学金。</span>
+            </div>
+          </div>
+          <div class="award">
+            <div class="award-year">智能车</div>
+            <div>
+              <strong>全国大学生智能车竞赛智慧物流创意组</strong>
+              <span>队长，全国三等奖 / 华东赛区二等奖。</span>
+            </div>
+          </div>
+          <div class="award">
+            <div class="award-year">模型训练</div>
+            <div>
+              <strong>全国大学生智能车竞赛智慧医疗创意组</strong>
+              <span>负责模型训练与量化，华东赛区二等奖。</span>
+            </div>
+          </div>
+          <div class="award">
+            <div class="award-year">机器人</div>
+            <div>
+              <strong>航天杯移动机器人 AI 创新技术挑战赛</strong>
+              <span>队长，全国三等奖。</span>
+            </div>
+          </div>
+          <div class="award">
+            <div class="award-year">科研实践</div>
+            <div>
+              <strong>江苏省大学生创新创业训练计划项目</strong>
+              <span>期刊：基于 OpenMV 的新型智能门锁设计。</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">© 2026 蒲贺良 · Last updated: 2026.06</footer>
+    </main>
   </div>
 </body>
 </html>
