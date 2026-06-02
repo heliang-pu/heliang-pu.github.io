@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="蒲贺良 - 具身智能/VLA工程师，专注 LeRobot、VLA Policy、机器人真机部署。现就职于 FMC3-Robotics。">
+  <meta name="theme-color" content="#0f766e">
+  <meta property="og:title" content="蒲贺良 - 具身智能 / VLA 工程师">
+  <meta property="og:description" content="专注 LeRobot、VLA/VLM Policy、ACT、Diffusion Policy、机器人真机部署的具身智能工程师。">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://aurorabot-ai.github.io">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
   <title>蒲贺良 - 具身智能 / VLA 工程师</title>
   <style>
     :root {
@@ -588,9 +595,48 @@
       }
     }
 
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #e2e8f0;
+        --muted: #94a3b8;
+        --paper: #0f172a;
+        --panel: #1e293b;
+        --line: #334155;
+        --green: #5eead4;
+        --red: #fca5a5;
+        --amber: #fcd34d;
+        --blue: #60a5fa;
+        --soft-green: #134e4a;
+        --soft-red: #451a1a;
+        --soft-amber: #422006;
+        --shadow: 0 18px 55px rgba(0, 0, 0, 0.3);
+      }
+
+      body {
+        background:
+          linear-gradient(90deg, rgba(94, 234, 212, 0.04) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(252, 165, 165, 0.03) 1px, transparent 1px),
+          var(--paper);
+        background-size: 36px 36px;
+      }
+
+      .hero, .section { background: rgba(30, 41, 59, 0.94); }
+      .metric, .summary-item, .timeline-card, .project-card, .capability, .chip { background: #1a2433; }
+      .result { background: var(--soft-green); border-color: #1a4a44; }
+      .result strong { color: var(--green); }
+      .result span { color: #94a3b8; }
+      .tech { background: var(--soft-amber); color: #fcd34d; }
+      .tech.green { background: var(--soft-green); color: #5eead4; }
+      .tech.red { background: var(--soft-red); color: #fca5a5; }
+      .portrait-wrap { background: linear-gradient(135deg, #0f2b27 0%, #2a2520 100%); }
+      .button { background: #e2e8f0; color: #0f172a; border-color: #e2e8f0; }
+      .button.secondary { background: #1e293b; color: #e2e8f0; border-color: #334155; }
+    }
+
     @media print {
       body {
         background: white;
+        color: #000;
       }
 
       .shell {
@@ -606,8 +652,30 @@
       .hero-actions {
         display: none;
       }
+
+      .project-card, .timeline-card, .summary-item, .capability {
+        break-inside: avoid;
+      }
+
+      a[href]::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #666; }
+      a[href^="mailto"]::after { content: none; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "蒲贺良",
+    "jobTitle": "具身智能 / VLA 工程师",
+    "worksFor": { "@type": "Organization", "name": "FMC3-Robotics" },
+    "url": "https://aurorabot-ai.github.io",
+    "email": "puheliang122@gmail.com",
+    "sameAs": [
+      "https://github.com/AuroraBot-AI",
+      "https://huggingface.co/puheliang"
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="shell">
@@ -623,9 +691,9 @@
       </div>
 
       <div class="contact">
-        <a href="mailto:puheliang122@gmail.com"><span class="dot"></span>puheliang122@gmail.com</a>
-        <a href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer"><span class="dot"></span>GitHub: AuroraBot-AI</a>
-        <a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer"><span class="dot"></span>Hugging Face: puheliang</a>
+        <a href="mailto:puheliang122@gmail.com" aria-label="邮箱 puheliang122@gmail.com"><span class="dot"></span>puheliang122@gmail.com</a>
+        <a href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer" aria-label="GitHub AuroraBot-AI"><span class="dot"></span>GitHub: AuroraBot-AI</a>
+        <a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer" aria-label="HuggingFace puheliang"><span class="dot"></span>Hugging Face: puheliang</a>
       </div>
 
       <div class="side-section">
