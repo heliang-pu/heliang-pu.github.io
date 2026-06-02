@@ -784,6 +784,14 @@
       right: 18px;
     }
 
+    .lang-toggle {
+      top: 18px;
+      right: 70px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
     .to-top {
       bottom: 22px;
       right: 18px;
@@ -819,7 +827,7 @@
     }
 
     @media print {
-      .skip-link, .scroll-progress, .theme-toggle, .to-top { display: none !important; }
+      .skip-link, .scroll-progress, .theme-toggle, .lang-toggle, .to-top { display: none !important; }
 
       body {
         background: white;
@@ -883,8 +891,9 @@
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">跳到主内容</a>
+  <a class="skip-link" href="#main" data-i18n="skip">跳到主内容</a>
   <div class="scroll-progress" aria-hidden="true"></div>
+  <button class="control-btn lang-toggle" type="button" aria-label="Switch language" title="Switch language" onclick="toggleLang()">EN</button>
   <button class="control-btn theme-toggle" type="button" aria-pressed="false" aria-label="切换深色 / 浅色模式" title="切换深色 / 浅色模式" onclick="toggleTheme()"><span aria-hidden="true">🌓</span></button>
   <button class="control-btn to-top" type="button" aria-label="回到顶部" title="回到顶部" onclick="scrollToTop()"><span aria-hidden="true">↑</span></button>
   <div class="shell">
@@ -895,30 +904,30 @@
 
       <div class="identity">
         <h1>蒲贺良</h1>
-        <p class="role">具身智能 / VLA 工程师</p>
-        <p class="pitch">关注机器人从数据采集、策略训练到真机部署的完整闭环，擅长把模型能力落到可运行、可复现、可迭代的机器人系统里。</p>
+        <p class="role" data-i18n="role">具身智能 / VLA 工程师</p>
+        <p class="pitch" data-i18n="pitch">关注机器人从数据采集、策略训练到真机部署的完整闭环，擅长把模型能力落到可运行、可复现、可迭代的机器人系统里。</p>
       </div>
 
       <div class="contact">
         <a href="mailto:puheliang122@gmail.com" aria-label="邮箱 puheliang122@gmail.com"><span class="dot" aria-hidden="true"></span>puheliang122@gmail.com</a>
         <a href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer" aria-label="GitHub AuroraBot-AI"><span class="dot" aria-hidden="true"></span>GitHub: AuroraBot-AI</a>
         <a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer" aria-label="HuggingFace puheliang"><span class="dot" aria-hidden="true"></span>Hugging Face: puheliang</a>
-        <a href="https://space.bilibili.com/389273511" target="_blank" rel="noreferrer" aria-label="哔哩哔哩主页"><span class="dot" aria-hidden="true"></span>哔哩哔哩: 389273511</a>
+        <a href="https://space.bilibili.com/389273511" target="_blank" rel="noreferrer" aria-label="哔哩哔哩主页"><span class="dot" aria-hidden="true"></span><span data-i18n="bilibili">哔哩哔哩</span>: 389273511</a>
       </div>
 
       <nav class="side-section" aria-label="页面导航">
-        <p class="side-title">目录</p>
+        <p class="side-title" data-i18n="navTitle">目录</p>
         <div class="nav-links">
-          <a href="#overview">个人概览</a>
-          <a href="#experience">工作与教育</a>
-          <a href="#projects">项目经历</a>
-          <a href="#skills">能力矩阵</a>
-          <a href="#awards">竞赛与荣誉</a>
+          <a href="#overview" data-i18n="navOverview">个人概览</a>
+          <a href="#experience" data-i18n="navExp">工作与教育</a>
+          <a href="#projects" data-i18n="navProjects">项目经历</a>
+          <a href="#skills" data-i18n="navSkills">能力矩阵</a>
+          <a href="#awards" data-i18n="navAwards">竞赛与荣誉</a>
         </div>
       </nav>
 
       <div class="side-section">
-        <p class="side-title">技术关键词</p>
+        <p class="side-title" data-i18n="techKeywords">技术关键词</p>
         <div class="chip-list">
           <span class="chip">LeRobot</span>
           <span class="chip">ACT</span>
@@ -927,18 +936,18 @@
           <span class="chip">GR00T</span>
           <span class="chip">VLM / VLA</span>
           <span class="chip">LoRA</span>
-          <span class="chip">异步推理</span>
-          <span class="chip">机器人真机部署</span>
+          <span class="chip" data-i18n="kw_async">异步推理</span>
+          <span class="chip" data-i18n="kw_deploy">机器人真机部署</span>
         </div>
       </div>
 
       <div class="side-section">
-        <p class="side-title">基本信息</p>
+        <p class="side-title" data-i18n="basicInfo">基本信息</p>
         <div class="chip-list">
-          <span class="chip">本科</span>
-          <span class="chip">软件工程方向</span>
+          <span class="chip" data-i18n="edu_bachelor">本科</span>
+          <span class="chip" data-i18n="edu_major">软件工程方向</span>
           <span class="chip">CET-6</span>
-          <span class="chip">上海</span>
+          <span class="chip" data-i18n="city">上海</span>
         </div>
       </div>
     </aside>
@@ -946,86 +955,86 @@
     <main class="main" id="main">
       <section class="hero">
         <p class="eyebrow">Embodied AI Engineer</p>
-        <h2>从策略到动作，让机器人真正动起来。</h2>
-        <p class="lead">具备机械臂、灵巧手与人形机器人项目经验，覆盖 teleoperation、数据集构建、模型训练、推理服务、技能调度和真实平台验证。近期重点在 LeRobot 生态、π0/π0.5、GR00T、触觉反馈融合与异步推理部署。</p>
+        <h2 data-i18n="heroTitle">从策略到动作，让机器人真正动起来。</h2>
+        <p class="lead" data-i18n="heroLead">具备机械臂、灵巧手与人形机器人项目经验，覆盖 teleoperation、数据集构建、模型训练、推理服务、技能调度和真实平台验证。近期重点在 LeRobot 生态、π0/π0.5、GR00T、触觉反馈融合与异步推理部署。</p>
         <div class="hero-actions">
-          <a class="button" href="mailto:puheliang122@gmail.com">联系我</a>
-          <a class="button secondary" href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer">查看 GitHub</a>
-          <a class="button secondary" href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer">查看模型与数据</a>
-          <button class="button secondary" type="button" onclick="window.print()">下载 / 打印 PDF</button>
+          <a class="button" href="mailto:puheliang122@gmail.com" data-i18n="btnContact">联系我</a>
+          <a class="button secondary" href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer" data-i18n="btnGitHub">查看 GitHub</a>
+          <a class="button secondary" href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer" data-i18n="btnHF">查看模型与数据</a>
+          <button class="button secondary" type="button" onclick="window.print()" data-i18n="btnPDF">下载 / 打印 PDF</button>
         </div>
         <div class="metric-grid">
           <div class="metric">
             <strong>70%</strong>
-            <span>双臂精细操作任务成功率，较初始方案提升约 40 个百分点</span>
+            <span data-i18n="m1desc">双臂精细操作任务成功率，较初始方案提升约 40 个百分点</span>
           </div>
           <div class="metric">
             <strong>500+</strong>
-            <span>S101 单臂抓取任务 demonstration 采集与策略验证</span>
+            <span data-i18n="m2desc">S101 单臂抓取任务 demonstration 采集与策略验证</span>
           </div>
           <div class="metric">
             <strong>3 类</strong>
-            <span>机械臂、灵巧手、人形机器人平台适配与部署经验</span>
+            <span data-i18n="m3desc">机械臂、灵巧手、人形机器人平台适配与部署经验</span>
           </div>
           <div class="metric">
             <strong>No.1</strong>
-            <span>本科综合排名第一，2024 年国家奖学金获得者</span>
+            <span data-i18n="m4desc">本科综合排名第一，2024 年国家奖学金获得者</span>
           </div>
         </div>
       </section>
 
       <section class="section" id="overview">
         <div class="section-head">
-          <h2>个人概览</h2>
-          <span class="section-kicker">能把研究模型接到真实设备上的工程型选手</span>
+          <h2 data-i18n="secOverview">个人概览</h2>
+          <span class="section-kicker" data-i18n="kickerOverview">能把研究模型接到真实设备上的工程型选手</span>
         </div>
         <div class="summary-grid">
           <div class="summary-item">
-            <h3>端到端闭环</h3>
-            <p>熟悉机器人任务从示教采集、数据清洗、训练配置、评估对比到真机推理的完整流程，能快速定位数据、模型和控制链路问题。</p>
+            <h3 data-i18n="sum1t">端到端闭环</h3>
+            <p data-i18n="sum1d">熟悉机器人任务从示教采集、数据清洗、训练配置、评估对比到真机推理的完整流程，能快速定位数据、模型和控制链路问题。</p>
           </div>
           <div class="summary-item">
-            <h3>真实平台适配</h3>
-            <p>完成多家机器人产品的 teleoperation、data collection、inference、replay 模块适配，关注接口稳定性与部署可维护性。</p>
+            <h3 data-i18n="sum2t">真实平台适配</h3>
+            <p data-i18n="sum2d">完成多家机器人产品的 teleoperation、data collection、inference、replay 模块适配，关注接口稳定性与部署可维护性。</p>
           </div>
           <div class="summary-item">
-            <h3>多模态策略</h3>
-            <p>围绕 VLA/VLM Policy、触觉 encoder、RTC 与异步推理进行实验验证，推动策略从离线训练走向实时任务执行。</p>
+            <h3 data-i18n="sum3t">多模态策略</h3>
+            <p data-i18n="sum3d">围绕 VLA/VLM Policy、触觉 encoder、RTC 与异步推理进行实验验证，推动策略从离线训练走向实时任务执行。</p>
           </div>
         </div>
       </section>
 
       <section class="section" id="experience">
         <div class="section-head">
-          <h2>工作与教育</h2>
-          <span class="section-kicker">机器人实践 + 软件工程训练</span>
+          <h2 data-i18n="secExp">工作与教育</h2>
+          <span class="section-kicker" data-i18n="kickerExp">机器人实践 + 软件工程训练</span>
         </div>
         <div class="timeline">
           <div class="timeline-item">
-            <div class="time">2026.01 - 至今</div>
+            <div class="time" data-i18n="exp1time">2026.01 - 至今</div>
             <div class="timeline-card">
-              <h3>具身智能全栈工程师</h3>
-              <div class="meta">FMC3-Robotics · 上海</div>
+              <h3 data-i18n="exp1title">具身智能全栈工程师</h3>
+              <div class="meta">FMC3-Robotics · <span data-i18n="exp1loc">上海</span></div>
               <ul class="plain-list">
-                <li>负责机器人真实平台适配、数据采集链路、策略训练脚本、推理服务与部署验证。</li>
-                <li>在机械臂、灵巧手、人形机器人项目中推进 VLA/VLM Policy 的工程落地。</li>
+                <li data-i18n="exp1d1">负责机器人真实平台适配、数据采集链路、策略训练脚本、推理服务与部署验证。</li>
+                <li data-i18n="exp1d2">在机械臂、灵巧手、人形机器人项目中推进 VLA/VLM Policy 的工程落地。</li>
               </ul>
             </div>
           </div>
           <div class="timeline-item">
             <div class="time">2026.09 - 2029.06</div>
             <div class="timeline-card">
-              <h3>华东师范大学</h3>
-              <div class="meta">软件工程（统招非全日制）</div>
+              <h3 data-i18n="exp2title">华东师范大学</h3>
+              <div class="meta" data-i18n="exp2meta">软件工程（统招非全日制）</div>
             </div>
           </div>
           <div class="timeline-item">
             <div class="time">2021.09 - 2025.06</div>
             <div class="timeline-card">
-              <h3>江苏科技大学苏州理工学院</h3>
-              <div class="meta">计算机科学与技术（统招全日制） · 成绩均分 90</div>
+              <h3 data-i18n="exp3title">江苏科技大学苏州理工学院</h3>
+              <div class="meta" data-i18n="exp3meta">计算机科学与技术（统招全日制） · 成绩均分 90</div>
               <ul class="plain-list">
-                <li>本科综合排名第一，参与智能车、移动机器人、OpenMV 视觉应用等实践项目。</li>
+                <li data-i18n="exp3d1">本科综合排名第一，参与智能车、移动机器人、OpenMV 视觉应用等实践项目。</li>
               </ul>
             </div>
           </div>
@@ -1034,18 +1043,18 @@
 
       <section class="section" id="projects">
         <div class="section-head">
-          <h2>项目经历</h2>
-          <span class="section-kicker">从策略到真机，从单臂到人形</span>
+          <h2 data-i18n="secProjects">项目经历</h2>
+          <span class="section-kicker" data-i18n="kickerProjects">从策略到真机，从单臂到人形</span>
         </div>
         <div class="project-grid">
           <article class="project-card">
             <div>
-              <h3>机械臂 + 智元灵巧手双臂协作操作</h3>
-              <p class="desc">基于 LeRobot 搭建机械臂与带触觉感知的智元灵巧手双臂协作平台，完成控制、数采、训练与推理部署链路验证。</p>
+              <h3 data-i18n="p1t">机械臂 + 智元灵巧手双臂协作操作</h3>
+              <p class="desc" data-i18n="p1d">基于 LeRobot 搭建机械臂与带触觉感知的智元灵巧手双臂协作平台，完成控制、数采、训练与推理部署链路验证。</p>
               <ul class="plain-list">
-                <li>独立完成 teleoperation、data collection、inference、replay 模块适配，沉淀可复用机器人适配层。</li>
-                <li>采集双臂协同抓取与精细操作任务数据，基于 ACT、Diffusion Policy、π0.5 完成策略训练与真实平台部署。</li>
-                <li>在 π0.5 中引入 tactile encoder 融合触觉反馈，结合 RTC 与异步推理优化执行链路。</li>
+                <li data-i18n="p1b1">独立完成 teleoperation、data collection、inference、replay 模块适配，沉淀可复用机器人适配层。</li>
+                <li data-i18n="p1b2">采集双臂协同抓取与精细操作任务数据，基于 ACT、Diffusion Policy、π0.5 完成策略训练与真实平台部署。</li>
+                <li data-i18n="p1b3">在 π0.5 中引入 tactile encoder 融合触觉反馈，结合 RTC 与异步推理优化执行链路。</li>
               </ul>
             </div>
             <div class="project-side">
@@ -1061,11 +1070,11 @@
               <div class="result-strip">
                 <div class="result">
                   <strong>30% → 70%</strong>
-                  <span>双臂精细操作成功率提升</span>
+                  <span data-i18n="p1r1">双臂精细操作成功率提升</span>
                 </div>
                 <div class="result">
-                  <strong>可复用</strong>
-                  <span>形成跨平台机器人适配层</span>
+                  <strong data-i18n="p1r2k">可复用</strong>
+                  <span data-i18n="p1r2v">形成跨平台机器人适配层</span>
                 </div>
               </div>
             </div>
@@ -1073,12 +1082,12 @@
 
           <article class="project-card">
             <div>
-              <h3>傅利叶 GR2 人形机器人分拣任务</h3>
-              <p class="desc">面向傅利叶 GR2 人形机器人货物分拣场景，完成操作策略向人形机器人本体的迁移适配，并打通感知、控制、推理与技能调度链路。</p>
+              <h3 data-i18n="p2t">傅利叶 GR2 人形机器人分拣任务</h3>
+              <p class="desc" data-i18n="p2d">面向傅利叶 GR2 人形机器人货物分拣场景，完成操作策略向人形机器人本体的迁移适配，并打通感知、控制、推理与技能调度链路。</p>
               <ul class="plain-list">
-                <li>设计 GR2 腕部相机支架，使用外骨骼完成分拣场景数据采集，编写数据集转换与训练脚本。</li>
-                <li>基于 π0 与 GR00T 开展操作策略验证，适配 get_state / send_action 接口，编写 inference server。</li>
-                <li>集成 RoboOS 并接入 RoboBrain VLM，实现高层任务分解、多技能调度与分拣流程控制。</li>
+                <li data-i18n="p2b1">设计 GR2 腕部相机支架，使用外骨骼完成分拣场景数据采集，编写数据集转换与训练脚本。</li>
+                <li data-i18n="p2b2">基于 π0 与 GR00T 开展操作策略验证，适配 get_state / send_action 接口，编写 inference server。</li>
+                <li data-i18n="p2b3">集成 RoboOS 并接入 RoboBrain VLM，实现高层任务分解、多技能调度与分拣流程控制。</li>
               </ul>
             </div>
             <div class="project-side">
@@ -1092,12 +1101,12 @@
               </div>
               <div class="result-strip">
                 <div class="result">
-                  <strong>端到端</strong>
-                  <span>策略推理到技能调度闭环</span>
+                  <strong data-i18n="p2r1k">端到端</strong>
+                  <span data-i18n="p2r1v">策略推理到技能调度闭环</span>
                 </div>
                 <div class="result">
-                  <strong>人形迁移</strong>
-                  <span>完成 GR2 本体接口适配</span>
+                  <strong data-i18n="p2r2k">人形迁移</strong>
+                  <span data-i18n="p2r2v">完成 GR2 本体接口适配</span>
                 </div>
               </div>
             </div>
@@ -1105,12 +1114,12 @@
 
           <article class="project-card">
             <div>
-              <h3>S101 单臂抓取策略验证</h3>
-              <p class="desc">围绕 S101 机械臂“异形物体夹取入盒”任务，完成数采、训练到真实机械臂推理部署的端到端验证。</p>
-              <ul class="plain-list">
-                <li>完成机械臂、夹爪、相机与示教采集链路联调，采集 500+ 条 demonstration。</li>
-                <li>基于 ACT、Diffusion Policy、π0 开展策略训练与验证，完成模型训练、推理部署和闭环测试。</li>
-                <li>对比不同策略在异形物体抓取、夹取入盒场景下的动作稳定性、任务完成效果与部署流程。</li>
+              <h3 data-i18n=”p3t”>S101 单臂抓取策略验证</h3>
+              <p class=”desc” data-i18n=”p3d”>围绕 S101 机械臂”异形物体夹取入盒”任务，完成数采、训练到真实机械臂推理部署的端到端验证。</p>
+              <ul class=”plain-list”>
+                <li data-i18n=”p3b1”>完成机械臂、夹爪、相机与示教采集链路联调，采集 500+ 条 demonstration。</li>
+                <li data-i18n=”p3b2”>基于 ACT、Diffusion Policy、π0 开展策略训练与验证，完成模型训练、推理部署和闭环测试。</li>
+                <li data-i18n=”p3b3”>对比不同策略在异形物体抓取、夹取入盒场景下的动作稳定性、任务完成效果与部署流程。</li>
               </ul>
             </div>
             <div class="project-side">
@@ -1119,16 +1128,16 @@
                 <span class="tech">Diffusion Policy</span>
                 <span class="tech red">π0</span>
                 <span class="tech green">异步推理</span>
-                <span class="tech">真实部署</span>
+                <span class="tech" data-i18n="tech_real">真实部署</span>
               </div>
               <div class="result-strip">
                 <div class="result">
                   <strong>500+</strong>
-                  <span>示教数据采集</span>
+                  <span data-i18n="p3r1v">示教数据采集</span>
                 </div>
                 <div class="result">
-                  <strong>闭环</strong>
-                  <span>训练、部署、测试完整打通</span>
+                  <strong data-i18n="p3r2k">闭环</strong>
+                  <span data-i18n="p3r2v">训练、部署、测试完整打通</span>
                 </div>
               </div>
             </div>
@@ -1138,78 +1147,79 @@
 
       <section class="section" id="skills">
         <div class="section-head">
-          <h2>能力矩阵</h2>
-          <span class="section-kicker">工程、模型、平台三线并行</span>
+          <h2 data-i18n="secSkills">能力矩阵</h2>
+          <span class="section-kicker" data-i18n="kickerSkills">工程、模型、平台三线并行</span>
         </div>
         <div class="capability-grid">
           <div class="capability">
-            <h3>机器人系统适配</h3>
-            <p>teleoperation、data collection、replay、get_state / send_action、相机与夹爪联调、外骨骼数采链路。</p>
+            <h3 data-i18n="cap1t">机器人系统适配</h3>
+            <p data-i18n="cap1d">teleoperation、data collection、replay、get_state / send_action、相机与夹爪联调、外骨骼数采链路。</p>
           </div>
           <div class="capability">
-            <h3>策略训练与评估</h3>
-            <p>ACT、Diffusion Policy、π0/π0.5、GR00T，覆盖训练脚本、配置管理、任务评估与策略对比。</p>
+            <h3 data-i18n="cap2t">策略训练与评估</h3>
+            <p data-i18n="cap2d">ACT、Diffusion Policy、π0/π0.5、GR00T，覆盖训练脚本、配置管理、任务评估与策略对比。</p>
           </div>
           <div class="capability">
-            <h3>推理与部署服务</h3>
-            <p>inference server、异步推理、RTC、LoRA 微调、RoboOS 技能调用与真实设备闭环测试。</p>
+            <h3 data-i18n="cap3t">推理与部署服务</h3>
+            <p data-i18n="cap3d">inference server、异步推理、RTC、LoRA 微调、RoboOS 技能调用与真实设备闭环测试。</p>
           </div>
           <div class="capability">
-            <h3>AI 辅助开发</h3>
-            <p>结合 Cursor、Claude Code、Codex 等工具提升机器人接口适配、数据脚本与实验迭代效率。</p>
+            <h3 data-i18n="cap4t">AI 辅助开发</h3>
+            <p data-i18n="cap4d">结合 Cursor、Claude Code、Codex 等工具提升机器人接口适配、数据脚本与实验迭代效率。</p>
           </div>
         </div>
       </section>
 
       <section class="section" id="awards">
         <div class="section-head">
-          <h2>竞赛与荣誉</h2>
-          <span class="section-kicker">算法、机器人与综合能力积累</span>
+          <h2 data-i18n="secAwards">竞赛与荣誉</h2>
+          <span class="section-kicker" data-i18n="kickerAwards">算法、机器人与综合能力积累</span>
         </div>
         <div class="awards">
           <div class="award">
             <div class="award-year">2024</div>
             <div>
-              <strong>国家奖学金</strong>
-              <span>综合排名第一；连续三次人民奖学金、三好学生，国家励志奖学金。</span>
+              <strong data-i18n="a1t">国家奖学金</strong>
+              <span data-i18n="a1d">综合排名第一；连续三次人民奖学金、三好学生，国家励志奖学金。</span>
             </div>
           </div>
           <div class="award">
-            <div class="award-year">智能车</div>
+            <div class="award-year" data-i18n="a2y">智能车</div>
             <div>
-              <strong>全国大学生智能车竞赛智慧物流创意组</strong>
-              <span>队长，全国三等奖 / 华东赛区二等奖。</span>
+              <strong data-i18n="a2t">全国大学生智能车竞赛智慧物流创意组</strong>
+              <span data-i18n="a2d">队长，全国三等奖 / 华东赛区二等奖。</span>
             </div>
           </div>
           <div class="award">
-            <div class="award-year">模型训练</div>
+            <div class="award-year" data-i18n="a3y">模型训练</div>
             <div>
-              <strong>全国大学生智能车竞赛智慧医疗创意组</strong>
-              <span>负责模型训练与量化，华东赛区二等奖。</span>
+              <strong data-i18n="a3t">全国大学生智能车竞赛智慧医疗创意组</strong>
+              <span data-i18n="a3d">负责模型训练与量化，华东赛区二等奖。</span>
             </div>
           </div>
           <div class="award">
-            <div class="award-year">机器人</div>
+            <div class="award-year" data-i18n="a4y">机器人</div>
             <div>
-              <strong>航天杯移动机器人 AI 创新技术挑战赛</strong>
-              <span>队长，全国三等奖。</span>
+              <strong data-i18n="a4t">航天杯移动机器人 AI 创新技术挑战赛</strong>
+              <span data-i18n="a4d">队长，全国三等奖。</span>
             </div>
           </div>
           <div class="award">
-            <div class="award-year">科研实践</div>
+            <div class="award-year" data-i18n="a5y">科研实践</div>
             <div>
-              <strong>江苏省大学生创新创业训练计划项目</strong>
-              <span>期刊：基于 OpenMV 的新型智能门锁设计。</span>
+              <strong data-i18n="a5t">江苏省大学生创新创业训练计划项目</strong>
+              <span data-i18n="a5d">期刊：基于 OpenMV 的新型智能门锁设计。</span>
             </div>
           </div>
         </div>
       </section>
 
-      <footer class="footer">© 2026 蒲贺良 · Last updated: 2026.06</footer>
+      <footer class="footer">© 2026 蒲贺良 · <span data-i18n="footerUpdated">Last updated: 2026.06</span></footer>
     </main>
   </div>
 
   <script>
+    /* ── Theme ── */
     function applyTheme(t) {
       document.documentElement.classList.toggle('theme-dark', t === 'dark');
       try { localStorage.setItem('theme', t); } catch (e) {}
@@ -1224,6 +1234,200 @@
       var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
       window.scrollTo({ top: 0, behavior: rm ? 'auto' : 'smooth' });
     }
+
+    /* ── i18n ── */
+    var i18n = {
+      zh: {
+        /* meta */
+        docTitle: '蒲贺良 - 具身智能 / VLA 工程师',
+        metaDesc: '蒲贺良 - 具身智能/VLA工程师，专注 LeRobot、VLA Policy、机器人真机部署。现就职于 FMC3-Robotics。',
+        /* sidebar */
+        role: '具身智能 / VLA 工程师',
+        pitch: '关注机器人从数据采集、策略训练到真机部署的完整闭环，擅长把模型能力落到可运行、可复现、可迭代的机器人系统里。',
+        bilibili: '哔哩哔哩',
+        navTitle: '目录',
+        navOverview: '个人概览', navExp: '工作与教育', navProjects: '项目经历', navSkills: '能力矩阵', navAwards: '竞赛与荣誉',
+        techKeywords: '技术关键词',
+        kw_async: '异步推理', kw_deploy: '机器人真机部署',
+        basicInfo: '基本信息',
+        edu_bachelor: '本科', edu_major: '软件工程方向', city: '上海',
+        /* hero */
+        heroTitle: '从策略到动作，让机器人真正动起来。',
+        heroLead: '具备机械臂、灵巧手与人形机器人项目经验，覆盖 teleoperation、数据集构建、模型训练、推理服务、技能调度和真实平台验证。近期重点在 LeRobot 生态、π0/π0.5、GR00T、触觉反馈融合与异步推理部署。',
+        btnContact: '联系我', btnGitHub: '查看 GitHub', btnHF: '查看模型与数据', btnPDF: '下载 / 打印 PDF',
+        m1desc: '双臂精细操作任务成功率，较初始方案提升约 40 个百分点',
+        m2desc: 'S101 单臂抓取任务 demonstration 采集与策略验证',
+        m3desc: '机械臂、灵巧手、人形机器人平台适配与部署经验',
+        m4desc: '本科综合排名第一，2024 年国家奖学金获得者',
+        /* overview */
+        secOverview: '个人概览', kickerOverview: '能把研究模型接到真实设备上的工程型选手',
+        sum1t: '端到端闭环', sum1d: '熟悉机器人任务从示教采集、数据清洗、训练配置、评估对比到真机推理的完整流程，能快速定位数据、模型和控制链路问题。',
+        sum2t: '真实平台适配', sum2d: '完成多家机器人产品的 teleoperation、data collection、inference、replay 模块适配，关注接口稳定性与部署可维护性。',
+        sum3t: '多模态策略', sum3d: '围绕 VLA/VLM Policy、触觉 encoder、RTC 与异步推理进行实验验证，推动策略从离线训练走向实时任务执行。',
+        /* experience */
+        secExp: '工作与教育', kickerExp: '机器人实践 + 软件工程训练',
+        exp1time: '2026.01 - 至今',
+        exp1title: '具身智能全栈工程师', exp1loc: '上海',
+        exp1d1: '负责机器人真实平台适配、数据采集链路、策略训练脚本、推理服务与部署验证。',
+        exp1d2: '在机械臂、灵巧手、人形机器人项目中推进 VLA/VLM Policy 的工程落地。',
+        exp2title: '华东师范大学', exp2meta: '软件工程（统招非全日制）',
+        exp3title: '江苏科技大学苏州理工学院', exp3meta: '计算机科学与技术（统招全日制） · 成绩均分 90',
+        exp3d1: '本科综合排名第一，参与智能车、移动机器人、OpenMV 视觉应用等实践项目。',
+        /* projects */
+        secProjects: '项目经历', kickerProjects: '从策略到真机，从单臂到人形',
+        p1t: '机械臂 + 智元灵巧手双臂协作操作', p1d: '基于 LeRobot 搭建机械臂与带触觉感知的智元灵巧手双臂协作平台，完成控制、数采、训练与推理部署链路验证。',
+        p1b1: '独立完成 teleoperation、data collection、inference、replay 模块适配，沉淀可复用机器人适配层。',
+        p1b2: '采集双臂协同抓取与精细操作任务数据，基于 ACT、Diffusion Policy、π0.5 完成策略训练与真实平台部署。',
+        p1b3: '在 π0.5 中引入 tactile encoder 融合触觉反馈，结合 RTC 与异步推理优化执行链路。',
+        p1r1: '双臂精细操作成功率提升', p1r2k: '可复用', p1r2v: '形成跨平台机器人适配层',
+        p2t: '傅利叶 GR2 人形机器人分拣任务', p2d: '面向傅利叶 GR2 人形机器人货物分拣场景，完成操作策略向人形机器人本体的迁移适配，并打通感知、控制、推理与技能调度链路。',
+        p2b1: '设计 GR2 腕部相机支架，使用外骨骼完成分拣场景数据采集，编写数据集转换与训练脚本。',
+        p2b2: '基于 π0 与 GR00T 开展操作策略验证，适配 get_state / send_action 接口，编写 inference server。',
+        p2b3: '集成 RoboOS 并接入 RoboBrain VLM，实现高层任务分解、多技能调度与分拣流程控制。',
+        p2r1k: '端到端', p2r1v: '策略推理到技能调度闭环', p2r2k: '人形迁移', p2r2v: '完成 GR2 本体接口适配',
+        p3t: 'S101 单臂抓取策略验证', p3d: '围绕 S101 机械臂"异形物体夹取入盒"任务，完成数采、训练到真实机械臂推理部署的端到端验证。',
+        p3b1: '完成机械臂、夹爪、相机与示教采集链路联调，采集 500+ 条 demonstration。',
+        p3b2: '基于 ACT、Diffusion Policy、π0 开展策略训练与验证，完成模型训练、推理部署和闭环测试。',
+        p3b3: '对比不同策略在异形物体抓取、夹取入盒场景下的动作稳定性、任务完成效果与部署流程。',
+        tech_real: '真实部署', p3r1v: '示教数据采集', p3r2k: '闭环', p3r2v: '训练、部署、测试完整打通',
+        /* skills */
+        secSkills: '能力矩阵', kickerSkills: '工程、模型、平台三线并行',
+        cap1t: '机器人系统适配', cap1d: 'teleoperation、data collection、replay、get_state / send_action、相机与夹爪联调、外骨骼数采链路。',
+        cap2t: '策略训练与评估', cap2d: 'ACT、Diffusion Policy、π0/π0.5、GR00T，覆盖训练脚本、配置管理、任务评估与策略对比。',
+        cap3t: '推理与部署服务', cap3d: 'inference server、异步推理、RTC、LoRA 微调、RoboOS 技能调用与真实设备闭环测试。',
+        cap4t: 'AI 辅助开发', cap4d: '结合 Cursor、Claude Code、Codex 等工具提升机器人接口适配、数据脚本与实验迭代效率。',
+        /* awards */
+        secAwards: '竞赛与荣誉', kickerAwards: '算法、机器人与综合能力积累',
+        a1t: '国家奖学金', a1d: '综合排名第一；连续三次人民奖学金、三好学生，国家励志奖学金。',
+        a2y: '智能车', a2t: '全国大学生智能车竞赛智慧物流创意组', a2d: '队长，全国三等奖 / 华东赛区二等奖。',
+        a3y: '模型训练', a3t: '全国大学生智能车竞赛智慧医疗创意组', a3d: '负责模型训练与量化，华东赛区二等奖。',
+        a4y: '机器人', a4t: '航天杯移动机器人 AI 创新技术挑战赛', a4d: '队长，全国三等奖。',
+        a5y: '科研实践', a5t: '江苏省大学生创新创业训练计划项目', a5d: '期刊：基于 OpenMV 的新型智能门锁设计。',
+        /* footer & a11y */
+        skip: '跳到主内容', footerUpdated: 'Last updated: 2026.06',
+        themeLabel: '切换深色 / 浅色模式', langLabel: 'Switch language',
+        portraitAlt: '蒲贺良头像'
+      },
+      en: {
+        /* meta */
+        docTitle: 'Puheliang - Embodied AI / VLA Engineer',
+        metaDesc: 'Puheliang - Embodied AI / VLA Engineer, focused on LeRobot, VLA Policy, and real-robot deployment. Currently at FMC3-Robotics.',
+        /* sidebar */
+        role: 'Embodied AI / VLA Engineer',
+        pitch: 'Full-loop robotics from data collection and policy training to real-robot deployment. Specializing in turning model capabilities into runnable, reproducible, and iterable robotic systems.',
+        bilibili: 'Bilibili',
+        navTitle: 'Contents',
+        navOverview: 'Overview', navExp: 'Experience', navProjects: 'Projects', navSkills: 'Skills', navAwards: 'Awards',
+        techKeywords: 'Keywords',
+        kw_async: 'Async Inference', kw_deploy: 'Real-Robot Deployment',
+        basicInfo: 'Basic Info',
+        edu_bachelor: "Bachelor's", edu_major: 'Software Engineering', city: 'Shanghai',
+        /* hero */
+        heroTitle: 'From policy to action — making robots truly move.',
+        heroLead: 'Experienced with robotic arms, dexterous hands, and humanoid robots, covering teleoperation, dataset construction, model training, inference services, skill orchestration, and real-platform validation. Recent focus on the LeRobot ecosystem, π0/π0.5, GR00T, tactile feedback fusion, and async inference deployment.',
+        btnContact: 'Contact Me', btnGitHub: 'View GitHub', btnHF: 'View Models & Data', btnPDF: 'Download / Print PDF',
+        m1desc: 'Dual-arm fine manipulation success rate, ~40pp improvement over baseline',
+        m2desc: 'S101 single-arm grasping task demonstration collection & policy validation',
+        m3desc: 'Robotic arm, dexterous hand & humanoid platform adaptation & deployment',
+        m4desc: "Ranked #1 in undergraduate cohort, 2024 National Scholarship recipient",
+        /* overview */
+        secOverview: 'Overview', kickerOverview: 'An engineer who bridges research models to real hardware',
+        sum1t: 'End-to-End Loop', sum1d: 'Well-versed in the full pipeline from teaching collection, data cleaning, training configuration, evaluation to real-robot inference. Quickly locates issues across data, model, and control chains.',
+        sum2t: 'Platform Adaptation', sum2d: 'Adapted teleoperation, data collection, inference, and replay modules for multiple robot products, with focus on interface stability and deployment maintainability.',
+        sum3t: 'Multimodal Policy', sum3d: 'Experiments around VLA/VLM Policy, tactile encoder, RTC, and async inference, driving policies from offline training to real-time task execution.',
+        /* experience */
+        secExp: 'Experience', kickerExp: 'Robotics Practice + Software Engineering',
+        exp1time: '2026.01 - Present',
+        exp1title: 'Embodied AI Full-Stack Engineer', exp1loc: 'Shanghai',
+        exp1d1: 'Responsible for real-platform adaptation, data collection pipelines, policy training scripts, inference services, and deployment validation.',
+        exp1d2: 'Driving VLA/VLM Policy engineering deployment across robotic arm, dexterous hand, and humanoid robot projects.',
+        exp2title: 'East China Normal University', exp2meta: 'Software Engineering (Part-time)',
+        exp3title: 'Jiangsu Univ. of Sci. & Tech. Suzhou Institute of Technology', exp3meta: 'Computer Science & Technology (Full-time) · GPA 90',
+        exp3d1: 'Ranked #1 in undergraduate cohort; participated in smart car, mobile robot, and OpenMV vision projects.',
+        /* projects */
+        secProjects: 'Projects', kickerProjects: 'From policy to robot, from arm to humanoid',
+        p1t: 'Robotic Arm + Zhiyuan Dexterous Hand Dual-Arm Collaboration', p1d: 'Built a dual-arm collaboration platform with tactile-sensing Zhiyuan dexterous hand based on LeRobot, completing the full chain of control, data collection, training, and inference deployment.',
+        p1b1: 'Independently adapted teleoperation, data collection, inference, and replay modules, building a reusable robot adaptation layer.',
+        p1b2: 'Collected dual-arm coordinated grasping & fine manipulation data; trained and deployed policies based on ACT, Diffusion Policy, and π0.5 on real platforms.',
+        p1b3: 'Integrated tactile encoder into π0.5 for tactile feedback fusion, combined with RTC and async inference to optimize execution.',
+        p1r1: 'Dual-arm fine manipulation success rate', p1r2k: 'Reusable', p1r2v: 'Cross-platform robot adaptation layer',
+        p2t: 'Fourier GR2 Humanoid Robot Sorting Task', p2d: 'Adapted manipulation policies for the Fourier GR2 humanoid robot in goods sorting scenarios, connecting perception, control, inference, and skill orchestration.',
+        p2b1: 'Designed GR2 wrist camera mount, collected sorting scene data with exoskeleton, wrote dataset conversion & training scripts.',
+        p2b2: 'Validated manipulation policies with π0 and GR00T, adapted get_state / send_action interfaces, wrote inference server.',
+        p2b3: 'Integrated RoboOS with RoboBrain VLM for high-level task decomposition, multi-skill orchestration, and sorting flow control.',
+        p2r1k: 'End-to-End', p2r1v: 'Policy inference to skill orchestration loop', p2r2k: 'Humanoid Transfer', p2r2v: 'GR2 robot interface adaptation',
+        p3t: 'S101 Single-Arm Grasping Policy Validation', p3d: 'End-to-end validation for S101 robotic arm on "grasping irregular objects into box" task, covering data collection, training, and real-robot inference deployment.',
+        p3b1: 'Completed arm, gripper, camera & teaching collection chain integration; collected 500+ demonstrations.',
+        p3b2: 'Trained and validated policies with ACT, Diffusion Policy, and π0; completed model training, inference deployment, and closed-loop testing.',
+        p3b3: 'Compared different policies on irregular object grasping and box-insertion for motion stability, task completion, and deployment workflow.',
+        tech_real: 'Real Deployment', p3r1v: 'Demonstration data collected', p3r2k: 'Closed-Loop', p3r2v: 'Training, deployment & testing fully connected',
+        /* skills */
+        secSkills: 'Skills', kickerSkills: 'Engineering, Models & Platforms in Parallel',
+        cap1t: 'Robot System Adaptation', cap1d: 'Teleoperation, data collection, replay, get_state / send_action, camera & gripper integration, exoskeleton data collection.',
+        cap2t: 'Policy Training & Evaluation', cap2d: 'ACT, Diffusion Policy, π0/π0.5, GR00T — covering training scripts, config management, task evaluation, and policy comparison.',
+        cap3t: 'Inference & Deployment', cap3d: 'Inference server, async inference, RTC, LoRA fine-tuning, RoboOS skill invocation, and real-device closed-loop testing.',
+        cap4t: 'AI-Assisted Development', cap4d: 'Leveraging Cursor, Claude Code, Codex and similar tools to boost efficiency in robot interface adaptation, data scripts, and experiment iteration.',
+        /* awards */
+        secAwards: 'Awards', kickerAwards: 'Algorithms, Robotics & Comprehensive Skills',
+        a1t: 'National Scholarship', a1d: 'Ranked #1 overall; three consecutive People\'s Scholarships, Merit Student, National Encouragement Scholarship.',
+        a2y: 'Smart Car', a2t: 'National Smart Car Competition – Smart Logistics Creative Group', a2d: 'Team leader, National 3rd Prize / East China 2nd Prize.',
+        a3y: 'Model Training', a3t: 'National Smart Car Competition – Smart Healthcare Creative Group', a3d: 'Responsible for model training & quantization, East China 2nd Prize.',
+        a4y: 'Robotics', a4t: 'Hangtian Cup Mobile Robot AI Innovation Challenge', a4d: 'Team leader, National 3rd Prize.',
+        a5y: 'Research', a5t: 'Jiangsu Province College Students Innovation & Entrepreneurship Training Program', a5d: 'Publication: Design of a Novel Smart Door Lock Based on OpenMV.',
+        /* footer & a11y */
+        skip: 'Skip to main content', footerUpdated: 'Last updated: 2026.06',
+        themeLabel: 'Toggle dark / light mode', langLabel: '切换中 / 英文',
+        portraitAlt: 'Portrait of Puheliang'
+      }
+    };
+
+    function applyLang(lang) {
+      var t = i18n[lang];
+      if (!t) return;
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+      /* text content */
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+      /* meta tags */
+      document.title = t.docTitle;
+      var mDesc = document.querySelector('meta[name="description"]');
+      if (mDesc) mDesc.content = t.metaDesc;
+      var ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.content = t.docTitle;
+      var ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.content = t.metaDesc;
+      var twTitle = document.querySelector('meta[name="twitter:title"]');
+      if (twTitle) twTitle.content = t.docTitle;
+      var twDesc = document.querySelector('meta[name="twitter:description"]');
+      if (twDesc) twDesc.content = t.metaDesc;
+      /* toggle button label */
+      var langBtn = document.querySelector('.lang-toggle');
+      if (langBtn) langBtn.textContent = lang === 'zh' ? 'EN' : '中';
+      /* update a11y labels on control buttons */
+      var themeBtn = document.querySelector('.theme-toggle');
+      if (themeBtn) {
+        themeBtn.setAttribute('aria-label', t.themeLabel);
+        themeBtn.setAttribute('title', t.themeLabel);
+      }
+      var toTopBtn = document.querySelector('.to-top');
+      if (toTopBtn) {
+        toTopBtn.setAttribute('aria-label', lang === 'zh' ? '回到顶部' : 'Back to top');
+        toTopBtn.setAttribute('title', lang === 'zh' ? '回到顶部' : 'Back to top');
+      }
+      /* portrait alt */
+      var portrait = document.querySelector('.portrait');
+      if (portrait) portrait.alt = t.portraitAlt;
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+
+    function toggleLang() {
+      var cur = document.documentElement.lang === 'zh-CN' ? 'zh' : 'en';
+      applyLang(cur === 'zh' ? 'en' : 'zh');
+    }
+
+    /* ── Init ── */
     (function () {
       var toTop = document.querySelector('.to-top');
       var bar = document.querySelector('.scroll-progress');
@@ -1240,6 +1444,11 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onScroll, { passive: true });
       onScroll();
+      /* restore saved language */
+      try {
+        var saved = localStorage.getItem('lang');
+        if (saved === 'en') applyLang('en');
+      } catch (e) {}
     })();
   </script>
 </body>
