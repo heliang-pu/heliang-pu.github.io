@@ -19,7 +19,6 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <title>蒲贺良 - 具身智能 / VLA 工程师</title>
-  <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.css">
   <style>
     :root {
       --ink: #17211f;
@@ -965,29 +964,39 @@
     .gh-calendar {
       overflow: hidden;
       border-radius: 6px;
+      font-size: 0.7rem;
     }
 
-    .gh-calendar .calendar {
-      width: 100% !important;
-      max-width: 100% !important;
-      border: none !important;
-      padding: 0 !important;
+    .gh-grid {
+      display: grid;
+      grid-template-columns: repeat(52, 1fr);
+      grid-template-rows: repeat(7, 1fr);
+      gap: 2px;
     }
 
-    .gh-calendar .calendar .width-full {
-      max-width: 100% !important;
+    .gh-cell {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 2px;
+      background: #ebedf0;
     }
 
-    html.theme-dark .gh-calendar .calendar {
-      background: transparent !important;
-    }
+    .gh-cell[data-l="1"] { background: #9be9a8; }
+    .gh-cell[data-l="2"] { background: #40c463; }
+    .gh-cell[data-l="3"] { background: #30a14e; }
+    .gh-cell[data-l="4"] { background: #216e39; }
 
-    html.theme-dark .gh-calendar .calendar text {
-      fill: var(--muted) !important;
-    }
+    html.theme-dark .gh-cell { background: #161b22; }
+    html.theme-dark .gh-cell[data-l="1"] { background: #0e4429; }
+    html.theme-dark .gh-cell[data-l="2"] { background: #006d32; }
+    html.theme-dark .gh-cell[data-l="3"] { background: #26a641; }
+    html.theme-dark .gh-cell[data-l="4"] { background: #39d353; }
 
-    html.theme-dark .gh-calendar .calendar .ContributionCalendar-day {
-      stroke: var(--line) !important;
+    .gh-count {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-align: right;
     }
   </style>
   <script type="application/ld+json">
@@ -1843,9 +1852,46 @@
       }
     })();
   </script>
-  <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
   <script>
-    GitHubCalendar("#gh-calendar", "AuroraBot-AI", { responsive: true, global_stats: false });
+    (function () {
+      var cal = document.getElementById('gh-calendar');
+      if (!cal) return;
+      cal.innerHTML = '<div class="gh-grid" id="gh-grid"></div><div class="gh-count" id="gh-count"></div>';
+      var grid = document.getElementById('gh-grid');
+      var countEl = document.getElementById('gh-count');
+      /* Build 52×7 empty grid */
+      for (var r = 0; r < 7; r++) {
+        for (var c = 0; c < 52; c++) {
+          var d = document.createElement('div');
+          d.className = 'gh-cell';
+          grid.appendChild(d);
+        }
+      }
+      var cells = grid.children;
+      /* Fetch contribution data via GitHub GraphQL (public proxy) */
+      fetch('https://github-contributions-api.jogruber.de/v4/AuroraBot-AI?y=last')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (!data.contributions) return;
+          var total = 0;
+          data.contributions.forEach(function (day, i) {
+            if (i < 364) {
+              var col = Math.floor(i / 7);
+              var row = i % 7;
+              var idx = row * 52 + col;
+              if (cells[idx]) {
+                cells[idx].setAttribute('data-l', String(Math.min(day.level, 4)));
+                cells[idx].title = day.date + ': ' + day.count + ' contributions';
+              }
+            }
+            total += day.count;
+          });
+          if (total > 0) countEl.textContent = total + ' contributions in the last year';
+        })
+        .catch(function () {
+          countEl.textContent = 'Unable to load';
+        });
+    })();
   </script>
 </body>
 </html>
