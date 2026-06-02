@@ -1,3 +1,8 @@
 .DS_Store
 **/.DS_Store
 Thumbs.db
+
+# Raw / oversized assets (compressed versions live in assets/videos/)
+*.MOV
+assets/*.mp4
+assets/portrait.png
