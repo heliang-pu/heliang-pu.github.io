@@ -1259,8 +1259,8 @@
         <div class="demo-grid">
           <article class="demo-card">
             <div class="demo-media">
-              <video controls muted playsinline preload="metadata" poster="assets/posters/demo1.jpg" aria-label="播放双臂灵巧手小物品精细抓取" data-i18n-aria="demo1Aria">
-                <source src="assets/videos/demo1.mp4" type="video/mp4">
+              <video controls muted playsinline poster="assets/posters/demo1.jpg" aria-label="播放双臂灵巧手小物品精细抓取" data-i18n-aria="demo1Aria">
+                <source data-src="assets/videos/demo1.mp4" type="video/mp4">
               </video>
             </div>
             <div class="demo-body">
@@ -1277,8 +1277,8 @@
 
           <article class="demo-card">
             <div class="demo-media">
-              <video controls muted playsinline preload="metadata" poster="assets/posters/demo2.jpg" aria-label="播放手内 RGB 视角推理观察" data-i18n-aria="demo2Aria">
-                <source src="assets/videos/demo2.mp4" type="video/mp4">
+              <video controls muted playsinline poster="assets/posters/demo2.jpg" aria-label="播放手内 RGB 视角推理观察" data-i18n-aria="demo2Aria">
+                <source data-src="assets/videos/demo2.mp4" type="video/mp4">
               </video>
             </div>
             <div class="demo-body">
@@ -1295,8 +1295,8 @@
 
           <article class="demo-card">
             <div class="demo-media">
-              <video controls muted playsinline preload="metadata" poster="assets/posters/demo3.jpg" aria-label="播放 MediaPipe 手部关键点与关节角解析" data-i18n-aria="demo3Aria">
-                <source src="assets/videos/demo3.mp4" type="video/mp4">
+              <video controls muted playsinline poster="assets/posters/demo3.jpg" aria-label="播放 MediaPipe 手部关键点与关节角解析" data-i18n-aria="demo3Aria">
+                <source data-src="assets/videos/demo3.mp4" type="video/mp4">
               </video>
             </div>
             <div class="demo-body">
@@ -1313,8 +1313,8 @@
 
           <article class="demo-card">
             <div class="demo-media">
-              <video controls muted playsinline preload="metadata" poster="assets/posters/demo4.jpg" aria-label="播放单臂物体抓取与放置多任务切换" data-i18n-aria="demo4Aria">
-                <source src="assets/videos/demo4.mp4" type="video/mp4">
+              <video controls muted playsinline poster="assets/posters/demo4.jpg" aria-label="播放单臂物体抓取与放置多任务切换" data-i18n-aria="demo4Aria">
+                <source data-src="assets/videos/demo4.mp4" type="video/mp4">
               </video>
             </div>
             <div class="demo-body">
@@ -1331,8 +1331,8 @@
 
           <article class="demo-card">
             <div class="demo-media">
-              <video controls muted playsinline preload="metadata" poster="assets/posters/demo5.jpg" aria-label="播放单臂桌面物品整理" data-i18n-aria="demo5Aria">
-                <source src="assets/videos/demo5.mp4" type="video/mp4">
+              <video controls muted playsinline poster="assets/posters/demo5.jpg" aria-label="播放单臂桌面物品整理" data-i18n-aria="demo5Aria">
+                <source data-src="assets/videos/demo5.mp4" type="video/mp4">
               </video>
             </div>
             <div class="demo-body">
@@ -1349,8 +1349,8 @@
 
           <article class="demo-card">
             <div class="demo-media">
-              <video controls muted playsinline preload="metadata" poster="assets/posters/demo6.jpg" aria-label="播放傅利叶人形机器人灵巧手杯状物抓取" data-i18n-aria="demo6Aria">
-                <source src="assets/videos/demo6.mp4" type="video/mp4">
+              <video controls muted playsinline poster="assets/posters/demo6.jpg" aria-label="播放傅利叶人形机器人灵巧手杯状物抓取" data-i18n-aria="demo6Aria">
+                <source data-src="assets/videos/demo6.mp4" type="video/mp4">
               </video>
             </div>
             <div class="demo-body">
@@ -1367,8 +1367,8 @@
 
           <article class="demo-card">
             <div class="demo-media">
-              <video controls muted playsinline preload="metadata" poster="assets/posters/demo7.jpg" aria-label="播放人形机器人井字棋对弈演示" data-i18n-aria="demo7Aria">
-                <source src="assets/videos/demo7.mp4" type="video/mp4">
+              <video controls muted playsinline poster="assets/posters/demo7.jpg" aria-label="播放人形机器人井字棋对弈演示" data-i18n-aria="demo7Aria">
+                <source data-src="assets/videos/demo7.mp4" type="video/mp4">
               </video>
             </div>
             <div class="demo-body">
@@ -1789,6 +1789,22 @@
         var saved = localStorage.getItem('lang');
         if (saved === 'en') applyLang('en');
       } catch (e) {}
+      /* lazy-load videos */
+      if ('IntersectionObserver' in window) {
+        var vidObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              var v = e.target;
+              v.querySelectorAll('source[data-src]').forEach(function (s) {
+                s.src = s.dataset.src;
+              });
+              v.load();
+              vidObs.unobserve(v);
+            }
+          });
+        }, { rootMargin: '200px' });
+        document.querySelectorAll('.demo-media video').forEach(function (v) { vidObs.observe(v); });
+      }
     })();
   </script>
 </body>
