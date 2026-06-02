@@ -162,12 +162,26 @@
       margin-top: 8px;
     }
 
-    .dot {
-      width: 8px;
-      height: 8px;
+    .contact-icon {
+      width: 18px;
+      height: 18px;
       flex: 0 0 auto;
-      border-radius: 50%;
-      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--green);
+      color: var(--green);
+      transition: fill 0.15s, color 0.15s;
+    }
+
+    .contact a:hover .contact-icon svg {
+      fill: var(--ink);
+      color: var(--ink);
     }
 
     .chip-list {
@@ -909,10 +923,10 @@
       </div>
 
       <div class="contact">
-        <a href="mailto:puheliang122@gmail.com" aria-label="邮箱 puheliang122@gmail.com"><span class="dot" aria-hidden="true"></span>puheliang122@gmail.com</a>
-        <a href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer" aria-label="GitHub AuroraBot-AI"><span class="dot" aria-hidden="true"></span>GitHub: AuroraBot-AI</a>
-        <a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer" aria-label="HuggingFace puheliang"><span class="dot" aria-hidden="true"></span>Hugging Face: puheliang</a>
-        <a href="https://space.bilibili.com/389273511" target="_blank" rel="noreferrer" aria-label="哔哩哔哩主页"><span class="dot" aria-hidden="true"></span><span data-i18n="bilibili">哔哩哔哩</span>: 389273511</a>
+        <a href="mailto:puheliang122@gmail.com" aria-label="邮箱 puheliang122@gmail.com"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>puheliang122@gmail.com</a>
+        <a href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer" aria-label="GitHub AuroraBot-AI"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg></span>GitHub: AuroraBot-AI</a>
+        <a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer" aria-label="HuggingFace puheliang"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-2.5 8a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm-5.5 4.5s1.5 2 3 2 3-2 3-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="9.5" cy="9.5" r="1.2" fill="currentColor"/><circle cx="14.5" cy="9.5" r="1.2" fill="currentColor"/></svg></span>Hugging Face: puheliang</a>
+        <a href="https://space.bilibili.com/389273511" target="_blank" rel="noreferrer" aria-label="哔哩哔哩主页"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.124.929.373.267.249.391.551.391.907 0 .355-.124.657-.373.906L17.813 4.653zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773H5.333zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/></svg></span><span data-i18n="bilibili">哔哩哔哩</span>: 389273511</a>
       </div>
 
       <nav class="side-section" aria-label="页面导航">
