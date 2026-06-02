@@ -1162,24 +1162,40 @@
       <section class="section" id="skills">
         <div class="section-head">
           <h2 data-i18n="secSkills">能力矩阵</h2>
-          <span class="section-kicker" data-i18n="kickerSkills">工程、模型、平台三线并行</span>
+          <span class="section-kicker" data-i18n="kickerSkills">工程、模型、数据、部署四线闭环</span>
         </div>
         <div class="capability-grid">
           <div class="capability">
-            <h3 data-i18n="cap1t">机器人系统适配</h3>
-            <p data-i18n="cap1d">teleoperation、data collection、replay、get_state / send_action、相机与夹爪联调、外骨骼数采链路。</p>
+            <h3 data-i18n="cap1t">数据采集与数据集工程</h3>
+            <p data-i18n="cap1d">Teleoperation、外骨骼采集、多相机数据、数据清洗、Replay、LeRobot Dataset、Demonstration 管理。</p>
           </div>
           <div class="capability">
-            <h3 data-i18n="cap2t">策略训练与评估</h3>
-            <p data-i18n="cap2d">ACT、Diffusion Policy、π0/π0.5、GR00T，覆盖训练脚本、配置管理、任务评估与策略对比。</p>
+            <h3 data-i18n="cap2t">机器人平台适配</h3>
+            <p data-i18n="cap2d">完成机械臂、灵巧手、人形机器人平台的 get_state / send_action、相机、夹爪、触觉与控制接口适配。</p>
           </div>
           <div class="capability">
-            <h3 data-i18n="cap3t">推理与部署服务</h3>
-            <p data-i18n="cap3d">inference server、异步推理、RTC、LoRA 微调、RoboOS 技能调用与真实设备闭环测试。</p>
+            <h3 data-i18n="cap3t">策略模型训练</h3>
+            <p data-i18n="cap3d">基于 ACT、Diffusion Policy、π0/π0.5、GR00T 开展策略训练、配置管理、Checkpoint 管理与任务对比。</p>
           </div>
           <div class="capability">
-            <h3 data-i18n="cap4t">AI 辅助开发</h3>
-            <p data-i18n="cap4d">结合 Cursor、Claude Code、Codex 等工具提升机器人接口适配、数据脚本与实验迭代效率。</p>
+            <h3 data-i18n="cap4t">真机推理与实时执行</h3>
+            <p data-i18n="cap4d">构建 inference server，支持异步推理、RTC、Action Chunk 执行、延迟优化与真实设备闭环测试。</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap5t">多模态感知与融合</h3>
+            <p data-i18n="cap5d">围绕 RGB 相机、腕部相机、触觉 encoder、VLM/RoboBrain VLM 进行多模态状态输入与反馈融合。</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap6t">技能调度与任务编排</h3>
+            <p data-i18n="cap6d">集成 RoboOS Skill 调用、高层任务分解、多技能调度与分拣流程控制。</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap7t">评估与失败分析</h3>
+            <p data-i18n="cap7d">关注成功率、动作稳定性、Baseline 对比、失败案例归因、数据分布检查与策略泛化表现。</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap8t">AI 辅助工程开发</h3>
+            <p data-i18n="cap8d">结合 Cursor、Claude Code、Codex 提升机器人接口适配、数据脚本开发、训练调参与实验迭代效率。</p>
           </div>
         </div>
       </section>
@@ -1307,11 +1323,15 @@
         p3b3: '对比不同策略在异形物体抓取、夹取入盒场景下的动作稳定性、任务完成效果与部署流程。',
         tech_real: '真实部署', p3r1v: '示教数据采集', p3r2k: '闭环', p3r2v: '训练、部署、测试完整打通',
         /* skills */
-        secSkills: '能力矩阵', kickerSkills: '工程、模型、平台三线并行',
-        cap1t: '机器人系统适配', cap1d: 'teleoperation、data collection、replay、get_state / send_action、相机与夹爪联调、外骨骼数采链路。',
-        cap2t: '策略训练与评估', cap2d: 'ACT、Diffusion Policy、π0/π0.5、GR00T，覆盖训练脚本、配置管理、任务评估与策略对比。',
-        cap3t: '推理与部署服务', cap3d: 'inference server、异步推理、RTC、LoRA 微调、RoboOS 技能调用与真实设备闭环测试。',
-        cap4t: 'AI 辅助开发', cap4d: '结合 Cursor、Claude Code、Codex 等工具提升机器人接口适配、数据脚本与实验迭代效率。',
+        secSkills: '能力矩阵', kickerSkills: '工程、模型、数据、部署四线闭环',
+        cap1t: '数据采集与数据集工程', cap1d: 'Teleoperation、外骨骼采集、多相机数据、数据清洗、Replay、LeRobot Dataset、Demonstration 管理。',
+        cap2t: '机器人平台适配', cap2d: '完成机械臂、灵巧手、人形机器人平台的 get_state / send_action、相机、夹爪、触觉与控制接口适配。',
+        cap3t: '策略模型训练', cap3d: '基于 ACT、Diffusion Policy、π0/π0.5、GR00T 开展策略训练、配置管理、Checkpoint 管理与任务对比。',
+        cap4t: '真机推理与实时执行', cap4d: '构建 inference server，支持异步推理、RTC、Action Chunk 执行、延迟优化与真实设备闭环测试。',
+        cap5t: '多模态感知与融合', cap5d: '围绕 RGB 相机、腕部相机、触觉 encoder、VLM/RoboBrain VLM 进行多模态状态输入与反馈融合。',
+        cap6t: '技能调度与任务编排', cap6d: '集成 RoboOS Skill 调用、高层任务分解、多技能调度与分拣流程控制。',
+        cap7t: '评估与失败分析', cap7d: '关注成功率、动作稳定性、Baseline 对比、失败案例归因、数据分布检查与策略泛化表现。',
+        cap8t: 'AI 辅助工程开发', cap8d: '结合 Cursor、Claude Code、Codex 提升机器人接口适配、数据脚本开发、训练调参与实验迭代效率。',
         /* awards */
         secAwards: '竞赛与荣誉', kickerAwards: '算法、机器人与综合能力积累',
         a1t: '国家奖学金', a1d: '综合排名第一；连续三次人民奖学金、三好学生，国家励志奖学金。',
@@ -1380,11 +1400,15 @@
         p3b3: 'Compared different policies on irregular object grasping and box-insertion for motion stability, task completion, and deployment workflow.',
         tech_real: 'Real Deployment', p3r1v: 'Demonstration data collected', p3r2k: 'Closed-Loop', p3r2v: 'Training, deployment & testing fully connected',
         /* skills */
-        secSkills: 'Skills', kickerSkills: 'Engineering, Models & Platforms in Parallel',
-        cap1t: 'Robot System Adaptation', cap1d: 'Teleoperation, data collection, replay, get_state / send_action, camera & gripper integration, exoskeleton data collection.',
-        cap2t: 'Policy Training & Evaluation', cap2d: 'ACT, Diffusion Policy, π0/π0.5, GR00T — covering training scripts, config management, task evaluation, and policy comparison.',
-        cap3t: 'Inference & Deployment', cap3d: 'Inference server, async inference, RTC, LoRA fine-tuning, RoboOS skill invocation, and real-device closed-loop testing.',
-        cap4t: 'AI-Assisted Development', cap4d: 'Leveraging Cursor, Claude Code, Codex and similar tools to boost efficiency in robot interface adaptation, data scripts, and experiment iteration.',
+        secSkills: 'Skills', kickerSkills: 'Engineering, Models, Data & Deployment in Closed Loop',
+        cap1t: 'Data Collection & Dataset Engineering', cap1d: 'Teleoperation, exoskeleton capture, multi-camera data, data cleaning, replay, LeRobot Dataset, and demonstration management.',
+        cap2t: 'Robot Platform Adaptation', cap2d: 'Adapted get_state / send_action, cameras, grippers, tactile sensors, and control interfaces across robotic arms, dexterous hands, and humanoid platforms.',
+        cap3t: 'Policy Model Training', cap3d: 'Policy training with ACT, Diffusion Policy, π0/π0.5, GR00T — covering config management, checkpoint management, and task comparison.',
+        cap4t: 'Real-Robot Inference & Real-Time Execution', cap4d: 'Built inference servers supporting async inference, RTC, action chunk execution, latency optimization, and real-device closed-loop testing.',
+        cap5t: 'Multimodal Perception & Fusion', cap5d: 'Multimodal state input and feedback fusion with RGB cameras, wrist cameras, tactile encoder, VLM / RoboBrain VLM.',
+        cap6t: 'Skill Orchestration & Task Planning', cap6d: 'Integrated RoboOS skill invocation, high-level task decomposition, multi-skill orchestration, and sorting flow control.',
+        cap7t: 'Evaluation & Failure Analysis', cap7d: 'Focused on success rate, motion stability, baseline comparison, failure root-cause analysis, data distribution checks, and policy generalization.',
+        cap8t: 'AI-Assisted Engineering', cap8d: 'Leveraging Cursor, Claude Code, Codex to boost efficiency in robot interface adaptation, data script development, training tuning, and experiment iteration.',
         /* awards */
         secAwards: 'Awards', kickerAwards: 'Algorithms, Robotics & Comprehensive Skills',
         a1t: 'National Scholarship', a1d: 'Ranked #1 overall; three consecutive People\'s Scholarships, Merit Student, National Encouragement Scholarship.',
