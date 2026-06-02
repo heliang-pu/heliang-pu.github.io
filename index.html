@@ -9,6 +9,12 @@
   <meta property="og:description" content="专注 LeRobot、VLA/VLM Policy、ACT、Diffusion Policy、机器人真机部署的具身智能工程师。">
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://aurorabot-ai.github.io">
+  <meta property="og:image" content="https://aurorabot-ai.github.io/assets/portrait.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="蒲贺良 - 具身智能 / VLA 工程师">
+  <meta name="twitter:description" content="专注 LeRobot、VLA/VLM Policy、ACT、Diffusion Policy、机器人真机部署的具身智能工程师。">
+  <meta name="twitter:image" content="https://aurorabot-ai.github.io/assets/portrait.jpg">
+  <link rel="canonical" href="https://aurorabot-ai.github.io">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
   <title>蒲贺良 - 具身智能 / VLA 工程师</title>
   <style>
@@ -51,6 +57,12 @@
     a {
       color: inherit;
       text-decoration: none;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 2px;
+      border-radius: 4px;
     }
 
     .shell {
@@ -138,6 +150,11 @@
       color: var(--ink);
       font-size: 0.92rem;
       word-break: break-word;
+      transition: color 0.15s;
+    }
+
+    .contact a:hover {
+      color: var(--green);
     }
 
     .contact a + a, .contact span + a {
@@ -170,6 +187,12 @@
       font-size: 0.82rem;
       font-weight: 650;
       white-space: nowrap;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .chip:hover {
+      background: var(--soft-green);
+      border-color: var(--green);
     }
 
     .main {
@@ -231,6 +254,17 @@
       color: white;
       font-weight: 700;
       font-size: 0.92rem;
+      transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .button:active {
+      transform: translateY(0);
+      opacity: 0.85;
     }
 
     .button.secondary {
@@ -306,6 +340,12 @@
       border-radius: 8px;
       border: 1px solid var(--line);
       background: #fffdfa;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .summary-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
     .summary-item h3 {
@@ -341,6 +381,12 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fffdfa;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .timeline-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
     .timeline-card h3 {
@@ -394,6 +440,12 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fffdfa;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
     .project-card h3 {
@@ -455,6 +507,11 @@
       color: #6f4c11;
       font-size: 0.78rem;
       font-weight: 750;
+      transition: transform 0.15s;
+    }
+
+    .tech:hover {
+      transform: scale(1.08);
     }
 
     .tech.green {
@@ -478,6 +535,12 @@
       border-radius: 8px;
       border: 1px solid var(--line);
       background: #fffdfa;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .capability:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
     .capability h3 {
@@ -531,6 +594,26 @@
       font-size: 0.84rem;
       text-align: center;
       padding: 12px 0 24px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .sidebar { animation: fadeUp 0.5s ease both; }
+    .hero { animation: fadeUp 0.5s 0.1s ease both; }
+    .main > .section:nth-child(2) { animation: fadeUp 0.5s 0.18s ease both; }
+    .main > .section:nth-child(3) { animation: fadeUp 0.5s 0.26s ease both; }
+    .main > .section:nth-child(4) { animation: fadeUp 0.5s 0.34s ease both; }
+    .main > .section:nth-child(5) { animation: fadeUp 0.5s 0.42s ease both; }
+    .main > .section:nth-child(6) { animation: fadeUp 0.5s 0.50s ease both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
 
     @media (max-width: 980px) {
@@ -595,6 +678,12 @@
       }
     }
 
+    @media (max-width: 480px) {
+      .contact {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
     @media (prefers-color-scheme: dark) {
       :root {
         --ink: #e2e8f0;
@@ -631,6 +720,10 @@
       .portrait-wrap { background: linear-gradient(135deg, #0f2b27 0%, #2a2520 100%); }
       .button { background: #e2e8f0; color: #0f172a; border-color: #e2e8f0; }
       .button.secondary { background: #1e293b; color: #e2e8f0; border-color: #334155; }
+      .summary-item:hover, .timeline-card:hover, .project-card:hover, .capability:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      }
+      .chip:hover { background: var(--soft-green); }
     }
 
     @media print {
@@ -681,7 +774,7 @@
   <div class="shell">
     <aside class="sidebar">
       <div class="portrait-wrap">
-        <img class="portrait" src="assets/portrait.jpg" alt="蒲贺良证件照">
+        <img class="portrait" src="assets/portrait.jpg" alt="蒲贺良证件照" width="124" height="124">
       </div>
 
       <div class="identity">
@@ -691,9 +784,9 @@
       </div>
 
       <div class="contact">
-        <a href="mailto:puheliang122@gmail.com" aria-label="邮箱 puheliang122@gmail.com"><span class="dot"></span>puheliang122@gmail.com</a>
-        <a href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer" aria-label="GitHub AuroraBot-AI"><span class="dot"></span>GitHub: AuroraBot-AI</a>
-        <a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer" aria-label="HuggingFace puheliang"><span class="dot"></span>Hugging Face: puheliang</a>
+        <a href="mailto:puheliang122@gmail.com" aria-label="邮箱 puheliang122@gmail.com"><span class="dot" aria-hidden="true"></span>puheliang122@gmail.com</a>
+        <a href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer" aria-label="GitHub AuroraBot-AI"><span class="dot" aria-hidden="true"></span>GitHub: AuroraBot-AI</a>
+        <a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer" aria-label="HuggingFace puheliang"><span class="dot" aria-hidden="true"></span>Hugging Face: puheliang</a>
       </div>
 
       <div class="side-section">
