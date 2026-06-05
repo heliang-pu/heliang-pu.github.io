@@ -470,6 +470,32 @@
       font-size: 1.08rem;
     }
 
+    .school-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .school-emblem {
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    }
+
+    .school-emblem img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
     .timeline-card .meta {
       margin-top: 4px;
       color: var(--green);
@@ -977,6 +1003,7 @@
     html.theme-dark .tech.red { background: var(--soft-red); color: #fca5a5; }
     html.theme-dark .demo-spec-row { background: rgba(94, 234, 212, 0.08); }
     html.theme-dark .pipeline-index { background: #5eead4; color: #0f172a; }
+    html.theme-dark .school-emblem { background: #f8fafc; border-color: #334155; }
     html.theme-dark .demo-tag { color: #5eead4; }
     html.theme-dark .portrait-wrap { background: linear-gradient(135deg, #0f2b27 0%, #2a2520 100%); }
     html.theme-dark .button { background: #e2e8f0; color: #0f172a; border-color: #e2e8f0; }
@@ -1316,14 +1343,24 @@
           <div class="timeline-item">
             <div class="time">2026.09 - 2029.06</div>
             <div class="timeline-card">
-              <h3 data-i18n="exp2title">华东师范大学</h3>
+              <div class="school-heading">
+                <span class="school-emblem">
+                  <img src="assets/east-china-normal-university-emblem.png" alt="华东师范大学校徽" data-i18n-alt="ecnuLogoAlt" width="512" height="512" loading="lazy" decoding="async">
+                </span>
+                <h3 data-i18n="exp2title">华东师范大学</h3>
+              </div>
               <div class="meta" data-i18n="exp2meta">软件工程（统招非全日制）</div>
             </div>
           </div>
           <div class="timeline-item">
             <div class="time">2021.09 - 2025.06</div>
             <div class="timeline-card">
-              <h3 data-i18n="exp3title">江苏科技大学苏州理工学院</h3>
+              <div class="school-heading">
+                <span class="school-emblem">
+                  <img src="assets/suzhou-institute-of-technology-emblem.png" alt="江苏科技大学苏州理工学院校徽" data-i18n-alt="sitLogoAlt" width="512" height="512" loading="lazy" decoding="async">
+                </span>
+                <h3 data-i18n="exp3title">江苏科技大学苏州理工学院</h3>
+              </div>
               <div class="meta" data-i18n="exp3meta">计算机科学与技术（统招全日制） · 成绩均分 90</div>
               <ul class="plain-list">
                 <li data-i18n="exp3d1">本科综合排名第一，参与智能车、移动机器人、OpenMV 视觉应用等实践项目。</li>
@@ -1930,6 +1967,8 @@
         skip: '跳到主内容', footerUpdated: 'Last updated: 2026.06',
         themeLabel: '切换深色 / 浅色模式', langLabel: 'Switch language',
         portraitAlt: '蒲贺良头像',
+        ecnuLogoAlt: '华东师范大学校徽',
+        sitLogoAlt: '江苏科技大学苏州理工学院校徽',
         emailAria: '邮箱 puheliang122@gmail.com',
         bilibiliAria: '哔哩哔哩主页',
         navAria: '页面导航',
@@ -2060,6 +2099,8 @@
         skip: 'Skip to main content', footerUpdated: 'Last updated: 2026.06',
         themeLabel: 'Toggle dark / light mode', langLabel: '切换中 / 英文',
         portraitAlt: 'Portrait of Puheliang',
+        ecnuLogoAlt: 'East China Normal University emblem',
+        sitLogoAlt: 'Jiangsu University of Science and Technology Suzhou Institute of Technology emblem',
         emailAria: 'Email puheliang122@gmail.com',
         bilibiliAria: 'Bilibili profile',
         navAria: 'Page navigation',
@@ -2112,7 +2153,11 @@
         toTopBtn.setAttribute('aria-label', lang === 'zh' ? '回到顶部' : 'Back to top');
         toTopBtn.setAttribute('title', lang === 'zh' ? '回到顶部' : 'Back to top');
       }
-      /* portrait alt */
+      /* localized image alt text */
+      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-alt');
+        if (t[key] !== undefined) el.setAttribute('alt', t[key]);
+      });
       var portrait = document.querySelector('.portrait');
       if (portrait) portrait.alt = t.portraitAlt;
       try { localStorage.setItem('lang', lang); } catch (e) {}
