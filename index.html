@@ -323,6 +323,65 @@
       padding: 26px 28px;
     }
 
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .feature-card {
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fffdfa;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+    }
+
+    .feature-thumb {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #111816;
+    }
+
+    .feature-thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .feature-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--red);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .feature-card h3 {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.3;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
     .section-head {
       display: flex;
       align-items: end;
@@ -850,7 +909,16 @@
 
     @media (max-width: 980px) {
       .shell {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .shell {
+        gap: 16px;
+      }
+
+      .main {
+        order: -1;
       }
 
       .sidebar {
@@ -890,6 +958,7 @@
       .contact,
       .summary-grid,
       .metric-grid,
+      .featured-grid,
       .capability-grid,
       .pipeline-grid,
       .demo-grid,
@@ -1201,7 +1270,8 @@
           <a class="button" href="mailto:puheliang122@gmail.com" data-i18n="btnContact">联系我</a>
           <a class="button secondary" href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer" data-i18n="btnGitHub">查看 GitHub</a>
           <a class="button secondary" href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer" data-i18n="btnHF">查看模型与数据</a>
-          <button class="button secondary" type="button" onclick="window.print()" data-i18n="btnPDF">下载 / 打印 PDF</button>
+          <a class="button secondary" href="蒲贺良简历单页5-16(5).pdf" download data-i18n="btnDownloadPDF">下载 PDF</a>
+          <button class="button secondary" type="button" onclick="window.print()" data-i18n="btnPrintPDF">打印 PDF</button>
         </div>
         <div class="metric-grid">
           <div class="metric">
@@ -1220,6 +1290,33 @@
             <strong>No.1</strong>
             <span data-i18n="m4desc">本科综合排名第一，2024 年国家奖学金获得者</span>
           </div>
+        </div>
+      </section>
+
+      <section class="section" id="featured-demos">
+        <div class="section-head">
+          <h2 data-i18n="secFeatured">精选 Demo</h2>
+          <span class="section-kicker" data-i18n="kickerFeatured">先看最能代表你能力的三条</span>
+        </div>
+        <div class="featured-grid">
+          <a class="feature-card" href="#demo-01">
+            <div class="feature-thumb"><img src="assets/posters/demo1.jpg" alt="双臂灵巧手小物品精细抓取封面"></div>
+            <div class="feature-meta"><span>Demo 01</span><span>00:18</span></div>
+            <h3 data-i18n="demo1Title">双臂灵巧手小物品精细抓取</h3>
+            <p data-i18n="demo1Desc">双臂平台完成小目标定位、夹取与放置，展示灵巧手精细控制与真实任务稳定性。</p>
+          </a>
+          <a class="feature-card" href="#demo-06">
+            <div class="feature-thumb"><img src="assets/posters/demo6.jpg" alt="傅利叶人形机器人灵巧手杯状物抓取封面"></div>
+            <div class="feature-meta"><span>Demo 06</span><span>00:14</span></div>
+            <h3 data-i18n="demo6Title">傅利叶人形机器人灵巧手杯状物抓取</h3>
+            <p data-i18n="demo6Desc">傅利叶人形机器人通过灵巧手完成杯状物稳定包络抓取，验证末端接触控制和真实平台执行能力。</p>
+          </a>
+          <a class="feature-card" href="#demo-05">
+            <div class="feature-thumb"><img src="assets/posters/demo5.jpg" alt="单臂桌面物品整理封面"></div>
+            <div class="feature-meta"><span>Demo 05</span><span>01:10</span></div>
+            <h3 data-i18n="demo5Title">单臂桌面物品整理</h3>
+            <p data-i18n="demo5Desc">单臂围绕桌面物品进行抓取、移动与放置，展示任务空间规划和真实平台执行稳定性。</p>
+          </a>
         </div>
       </section>
 
@@ -1799,12 +1896,14 @@
         /* hero */
         heroTitle: '让 VLA 走出仿真，驱动真实机器人。',
         heroLead: '具备机械臂、灵巧手与人形机器人项目经验，覆盖 teleoperation、数据集构建、模型训练、推理服务、技能调度和真实平台验证。近期重点在 LeRobot 生态、ACT、Diffusion Policy、π0/π0.5、GR00T、触觉反馈融合与异步推理部署。',
-        btnContact: '联系我', btnGitHub: '查看 GitHub', btnHF: '查看模型与数据', btnPDF: '下载 / 打印 PDF',
+        btnContact: '联系我', btnGitHub: '查看 GitHub', btnHF: '查看模型与数据', btnDownloadPDF: '下载 PDF', btnPrintPDF: '打印 PDF',
         m1desc: '双臂精细操作任务成功率，较初始方案提升约 40 个百分点',
         m2desc: 'S101 单臂抓取任务 demonstration 采集与策略验证',
         m3desc: '机械臂、灵巧手、人形机器人平台适配与部署经验',
         m3val: '3 类',
         m4desc: '本科综合排名第一，2024 年国家奖学金获得者',
+        /* featured */
+        secFeatured: '精选 Demo', kickerFeatured: '先看最能代表你能力的三条',
         /* overview */
         secOverview: '个人概览', kickerOverview: '能把研究模型接到真实设备上的工程型选手',
         sum1t: '端到端闭环', sum1d: '熟悉机器人任务从示教采集、数据清洗、训练配置、评估对比到真机推理的完整流程，能快速定位数据、模型和控制链路问题。',
@@ -1928,12 +2027,14 @@
         /* hero */
         heroTitle: 'Taking VLA out of simulation, driving real robots.',
         heroLead: 'Experienced with robotic arms, dexterous hands, and humanoid robots, covering teleoperation, dataset construction, model training, inference services, skill orchestration, and real-platform validation. Recent focus on the LeRobot ecosystem, ACT, Diffusion Policy, π0/π0.5, GR00T, tactile feedback fusion, and async inference deployment.',
-        btnContact: 'Contact Me', btnGitHub: 'View GitHub', btnHF: 'View Models & Data', btnPDF: 'Download / Print PDF',
+        btnContact: 'Contact Me', btnGitHub: 'View GitHub', btnHF: 'View Models & Data', btnDownloadPDF: 'Download PDF', btnPrintPDF: 'Print PDF',
         m1desc: 'Dual-arm fine manipulation success rate, ~40pp improvement over baseline',
         m2desc: 'S101 single-arm grasping task demonstration collection & policy validation',
         m3desc: 'Robotic arm, dexterous hand & humanoid platform adaptation & deployment',
         m3val: '3 Types',
         m4desc: "Ranked #1 in undergraduate cohort, 2024 National Scholarship recipient",
+        /* featured */
+        secFeatured: 'Featured Demos', kickerFeatured: 'Start with the three most representative clips',
         /* overview */
         secOverview: 'Overview', kickerOverview: 'An engineer who bridges research models to real hardware',
         sum1t: 'End-to-End Loop', sum1d: 'Well-versed in the full pipeline from teaching collection, data cleaning, training configuration, evaluation to real-robot inference. Quickly locates issues across data, model, and control chains.',
