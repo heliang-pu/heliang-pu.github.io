@@ -570,49 +570,6 @@
       gap: 12px;
     }
 
-    .related-demos {
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(35, 129, 120, 0.07);
-    }
-
-    .related-demos-title {
-      margin: 0 0 8px;
-      color: var(--green);
-      font-size: 0.78rem;
-      font-weight: 850;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .demo-link-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }
-
-    .demo-link {
-      display: inline-flex;
-      align-items: center;
-      min-height: 30px;
-      padding: 4px 9px;
-      border: 1px solid #cce3dc;
-      border-radius: 999px;
-      background: #fffdfa;
-      color: #16665e;
-      font-size: 0.78rem;
-      font-weight: 800;
-      text-decoration: none;
-      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
-    }
-
-    .demo-link:hover {
-      transform: translateY(-1px);
-      background: var(--soft-green);
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-    }
-
     .pipeline-grid {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -1018,8 +975,7 @@
     html.theme-dark .tech { background: var(--soft-amber); color: #fcd34d; }
     html.theme-dark .tech.green { background: var(--soft-green); color: #5eead4; }
     html.theme-dark .tech.red { background: var(--soft-red); color: #fca5a5; }
-    html.theme-dark .related-demos, html.theme-dark .demo-spec-row { background: rgba(94, 234, 212, 0.08); }
-    html.theme-dark .demo-link { background: #1e293b; border-color: #1a4a44; color: #5eead4; }
+    html.theme-dark .demo-spec-row { background: rgba(94, 234, 212, 0.08); }
     html.theme-dark .pipeline-index { background: #5eead4; color: #0f172a; }
     html.theme-dark .demo-tag { color: #5eead4; }
     html.theme-dark .portrait-wrap { background: linear-gradient(135deg, #0f2b27 0%, #2a2520 100%); }
@@ -1271,7 +1227,6 @@
           <a class="button secondary" href="https://github.com/AuroraBot-AI" target="_blank" rel="noreferrer" data-i18n="btnGitHub">查看 GitHub</a>
           <a class="button secondary" href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer" data-i18n="btnHF">查看模型与数据</a>
           <a class="button secondary" href="蒲贺良简历单页5-16(5).pdf" download data-i18n="btnDownloadPDF">下载 PDF</a>
-          <button class="button secondary" type="button" onclick="window.print()" data-i18n="btnPrintPDF">打印 PDF</button>
         </div>
         <div class="metric-grid">
           <div class="metric">
@@ -1296,7 +1251,7 @@
       <section class="section" id="featured-demos">
         <div class="section-head">
           <h2 data-i18n="secFeatured">精选 Demo</h2>
-          <span class="section-kicker" data-i18n="kickerFeatured">先看最能代表你能力的三条</span>
+          <span class="section-kicker" data-i18n="kickerFeatured">真实机器人推理演示</span>
         </div>
         <div class="featured-grid">
           <a class="feature-card" href="#demo-01">
@@ -1312,10 +1267,10 @@
             <p data-i18n="demo6Desc">傅利叶人形机器人通过灵巧手完成杯状物稳定包络抓取，验证末端接触控制和真实平台执行能力。</p>
           </a>
           <a class="feature-card" href="#demo-05">
-            <div class="feature-thumb"><img src="assets/posters/demo5.jpg" alt="单臂桌面物品整理封面"></div>
+            <div class="feature-thumb"><img src="assets/posters/demo5.jpg" alt="ACT 和 π0 任意位置抓取入盒封面"></div>
             <div class="feature-meta"><span>Demo 05</span><span>01:10</span></div>
-            <h3 data-i18n="demo5Title">单臂桌面物品整理</h3>
-            <p data-i18n="demo5Desc">单臂围绕桌面物品进行抓取、移动与放置，展示任务空间规划和真实平台执行稳定性。</p>
+            <h3 data-i18n="demo5Title">ACT + π0 任意位置抓取入盒</h3>
+            <p data-i18n="demo5Desc">基于 ACT 和 π0 完成单臂任意位置抓取入盒，支持不同桌面位置下的目标抓取、移动与精准放置。</p>
           </a>
         </div>
       </section>
@@ -1414,14 +1369,6 @@
                   <span data-i18n="p1r2v">形成跨平台机器人适配层</span>
                 </div>
               </div>
-              <div class="related-demos">
-                <p class="related-demos-title" data-i18n="relatedP1">关联 Demo：双臂与手内感知</p>
-                <div class="demo-link-list">
-                  <a class="demo-link" href="#demo-01">Demo 01</a>
-                  <a class="demo-link" href="#demo-02">Demo 02</a>
-                  <a class="demo-link" href="#demo-03">Demo 03</a>
-                </div>
-              </div>
             </div>
           </article>
 
@@ -1454,13 +1401,6 @@
                   <span data-i18n="p2r2v">完成 GR2 本体接口适配</span>
                 </div>
               </div>
-              <div class="related-demos">
-                <p class="related-demos-title" data-i18n="relatedP2">关联 Demo：人形机器人</p>
-                <div class="demo-link-list">
-                  <a class="demo-link" href="#demo-06">Demo 06</a>
-                  <a class="demo-link" href="#demo-07">Demo 07</a>
-                </div>
-              </div>
             </div>
           </article>
 
@@ -1490,13 +1430,6 @@
                 <div class="result">
                   <strong data-i18n="p3r2k">闭环</strong>
                   <span data-i18n="p3r2v">训练、部署、测试完整打通</span>
-                </div>
-              </div>
-              <div class="related-demos">
-                <p class="related-demos-title" data-i18n="relatedP3">关联 Demo：单臂操作</p>
-                <div class="demo-link-list">
-                  <a class="demo-link" href="#demo-04">Demo 04</a>
-                  <a class="demo-link" href="#demo-05">Demo 05</a>
                 </div>
               </div>
             </div>
@@ -1541,7 +1474,7 @@
       <section class="section" id="demos">
         <div class="section-head">
           <h2 data-i18n="secDemos">Demo 视频</h2>
-          <span class="section-kicker" data-i18n="kickerDemos">全部推理演示，无遥操作</span>
+          <span class="section-kicker" data-i18n="kickerDemos">真实机器人与视觉控制演示</span>
         </div>
         <div class="demo-grid">
           <article class="demo-card" id="demo-01">
@@ -1578,32 +1511,32 @@
 
           <article class="demo-card" id="demo-02">
             <div class="demo-media">
-              <video controls muted playsinline poster="assets/posters/demo2.jpg" aria-label="播放手内 RGB 视角推理观察" data-i18n-aria="demo2Aria">
+              <video controls muted playsinline poster="assets/posters/demo2.jpg" aria-label="播放视觉关键点 retargeting 到灵巧手" data-i18n-aria="demo2Aria">
                 <source data-src="assets/videos/demo2.mp4" type="video/mp4">
               </video>
             </div>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 02</span><span>00:28</span></div>
-              <h3 data-i18n="demo2Title">手内 RGB 视角推理观察</h3>
-              <p data-i18n="demo2Desc">通过手内相机视角观察末端接触与目标位置，用于推理过程观察和感知链路验证。</p>
+              <h3 data-i18n="demo2Title">视觉关键点 retargeting 到灵巧手</h3>
+              <p data-i18n="demo2Desc">通过视觉提取手部特征点与关节姿态，并 retargeting 到机器人灵巧手，实现稳定、准确的手内对指控制。</p>
               <div class="demo-spec-grid">
                 <div class="demo-spec-row">
                   <span class="demo-spec-label" data-i18n="specPlatform">平台</span>
-                  <strong class="demo-spec-value" data-i18n="demo2Platform">手内 RGB 视角</strong>
+                  <strong class="demo-spec-value" data-i18n="demo2Platform">RGB 视觉 + 灵巧手</strong>
                 </div>
                 <div class="demo-spec-row">
                   <span class="demo-spec-label" data-i18n="specPolicy">策略</span>
-                  <strong class="demo-spec-value" data-i18n="demo2Policy">感知链路验证</strong>
+                  <strong class="demo-spec-value" data-i18n="demo2Policy">关键点提取 + Retargeting</strong>
                 </div>
                 <div class="demo-spec-row">
                   <span class="demo-spec-label" data-i18n="specMode">模式</span>
-                  <strong class="demo-spec-value" data-i18n="demo2Mode">推理过程观察</strong>
+                  <strong class="demo-spec-value" data-i18n="demo2Mode">手内对指控制</strong>
                 </div>
               </div>
               <div class="demo-tags">
-                <span class="demo-tag" data-i18n="demoTagHandRgb">手内 RGB</span>
-                <span class="demo-tag" data-i18n="demoTagInference">策略推理</span>
-                <span class="demo-tag" data-i18n="demoTagPerception">感知验证</span>
+                <span class="demo-tag" data-i18n="demoTagHandKeypoints">手部关键点</span>
+                <span class="demo-tag" data-i18n="demoTagRetargeting">Retargeting</span>
+                <span class="demo-tag" data-i18n="demoTagOpposition">手内对指</span>
               </div>
             </div>
           </article>
@@ -1674,14 +1607,14 @@
 
           <article class="demo-card" id="demo-05">
             <div class="demo-media">
-              <video controls muted playsinline poster="assets/posters/demo5.jpg" aria-label="播放单臂桌面物品整理" data-i18n-aria="demo5Aria">
+              <video controls muted playsinline poster="assets/posters/demo5.jpg" aria-label="播放 ACT 和 π0 任意位置抓取入盒" data-i18n-aria="demo5Aria">
                 <source data-src="assets/videos/demo5.mp4" type="video/mp4">
               </video>
             </div>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 05</span><span>01:10</span></div>
-              <h3 data-i18n="demo5Title">单臂桌面物品整理</h3>
-              <p data-i18n="demo5Desc">单臂围绕桌面物品进行抓取、移动与放置，展示任务空间规划和真实平台执行稳定性。</p>
+              <h3 data-i18n="demo5Title">ACT + π0 任意位置抓取入盒</h3>
+              <p data-i18n="demo5Desc">基于 ACT 和 π0 完成单臂任意位置抓取入盒，支持不同桌面位置下的目标抓取、移动与精准放置。</p>
               <div class="demo-spec-grid">
                 <div class="demo-spec-row">
                   <span class="demo-spec-label" data-i18n="specPlatform">平台</span>
@@ -1689,17 +1622,17 @@
                 </div>
                 <div class="demo-spec-row">
                   <span class="demo-spec-label" data-i18n="specPolicy">策略</span>
-                  <strong class="demo-spec-value" data-i18n="demo5Policy">桌面整理策略</strong>
+                  <strong class="demo-spec-value" data-i18n="demo5Policy">ACT + π0</strong>
                 </div>
                 <div class="demo-spec-row">
                   <span class="demo-spec-label" data-i18n="specMode">模式</span>
-                  <strong class="demo-spec-value" data-i18n="demo5Mode">真实平台推理</strong>
+                  <strong class="demo-spec-value" data-i18n="demo5Mode">任意位置抓取入盒</strong>
                 </div>
               </div>
               <div class="demo-tags">
-                <span class="demo-tag" data-i18n="demoTagSingleArm">单臂</span>
-                <span class="demo-tag" data-i18n="demoTagPlanning">任务编排</span>
-                <span class="demo-tag" data-i18n="demoTagDesktop">桌面操作</span>
+                <span class="demo-tag">ACT</span>
+                <span class="demo-tag">π0</span>
+                <span class="demo-tag" data-i18n="demoTagBoxInsertion">抓取入盒</span>
               </div>
             </div>
           </article>
@@ -1738,14 +1671,14 @@
 
           <article class="demo-card" id="demo-07">
             <div class="demo-media">
-              <video controls muted playsinline poster="assets/posters/demo7.jpg" aria-label="播放人形机器人井字棋对弈演示" data-i18n-aria="demo7Aria">
+              <video controls muted playsinline poster="assets/posters/demo7.jpg" aria-label="播放人形机器人 minimax 井字棋与 π0.5 棋子放置" data-i18n-aria="demo7Aria">
                 <source data-src="assets/videos/demo7.mp4" type="video/mp4">
               </video>
             </div>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 07</span><span>00:43</span></div>
-              <h3 data-i18n="demo7Title">人形机器人井字棋对弈演示</h3>
-              <p data-i18n="demo7Desc">人形机器人与人类进行井字棋交互，覆盖棋盘感知、落子决策、末端定位和动作执行。</p>
+              <h3 data-i18n="demo7Title">Minimax 井字棋 + π0.5 棋子放置</h3>
+              <p data-i18n="demo7Desc">井字棋决策使用 minimax 算法，棋子移动由 π0.5 结合视觉 prompts 控制放置位置，用视觉定位补足语言跟随性差的问题。</p>
               <div class="demo-spec-grid">
                 <div class="demo-spec-row">
                   <span class="demo-spec-label" data-i18n="specPlatform">平台</span>
@@ -1753,17 +1686,17 @@
                 </div>
                 <div class="demo-spec-row">
                   <span class="demo-spec-label" data-i18n="specPolicy">策略</span>
-                  <strong class="demo-spec-value" data-i18n="demo7Policy">井字棋任务推理</strong>
+                  <strong class="demo-spec-value" data-i18n="demo7Policy">Minimax + π0.5</strong>
                 </div>
                 <div class="demo-spec-row">
                   <span class="demo-spec-label" data-i18n="specMode">模式</span>
-                  <strong class="demo-spec-value" data-i18n="demo7Mode">人机对弈执行</strong>
+                  <strong class="demo-spec-value" data-i18n="demo7Mode">视觉 prompts 放置</strong>
                 </div>
               </div>
               <div class="demo-tags">
-                <span class="demo-tag" data-i18n="demoTagHumanoid">人形机器人</span>
-                <span class="demo-tag" data-i18n="demoTagHri">人机交互</span>
-                <span class="demo-tag" data-i18n="demoTagReasoning">任务推理</span>
+                <span class="demo-tag" data-i18n="demoTagMinimax">Minimax</span>
+                <span class="demo-tag">π0.5</span>
+                <span class="demo-tag" data-i18n="demoTagVisionPrompts">视觉 prompts</span>
               </div>
             </div>
           </article>
@@ -1896,14 +1829,14 @@
         /* hero */
         heroTitle: '让 VLA 走出仿真，驱动真实机器人。',
         heroLead: '具备机械臂、灵巧手与人形机器人项目经验，覆盖 teleoperation、数据集构建、模型训练、推理服务、技能调度和真实平台验证。近期重点在 LeRobot 生态、ACT、Diffusion Policy、π0/π0.5、GR00T、触觉反馈融合与异步推理部署。',
-        btnContact: '联系我', btnGitHub: '查看 GitHub', btnHF: '查看模型与数据', btnDownloadPDF: '下载 PDF', btnPrintPDF: '打印 PDF',
+        btnContact: '联系我', btnGitHub: '查看 GitHub', btnHF: '查看模型与数据', btnDownloadPDF: '下载 PDF',
         m1desc: '双臂精细操作任务成功率，较初始方案提升约 40 个百分点',
         m2desc: 'S101 单臂抓取任务 demonstration 采集与策略验证',
         m3desc: '机械臂、灵巧手、人形机器人平台适配与部署经验',
         m3val: '3 类',
         m4desc: '本科综合排名第一，2024 年国家奖学金获得者',
         /* featured */
-        secFeatured: '精选 Demo', kickerFeatured: '先看最能代表你能力的三条',
+        secFeatured: '精选 Demo', kickerFeatured: '真实机器人推理演示',
         /* overview */
         secOverview: '个人概览', kickerOverview: '能把研究模型接到真实设备上的工程型选手',
         sum1t: '端到端闭环', sum1d: '熟悉机器人任务从示教采集、数据清洗、训练配置、评估对比到真机推理的完整流程，能快速定位数据、模型和控制链路问题。',
@@ -1935,9 +1868,6 @@
         p3b2: '基于 ACT、Diffusion Policy、π0 开展策略训练与验证，完成模型训练、推理部署和闭环测试。',
         p3b3: '对比不同策略在异形物体抓取、夹取入盒场景下的动作稳定性、任务完成效果与部署流程。',
         tech_real: '真实部署', p3r1v: '示教数据采集', p3r2k: '闭环', p3r2v: '训练、部署、测试完整打通',
-        relatedP1: '关联 Demo：双臂与手内感知',
-        relatedP2: '关联 Demo：人形机器人',
-        relatedP3: '关联 Demo：单臂操作',
         /* pipeline */
         secPipeline: '端到端推理闭环', kickerPipeline: '从数据到真机执行的可复现实验链路',
         pipeStep1Title: '真实平台采集', pipeStep1Desc: '接入机械臂、灵巧手、人形机器人与多相机输入，完成示教、外骨骼或任务过程数据采集。',
@@ -1946,37 +1876,39 @@
         pipeStep4Title: '推理服务部署', pipeStep4Desc: '构建 inference server，适配 get_state / send_action，支持异步推理、RTC 与 action chunk 执行。',
         pipeStep5Title: '真机闭环验证', pipeStep5Desc: '在真实任务中观察成功率、延迟、动作稳定性和失败模式，反向迭代数据与策略。',
         /* demos */
-        secDemos: 'Demo 视频', kickerDemos: '全部推理演示，无遥操作',
+        secDemos: 'Demo 视频', kickerDemos: '真实机器人与视觉控制演示',
         demo1Title: '双臂灵巧手小物品精细抓取',
         demo1Desc: '双臂平台完成小目标定位、夹取与放置，展示灵巧手精细控制与真实任务稳定性。',
-        demo2Title: '手内 RGB 视角推理观察',
-        demo2Desc: '通过手内相机视角观察末端接触与目标位置，用于推理过程观察和感知链路验证。',
+        demo2Title: '视觉关键点 retargeting 到灵巧手',
+        demo2Desc: '通过视觉提取手部特征点与关节姿态，并 retargeting 到机器人灵巧手，实现稳定、准确的手内对指控制。',
         demo3Title: 'MediaPipe 手部关键点与关节角解析',
         demo3Desc: '基于手部关键点估计实时解析关节角，为灵巧手映射、策略控制和动作数据生成提供输入。',
         demo4Title: '单臂物体抓取与放置多任务切换',
         demo4Desc: '单臂在多目标、多位置场景下完成抓取、搬运和放置，验证策略在不同物体上的执行稳定性。',
-        demo5Title: '单臂桌面物品整理',
-        demo5Desc: '单臂围绕桌面物品进行抓取、移动与放置，展示任务空间规划和真实平台执行稳定性。',
+        demo5Title: 'ACT + π0 任意位置抓取入盒',
+        demo5Desc: '基于 ACT 和 π0 完成单臂任意位置抓取入盒，支持不同桌面位置下的目标抓取、移动与精准放置。',
         demo6Title: '傅利叶人形机器人灵巧手杯状物抓取',
         demo6Desc: '傅利叶人形机器人通过灵巧手完成杯状物稳定包络抓取，验证末端接触控制和真实平台执行能力。',
-        demo7Title: '人形机器人井字棋对弈演示',
-        demo7Desc: '人形机器人与人类进行井字棋交互，覆盖棋盘感知、落子决策、末端定位和动作执行。',
+        demo7Title: 'Minimax 井字棋 + π0.5 棋子放置',
+        demo7Desc: '井字棋决策使用 minimax 算法，棋子移动由 π0.5 结合视觉 prompts 控制放置位置，用视觉定位补足语言跟随性差的问题。',
         specPlatform: '平台', specPolicy: '策略', specMode: '模式',
         demo1Platform: '双臂灵巧手平台', demo1Policy: 'π0.5 + 触觉反馈', demo1Mode: '真实平台推理',
-        demo2Platform: '手内 RGB 视角', demo2Policy: '感知链路验证', demo2Mode: '推理过程观察',
+        demo2Platform: 'RGB 视觉 + 灵巧手', demo2Policy: '关键点提取 + Retargeting', demo2Mode: '手内对指控制',
         demo3Platform: 'MediaPipe + 灵巧手映射', demo3Policy: '关节角解析', demo3Mode: '策略控制输入',
         demo4Platform: '单臂真实平台', demo4Policy: '多任务抓取放置策略', demo4Mode: '多任务推理切换',
-        demo5Platform: '单臂桌面操作平台', demo5Policy: '桌面整理策略', demo5Mode: '真实平台推理',
+        demo5Platform: '单臂桌面操作平台', demo5Policy: 'ACT + π0', demo5Mode: '任意位置抓取入盒',
         demo6Platform: '傅利叶人形机器人', demo6Policy: '灵巧手抓取策略', demo6Mode: '杯状物抓取推理',
-        demo7Platform: '人形机器人交互平台', demo7Policy: '井字棋任务推理', demo7Mode: '人机对弈执行',
+        demo7Platform: '人形机器人交互平台', demo7Policy: 'Minimax + π0.5', demo7Mode: '视觉 prompts 放置',
         demoTagDualArm: '双臂协作', demoTagDexterous: '灵巧手', demoTagFine: '精细操作',
         demoTagHandRgb: '手内 RGB', demoTagData: '数据采集',
+        demoTagHandKeypoints: '手部关键点', demoTagRetargeting: 'Retargeting', demoTagOpposition: '手内对指',
         demoTagInference: '策略推理', demoTagPerception: '感知验证',
         demoTagJoint: '关节角', demoTagGesture: '手势解析',
         demoTagSingleArm: '单臂', demoTagMultiTask: '多任务', demoTagPickPlace: '抓取放置',
-        demoTagPlanning: '任务编排', demoTagDesktop: '桌面操作',
+        demoTagPlanning: '任务编排', demoTagDesktop: '桌面操作', demoTagBoxInsertion: '抓取入盒',
         demoTagObjectGrasp: '物体抓取', demoTagShape: '形状适配', demoTagFourier: '傅利叶',
         demoTagHumanoid: '人形机器人', demoTagHri: '人机交互', demoTagReasoning: '任务推理',
+        demoTagMinimax: 'Minimax', demoTagVisionPrompts: '视觉 prompts',
         /* skills */
         secSkills: '能力矩阵', kickerSkills: '工程、模型、数据、部署四线闭环',
         cap1t: '数据采集与数据集工程', cap1d: 'Teleoperation、外骨骼采集、多相机数据、数据清洗、Replay、LeRobot Dataset、Demonstration 管理。',
@@ -2002,12 +1934,12 @@
         bilibiliAria: '哔哩哔哩主页',
         navAria: '页面导航',
         demo1Aria: '播放双臂灵巧手小物品精细抓取',
-        demo2Aria: '播放手内 RGB 视角推理观察',
+        demo2Aria: '播放视觉关键点 retargeting 到灵巧手',
         demo3Aria: '播放 MediaPipe 手部关键点与关节角解析',
         demo4Aria: '播放单臂物体抓取与放置多任务切换',
-        demo5Aria: '播放单臂桌面物品整理',
+        demo5Aria: '播放 ACT 和 π0 任意位置抓取入盒',
         demo6Aria: '播放傅利叶人形机器人灵巧手杯状物抓取',
-        demo7Aria: '播放人形机器人井字棋对弈演示'
+        demo7Aria: '播放人形机器人 minimax 井字棋与 π0.5 棋子放置'
       },
       en: {
         /* meta */
@@ -2027,14 +1959,14 @@
         /* hero */
         heroTitle: 'Taking VLA out of simulation, driving real robots.',
         heroLead: 'Experienced with robotic arms, dexterous hands, and humanoid robots, covering teleoperation, dataset construction, model training, inference services, skill orchestration, and real-platform validation. Recent focus on the LeRobot ecosystem, ACT, Diffusion Policy, π0/π0.5, GR00T, tactile feedback fusion, and async inference deployment.',
-        btnContact: 'Contact Me', btnGitHub: 'View GitHub', btnHF: 'View Models & Data', btnDownloadPDF: 'Download PDF', btnPrintPDF: 'Print PDF',
+        btnContact: 'Contact Me', btnGitHub: 'View GitHub', btnHF: 'View Models & Data', btnDownloadPDF: 'Download PDF',
         m1desc: 'Dual-arm fine manipulation success rate, ~40pp improvement over baseline',
         m2desc: 'S101 single-arm grasping task demonstration collection & policy validation',
         m3desc: 'Robotic arm, dexterous hand & humanoid platform adaptation & deployment',
         m3val: '3 Types',
         m4desc: "Ranked #1 in undergraduate cohort, 2024 National Scholarship recipient",
         /* featured */
-        secFeatured: 'Featured Demos', kickerFeatured: 'Start with the three most representative clips',
+        secFeatured: 'Featured Demos', kickerFeatured: 'Real-robot inference demos',
         /* overview */
         secOverview: 'Overview', kickerOverview: 'An engineer who bridges research models to real hardware',
         sum1t: 'End-to-End Loop', sum1d: 'Well-versed in the full pipeline from teaching collection, data cleaning, training configuration, evaluation to real-robot inference. Quickly locates issues across data, model, and control chains.',
@@ -2066,9 +1998,6 @@
         p3b2: 'Trained and validated policies with ACT, Diffusion Policy, and π0; completed model training, inference deployment, and closed-loop testing.',
         p3b3: 'Compared different policies on irregular object grasping and box-insertion for motion stability, task completion, and deployment workflow.',
         tech_real: 'Real Deployment', p3r1v: 'Demonstration data collected', p3r2k: 'Closed-Loop', p3r2v: 'Training, deployment & testing fully connected',
-        relatedP1: 'Related Demos: dual-arm & in-hand perception',
-        relatedP2: 'Related Demos: humanoid robots',
-        relatedP3: 'Related Demos: single-arm manipulation',
         /* pipeline */
         secPipeline: 'End-to-End Inference Loop', kickerPipeline: 'A reproducible path from data to real-robot execution',
         pipeStep1Title: 'Real-Platform Capture', pipeStep1Desc: 'Connect robotic arms, dexterous hands, humanoids, and multi-camera inputs for teaching, exoskeleton, or task-process data capture.',
@@ -2077,37 +2006,39 @@
         pipeStep4Title: 'Inference Service', pipeStep4Desc: 'Build inference servers, adapt get_state / send_action, and support async inference, RTC, and action chunk execution.',
         pipeStep5Title: 'Real-Robot Validation', pipeStep5Desc: 'Measure success rate, latency, motion stability, and failure modes in real tasks, then iterate data and policies.',
         /* demos */
-        secDemos: 'Demo Videos', kickerDemos: 'Inference-only demos with no teleoperation',
+        secDemos: 'Demo Videos', kickerDemos: 'Real-robot and vision-control demos',
         demo1Title: 'Dual-Arm Dexterous-Hand Fine Grasping',
         demo1Desc: 'A dual-arm platform localizes, grasps, and places small objects, showing fine dexterous-hand control and real-world task stability.',
-        demo2Title: 'In-Hand RGB Inference View',
-        demo2Desc: 'In-hand RGB camera view captures fingertip contact and target position for inference observation and perception-pipeline validation.',
+        demo2Title: 'Visual Keypoint Retargeting to Dexterous Hand',
+        demo2Desc: 'Visual hand keypoints and joint posture are extracted and retargeted to a robot dexterous hand, enabling stable and accurate in-hand finger opposition.',
         demo3Title: 'MediaPipe Hand Keypoints & Joint-Angle Parsing',
         demo3Desc: 'Real-time hand keypoint estimation parses joint angles for dexterous-hand mapping, policy control, and action data generation.',
         demo4Title: 'Single-Arm Multi-Task Pick-and-Place Switching',
         demo4Desc: 'A single arm completes grasping, transport, and placement across multiple targets and positions, validating execution stability across objects.',
-        demo5Title: 'Single-Arm Desktop Object Organization',
-        demo5Desc: 'A single arm grasps, moves, and places desktop objects, showing task-space planning and real-platform execution stability.',
+        demo5Title: 'ACT + π0 Arbitrary-Position Grasp-to-Box',
+        demo5Desc: 'ACT and π0 enable single-arm grasp-to-box manipulation from arbitrary tabletop positions, covering target grasping, transport, and accurate box placement.',
         demo6Title: 'Fourier Humanoid Cup Grasping with a Dexterous Hand',
         demo6Desc: 'A Fourier humanoid robot uses its dexterous hand for a stable enveloping cup grasp, validating end-effector contact control on a real platform.',
-        demo7Title: 'Humanoid Robot Tic-Tac-Toe Interaction',
-        demo7Desc: 'A humanoid robot plays tic-tac-toe with a person, covering board perception, move decision, end-effector positioning, and action execution.',
+        demo7Title: 'Minimax Tic-Tac-Toe + π0.5 Piece Placement',
+        demo7Desc: 'Tic-tac-toe decisions use the minimax algorithm, while π0.5 uses visual prompts to control piece placement, compensating for weak language-following behavior with visual localization.',
         specPlatform: 'Platform', specPolicy: 'Policy', specMode: 'Mode',
         demo1Platform: 'Dual-arm dexterous-hand platform', demo1Policy: 'π0.5 + tactile feedback', demo1Mode: 'Real-platform inference',
-        demo2Platform: 'In-hand RGB viewpoint', demo2Policy: 'Perception pipeline validation', demo2Mode: 'Inference observation',
+        demo2Platform: 'RGB vision + dexterous hand', demo2Policy: 'Keypoint extraction + retargeting', demo2Mode: 'In-hand finger opposition',
         demo3Platform: 'MediaPipe + dexterous-hand mapping', demo3Policy: 'Joint-angle parsing', demo3Mode: 'Policy-control input',
         demo4Platform: 'Single-arm real platform', demo4Policy: 'Multi-task pick-and-place policy', demo4Mode: 'Multi-task inference switching',
-        demo5Platform: 'Single-arm desktop platform', demo5Policy: 'Desktop organization policy', demo5Mode: 'Real-platform inference',
+        demo5Platform: 'Single-arm desktop platform', demo5Policy: 'ACT + π0', demo5Mode: 'Arbitrary-position grasp-to-box',
         demo6Platform: 'Fourier humanoid robot', demo6Policy: 'Dexterous-hand grasp policy', demo6Mode: 'Cup-grasp inference',
-        demo7Platform: 'Humanoid interaction platform', demo7Policy: 'Tic-tac-toe task reasoning', demo7Mode: 'Human-robot game execution',
+        demo7Platform: 'Humanoid interaction platform', demo7Policy: 'Minimax + π0.5', demo7Mode: 'Visual-prompt placement',
         demoTagDualArm: 'Dual-Arm', demoTagDexterous: 'Dexterous Hand', demoTagFine: 'Fine Manipulation',
         demoTagHandRgb: 'In-Hand RGB', demoTagData: 'Data Collection',
+        demoTagHandKeypoints: 'Hand Keypoints', demoTagRetargeting: 'Retargeting', demoTagOpposition: 'Finger Opposition',
         demoTagInference: 'Policy Inference', demoTagPerception: 'Perception Validation',
         demoTagJoint: 'Joint Angles', demoTagGesture: 'Gesture Parsing',
         demoTagSingleArm: 'Single Arm', demoTagMultiTask: 'Multi-Task', demoTagPickPlace: 'Pick & Place',
-        demoTagPlanning: 'Task Planning', demoTagDesktop: 'Desktop Ops',
+        demoTagPlanning: 'Task Planning', demoTagDesktop: 'Desktop Ops', demoTagBoxInsertion: 'Grasp-to-Box',
         demoTagObjectGrasp: 'Object Grasp', demoTagShape: 'Shape Adaptation', demoTagFourier: 'Fourier',
         demoTagHumanoid: 'Humanoid', demoTagHri: 'HRI', demoTagReasoning: 'Task Reasoning',
+        demoTagMinimax: 'Minimax', demoTagVisionPrompts: 'Visual Prompts',
         /* skills */
         secSkills: 'Skills', kickerSkills: 'Engineering, Models, Data & Deployment in Closed Loop',
         cap1t: 'Data Collection & Dataset Engineering', cap1d: 'Teleoperation, exoskeleton capture, multi-camera data, data cleaning, replay, LeRobot Dataset, and demonstration management.',
@@ -2133,12 +2064,12 @@
         bilibiliAria: 'Bilibili profile',
         navAria: 'Page navigation',
         demo1Aria: 'Play dual-arm dexterous-hand fine grasping demo',
-        demo2Aria: 'Play in-hand RGB inference view demo',
+        demo2Aria: 'Play visual keypoint retargeting to dexterous hand demo',
         demo3Aria: 'Play MediaPipe hand keypoints and joint-angle parsing demo',
         demo4Aria: 'Play single-arm multi-task pick-and-place switching demo',
-        demo5Aria: 'Play single-arm desktop object organization demo',
+        demo5Aria: 'Play ACT and π0 arbitrary-position grasp-to-box demo',
         demo6Aria: 'Play Fourier humanoid cup grasping with a dexterous hand demo',
-        demo7Aria: 'Play humanoid robot tic-tac-toe interaction demo'
+        demo7Aria: 'Play humanoid minimax tic-tac-toe and π0.5 piece placement demo'
       }
     };
 
