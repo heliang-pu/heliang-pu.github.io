@@ -1737,6 +1737,38 @@
               </div>
             </div>
           </article>
+
+          <article class="demo-card" id="demo-08">
+            <div class="demo-media">
+              <video controls muted playsinline poster="assets/posters/demo8.jpg" aria-label="播放 π0.5 JAX 纸巾分拣" data-i18n-aria="demo8Aria">
+                <source data-src="assets/videos/demo8.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="demo-body">
+              <div class="demo-meta"><span>Demo 08</span><span>00:58</span></div>
+              <h3 data-i18n="demo8Title">π0.5 JAX 纸巾分拣</h3>
+              <p data-i18n="demo8Desc">基于 π0.5 JAX 版本完成纸巾分拣任务，结合异步推理与 RTC 优化执行链路，提升真实平台动作连续性与响应效率。</p>
+              <div class="demo-spec-grid">
+                <div class="demo-spec-row">
+                  <span class="demo-spec-label" data-i18n="specPlatform">平台</span>
+                  <strong class="demo-spec-value" data-i18n="demo8Platform">双臂真实平台</strong>
+                </div>
+                <div class="demo-spec-row">
+                  <span class="demo-spec-label" data-i18n="specPolicy">策略</span>
+                  <strong class="demo-spec-value" data-i18n="demo8Policy">π0.5 JAX</strong>
+                </div>
+                <div class="demo-spec-row">
+                  <span class="demo-spec-label" data-i18n="specMode">模式</span>
+                  <strong class="demo-spec-value" data-i18n="demo8Mode">异步推理 + RTC</strong>
+                </div>
+              </div>
+              <div class="demo-tags">
+                <span class="demo-tag">π0.5 JAX</span>
+                <span class="demo-tag" data-i18n="kw_async">异步推理</span>
+                <span class="demo-tag">RTC</span>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -1928,6 +1960,8 @@
         demo6Desc: '傅利叶人形机器人通过灵巧手完成杯状物稳定包络抓取，验证末端接触控制和真实平台执行能力。',
         demo7Title: 'Minimax 井字棋 + π0.5 棋子放置',
         demo7Desc: '井字棋决策使用 minimax 算法，棋子移动由 π0.5 结合视觉 prompts 控制放置位置，用视觉定位补足语言跟随性差的问题。',
+        demo8Title: 'π0.5 JAX 纸巾分拣',
+        demo8Desc: '基于 π0.5 JAX 版本完成纸巾分拣任务，结合异步推理与 RTC 优化执行链路，提升真实平台动作连续性与响应效率。',
         specPlatform: '平台', specPolicy: '策略', specMode: '模式',
         demo1Platform: '双臂灵巧手平台', demo1Policy: 'π0.5 + 触觉反馈', demo1Mode: '真实平台推理',
         demo2Platform: 'RGB 视觉 + 灵巧手', demo2Policy: '关键点提取 + Retargeting', demo2Mode: '手内对指控制',
@@ -1936,6 +1970,7 @@
         demo5Platform: '单臂桌面操作平台', demo5Policy: 'ACT + π0', demo5Mode: '任意位置抓取入盒',
         demo6Platform: '傅利叶人形机器人', demo6Policy: '灵巧手抓取策略', demo6Mode: '杯状物抓取推理',
         demo7Platform: '人形机器人交互平台', demo7Policy: 'Minimax + π0.5', demo7Mode: '视觉 prompts 放置',
+        demo8Platform: '双臂真实平台', demo8Policy: 'π0.5 JAX', demo8Mode: '异步推理 + RTC',
         demoTagDualArm: '双臂协作', demoTagDexterous: '灵巧手', demoTagFine: '精细操作',
         demoTagHandRgb: '手内 RGB', demoTagData: '数据采集',
         demoTagHandKeypoints: '手部关键点', demoTagRetargeting: 'Retargeting', demoTagOpposition: '手内对指',
@@ -1978,7 +2013,8 @@
         demo4Aria: '播放单臂物体抓取与放置多任务切换',
         demo5Aria: '播放 ACT 和 π0 任意位置抓取入盒',
         demo6Aria: '播放傅利叶人形机器人灵巧手杯状物抓取',
-        demo7Aria: '播放人形机器人 minimax 井字棋与 π0.5 棋子放置'
+        demo7Aria: '播放人形机器人 minimax 井字棋与 π0.5 棋子放置',
+        demo8Aria: '播放 π0.5 JAX 纸巾分拣'
       },
       en: {
         /* meta */
@@ -2060,6 +2096,8 @@
         demo6Desc: 'A Fourier humanoid robot uses its dexterous hand for a stable enveloping cup grasp, validating end-effector contact control on a real platform.',
         demo7Title: 'Minimax Tic-Tac-Toe + π0.5 Piece Placement',
         demo7Desc: 'Tic-tac-toe decisions use the minimax algorithm, while π0.5 uses visual prompts to control piece placement, compensating for weak language-following behavior with visual localization.',
+        demo8Title: 'π0.5 JAX Tissue Sorting',
+        demo8Desc: 'A tissue-sorting task built with the JAX version of π0.5, using async inference and RTC to optimize the execution loop for smoother real-platform actions and faster response.',
         specPlatform: 'Platform', specPolicy: 'Policy', specMode: 'Mode',
         demo1Platform: 'Dual-arm dexterous-hand platform', demo1Policy: 'π0.5 + tactile feedback', demo1Mode: 'Real-platform inference',
         demo2Platform: 'RGB vision + dexterous hand', demo2Policy: 'Keypoint extraction + retargeting', demo2Mode: 'In-hand finger opposition',
@@ -2068,6 +2106,7 @@
         demo5Platform: 'Single-arm desktop platform', demo5Policy: 'ACT + π0', demo5Mode: 'Arbitrary-position grasp-to-box',
         demo6Platform: 'Fourier humanoid robot', demo6Policy: 'Dexterous-hand grasp policy', demo6Mode: 'Cup-grasp inference',
         demo7Platform: 'Humanoid interaction platform', demo7Policy: 'Minimax + π0.5', demo7Mode: 'Visual-prompt placement',
+        demo8Platform: 'Dual-arm real platform', demo8Policy: 'π0.5 JAX', demo8Mode: 'Async inference + RTC',
         demoTagDualArm: 'Dual-Arm', demoTagDexterous: 'Dexterous Hand', demoTagFine: 'Fine Manipulation',
         demoTagHandRgb: 'In-Hand RGB', demoTagData: 'Data Collection',
         demoTagHandKeypoints: 'Hand Keypoints', demoTagRetargeting: 'Retargeting', demoTagOpposition: 'Finger Opposition',
@@ -2110,7 +2149,8 @@
         demo4Aria: 'Play single-arm multi-task pick-and-place switching demo',
         demo5Aria: 'Play ACT and π0 arbitrary-position grasp-to-box demo',
         demo6Aria: 'Play Fourier humanoid cup grasping with a dexterous hand demo',
-        demo7Aria: 'Play humanoid minimax tic-tac-toe and π0.5 piece placement demo'
+        demo7Aria: 'Play humanoid minimax tic-tac-toe and π0.5 piece placement demo',
+        demo8Aria: 'Play π0.5 JAX tissue sorting demo'
       }
     };
 
