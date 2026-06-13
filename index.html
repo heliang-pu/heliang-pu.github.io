@@ -732,6 +732,75 @@
       display: none;
     }
 
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .platform {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 5px;
+      padding: 20px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .platform:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.09);
+    }
+
+    .platform-icon {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      margin-bottom: 4px;
+      border-radius: 12px;
+      background: var(--soft-green);
+      color: var(--green);
+    }
+
+    .platform-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .platform-name {
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+
+    .platform-en {
+      font-size: 0.76rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    .platform-tag {
+      margin-top: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--green);
+      background: var(--soft-green);
+      padding: 3px 11px;
+      border-radius: 999px;
+    }
+
+    @media (max-width: 980px) {
+      .platform-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 760px) {
+      .platform-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
     .demo-body {
       padding: 16px;
     }
@@ -1069,7 +1138,8 @@
     }
 
     html.theme-dark .hero, html.theme-dark .section { background: rgba(30, 41, 59, 0.94); }
-    html.theme-dark .metric, html.theme-dark .summary-item, html.theme-dark .timeline-card, html.theme-dark .project-card, html.theme-dark .pipeline-step, html.theme-dark .demo-card, html.theme-dark .capability, html.theme-dark .chip { background: #1a2433; }
+    html.theme-dark .metric, html.theme-dark .summary-item, html.theme-dark .timeline-card, html.theme-dark .project-card, html.theme-dark .pipeline-step, html.theme-dark .demo-card, html.theme-dark .capability, html.theme-dark .chip, html.theme-dark .platform { background: #1a2433; }
+    html.theme-dark .platform-icon, html.theme-dark .platform-tag { background: rgba(94, 234, 212, 0.12); color: #5eead4; }
     html.theme-dark .result { background: var(--soft-green); border-color: #1a4a44; }
     html.theme-dark .result strong { color: var(--green); }
     html.theme-dark .result span { color: #cbd5e1; }
@@ -1298,6 +1368,7 @@
           <a href="#pipeline" data-i18n="navPipeline">推理闭环</a>
           <a href="#demos" data-i18n="navDemos">Demo 视频</a>
           <a href="#skills" data-i18n="navSkills">能力矩阵</a>
+          <a href="#platforms" data-i18n="navPlatforms">真机平台</a>
           <a href="#awards" data-i18n="navAwards">竞赛与荣誉</a>
         </div>
       </nav>
@@ -1897,6 +1968,63 @@
         </div>
       </section>
 
+      <section class="section" id="platforms">
+        <div class="section-head">
+          <h2 data-i18n="secPlatforms">真机平台</h2>
+          <span class="section-kicker" data-i18n="kickerPlatforms">上手过的机器人本体、动捕与遥操作硬件</span>
+        </div>
+        <div class="platform-grid">
+          <div class="platform">
+            <span class="platform-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span>
+            <strong class="platform-name">傅利叶</strong>
+            <span class="platform-en">Fourier</span>
+            <span class="platform-tag" data-i18n="ptHumanoid">人形机器人</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span>
+            <strong class="platform-name">智元</strong>
+            <span class="platform-en">AgiBot</span>
+            <span class="platform-tag" data-i18n="ptHumanoid">人形机器人</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h5"/><path d="M6.5 20v-7"/><path d="m6.5 13 6.5-4"/><circle cx="6.5" cy="13" r="1.4"/><circle cx="13" cy="9" r="1.4"/><path d="m13 9-1-2.4M13 9l2.4-.4"/></svg></span>
+            <strong class="platform-name">松灵</strong>
+            <span class="platform-en">AgileX</span>
+            <span class="platform-tag" data-i18n="ptArm">协作机械臂</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h5"/><path d="M6.5 20v-7"/><path d="m6.5 13 6.5-4"/><circle cx="6.5" cy="13" r="1.4"/><circle cx="13" cy="9" r="1.4"/><path d="m13 9-1-2.4M13 9l2.4-.4"/></svg></span>
+            <strong class="platform-name">求之</strong>
+            <span class="platform-en">DISCOVER</span>
+            <span class="platform-tag" data-i18n="ptResearchArm">科研机械臂</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg></span>
+            <strong class="platform-name">汇川</strong>
+            <span class="platform-en">Inovance</span>
+            <span class="platform-tag" data-i18n="ptIndustrial">工业自动化</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0"/><path d="M14 10V4a2 2 0 0 0-4 0v2"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg></span>
+            <strong class="platform-name">Manus</strong>
+            <span class="platform-en">Manus Meta</span>
+            <span class="platform-tag" data-i18n="ptGlove">数据手套</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/><path d="M12 10v4"/></svg></span>
+            <strong class="platform-name">Xsens</strong>
+            <span class="platform-en">Movella</span>
+            <span class="platform-tag" data-i18n="ptMocap">全身动捕</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="15" r="4"/><circle cx="18" cy="15" r="4"/><path d="M14 15a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/><path d="M2.5 13 5 7c.7-1.3 1.4-2 3-2"/><path d="M21.5 13 19 7c-.7-1.3-1.5-2-3-2"/></svg></span>
+            <strong class="platform-name">Meta Quest</strong>
+            <span class="platform-en">Meta</span>
+            <span class="platform-tag" data-i18n="ptVR">VR 遥操作</span>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="awards">
         <div class="section-head">
           <h2 data-i18n="secAwards">竞赛与荣誉</h2>
@@ -1974,6 +2102,9 @@
         bilibili: '哔哩哔哩',
         navTitle: '目录',
         navOverview: '个人概览', navExp: '工作与教育', navProjects: '项目经历', navPipeline: '推理闭环', navDemos: 'Demo 视频', navSkills: '能力矩阵', navAwards: '竞赛与荣誉',
+        navPlatforms: '真机平台',
+        secPlatforms: '真机平台', kickerPlatforms: '上手过的机器人本体、动捕与遥操作硬件',
+        ptHumanoid: '人形机器人', ptArm: '协作机械臂', ptResearchArm: '科研机械臂', ptIndustrial: '工业自动化', ptGlove: '数据手套', ptMocap: '全身动捕', ptVR: 'VR 遥操作',
         techKeywords: '技术关键词',
         kw_async: '异步推理', kw_deploy: '机器人真机部署',
         basicInfo: '基本信息',
@@ -2110,6 +2241,9 @@
         bilibili: 'Bilibili',
         navTitle: 'Contents',
         navOverview: 'Overview', navExp: 'Experience', navProjects: 'Projects', navPipeline: 'Inference Loop', navDemos: 'Demos', navSkills: 'Skills', navAwards: 'Awards',
+        navPlatforms: 'Hardware',
+        secPlatforms: 'Hardware Platforms', kickerPlatforms: 'Robots, mocap & teleop hardware I have worked on',
+        ptHumanoid: 'Humanoid Robot', ptArm: 'Collaborative Arm', ptResearchArm: 'Research Arm', ptIndustrial: 'Industrial Automation', ptGlove: 'Data Glove', ptMocap: 'Motion Capture', ptVR: 'VR Teleoperation',
         techKeywords: 'Keywords',
         kw_async: 'Async Inference', kw_deploy: 'Real-Robot Deployment',
         basicInfo: 'Basic Info',
