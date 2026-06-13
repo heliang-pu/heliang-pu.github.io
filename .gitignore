@@ -2,7 +2,9 @@
 **/.DS_Store
 Thumbs.db
 
-# Raw / oversized assets (compressed versions live in assets/videos/)
+# Videos are hosted as GitHub Release assets (tag "site-media"), not committed.
+# assets/videos/ kept locally as source; raw .MOV / oversized media also local-only.
 *.MOV
 assets/*.mp4
+assets/videos/
 assets/portrait.png
