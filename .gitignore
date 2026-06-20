@@ -7,4 +7,5 @@ Thumbs.db
 *.MOV
 assets/*.mp4
 assets/videos/
-assets/portrait.png
+# Full-res portrait original kept local; site uses optimized assets/portrait.jpg
+assets/phl.png

@@ -346,6 +346,12 @@
       border-color: var(--line);
     }
 
+    .button.accent {
+      background: var(--soft-green);
+      color: var(--green);
+      border-color: var(--green);
+    }
+
     .metric-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1245,6 +1251,7 @@
     html.theme-dark .portrait-wrap { background: linear-gradient(135deg, #0f2b27 0%, #2a2520 100%); }
     html.theme-dark .button { background: #e2e8f0; color: #0f172a; border-color: #e2e8f0; }
     html.theme-dark .button.secondary { background: #1e293b; color: #e2e8f0; border-color: #334155; }
+    html.theme-dark .button.accent { background: #134e4a; color: #5eead4; border-color: #5eead4; }
     html.theme-dark .summary-item:hover, html.theme-dark .timeline-card:hover, html.theme-dark .project-card:hover, html.theme-dark .pipeline-step:hover, html.theme-dark .demo-card:hover, html.theme-dark .capability:hover {
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
@@ -1515,7 +1522,7 @@
           <a class="button" href="mailto:puheliang122@gmail.com" data-i18n="btnContact">联系我</a>
           <a class="button secondary" href="https://github.com/heliang-pu" target="_blank" rel="noreferrer" data-i18n="btnGitHub">查看 GitHub</a>
           <a class="button secondary" href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer" data-i18n="btnHF">查看模型与数据</a>
-          <a class="button secondary" href="heliang-pu-resume.pdf" download data-i18n="btnDownloadPDF">下载 PDF</a>
+          <a class="button accent" href="heliang-pu-resume.pdf" download data-i18n="btnDownloadPDF">下载 PDF</a>
         </div>
         <div class="metric-grid">
           <div class="metric">
