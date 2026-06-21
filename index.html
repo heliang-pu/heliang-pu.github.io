@@ -446,6 +446,7 @@
 
     .feature-meta {
       display: flex;
+      align-items: center;
       justify-content: space-between;
       gap: 10px;
       color: var(--red);
@@ -453,6 +454,26 @@
       font-weight: 800;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+    }
+
+    .latest-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--soft-green);
+      color: #16665e;
+      font-size: 0.68rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      line-height: 1.25;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .feature-meta .latest-badge,
+    .demo-meta .latest-badge {
+      margin-right: auto;
     }
 
     .feature-card h3 {
@@ -756,6 +777,16 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
+
+    #demo-09 { order: 1; }
+    #demo-08 { order: 2; }
+    #demo-07 { order: 3; }
+    #demo-06 { order: 4; }
+    #demo-05 { order: 5; }
+    #demo-04 { order: 6; }
+    #demo-03 { order: 7; }
+    #demo-02 { order: 8; }
+    #demo-01 { order: 9; }
 
     .demo-media {
       display: grid;
@@ -1245,6 +1276,7 @@
     html.theme-dark .tech.green { background: var(--soft-green); color: #5eead4; }
     html.theme-dark .tech.red { background: var(--soft-red); color: #fca5a5; }
     html.theme-dark .demo-spec-row { background: rgba(94, 234, 212, 0.08); }
+    html.theme-dark .latest-badge { background: rgba(94, 234, 212, 0.14); color: #5eead4; }
     html.theme-dark .pipeline-index { background: #5eead4; color: #0f172a; }
     html.theme-dark .school-emblem { background: #f8fafc; border-color: #334155; }
     html.theme-dark .demo-tag { color: #5eead4; }
@@ -1552,7 +1584,7 @@
         <div class="featured-grid">
           <a class="feature-card" href="#demo-09">
             <div class="feature-thumb"><img src="assets/posters/demo9.webp" alt="π0.6 ReCap 手机插拔精细操作封面"></div>
-            <div class="feature-meta"><span>Demo 09</span><span>01:02</span></div>
+            <div class="feature-meta"><span>Demo 09</span><span class="latest-badge" data-i18n="latestBadge">最新</span><span>01:02</span></div>
             <h3 data-i18n="demo9Title">π0.6 ReCap 手机插拔精细操作</h3>
             <p data-i18n="demo9Desc">基于 π0.6 ReCap 强化学习完成手机接口插入与拔出，验证真实平台在小间隙、强接触约束下的精细操作稳定性。</p>
           </a>
@@ -2046,7 +2078,7 @@
               </video>
             </div>
             <div class="demo-body">
-              <div class="demo-meta"><span>Demo 09</span><span>01:02</span></div>
+              <div class="demo-meta"><span>Demo 09</span><span class="latest-badge" data-i18n="latestBadge">最新</span><span>01:02</span></div>
               <h3 data-i18n="demo9Title">π0.6 ReCap 手机插拔精细操作</h3>
               <p data-i18n="demo9Desc">基于 π0.6 ReCap 强化学习完成手机接口插入与拔出，验证真实平台在小间隙、强接触约束下的精细操作稳定性。</p>
               <div class="demo-spec-grid">
@@ -2244,6 +2276,7 @@
         secPlatforms: '真机平台', kickerPlatforms: '上手过的机器人本体、动捕与遥操作硬件',
         ptHumanoid: '人形机器人', ptArm: '协作机械臂', ptResearchArm: '科研机械臂', ptIndustrial: '工业自动化', ptGlove: '数据手套', ptMocap: '全身动捕', ptVR: 'VR 遥操作',
         techKeywords: '技术关键词',
+        latestBadge: '最新',
         kw_async: '异步推理', kw_deploy: '机器人真机部署',
         basicInfo: '基本信息',
         edu_bachelor: '本科', edu_major: '软件工程方向', city: '上海',
@@ -2388,6 +2421,7 @@
         secPlatforms: 'Hardware Platforms', kickerPlatforms: 'Robots, mocap & teleop hardware I have worked on',
         ptHumanoid: 'Humanoid Robot', ptArm: 'Collaborative Arm', ptResearchArm: 'Research Arm', ptIndustrial: 'Industrial Automation', ptGlove: 'Data Glove', ptMocap: 'Motion Capture', ptVR: 'VR Teleoperation',
         techKeywords: 'Keywords',
+        latestBadge: 'Latest',
         kw_async: 'Async Inference', kw_deploy: 'Real-Robot Deployment',
         basicInfo: 'Basic Info',
         edu_bachelor: "Bachelor's", edu_major: 'Software Engineering', city: 'Shanghai',
