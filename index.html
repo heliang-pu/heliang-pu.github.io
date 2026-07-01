@@ -1888,7 +1888,7 @@
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 03</span><span>00:23</span></div>
               <h3 data-i18n="demo4Title">单臂物体抓取与放置多任务切换</h3>
-              <p data-i18n="demo4Desc">单臂在多目标、多位置场景下完成抓取、搬运和放置，验证策略在不同物体上的执行稳定性。</p>
+              <p data-i18n="demo4Desc">单臂在多目标、多位置场景下完成抓取、搬运和放置，验证策略在不同物体上的执行稳定性；多任务切换基于多 LoRA 适配器实现。</p>
               <div class="demo-spec-grid">
                 <div class="demo-spec-row">
                   <span class="demo-spec-label" data-i18n="specPlatform">平台</span>
@@ -1896,7 +1896,7 @@
                 </div>
                 <div class="demo-spec-row">
                   <span class="demo-spec-label" data-i18n="specPolicy">策略</span>
-                  <strong class="demo-spec-value" data-i18n="demo4Policy">多任务抓取放置策略</strong>
+                  <strong class="demo-spec-value" data-i18n="demo4Policy">多 LoRA 切换策略</strong>
                 </div>
                 <div class="demo-spec-row">
                   <span class="demo-spec-label" data-i18n="specMode">模式</span>
@@ -1907,6 +1907,7 @@
                 <span class="demo-tag" data-i18n="demoTagSingleArm">单臂</span>
                 <span class="demo-tag" data-i18n="demoTagMultiTask">多任务</span>
                 <span class="demo-tag" data-i18n="demoTagPickPlace">抓取放置</span>
+                <span class="demo-tag" data-i18n="demoTagMultiLora">多 LoRA</span>
               </div>
             </div>
           </article>
@@ -2338,7 +2339,7 @@
         demo2Title: '视觉关键点 retargeting 到灵巧手',
         demo2Desc: '通过视觉提取手部特征点与关节姿态，并 retargeting 到机器人灵巧手，实现稳定、准确的手内对指控制。',
         demo4Title: '单臂物体抓取与放置多任务切换',
-        demo4Desc: '单臂在多目标、多位置场景下完成抓取、搬运和放置，验证策略在不同物体上的执行稳定性。',
+        demo4Desc: '单臂在多目标、多位置场景下完成抓取、搬运和放置，验证策略在不同物体上的执行稳定性；多任务切换基于多 LoRA 适配器实现。',
         demo5Title: 'ACT + π0 任意位置抓取入盒',
         demo5Desc: '基于 ACT 和 π0 完成单臂任意位置抓取入盒，支持不同桌面位置下的目标抓取、移动与精准放置。',
         demo7Title: 'Minimax 井字棋 + π0.5 棋子放置',
@@ -2354,7 +2355,7 @@
         specPlatform: '平台', specPolicy: '策略', specMode: '模式',
         demo1Platform: '双臂灵巧手平台', demo1Policy: 'π0.5 + 触觉反馈', demo1Mode: '真实平台推理',
         demo2Platform: 'RGB 视觉 + 灵巧手', demo2Policy: '关键点提取 + Retargeting', demo2Mode: '手内对指控制',
-        demo4Platform: '单臂真实平台', demo4Policy: '多任务抓取放置策略', demo4Mode: '多任务推理切换',
+        demo4Platform: '单臂真实平台', demo4Policy: '多 LoRA 切换策略', demo4Mode: '多任务推理切换',
         demo5Platform: '单臂桌面操作平台', demo5Policy: 'ACT + π0', demo5Mode: '任意位置抓取入盒',
         demo7Platform: '人形机器人交互平台', demo7Policy: 'Minimax + π0.5', demo7Mode: '视觉 prompts 放置',
         demo8Platform: '双臂真实平台', demo8Policy: 'π0.5 JAX', demo8Mode: '异步推理 + RTC',
@@ -2366,7 +2367,7 @@
         demoTagHandKeypoints: '手部关键点', demoTagRetargeting: 'Retargeting', demoTagOpposition: '手内对指',
         demoTagInference: '策略推理', demoTagPerception: '感知验证',
         demoTagJoint: '关节角', demoTagGesture: '手势解析',
-        demoTagSingleArm: '单臂', demoTagMultiTask: '多任务', demoTagPickPlace: '抓取放置',
+        demoTagSingleArm: '单臂', demoTagMultiTask: '多任务', demoTagPickPlace: '抓取放置', demoTagMultiLora: '多 LoRA',
         demoTagPlanning: '任务编排', demoTagDesktop: '桌面操作', demoTagBoxInsertion: '抓取入盒',
         demoTagObjectGrasp: '物体抓取', demoTagShape: '形状适配',
         demoTagHri: '人机交互', demoTagReasoning: '任务推理',
@@ -2485,7 +2486,7 @@
         demo2Title: 'Visual Keypoint Retargeting to Dexterous Hand',
         demo2Desc: 'Visual hand keypoints and joint posture are extracted and retargeted to a robot dexterous hand, enabling stable and accurate in-hand finger opposition.',
         demo4Title: 'Single-Arm Multi-Task Pick-and-Place Switching',
-        demo4Desc: 'A single arm completes grasping, transport, and placement across multiple targets and positions, validating execution stability across objects.',
+        demo4Desc: 'A single arm completes grasping, transport, and placement across multiple targets and positions, validating execution stability across objects; task switching is implemented via multiple LoRA adapters.',
         demo5Title: 'ACT + π0 Arbitrary-Position Grasp-to-Box',
         demo5Desc: 'ACT and π0 enable single-arm grasp-to-box manipulation from arbitrary tabletop positions, covering target grasping, transport, and accurate box placement.',
         demo7Title: 'Minimax Tic-Tac-Toe + π0.5 Piece Placement',
@@ -2501,7 +2502,7 @@
         specPlatform: 'Platform', specPolicy: 'Policy', specMode: 'Mode',
         demo1Platform: 'Dual-arm dexterous-hand platform', demo1Policy: 'π0.5 + tactile feedback', demo1Mode: 'Real-platform inference',
         demo2Platform: 'RGB vision + dexterous hand', demo2Policy: 'Keypoint extraction + retargeting', demo2Mode: 'In-hand finger opposition',
-        demo4Platform: 'Single-arm real platform', demo4Policy: 'Multi-task pick-and-place policy', demo4Mode: 'Multi-task inference switching',
+        demo4Platform: 'Single-arm real platform', demo4Policy: 'Multi-LoRA switching policy', demo4Mode: 'Multi-task inference switching',
         demo5Platform: 'Single-arm desktop platform', demo5Policy: 'ACT + π0', demo5Mode: 'Arbitrary-position grasp-to-box',
         demo7Platform: 'Humanoid interaction platform', demo7Policy: 'Minimax + π0.5', demo7Mode: 'Visual-prompt placement',
         demo8Platform: 'Dual-arm real platform', demo8Policy: 'π0.5 JAX', demo8Mode: 'Async inference + RTC',
@@ -2513,7 +2514,7 @@
         demoTagHandKeypoints: 'Hand Keypoints', demoTagRetargeting: 'Retargeting', demoTagOpposition: 'Finger Opposition',
         demoTagInference: 'Policy Inference', demoTagPerception: 'Perception Validation',
         demoTagJoint: 'Joint Angles', demoTagGesture: 'Gesture Parsing',
-        demoTagSingleArm: 'Single Arm', demoTagMultiTask: 'Multi-Task', demoTagPickPlace: 'Pick & Place',
+        demoTagSingleArm: 'Single Arm', demoTagMultiTask: 'Multi-Task', demoTagPickPlace: 'Pick & Place', demoTagMultiLora: 'Multi-LoRA',
         demoTagPlanning: 'Task Planning', demoTagDesktop: 'Desktop Ops', demoTagBoxInsertion: 'Grasp-to-Box',
         demoTagObjectGrasp: 'Object Grasp', demoTagShape: 'Shape Adaptation',
         demoTagHri: 'HRI', demoTagReasoning: 'Task Reasoning',
