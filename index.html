@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://heliang-pu.github.io/assets/og-cover.png">
   <meta name="twitter:image:alt" content="蒲贺良 - 具身智能 / VLA 工程师">
   <link rel="canonical" href="https://heliang-pu.github.io/">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -938,9 +938,6 @@
       border-radius: 999px;
     }
 
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .reveal.revealed { opacity: 1; transform: none; }
-
     @media (max-width: 980px) {
       .platform-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
@@ -1136,16 +1133,9 @@
     @keyframes wpPulse { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.55; } }
 
     .sidebar { animation: fadeUp 0.5s ease both; }
-    .hero { animation: fadeUp 0.5s 0.1s ease both; }
-    .main > .section:nth-child(2) { animation: fadeUp 0.5s 0.18s ease both; }
-    .main > .section:nth-child(3) { animation: fadeUp 0.5s 0.26s ease both; }
-    .main > .section:nth-child(4) { animation: fadeUp 0.5s 0.34s ease both; }
-    .main > .section:nth-child(5) { animation: fadeUp 0.5s 0.42s ease both; }
-    .main > .section:nth-child(6) { animation: fadeUp 0.5s 0.50s ease both; }
-    .main > .section:nth-child(7) { animation: fadeUp 0.5s 0.58s ease both; }
-    .main > .section:nth-child(8) { animation: fadeUp 0.5s 0.66s ease both; }
 
     @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto !important; }
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
@@ -1377,6 +1367,10 @@
 
     .skip-link:focus {
       top: 16px;
+    }
+
+    html.theme-dark .skip-link:focus {
+      color: #0f172a;
     }
 
     .scroll-progress {
@@ -2343,7 +2337,7 @@
         </div>
       </section>
 
-      <footer class="footer">© 2026 蒲贺良 · <span data-i18n="footerUpdated">Last updated: 2026.06</span></footer>
+      <footer class="footer">© 2026 蒲贺良 · <span data-i18n="footerUpdated">Last updated: 2026.07</span></footer>
     </main>
   </div>
   <button class="control-btn to-top" type="button" aria-label="回到顶部" title="回到顶部" onclick="scrollToTop()"><span aria-hidden="true">↑</span></button>
@@ -2497,7 +2491,7 @@
         a4y: '机器人', a4t: '航天杯移动机器人 AI 创新技术挑战赛', a4d: '队长，全国三等奖。',
         a5y: '科研实践', a5t: '江苏省大学生创新创业训练计划项目', a5d: '期刊：基于 OpenMV 的新型智能门锁设计。',
         /* footer & a11y */
-        skip: '跳到主内容', footerUpdated: 'Last updated: 2026.06',
+        skip: '跳到主内容', footerUpdated: 'Last updated: 2026.07',
         themeLabel: '切换深色 / 浅色模式', langLabel: 'Switch language',
         portraitAlt: '蒲贺良头像',
         ecnuLogoAlt: '华东师范大学校徽',
@@ -2646,7 +2640,7 @@
         a4y: 'Robotics', a4t: 'Hangtian Cup Mobile Robot AI Innovation Challenge', a4d: 'Team leader, National 3rd Prize.',
         a5y: 'Research', a5t: 'Jiangsu Province College Students Innovation & Entrepreneurship Training Program', a5d: 'Publication: Design of a Novel Smart Door Lock Based on OpenMV.',
         /* footer & a11y */
-        skip: 'Skip to main content', footerUpdated: 'Last updated: 2026.06',
+        skip: 'Skip to main content', footerUpdated: 'Last updated: 2026.07',
         themeLabel: 'Toggle dark / light mode', langLabel: '切换中 / 英文',
         portraitAlt: 'Portrait of Puheliang',
         ecnuLogoAlt: 'East China Normal University emblem',
@@ -2794,39 +2788,6 @@
         video.addEventListener('ended', function () { media.classList.remove('is-playing'); });
         video.addEventListener('error', function () { media.classList.add('has-video-error'); });
       });
-
-      /* count-up metrics + scroll reveal */
-      var noMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if ('IntersectionObserver' in window && !noMotion) {
-        var numObs = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (!e.isIntersecting) return;
-            var el = e.target;
-            numObs.unobserve(el);
-            var m = el.textContent.trim().match(/^(\D*)(\d+)(\D*)$/);
-            if (!m) return;
-            var pre = m[1], target = +m[2], suf = m[3], t0 = null;
-            function step(ts) {
-              if (!t0) t0 = ts;
-              var p = Math.min((ts - t0) / 900, 1);
-              el.textContent = pre + Math.round(p * target) + suf;
-              if (p < 1) requestAnimationFrame(step);
-            }
-            requestAnimationFrame(step);
-          });
-        });
-        document.querySelectorAll('.metric strong').forEach(function (el) { numObs.observe(el); });
-
-        var revObs = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) { e.target.classList.add('revealed'); revObs.unobserve(e.target); }
-          });
-        }, { rootMargin: '0px 0px -8% 0px' });
-        document.querySelectorAll('.section').forEach(function (el) {
-          el.classList.add('reveal');
-          revObs.observe(el);
-        });
-      }
     })();
   </script>
   <script>

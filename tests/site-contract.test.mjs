@@ -241,3 +241,40 @@ test('play buttons inherit nine unique labels and refresh after language changes
   assert.match(refresh, /badge\.setAttribute\(['"]aria-label['"],\s*label\)/);
   assert.match(bracedBlock(index, 'function applyLang(lang)'), /refreshPlayButtonLabels\(\)/);
 });
+
+test('hero, sections, and metrics never begin with false content', () => {
+  assert.doesNotMatch(index, /\.hero\s*\{\s*animation:\s*fadeUp/);
+  assert.doesNotMatch(index, /\.main\s*>\s*\.section[^{}]*\{\s*animation:\s*fadeUp/);
+  assert.doesNotMatch(index, /\.reveal\s*\{\s*opacity:\s*0/);
+  assert.doesNotMatch(index, /\bnumObs\b|\brevObs\b/);
+  assert.doesNotMatch(index, /requestAnimationFrame\(step\)/);
+  assert.match(index, /<strong>70%<\/strong>/);
+  assert.match(index, /<strong>500\+<\/strong>/);
+});
+
+test('reduced motion and dark skip-link styles are complete', () => {
+  const reduced = bracedBlock(index, '@media (prefers-reduced-motion: reduce)');
+  assert.match(reduced, /html\s*\{[\s\S]*?scroll-behavior:\s*auto\s*!important/);
+  assert.match(index, /html\.theme-dark\s+\.skip-link:focus\s*\{[^}]*color:\s*#0f172a/);
+});
+
+test('favicon, footer date, and local assets are consistent', async () => {
+  const favicon = tags('link').find((tag) => attr(tag, 'rel') === 'icon');
+  assert.equal(attr(favicon, 'href'), '/assets/icon-192.png');
+  assert.doesNotMatch(attr(favicon, 'href'), /^data:/);
+  assert.equal((index.match(/Last updated: 2026\.07/g) ?? []).length, 3);
+  assert.doesNotMatch(index, /Last updated: 2026\.06/);
+
+  const localRefs = [
+    ...index.matchAll(/\b(?:src|href|poster)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)"/g),
+  ].map((match) => match[1].replace(/^\//, ''));
+  await Promise.all([...new Set(localRefs)].map((path) => access(new URL(path, root))));
+});
+
+test('404 uses border-box and the small viewport height', () => {
+  const body = bracedBlock(notFound, 'body {');
+  assert.match(body, /box-sizing:\s*border-box/);
+  assert.match(body, /min-height:\s*100svh/);
+  assert.match(notFound, /<main>/);
+  assert.match(notFound, /<a href="\/">返回首页<\/a>/);
+});
