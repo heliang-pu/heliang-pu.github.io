@@ -278,3 +278,29 @@ test('404 uses border-box and the small viewport height', () => {
   assert.match(notFound, /<main>/);
   assert.match(notFound, /<a href="\/">返回首页<\/a>/);
 });
+
+const pngSignature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
+
+async function pngDimensions(path) {
+  const bytes = await read(path, null);
+  assert.ok(bytes.length >= 24);
+  assert.deepEqual(bytes.subarray(0, 8), pngSignature);
+  assert.equal(bytes.subarray(12, 16).toString('ascii'), 'IHDR');
+  return {
+    width: bytes.readUInt32BE(16),
+    height: bytes.readUInt32BE(20),
+    size: (await stat(new URL(path, root))).size,
+  };
+}
+
+for (const path of [
+  'assets/east-china-normal-university-emblem.png',
+  'assets/suzhou-institute-of-technology-emblem.png',
+]) {
+  test(`${path} is an optimized school emblem`, async () => {
+    const actual = await pngDimensions(path);
+    assert.equal(actual.width, 128);
+    assert.equal(actual.height, 128);
+    assert.ok(actual.size < 80 * 1024);
+  });
+}
