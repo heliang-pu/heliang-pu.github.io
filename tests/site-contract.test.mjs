@@ -304,3 +304,11 @@ for (const path of [
     assert.ok(actual.size < 80 * 1024);
   });
 }
+
+test('resume PDF is at most 3 MiB', async () => {
+  const size = (await stat(new URL('heliang-pu-resume.pdf', root))).size;
+  assert.ok(
+    size <= 3 * 1024 * 1024,
+    `resume is ${size} bytes; expected at most 3 MiB`,
+  );
+});
