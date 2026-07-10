@@ -187,3 +187,57 @@ test('pipeline uses tablet and narrow-mobile column counts', () => {
     /\.pipeline-grid[\s\S]*?grid-template-columns:\s*1fr/,
   );
 });
+
+test('all nine videos are network-idle until explicit activation', () => {
+  assert.equal(demoCards.length, 9);
+
+  for (const [position, card] of demoCards.entries()) {
+    const video = card.match(/<video\b[^>]*>/i)?.[0];
+    const source = card.match(/<source\b[^>]*>/i)?.[0];
+    const fallback = card.match(
+      /<a\b[^>]*class="video-fallback"[^>]*>/i,
+    )?.[0];
+
+    assert.equal(attr(video, 'preload'), 'none');
+    const deferredUrl = attr(source, 'data-src');
+    assert.match(deferredUrl, /site-media\/demo\d+\.mp4$/);
+    assert.equal(attr(source, 'src'), undefined);
+    assert.equal(attr(fallback, 'href'), deferredUrl);
+    assert.equal(attr(fallback, 'target'), '_blank');
+    assert.match(attr(fallback, 'rel'), /\bnoreferrer\b/);
+    assert.equal(attr(fallback, 'data-i18n'), 'videoFallback');
+    assert.ok(video, `demo ${position + 1}: missing video`);
+  }
+
+  assert.doesNotMatch(index, /\bvidObs\b/);
+  const activation = bracedBlock(index, 'function activateVideo(media, video)');
+  assert.match(activation, /source\.setAttribute\(['"]src['"],\s*source\.dataset\.src\)/);
+  assert.match(activation, /video\.load\(\)/);
+  assert.match(activation, /video\.play\(\)/);
+  assert.match(activation, /has-video-error/);
+});
+
+test('play buttons inherit nine unique labels and refresh after language changes', () => {
+  const videos = tags('video');
+  const keys = videos.map((video) => attr(video, 'data-i18n-aria'));
+  const initialLabels = videos.map((video) => attr(video, 'aria-label'));
+  assert.equal(videos.length, 9);
+  assert.equal(new Set(keys).size, 9);
+  assert.equal(new Set(initialLabels).size, 9);
+
+  const zh = languageBlock('zh');
+  const en = languageBlock('en');
+  const zhLabels = keys.map((key) => languageValue(zh, key));
+  const enLabels = keys.map((key) => languageValue(en, key));
+  assert.ok(zhLabels.every(Boolean));
+  assert.ok(enLabels.every(Boolean));
+  assert.equal(new Set(zhLabels).size, 9);
+  assert.equal(new Set(enLabels).size, 9);
+  assert.ok(languageValue(zh, 'videoFallback'));
+  assert.ok(languageValue(en, 'videoFallback'));
+
+  const refresh = bracedBlock(index, 'function refreshPlayButtonLabel(media)');
+  assert.match(refresh, /video\.getAttribute\(['"]aria-label['"]\)/);
+  assert.match(refresh, /badge\.setAttribute\(['"]aria-label['"],\s*label\)/);
+  assert.match(bracedBlock(index, 'function applyLang(lang)'), /refreshPlayButtonLabels\(\)/);
+});

@@ -798,6 +798,21 @@
       border-bottom: 1px solid var(--line);
     }
 
+    .video-fallback {
+      display: block;
+      padding: 7px 14px;
+      border-bottom: 1px solid var(--line);
+      color: var(--green);
+      font-size: 0.78rem;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .demo-media.has-video-error + .video-fallback {
+      color: var(--red);
+      font-weight: 700;
+    }
+
     .demo-media video {
       position: absolute;
       inset: 0;
@@ -1895,10 +1910,11 @@
         <div class="demo-grid">
           <article class="demo-card" id="demo-01">
             <div class="demo-media">
-              <video controls muted playsinline poster="assets/posters/demo1.webp" aria-label="播放双臂灵巧手小物品精细抓取" data-i18n-aria="demo1Aria">
+              <video controls muted playsinline preload="none" poster="assets/posters/demo1.webp" aria-label="播放双臂灵巧手小物品精细抓取" data-i18n-aria="demo1Aria">
                 <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo1.mp4" type="video/mp4">
               </video>
             </div>
+            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo1.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 01</span><span>00:18</span></div>
               <h3 data-i18n="demo1Title">双臂灵巧手小物品精细抓取</h3>
@@ -1927,10 +1943,11 @@
 
           <article class="demo-card" id="demo-02">
             <div class="demo-media">
-              <video controls muted playsinline poster="assets/posters/demo2.webp" aria-label="播放视觉关键点 retargeting 到灵巧手" data-i18n-aria="demo2Aria">
+              <video controls muted playsinline preload="none" poster="assets/posters/demo2.webp" aria-label="播放视觉关键点 retargeting 到灵巧手" data-i18n-aria="demo2Aria">
                 <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo2.mp4" type="video/mp4">
               </video>
             </div>
+            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo2.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 02</span><span>00:28</span></div>
               <h3 data-i18n="demo2Title">视觉关键点 retargeting 到灵巧手</h3>
@@ -1959,10 +1976,11 @@
 
           <article class="demo-card" id="demo-03">
             <div class="demo-media">
-              <video controls muted playsinline poster="assets/posters/demo4.webp" aria-label="播放单臂物体抓取与放置多任务切换" data-i18n-aria="demo4Aria">
+              <video controls muted playsinline preload="none" poster="assets/posters/demo4.webp" aria-label="播放单臂物体抓取与放置多任务切换" data-i18n-aria="demo4Aria">
                 <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo4.mp4" type="video/mp4">
               </video>
             </div>
+            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo4.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 03</span><span>00:23</span></div>
               <h3 data-i18n="demo4Title">单臂物体抓取与放置多任务切换</h3>
@@ -1992,10 +2010,11 @@
 
           <article class="demo-card" id="demo-04">
             <div class="demo-media">
-              <video controls muted playsinline poster="assets/posters/demo5.webp" aria-label="播放 ACT 和 π0 任意位置抓取入盒" data-i18n-aria="demo5Aria">
+              <video controls muted playsinline preload="none" poster="assets/posters/demo5.webp" aria-label="播放 ACT 和 π0 任意位置抓取入盒" data-i18n-aria="demo5Aria">
                 <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo5.mp4" type="video/mp4">
               </video>
             </div>
+            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo5.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 04</span><span>01:10</span></div>
               <h3 data-i18n="demo5Title">ACT + π0 任意位置抓取入盒</h3>
@@ -2024,10 +2043,11 @@
 
           <article class="demo-card" id="demo-05">
             <div class="demo-media">
-              <video controls muted playsinline poster="assets/posters/demo7.webp" aria-label="播放人形机器人 minimax 井字棋与 π0.5 棋子放置" data-i18n-aria="demo7Aria">
+              <video controls muted playsinline preload="none" poster="assets/posters/demo7.webp" aria-label="播放人形机器人 minimax 井字棋与 π0.5 棋子放置" data-i18n-aria="demo7Aria">
                 <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo7.mp4" type="video/mp4">
               </video>
             </div>
+            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo7.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 05</span><span>00:43</span></div>
               <h3 data-i18n="demo7Title">Minimax 井字棋 + π0.5 棋子放置</h3>
@@ -2056,10 +2076,11 @@
 
           <article class="demo-card" id="demo-06">
             <div class="demo-media">
-              <video controls muted playsinline poster="assets/posters/demo8.webp" aria-label="播放 π0.5 JAX 纸巾分拣" data-i18n-aria="demo8Aria">
+              <video controls muted playsinline preload="none" poster="assets/posters/demo8.webp" aria-label="播放 π0.5 JAX 纸巾分拣" data-i18n-aria="demo8Aria">
                 <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo8.mp4" type="video/mp4">
               </video>
             </div>
+            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo8.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 06</span><span>00:58</span></div>
               <h3 data-i18n="demo8Title">π0.5 JAX 纸巾分拣</h3>
@@ -2088,10 +2109,11 @@
 
           <article class="demo-card" id="demo-07">
             <div class="demo-media">
-              <video controls muted playsinline poster="assets/posters/demo9.webp" aria-label="播放 π0.6 ReCap 手机插拔精细操作" data-i18n-aria="demo9Aria">
+              <video controls muted playsinline preload="none" poster="assets/posters/demo9.webp" aria-label="播放 π0.6 ReCap 手机插拔精细操作" data-i18n-aria="demo9Aria">
                 <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo9.mp4" type="video/mp4">
               </video>
             </div>
+            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo9.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 07</span><span>01:02</span></div>
               <h3 data-i18n="demo9Title">π0.6 ReCap 手机插拔精细操作</h3>
@@ -2120,10 +2142,11 @@
 
           <article class="demo-card" id="demo-08">
             <div class="demo-media">
-              <video controls muted playsinline poster="assets/posters/demo10.webp" aria-label="播放 openpi 复现 π0.5 Subtask 长任务拆解" data-i18n-aria="demo10Aria">
+              <video controls muted playsinline preload="none" poster="assets/posters/demo10.webp" aria-label="播放 openpi 复现 π0.5 Subtask 长任务拆解" data-i18n-aria="demo10Aria">
                 <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo10.mp4" type="video/mp4">
               </video>
             </div>
+            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo10.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 08</span><span>00:24</span></div>
               <h3 data-i18n="demo10Title">openpi 复现 π0.5 Subtask 长任务拆解</h3>
@@ -2152,10 +2175,11 @@
 
           <article class="demo-card" id="demo-09">
             <div class="demo-media">
-              <video controls muted playsinline poster="assets/posters/demo11.webp" aria-label="播放宇树 G1 全身 loco-manipulation 搬箱子" data-i18n-aria="demo11Aria">
+              <video controls muted playsinline preload="none" poster="assets/posters/demo11.webp" aria-label="播放宇树 G1 全身 loco-manipulation 搬箱子" data-i18n-aria="demo11Aria">
                 <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo11.mp4" type="video/mp4">
               </video>
             </div>
+            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo11.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 09</span><span class="latest-badge" data-i18n="latestBadge">最新</span><span>00:30</span></div>
               <h3 data-i18n="demo11Title">宇树 G1 全身 loco-manipulation 搬箱子</h3>
@@ -2413,6 +2437,7 @@
         pipeStep5Title: '真机闭环验证', pipeStep5Desc: '在真实任务中观察成功率、延迟、动作稳定性和失败模式，反向迭代数据与策略。',
         /* demos */
         secDemos: 'Demo 视频', kickerDemos: '真实机器人、仿真与视觉控制演示',
+        videoFallback: '视频无法播放？在 GitHub Releases 中打开',
         demo1Title: '双臂灵巧手小物品精细抓取',
         demo1Desc: '双臂平台完成小目标定位、夹取与放置，展示灵巧手精细控制与真实任务稳定性。',
         demo2Title: '视觉关键点 retargeting 到灵巧手',
@@ -2561,6 +2586,7 @@
         pipeStep5Title: 'Real-Robot Validation', pipeStep5Desc: 'Measure success rate, latency, motion stability, and failure modes in real tasks, then iterate data and policies.',
         /* demos */
         secDemos: 'Demo Videos', kickerDemos: 'Real-robot, simulation, and vision-control demos',
+        videoFallback: 'Video unavailable? Open it on GitHub Releases',
         demo1Title: 'Dual-Arm Dexterous-Hand Fine Grasping',
         demo1Desc: 'A dual-arm platform localizes, grasps, and places small objects, showing fine dexterous-hand control and real-world task stability.',
         demo2Title: 'Visual Keypoint Retargeting to Dexterous Hand',
@@ -2654,6 +2680,7 @@
         var key = el.getAttribute('data-i18n-aria');
         if (t[key] !== undefined) el.setAttribute('aria-label', t[key]);
       });
+      refreshPlayButtonLabels();
       /* meta tags */
       document.title = t.docTitle;
       var mDesc = document.querySelector('meta[name="description"]');
@@ -2695,6 +2722,33 @@
       applyLang(cur === 'zh' ? 'en' : 'zh');
     }
 
+    function refreshPlayButtonLabel(media) {
+      var video = media.querySelector('video');
+      var badge = media.querySelector('.play-badge');
+      if (!video || !badge) return;
+      var label = video.getAttribute('aria-label');
+      badge.setAttribute('aria-label', label);
+      badge.setAttribute('title', label);
+    }
+
+    function refreshPlayButtonLabels() {
+      document.querySelectorAll('.demo-media').forEach(refreshPlayButtonLabel);
+    }
+
+    function activateVideo(media, video) {
+      var source = video.querySelector('source[data-src]');
+      if (source && !source.getAttribute('src')) {
+        source.setAttribute('src', source.dataset.src);
+        video.load();
+      }
+      var playback = video.play();
+      if (playback && typeof playback.catch === 'function') {
+        playback.catch(function () {
+          media.classList.add('has-video-error');
+        });
+      }
+    }
+
     /* ── Init ── */
     (function () {
       var toTop = document.querySelector('.to-top');
@@ -2717,41 +2771,28 @@
         var saved = localStorage.getItem('lang');
         if (saved === 'en') applyLang('en');
       } catch (e) {}
-      /* lazy-load videos */
-      if ('IntersectionObserver' in window) {
-        var vidObs = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) {
-              var v = e.target;
-              v.querySelectorAll('source[data-src]').forEach(function (s) {
-                s.src = s.dataset.src;
-              });
-              v.load();
-              vidObs.unobserve(v);
-            }
-          });
-        }, { rootMargin: '200px' });
-        document.querySelectorAll('.demo-media video').forEach(function (v) { vidObs.observe(v); });
-      }
-
       /* play badge overlay on demo videos */
       document.querySelectorAll('.demo-media').forEach(function (media) {
         var video = media.querySelector('video');
         if (!video) return;
+
         var badge = document.createElement('button');
         badge.type = 'button';
         badge.className = 'play-badge';
-        badge.setAttribute('aria-label', '播放');
         badge.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
         badge.addEventListener('click', function () {
-          var s = video.querySelector('source');
-          if (s && !s.getAttribute('src')) { s.src = s.dataset.src; video.load(); }
-          video.play();
+          activateVideo(media, video);
         });
         media.appendChild(badge);
-        video.addEventListener('play', function () { media.classList.add('is-playing'); });
+        refreshPlayButtonLabel(media);
+
+        video.addEventListener('play', function () {
+          media.classList.remove('has-video-error');
+          media.classList.add('is-playing');
+        });
         video.addEventListener('pause', function () { media.classList.remove('is-playing'); });
         video.addEventListener('ended', function () { media.classList.remove('is-playing'); });
+        video.addEventListener('error', function () { media.classList.add('has-video-error'); });
       });
 
       /* count-up metrics + scroll reveal */
