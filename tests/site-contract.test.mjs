@@ -101,3 +101,89 @@ test('canonical, robots, and sitemap use one production host', () => {
   );
   assert.doesNotMatch(sitemap, /<lastmod\b/i);
 });
+
+test('mobile header and navigation follow visible focus order', () => {
+  const controlsIndex = index.indexOf('<div class="site-controls"');
+  const identityIndex = index.indexOf('<div class="mobile-id"');
+  const navigationIndex = index.indexOf('<details class="mobile-nav"');
+  const mainIndex = index.indexOf('<main class="main" id="main">');
+
+  assert.ok(
+    controlsIndex < identityIndex &&
+    identityIndex < navigationIndex &&
+    navigationIndex < mainIndex,
+  );
+
+  const controls = index.match(
+    /<div\s+class="site-controls"[\s\S]*?<\/div>/,
+  )?.[0] ?? '';
+  assert.match(controls, /class="control-btn lang-toggle"/);
+  assert.match(controls, /class="control-btn theme-toggle"/);
+
+  const mobileIdentityTag = index.match(
+    /<div\s+class="mobile-id"[^>]*>/,
+  )?.[0] ?? '';
+  assert.doesNotMatch(mobileIdentityTag, /aria-hidden/);
+  assert.match(
+    index,
+    /<div class="mobile-id">[\s\S]*?<h1 data-i18n="name">/,
+  );
+});
+
+test('mobile navigation is native and contains section and profile links', () => {
+  const details = index.match(
+    /<details class="mobile-nav">([\s\S]*?)<\/details>/,
+  )?.[0] ?? '';
+
+  assert.match(details, /<summary data-i18n="navTitle">/);
+  assert.match(details, /<nav[\s\S]*data-i18n-aria="navAria"/);
+
+  for (const href of [
+    '#overview', '#experience', '#projects', '#pipeline',
+    '#demos', '#skills', '#platforms', '#awards',
+    'mailto:puheliang122@gmail.com',
+    'https://github.com/heliang-pu',
+    'https://huggingface.co/puheliang',
+    'https://space.bilibili.com/389273511',
+    'https://www.linkedin.com/in/heliang-pu-a26538416/',
+  ]) {
+    const escaped = href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    assert.match(details, new RegExp(`href="${escaped}"`));
+  }
+});
+
+test('980px layout hides the desktop sidebar without CSS reordering', () => {
+  const css = index.match(/<style>([\s\S]*?)<\/style>/)?.[1] ?? '';
+  const mobileCss = mediaBlocks(css, '@media (max-width: 980px)');
+  const controlsBaseIndex = css.indexOf('.site-controls {');
+  const hiddenMobileIndex = css.indexOf('.mobile-id,\n    .mobile-nav {');
+  const firstMobileMediaIndex = css.indexOf('@media (max-width: 980px)');
+
+  assert.match(mobileCss, /\.sidebar\s*\{[^}]*display:\s*none/);
+  assert.match(mobileCss, /\.site-controls\s*\{[^}]*position:\s*static/);
+  assert.match(mobileCss, /\.mobile-id\s*\{[^}]*display:\s*flex/);
+  assert.match(mobileCss, /\.mobile-nav\s*\{[^}]*display:\s*block/);
+  assert.doesNotMatch(mobileCss, /\.main\s*\{[^}]*\border\s*:/);
+  assert.doesNotMatch(mobileCss, /\.mobile-id\s*\{[^}]*\border\s*:/);
+  assert.ok(
+    controlsBaseIndex !== -1 &&
+    hiddenMobileIndex !== -1 &&
+    controlsBaseIndex < firstMobileMediaIndex &&
+    hiddenMobileIndex < firstMobileMediaIndex,
+  );
+});
+
+test('pipeline uses tablet and narrow-mobile column counts', () => {
+  const css = index.match(/<style>([\s\S]*?)<\/style>/)?.[1] ?? '';
+  const tabletCss = mediaBlocks(css, '@media (max-width: 980px)');
+  const narrowCss = mediaBlocks(css, '@media (max-width: 760px)');
+
+  assert.match(
+    tabletCss,
+    /\.pipeline-grid\s*\{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/,
+  );
+  assert.match(
+    narrowCss,
+    /\.pipeline-grid[\s\S]*?grid-template-columns:\s*1fr/,
+  );
+});

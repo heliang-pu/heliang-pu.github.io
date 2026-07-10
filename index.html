@@ -846,7 +846,17 @@
       pointer-events: none;
     }
 
-    .mobile-id {
+    .site-controls {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 110;
+      display: flex;
+      gap: 8px;
+    }
+
+    .mobile-id,
+    .mobile-nav {
       display: none;
     }
 
@@ -1133,42 +1143,21 @@
       .shell {
         display: flex;
         flex-direction: column;
-      }
-
-      .shell {
         gap: 16px;
       }
 
-      .main {
-        order: -1;
+      .site-controls {
+        position: static;
+        align-self: stretch;
+        justify-content: flex-end;
       }
 
       .sidebar {
-        position: static;
-      }
-
-      .portrait-wrap {
-        display: flex;
-        justify-content: center;
-      }
-
-      .identity {
-        text-align: center;
-      }
-
-      .contact {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .contact a + a, .contact span + a {
-        margin-top: 0;
+        display: none;
       }
 
       .mobile-id {
         display: flex;
-        order: -2;
         align-items: center;
         gap: 12px;
         padding: 12px 16px;
@@ -1181,22 +1170,84 @@
       .mobile-id img {
         width: 48px;
         height: 48px;
-        flex: none;
+        flex: 0 0 48px;
         border-radius: 8px;
         object-fit: cover;
         object-position: center 18%;
       }
 
-      .mobile-id-text strong {
-        display: block;
+      .mobile-id-text { min-width: 0; }
+      .mobile-id-text h1 {
+        margin: 0;
         font-size: 1.1rem;
         line-height: 1.2;
+        overflow-wrap: anywhere;
       }
-
       .mobile-id-text span {
+        display: block;
+        margin-top: 3px;
         color: var(--green);
         font-size: 0.85rem;
         font-weight: 600;
+        overflow-wrap: anywhere;
+      }
+
+      .mobile-nav {
+        display: block;
+        overflow: hidden;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+      .mobile-nav > summary {
+        min-height: 44px;
+        padding: 10px 16px;
+        cursor: pointer;
+        color: var(--ink);
+        font-weight: 750;
+        list-style-position: inside;
+      }
+      .mobile-nav > summary::marker { color: var(--green); }
+      .mobile-nav[open] > summary { border-bottom: 1px solid var(--line); }
+      .mobile-nav-body {
+        display: grid;
+        gap: 12px;
+        padding: 10px 16px 14px;
+      }
+      .mobile-nav-links {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4px 12px;
+      }
+      .mobile-nav-links a {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+        min-height: 40px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        overflow-wrap: anywhere;
+      }
+      .mobile-profile-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 16px;
+        padding-top: 10px;
+        border-top: 1px solid var(--line);
+      }
+      .mobile-profile-links a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        color: var(--green);
+        font-size: 0.86rem;
+        font-weight: 700;
+        overflow-wrap: anywhere;
+      }
+
+      .pipeline-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
@@ -1237,8 +1288,14 @@
     }
 
     @media (max-width: 480px) {
-      .contact {
+      .contact,
+      .mobile-nav-links,
+      .mobile-profile-links {
         grid-template-columns: 1fr !important;
+      }
+      .mobile-profile-links {
+        display: grid;
+        gap: 2px;
       }
     }
 
@@ -1319,10 +1376,9 @@
     }
 
     .control-btn {
-      position: fixed;
-      z-index: 110;
       width: 44px;
       height: 44px;
+      flex: 0 0 44px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -1341,22 +1397,17 @@
       transform: translateY(-2px);
     }
 
-    .theme-toggle {
-      top: 18px;
-      right: 18px;
-    }
-
     .lang-toggle {
-      top: 18px;
-      right: 70px;
       font-size: 0.82rem;
       font-weight: 800;
       letter-spacing: 0.02em;
     }
 
     .to-top {
-      bottom: 22px;
+      position: fixed;
+      z-index: 110;
       right: 18px;
+      bottom: 22px;
       opacity: 0;
       visibility: hidden;
     }
@@ -1389,7 +1440,7 @@
     }
 
     @media print {
-      .skip-link, .scroll-progress, .theme-toggle, .lang-toggle, .to-top { display: none !important; }
+      .skip-link, .scroll-progress, .site-controls, .to-top { display: none !important; }
 
       body {
         background: white;
@@ -1460,17 +1511,44 @@
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">跳到主内容</a>
   <div class="scroll-progress" aria-hidden="true"></div>
-  <button class="control-btn lang-toggle" type="button" aria-label="Switch language" title="Switch language" onclick="toggleLang()">EN</button>
-  <button class="control-btn theme-toggle" type="button" aria-pressed="false" aria-label="切换深色 / 浅色模式" title="切换深色 / 浅色模式" onclick="toggleTheme()"><span aria-hidden="true">🌓</span></button>
-  <button class="control-btn to-top" type="button" aria-label="回到顶部" title="回到顶部" onclick="scrollToTop()"><span aria-hidden="true">↑</span></button>
+
   <div class="shell">
-    <div class="mobile-id" aria-hidden="true">
+    <div class="site-controls" role="group" aria-label="站点设置" data-i18n-aria="siteControlsAria">
+      <button class="control-btn lang-toggle" type="button" aria-label="Switch language" title="Switch language" onclick="toggleLang()">EN</button>
+      <button class="control-btn theme-toggle" type="button" aria-pressed="false" aria-label="切换深色 / 浅色模式" title="切换深色 / 浅色模式" onclick="toggleTheme()"><span aria-hidden="true">🌓</span></button>
+    </div>
+
+    <div class="mobile-id">
       <img src="assets/portrait.jpg" alt="" width="48" height="48" decoding="async">
       <div class="mobile-id-text">
-        <strong data-i18n="name">蒲贺良</strong>
+        <h1 data-i18n="name">蒲贺良</h1>
         <span data-i18n="role">具身智能 / VLA 工程师</span>
       </div>
     </div>
+
+    <details class="mobile-nav">
+      <summary data-i18n="navTitle">目录</summary>
+      <nav class="mobile-nav-body" aria-label="页面导航" data-i18n-aria="navAria">
+        <div class="mobile-nav-links">
+          <a href="#overview" data-i18n="navOverview">个人概览</a>
+          <a href="#experience" data-i18n="navExp">工作与教育</a>
+          <a href="#projects" data-i18n="navProjects">项目经历</a>
+          <a href="#pipeline" data-i18n="navPipeline">推理闭环</a>
+          <a href="#demos" data-i18n="navDemos">Demo 视频</a>
+          <a href="#skills" data-i18n="navSkills">能力矩阵</a>
+          <a href="#platforms" data-i18n="navPlatforms">真机平台</a>
+          <a href="#awards" data-i18n="navAwards">竞赛与荣誉</a>
+        </div>
+        <div class="mobile-profile-links">
+          <a href="mailto:puheliang122@gmail.com">Email</a>
+          <a href="https://github.com/heliang-pu" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer">Hugging Face</a>
+          <a href="https://space.bilibili.com/389273511" target="_blank" rel="noreferrer"><span data-i18n="bilibili">哔哩哔哩</span></a>
+          <a href="https://www.linkedin.com/in/heliang-pu-a26538416/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </nav>
+    </details>
+
     <aside class="sidebar">
       <div class="portrait-wrap">
         <img class="portrait" src="assets/portrait.jpg" alt="蒲贺良头像" width="124" height="165" decoding="async">
@@ -2244,6 +2322,7 @@
       <footer class="footer">© 2026 蒲贺良 · <span data-i18n="footerUpdated">Last updated: 2026.06</span></footer>
     </main>
   </div>
+  <button class="control-btn to-top" type="button" aria-label="回到顶部" title="回到顶部" onclick="scrollToTop()"><span aria-hidden="true">↑</span></button>
 
   <script>
     /* ── Theme ── */
@@ -2401,6 +2480,7 @@
         emailAria: '邮箱 puheliang122@gmail.com',
         bilibiliAria: '哔哩哔哩主页',
         navAria: '页面导航',
+        siteControlsAria: '站点设置',
         demo1Aria: '播放双臂灵巧手小物品精细抓取',
         demo2Aria: '播放视觉关键点 retargeting 到灵巧手',
         demo4Aria: '播放单臂物体抓取与放置多任务切换',
@@ -2548,6 +2628,7 @@
         emailAria: 'Email puheliang122@gmail.com',
         bilibiliAria: 'Bilibili profile',
         navAria: 'Page navigation',
+        siteControlsAria: 'Site settings',
         demo1Aria: 'Play dual-arm dexterous-hand fine grasping demo',
         demo2Aria: 'Play visual keypoint retargeting to dexterous hand demo',
         demo4Aria: 'Play single-arm multi-task pick-and-place switching demo',
