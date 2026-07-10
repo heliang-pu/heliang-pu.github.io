@@ -9,3 +9,7 @@ assets/*.mp4
 assets/videos/
 # Full-res portrait original kept local; site uses optimized assets/portrait.jpg
 assets/phl.png
+
+# Local Codex implementation workspaces and durable task progress.
+.worktrees/
+.superpowers/
