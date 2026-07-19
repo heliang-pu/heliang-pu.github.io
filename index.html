@@ -1540,6 +1540,7 @@
       <nav class="mobile-nav-body" aria-label="页面导航" data-i18n-aria="navAria">
         <div class="mobile-nav-links">
           <a href="#overview" data-i18n="navOverview">个人概览</a>
+          <a href="#experience" data-i18n="navExp">工作与教育</a>
           <a href="#projects" data-i18n="navProjects">项目经历</a>
           <a href="#pipeline" data-i18n="navPipeline">推理闭环</a>
           <a href="#demos" data-i18n="navDemos">Demo 视频</a>
@@ -1580,6 +1581,7 @@
         <p class="side-title" data-i18n="navTitle">目录</p>
         <div class="nav-links">
           <a href="#overview" data-i18n="navOverview">个人概览</a>
+          <a href="#experience" data-i18n="navExp">工作与教育</a>
           <a href="#projects" data-i18n="navProjects">项目经历</a>
           <a href="#pipeline" data-i18n="navPipeline">推理闭环</a>
           <a href="#demos" data-i18n="navDemos">Demo 视频</a>
@@ -1705,6 +1707,53 @@
           <div class="summary-item">
             <h3 data-i18n="sum3t">多模态策略</h3>
             <p data-i18n="sum3d">围绕 VLA/VLM Policy、触觉 encoder、RTC 与异步推理进行实验验证，推动策略从离线训练走向实时任务执行。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="experience">
+        <div class="section-head">
+          <h2 data-i18n="secExp">工作与教育</h2>
+          <span class="section-kicker" data-i18n="kickerExp">机器人实践 + 软件工程训练</span>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time" data-i18n="exp1time">2026.01 - 至今</div>
+            <div class="timeline-card">
+              <h3 data-i18n="exp1title">具身智能全栈工程师</h3>
+              <div class="meta">FMC3-Robotics · <span data-i18n="exp1loc">上海</span></div>
+              <ul class="plain-list">
+                <li data-i18n="exp1d1">负责机器人真实平台适配、数据采集链路、策略训练脚本、推理服务与部署验证。</li>
+                <li data-i18n="exp1d2">在机械臂、灵巧手、人形机器人项目中推进 VLA/VLM Policy 的工程落地。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">2026.09 - 2029.06</div>
+            <div class="timeline-card">
+              <div class="school-heading">
+                <span class="school-emblem">
+                  <img src="assets/east-china-normal-university-emblem.png" alt="华东师范大学校徽" data-i18n-alt="ecnuLogoAlt" width="512" height="512" loading="lazy" decoding="async">
+                </span>
+                <h3 data-i18n="exp2title">华东师范大学</h3>
+              </div>
+              <div class="meta" data-i18n="exp2meta">软件工程 · 非全日制</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">2021.09 - 2025.06</div>
+            <div class="timeline-card">
+              <div class="school-heading">
+                <span class="school-emblem">
+                  <img src="assets/suzhou-institute-of-technology-emblem.png" alt="江苏科技大学苏州理工学院校徽" data-i18n-alt="sitLogoAlt" width="512" height="512" loading="lazy" decoding="async">
+                </span>
+                <h3 data-i18n="exp3title">江苏科技大学苏州理工学院</h3>
+              </div>
+              <div class="meta" data-i18n="exp3meta">计算机科学与技术 · 成绩均分 90</div>
+              <ul class="plain-list">
+                <li data-i18n="exp3d1">本科综合排名第一，参与智能车、移动机器人、OpenMV 视觉应用等实践项目。</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -2321,7 +2370,7 @@
         pitch: '关注机器人从数据采集、策略训练到真机部署的完整闭环，擅长把模型能力落到可运行、可复现、可迭代的机器人系统里。',
         bilibili: '哔哩哔哩',
         navTitle: '目录',
-        navOverview: '个人概览', navProjects: '项目经历', navPipeline: '推理闭环', navDemos: 'Demo 视频', navSkills: '能力矩阵', navAwards: '竞赛与荣誉',
+        navOverview: '个人概览', navExp: '工作与教育', navProjects: '项目经历', navPipeline: '推理闭环', navDemos: 'Demo 视频', navSkills: '能力矩阵', navAwards: '竞赛与荣誉',
         navPlatforms: '真机平台',
         secPlatforms: '真机平台', kickerPlatforms: '上手过的机器人本体、动捕与遥操作硬件',
         ptHumanoid: '人形机器人', ptArm: '协作机械臂', ptResearchArm: '科研机械臂', ptIndustrial: '工业自动化', ptGlove: '数据手套', ptMocap: '全身动捕', ptVR: 'VR 遥操作',
@@ -2347,6 +2396,15 @@
         sum1t: '端到端闭环', sum1d: '熟悉机器人任务从示教采集、数据清洗、训练配置、评估对比到真机推理的完整流程，能快速定位数据、模型和控制链路问题。',
         sum2t: '真实平台适配', sum2d: '完成多家机器人产品的 teleoperation、data collection、inference、replay 模块适配，关注接口稳定性与部署可维护性。',
         sum3t: '多模态策略', sum3d: '围绕 VLA/VLM Policy、触觉 encoder、RTC 与异步推理进行实验验证，推动策略从离线训练走向实时任务执行。',
+        /* experience */
+        secExp: '工作与教育', kickerExp: '机器人实践 + 软件工程训练',
+        exp1time: '2026.01 - 至今',
+        exp1title: '具身智能全栈工程师', exp1loc: '上海',
+        exp1d1: '负责机器人真实平台适配、数据采集链路、策略训练脚本、推理服务与部署验证。',
+        exp1d2: '在机械臂、灵巧手、人形机器人项目中推进 VLA/VLM Policy 的工程落地。',
+        exp2title: '华东师范大学', exp2meta: '软件工程 · 非全日制',
+        exp3title: '江苏科技大学苏州理工学院', exp3meta: '计算机科学与技术 · 成绩均分 90',
+        exp3d1: '本科综合排名第一，参与智能车、移动机器人、OpenMV 视觉应用等实践项目。',
         /* projects */
         secProjects: '项目经历', kickerProjects: '从策略到真机，从单臂到人形',
         p1t: '机械臂 + 智元灵巧手双臂协作操作', p1d: '基于 LeRobot 搭建机械臂与带触觉感知的智元灵巧手双臂协作平台，完成控制、数采、训练与推理部署链路验证。',
@@ -2436,6 +2494,8 @@
         skip: '跳到主内容', footerUpdated: 'Last updated: 2026.07',
         themeLabel: '切换深色 / 浅色模式', langLabel: 'Switch language',
         portraitAlt: '蒲贺良头像',
+        ecnuLogoAlt: '华东师范大学校徽',
+        sitLogoAlt: '江苏科技大学苏州理工学院校徽',
         emailAria: '邮箱 puheliang122@gmail.com',
         bilibiliAria: '哔哩哔哩主页',
         navAria: '页面导航',
@@ -2459,7 +2519,7 @@
         pitch: 'Full-loop robotics from data collection and policy training to real-robot deployment. Specializing in turning model capabilities into runnable, reproducible, and iterable robotic systems.',
         bilibili: 'Bilibili',
         navTitle: 'Contents',
-        navOverview: 'Overview', navProjects: 'Projects', navPipeline: 'Inference Loop', navDemos: 'Demos', navSkills: 'Skills', navAwards: 'Awards',
+        navOverview: 'Overview', navExp: 'Experience', navProjects: 'Projects', navPipeline: 'Inference Loop', navDemos: 'Demos', navSkills: 'Skills', navAwards: 'Awards',
         navPlatforms: 'Hardware',
         secPlatforms: 'Hardware Platforms', kickerPlatforms: 'Robots, mocap & teleop hardware I have worked on',
         ptHumanoid: 'Humanoid Robot', ptArm: 'Collaborative Arm', ptResearchArm: 'Research Arm', ptIndustrial: 'Industrial Automation', ptGlove: 'Data Glove', ptMocap: 'Motion Capture', ptVR: 'VR Teleoperation',
@@ -2485,6 +2545,15 @@
         sum1t: 'End-to-End Loop', sum1d: 'Well-versed in the full pipeline from teaching collection, data cleaning, training configuration, evaluation to real-robot inference. Quickly locates issues across data, model, and control chains.',
         sum2t: 'Platform Adaptation', sum2d: 'Adapted teleoperation, data collection, inference, and replay modules for multiple robot products, with focus on interface stability and deployment maintainability.',
         sum3t: 'Multimodal Policy', sum3d: 'Experiments around VLA/VLM Policy, tactile encoder, RTC, and async inference, driving policies from offline training to real-time task execution.',
+        /* experience */
+        secExp: 'Experience', kickerExp: 'Robotics Practice + Software Engineering',
+        exp1time: '2026.01 - Present',
+        exp1title: 'Embodied AI Full-Stack Engineer', exp1loc: 'Shanghai',
+        exp1d1: 'Responsible for real-platform adaptation, data collection pipelines, policy training scripts, inference services, and deployment validation.',
+        exp1d2: 'Driving VLA/VLM Policy engineering deployment across robotic arm, dexterous hand, and humanoid robot projects.',
+        exp2title: 'East China Normal University', exp2meta: 'Software Engineering · Part-time',
+        exp3title: 'Jiangsu Univ. of Sci. & Tech. Suzhou Institute of Technology', exp3meta: 'Computer Science & Technology · GPA 90',
+        exp3d1: 'Ranked #1 in undergraduate cohort; participated in smart car, mobile robot, and OpenMV vision projects.',
         /* projects */
         secProjects: 'Projects', kickerProjects: 'From policy to robot, from arm to humanoid',
         p1t: 'Robotic Arm + Zhiyuan Dexterous Hand Dual-Arm Collaboration', p1d: 'Built a dual-arm collaboration platform with tactile-sensing Zhiyuan dexterous hand based on LeRobot, completing the full chain of control, data collection, training, and inference deployment.',
@@ -2574,6 +2643,8 @@
         skip: 'Skip to main content', footerUpdated: 'Last updated: 2026.07',
         themeLabel: 'Toggle dark / light mode', langLabel: '切换中 / 英文',
         portraitAlt: 'Portrait of Puheliang',
+        ecnuLogoAlt: 'East China Normal University emblem',
+        sitLogoAlt: 'Jiangsu University of Science and Technology Suzhou Institute of Technology emblem',
         emailAria: 'Email puheliang122@gmail.com',
         bilibiliAria: 'Bilibili profile',
         navAria: 'Page navigation',
