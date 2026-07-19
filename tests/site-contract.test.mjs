@@ -312,3 +312,10 @@ test('resume PDF is at most 3 MiB', async () => {
     `resume is ${size} bytes; expected at most 3 MiB`,
   );
 });
+
+test('work and education timeline is visible and linked from navigation', () => {
+  assert.match(index, /href="#experience"[^>]*data-i18n="navExp"/);
+  assert.match(index, /<section class="section" id="experience">[\s\S]*?工作与教育/);
+  assert.match(index, /<h3 data-i18n="exp2title">华东师范大学<\/h3>/);
+  assert.match(index, /<h3 data-i18n="exp3title">江苏科技大学苏州理工学院<\/h3>/);
+});
