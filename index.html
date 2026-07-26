@@ -1319,296 +1319,6 @@
       color: var(--amber);
     }
 
-    /* ── Papers（论文库板块）── */
-    .paper-stats {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .paper-stats[hidden] {
-      display: none;
-    }
-
-    .paper-stat {
-      padding: 13px 16px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-    }
-
-    .paper-stat strong {
-      display: block;
-      color: var(--green);
-      font-family: var(--mono);
-      font-size: 25px;
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    .paper-stat span {
-      color: var(--muted);
-      font-size: 12.5px;
-    }
-
-    .paper-featured-title {
-      margin: 20px 0 10px;
-      font-family: var(--head);
-      font-size: 15px;
-      letter-spacing: 0.2px;
-    }
-
-    .paper-featured-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .paper-featured {
-      padding: 13px 16px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-left: 3px solid var(--green);
-      border-radius: 8px;
-    }
-
-    .paper-featured strong {
-      font-size: 14px;
-    }
-
-    .paper-featured strong a:hover {
-      color: var(--green);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .paper-featured p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .paper-flag {
-      display: inline-block;
-      margin-left: 8px;
-      padding: 1px 9px;
-      border-radius: 999px;
-      background: var(--soft-green);
-      color: var(--green);
-      font-family: var(--mono);
-      font-size: 11px;
-      white-space: nowrap;
-      vertical-align: 1px;
-    }
-
-    a.paper-flag:hover {
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    .papers-hint {
-      margin: 0 0 10px;
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 12px;
-    }
-
-    .papers-hint .dot-read {
-      color: var(--green);
-    }
-
-    .papers-status {
-      margin: 0;
-      padding: 18px;
-      border: 1px dashed var(--line);
-      border-radius: 8px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .paper-group {
-      margin-bottom: 10px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .paper-group > summary {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto 20px;
-      gap: 12px;
-      align-items: center;
-      padding: 13px 16px;
-      cursor: pointer;
-      list-style: none;
-    }
-
-    .paper-group > summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .paper-group-title {
-      font-size: 14.5px;
-      font-weight: 700;
-    }
-
-    .paper-group > summary:hover .paper-group-title {
-      color: var(--green);
-    }
-
-    .paper-group-count {
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
-    .paper-group-count em {
-      color: var(--green);
-      font-style: normal;
-      font-weight: 700;
-    }
-
-    .paper-group > summary::after {
-      content: "+";
-      justify-self: end;
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 15px;
-      line-height: 1;
-    }
-
-    .paper-group[open] > summary::after {
-      content: "−";
-      color: var(--green);
-    }
-
-    .paper-list {
-      padding: 2px 16px 13px;
-      border-top: 1px solid var(--line);
-    }
-
-    .paper-series {
-      margin: 13px 0 2px;
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 11.5px;
-    }
-
-    .paper-series::before {
-      content: "▍";
-      margin-right: 5px;
-      color: var(--green);
-    }
-
-    .paper-item {
-      display: grid;
-      grid-template-columns: 12px minmax(0, 1fr) auto;
-      gap: 10px;
-      padding: 9px 0;
-      border-bottom: 1px dashed var(--line);
-    }
-
-    .paper-item:last-child {
-      border-bottom: none;
-    }
-
-    .paper-dot {
-      width: 8px;
-      height: 8px;
-      margin-top: 7px;
-      border: 1.5px solid var(--muted);
-      border-radius: 50%;
-    }
-
-    .paper-item.is-read .paper-dot {
-      border-color: var(--green);
-      background: var(--green);
-    }
-
-    .paper-copy {
-      min-width: 0;
-    }
-
-    .paper-title {
-      font-size: 13.8px;
-      font-weight: 600;
-      line-height: 1.5;
-    }
-
-    a.paper-title:hover {
-      color: var(--green);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    a.paper-title::after {
-      content: " ↗";
-      color: var(--green);
-      font-family: var(--mono);
-      font-size: 11px;
-    }
-
-    .paper-sum {
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      margin: 3px 0 0;
-      overflow: hidden;
-      color: var(--muted);
-      font-size: 12.8px;
-      line-height: 1.6;
-    }
-
-    .paper-meta {
-      padding-top: 2px;
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 11.5px;
-      white-space: nowrap;
-    }
-
-    .papers-note {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 11.5px;
-    }
-
-    @media (max-width: 980px) {
-      .paper-featured-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .paper-stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .paper-group > summary {
-        padding: 12px 13px;
-      }
-
-      .paper-list {
-        padding: 2px 13px 11px;
-      }
-
-      .paper-item {
-        grid-template-columns: 10px minmax(0, 1fr);
-      }
-
-      .paper-meta {
-        grid-column: 2;
-        padding-top: 0;
-        white-space: normal;
-      }
-    }
-
     html.theme-dark {
       --ink: #e2e8f0;
       --muted: #94a3b8;
@@ -1655,13 +1365,8 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
     html.theme-dark .chip:hover { background: var(--soft-green); }
-    html.theme-dark .paper-stat, html.theme-dark .paper-featured, html.theme-dark .paper-group { background: #1a2433; }
-    html.theme-dark .paper-stat strong, html.theme-dark .paper-group-count em, html.theme-dark .paper-series::before, html.theme-dark .papers-hint .dot-read { color: #5eead4; }
-    html.theme-dark .paper-flag { background: rgba(94, 234, 212, 0.14); color: #5eead4; }
     html.theme-dark .demo-kind { background: rgba(94, 234, 212, 0.14); color: #5eead4; }
     html.theme-dark .demo-kind.sim { background: var(--soft-amber); color: #fcd34d; }
-    html.theme-dark .paper-item.is-read .paper-dot { border-color: #5eead4; background: #5eead4; }
-    html.theme-dark a.paper-title:hover, html.theme-dark a.paper-title::after, html.theme-dark .paper-group[open] > summary::after, html.theme-dark .paper-group > summary:hover .paper-group-title, html.theme-dark .paper-featured strong a:hover { color: #5eead4; }
 
     .skip-link {
       position: absolute;
@@ -1858,7 +1563,6 @@
           <a href="#demos" data-i18n="navDemos">Demo 视频</a>
           <a href="#skills" data-i18n="navSkills">能力矩阵</a>
           <a href="#platforms" data-i18n="navPlatforms">真机平台</a>
-          <a href="#papers" data-i18n="navPapers">论文库</a>
           <a href="#awards" data-i18n="navAwards">竞赛与荣誉</a>
         </div>
         <div class="mobile-profile-links">
@@ -1900,7 +1604,6 @@
           <a href="#demos" data-i18n="navDemos">Demo 视频</a>
           <a href="#skills" data-i18n="navSkills">能力矩阵</a>
           <a href="#platforms" data-i18n="navPlatforms">真机平台</a>
-          <a href="#papers" data-i18n="navPapers">论文库</a>
           <a href="#awards" data-i18n="navAwards">竞赛与荣誉</a>
         </div>
       </nav>
@@ -1971,8 +1674,8 @@
             <span data-i18n="m3desc">机械臂、灵巧手、人形机器人平台适配与部署经验</span>
           </div>
           <div class="metric">
-            <strong>107</strong>
-            <span data-i18n="m4desc">篇论文系统跟进 · 31 精读 · 7 已上真机</span>
+            <strong>No.1</strong>
+            <span data-i18n="m4desc">本科综合排名第一，2024 年国家奖学金获得者</span>
           </div>
         </div>
       </section>
@@ -2610,28 +2313,6 @@
         </div>
       </section>
 
-      <section class="section" id="papers">
-        <div class="section-head">
-          <h2 data-i18n="secPapers">论文库</h2>
-          <span class="section-kicker" data-i18n="kickerPapers">从 VLA、世界模型到触觉·力觉的系统跟进——不止读过，还上过真机</span>
-        </div>
-        <div class="paper-stats" id="papersStats" hidden>
-          <div class="paper-stat"><strong id="papersStatTotal">0</strong><span data-i18n="psTotal">论文与教材</span></div>
-          <div class="paper-stat"><strong id="papersStatRead">0</strong><span data-i18n="psRead">精读</span></div>
-          <div class="paper-stat"><strong id="papersStatDeployed">0</strong><span data-i18n="psDeployed">已上真机</span></div>
-          <div class="paper-stat"><strong id="papersStatAreas">0</strong><span data-i18n="psAreas">方向分类</span></div>
-        </div>
-        <div id="papersFeatured" hidden>
-          <h3 class="paper-featured-title" data-i18n="papersFeaturedTitle">精读重点</h3>
-          <div class="paper-featured-grid" id="papersFeaturedGrid"></div>
-        </div>
-        <p class="papers-hint" id="papersHint" hidden></p>
-        <div id="papersGroups">
-          <p class="papers-status" id="papersStatus" data-i18n="papersLoading">论文清单加载中…</p>
-        </div>
-        <p class="papers-note" id="papersFooter" hidden><span data-i18n="papersNote">同步自本地论文库 · 更新于</span> <span id="papersUpdated"></span></p>
-      </section>
-
       <section class="section" id="awards">
         <div class="section-head">
           <h2 data-i18n="secAwards">竞赛与荣誉</h2>
@@ -2727,7 +2408,7 @@
         m2desc: 'S101 单臂抓取任务 demonstration 采集与策略验证',
         m3desc: '机械臂、灵巧手、人形机器人平台适配与部署经验',
         m3val: '3 类',
-        m4desc: '篇论文系统跟进 · 31 精读 · 7 已上真机',
+        m4desc: '本科综合排名第一，2024 年国家奖学金获得者',
         kindReal: '真机', kindSim: '仿真',
         /* featured */
         secFeatured: '精选 Demo', kickerFeatured: '机器人推理与仿真演示',
@@ -2826,11 +2507,6 @@
         cap8t: 'AI 辅助工程开发', cap8d: '结合 Cursor、Claude Code、Codex 提升机器人接口适配、数据脚本开发、训练调参与实验迭代效率。',
         /* awards */
         secAwards: '竞赛与荣誉', kickerAwards: '算法、机器人与综合能力积累',
-        navPapers: '论文库', secPapers: '论文库', kickerPapers: '从 VLA、世界模型到触觉·力觉的系统跟进——不止读过，还上过真机',
-        psTotal: '论文与教材', psRead: '精读', psDeployed: '已上真机', psAreas: '方向分类',
-        papersFeaturedTitle: '精读重点', papersHint: '点击分类展开 · ● 精读 · ○ 跟进中 · 标题链接 arXiv',
-        papersDeployedChip: '已上真机', papersNotesTag: '笔记',
-        papersLoading: '论文清单加载中…', papersError: '清单加载失败，请刷新重试。', papersNote: '同步自本地论文库 · 更新于',
         a1t: '国家奖学金', a1d: '综合排名第一；连续三次人民奖学金、三好学生，国家励志奖学金。',
         a2y: '智能车', a2t: '全国大学生智能车竞赛智慧物流创意组', a2d: '队长，全国三等奖 / 华东赛区二等奖。',
         a3y: '模型训练', a3t: '全国大学生智能车竞赛智慧医疗创意组', a3d: '负责模型训练与量化，华东赛区二等奖。',
@@ -2883,7 +2559,7 @@
         m2desc: 'S101 single-arm grasping task demonstration collection & policy validation',
         m3desc: 'Robotic arm, dexterous hand & humanoid platform adaptation & deployment',
         m3val: '3 Types',
-        m4desc: "papers tracked systematically · 31 read closely · 7 deployed on real robots",
+        m4desc: "Ranked #1 in undergraduate cohort, 2024 National Scholarship recipient",
         kindReal: 'Real robot', kindSim: 'Simulation',
         /* featured */
         secFeatured: 'Featured Demos', kickerFeatured: 'Robot inference and simulation demos',
@@ -2982,11 +2658,6 @@
         cap8t: 'AI-Assisted Engineering', cap8d: 'Leveraging Cursor, Claude Code, Codex to boost efficiency in robot interface adaptation, data script development, training tuning, and experiment iteration.',
         /* awards */
         secAwards: 'Awards', kickerAwards: 'Algorithms, Robotics & Comprehensive Skills',
-        navPapers: 'Papers', secPapers: 'Paper Library', kickerPapers: 'Systematic reading across VLA, world models, and tactile sensing—read, then put on real robots',
-        psTotal: 'Papers & books', psRead: 'Read closely', psDeployed: 'On real robots', psAreas: 'Research areas',
-        papersFeaturedTitle: 'Highlights', papersHint: 'Click a category to expand · ● read closely · ○ tracking · titles link to arXiv',
-        papersDeployedChip: 'Deployed', papersNotesTag: 'notes',
-        papersLoading: 'Loading the paper list…', papersError: "Couldn't load the list—please refresh.", papersNote: 'Synced from my local paper library · updated',
         a1t: 'National Scholarship', a1d: 'Ranked #1 overall; three consecutive People\'s Scholarships, Merit Student, National Encouragement Scholarship.',
         a2y: 'Smart Car', a2t: 'National Smart Car Competition – Smart Logistics Creative Group', a2d: 'Team leader, National 3rd Prize / East China 2nd Prize.',
         a3y: 'Model Training', a3t: 'National Smart Car Competition – Smart Healthcare Creative Group', a3d: 'Responsible for model training & quantization, East China 2nd Prize.',
@@ -3028,7 +2699,6 @@
         if (t[key] !== undefined) el.setAttribute('aria-label', t[key]);
       });
       refreshPlayButtonLabels();
-      renderPapers();
       /* meta tags */
       document.title = t.docTitle;
       var mDesc = document.querySelector('meta[name="description"]');
@@ -3096,143 +2766,6 @@
         });
       }
     }
-
-    /* ── Papers（论文库：懒加载 papers.json + 双语渲染）── */
-    var papersData = null;
-    var papersFetchState = 'idle';
-
-    function papersLang() {
-      return document.documentElement.lang === 'zh-CN' ? 'zh' : 'en';
-    }
-
-    function escapePaperHtml(value) {
-      return String(value).replace(/[&<>"']/g, function (ch) {
-        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
-      });
-    }
-
-    function paperLink(item) {
-      if (item.arxiv) return 'https://arxiv.org/abs/' + item.arxiv;
-      if (item.doi) return 'https://doi.org/' + item.doi;
-      return null;
-    }
-
-    function renderPapers() {
-      var host = document.getElementById('papersGroups');
-      if (!host || !papersData) return;
-      var lang = papersLang();
-      var t = i18n[lang];
-
-      document.getElementById('papersStatTotal').textContent = papersData.total;
-      document.getElementById('papersStatRead').textContent = papersData.read;
-      document.getElementById('papersStatDeployed').textContent = papersData.deployed;
-      document.getElementById('papersStatAreas').textContent = papersData.groups.length;
-      document.getElementById('papersStats').hidden = false;
-
-      var hint = document.getElementById('papersHint');
-      hint.innerHTML = escapePaperHtml(t.papersHint).replace('●', '<span class="dot-read">●</span>');
-      hint.hidden = false;
-
-      var featuredGrid = document.getElementById('papersFeaturedGrid');
-      featuredGrid.innerHTML = papersData.featured.map(function (pick) {
-        var name = escapePaperHtml(pick.label.split(' - ')[0]);
-        var head = pick.arxiv
-          ? '<a href="https://arxiv.org/abs/' + escapePaperHtml(pick.arxiv) + '" target="_blank" rel="noreferrer">' + name + ' ↗</a>'
-          : name;
-        var chip = pick.href
-          ? ' <a class="paper-flag" href="' + escapePaperHtml(pick.href) + '">' + escapePaperHtml(t.papersDeployedChip) + ' →</a>'
-          : '';
-        return '<div class="paper-featured"><strong>' + head + chip + '</strong><p>' +
-          escapePaperHtml(lang === 'zh' ? pick.zh : pick.en) + '</p></div>';
-      }).join('');
-      document.getElementById('papersFeatured').hidden = false;
-
-      document.getElementById('papersUpdated').textContent = papersData.generatedAt;
-      document.getElementById('papersFooter').hidden = false;
-
-      var openStates = [].map.call(host.querySelectorAll('.paper-group'), function (node) { return node.open; });
-
-      host.innerHTML = papersData.groups.map(function (group, groupIndex) {
-        var lastSeries = null;
-        var rows = group.items.map(function (item) {
-          var seriesHtml = '';
-          if (item.s !== undefined && item.s !== lastSeries && group.series[item.s]) {
-            lastSeries = item.s;
-            seriesHtml = '<p class="paper-series">' +
-              escapePaperHtml(lang === 'zh' ? group.series[item.s].zh : group.series[item.s].en) + '</p>';
-          }
-          var heading = escapePaperHtml(lang === 'zh' ? item.label : item.title);
-          var href = paperLink(item);
-          var titleHtml = href
-            ? '<a class="paper-title" href="' + escapePaperHtml(href) + '" target="_blank" rel="noreferrer">' + heading + '</a>'
-            : '<span class="paper-title">' + heading + '</span>';
-          if (item.deployed) {
-            titleHtml += ' <a class="paper-flag" href="' + escapePaperHtml(item.deployed) + '">' +
-              escapePaperHtml(t.papersDeployedChip) + ' →</a>';
-          }
-          var summaryHtml = lang === 'zh' && item.summary
-            ? '<p class="paper-sum">' + escapePaperHtml(item.summary) + '</p>'
-            : '';
-          var metaParts = [item.time, item.venue, item.authors].filter(Boolean);
-          if (item.notes) metaParts.push(t.papersNotesTag);
-          return seriesHtml +
-            '<article class="paper-item' + (item.read ? ' is-read' : '') + '">' +
-            '<span class="paper-dot" aria-hidden="true"></span>' +
-            '<div class="paper-copy">' + titleHtml + summaryHtml + '</div>' +
-            '<span class="paper-meta">' + escapePaperHtml(metaParts.join(' · ')) + '</span>' +
-            '</article>';
-        }).join('');
-        var groupName = escapePaperHtml(lang === 'zh' ? group.zh : group.en);
-        return '<details class="paper-group"' + (openStates[groupIndex] ? ' open' : '') + '>' +
-          '<summary>' +
-          '<span class="paper-group-title">' + groupName + '</span>' +
-          '<span class="paper-group-count"><em>' + group.read + '</em>/' + group.items.length + '</span>' +
-          '</summary>' +
-          '<div class="paper-list">' + rows + '</div>' +
-          '</details>';
-      }).join('');
-    }
-
-    (function initPapers() {
-      var section = document.getElementById('papers');
-      if (!section) return;
-
-      function loadPapers() {
-        if (papersFetchState !== 'idle') return;
-        papersFetchState = 'loading';
-        fetch('assets/papers.json')
-          .then(function (response) {
-            if (!response.ok) throw new Error(String(response.status));
-            return response.json();
-          })
-          .then(function (data) {
-            papersData = data;
-            renderPapers();
-          })
-          .catch(function () {
-            papersFetchState = 'error';
-            var status = document.getElementById('papersStatus');
-            if (status) {
-              status.setAttribute('data-i18n', 'papersError');
-              status.textContent = i18n[papersLang()].papersError;
-            }
-          });
-      }
-
-      if ('IntersectionObserver' in window) {
-        var papersObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              loadPapers();
-              papersObserver.disconnect();
-            }
-          });
-        }, { rootMargin: '600px 0px' });
-        papersObserver.observe(section);
-      } else {
-        loadPapers();
-      }
-    })();
 
     /* ── Init ── */
     (function () {
