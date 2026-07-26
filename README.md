@@ -24,7 +24,10 @@ python3 -m http.server 8000
 ```
 index.html              # 全部页面（结构 + 样式 + 脚本 + i18n 文案）
 heliang-pu-resume.pdf   # 简历
+scripts/
+  sync-papers.mjs       # 解析 ~/study/README.md → assets/papers.json（论文库板块数据）
 assets/
+  papers.json           # 论文库板块数据（生成产物，需提交）
   posters/              # demo 视频缩略图（首屏显示，视频懒加载前的封面）
   logos/                # 真机平台 logo
   videos/               # demo 视频源文件（本地保留，已 gitignore，不提交）
@@ -43,3 +46,15 @@ gh release upload site-media demoN.mp4 --clobber   # 覆盖上传，勿 git add 
 ```
 
 新文件名需与 `index.html` 中的 release URL 对应。
+
+## 论文库板块同步
+
+「论文库」板块的数据来自本地论文库 `~/study/README.md`。读完新论文、勾了复选框之后，重新生成并提交：
+
+```bash
+node scripts/sync-papers.mjs   # 生成 assets/papers.json
+node --test tests/*.test.mjs   # 契约测试（含隐私过滤检查）
+git add assets/papers.json && git commit -m "content: sync paper library"
+```
+
+脚本会自动过滤私人备注（"导师推荐"等不会上站），输出中若残留会直接报错。

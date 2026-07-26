@@ -1,0 +1,1150 @@
+{
+ "generatedAt": "2026-07-26",
+ "total": 107,
+ "read": 31,
+ "deployed": 7,
+ "featured": [
+  {
+   "label": "π0.6 - 从经验中学习",
+   "title": "π*0.6: a VLA that Learns from Experience",
+   "arxiv": "2511.14759",
+   "href": "#projects",
+   "zh": "在松灵 PiperX 真机复现 RECAP 自改进闭环：自主 rollout + 专家纠错 + Offline RL，任务吞吐约 2×。",
+   "en": "Reproduced the RECAP self-improvement loop on a real PiperX arm—autonomous rollouts, expert corrections, Offline RL, ≈2× throughput."
+  },
+  {
+   "label": "π0.5 - 开放世界泛化",
+   "title": "π₀.₅: a Vision-Language-Action Model with Open-World Generalization",
+   "arxiv": "2504.16054",
+   "href": "#projects",
+   "zh": "部署到双臂平台并融合触觉编码与异步推理，精细操作成功率 30% → 70%。",
+   "en": "Deployed on a dual-arm rig with tactile encoding and async inference—fine-manipulation success 30% → 70%."
+  },
+  {
+   "label": "Diffusion Policy - 扩散策略",
+   "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
+   "arxiv": "2303.04137",
+   "href": "#projects",
+   "zh": "与 ACT、π0 在 500+ 条真机示教上完成三策略对比，从训练一路做到真机部署。",
+   "en": "Benchmarked against ACT and π0 on 500+ real demonstrations, from training through real-robot deployment."
+  },
+  {
+   "label": "DreamZero - 世界动作模型零样本策略",
+   "title": "DreamZero: World Action Models are Zero-shot Policies",
+   "arxiv": "2602.15922",
+   "zh": "WAM 零样本策略代表作，逐段精读并产出全文中文译稿。",
+   "en": "Zero-shot world-action-model milestone—close-read with a full Chinese translation produced."
+  },
+  {
+   "label": "Cosmos 3 - NVIDIA 全模态世界模型",
+   "title": "Cosmos 3: Omnimodal World Models for Physical AI",
+   "zh": "精读 138 页全模态世界模型报告并成文技术解读；其模态不含触觉——正是我的切入方向。",
+   "en": "Deep-read the 138-page omnimodal report and wrote a breakdown; its missing tactile modality is exactly my angle."
+  },
+  {
+   "label": "Qwen-RobotManip - 对齐解锁机器人操作规模化",
+   "title": "Qwen-RobotManip Technical Report: Alignment Unlocks Scale for Robotic Manipulation Foundation Models",
+   "zh": "跟进最新工业级 VLA 技术报告，整理成技术解读笔记。",
+   "en": "Tracked this latest industrial-grade VLA report and wrote a technical breakdown."
+  }
+ ],
+ "groups": [
+  {
+   "zh": "VLA — 视觉-语言-动作模型",
+   "series": [
+    {
+     "zh": "Physical Intelligence π 系列",
+     "en": "Physical Intelligence π series"
+    },
+    {
+     "zh": "NVIDIA GR00T 系列",
+     "en": "NVIDIA GR00T series"
+    },
+    {
+     "zh": "Qwen-Robot 系列",
+     "en": "Qwen-Robot series"
+    },
+    {
+     "zh": "Gemini Robotics 系列",
+     "en": "Gemini Robotics series"
+    },
+    {
+     "zh": "ForceVLA 与触觉 / 力觉 VLA",
+     "en": "ForceVLA & tactile / force VLA"
+    },
+    {
+     "zh": "Robotics Transformer（RT）系列",
+     "en": "Robotics Transformer (RT) series"
+    },
+    {
+     "zh": "通用 / 其他 VLA",
+     "en": "General / other VLA"
+    }
+   ],
+   "items": [
+    {
+     "label": "π0 - 核心基础模型",
+     "s": 0,
+     "read": true,
+     "title": "π₀: A Vision-Language-Action Flow Model for General Robot Control",
+     "time": "2024.10",
+     "arxiv": "2410.24164",
+     "summary": "π系列的基础模型。提出了基于Flow Matching的VLA框架，将视觉、语言和动作统一建模，实现通用机器人控制。是后续所有π系列工作的基础。",
+     "deployed": "#projects"
+    },
+    {
+     "label": "π0.5 - 开放世界泛化",
+     "s": 0,
+     "read": true,
+     "title": "π₀.₅: a Vision-Language-Action Model with Open-World Generalization",
+     "time": "2025.04",
+     "arxiv": "2504.16054",
+     "summary": "π0的升级版。重点提升了开放世界的泛化能力，支持更多机器人平台和任务类型，在未见过的场景中表现更好。",
+     "deployed": "#projects"
+    },
+    {
+     "label": "π0.5 Knowledge Insulation - 快速训练与推理",
+     "s": 0,
+     "read": true,
+     "title": "Knowledge Insulating Vision-Language-Action Models: Train Fast, Run Fast, Generalize Better",
+     "time": "2025.05",
+     "summary": "提出Knowledge Insulation技术，解决VLA微调时遗忘预训练知识的问题，实现更快的训练速度、推理速度和更好的泛化能力。"
+    },
+    {
+     "label": "π0.6 - 从经验中学习",
+     "s": 0,
+     "read": true,
+     "title": "π*0.6: a VLA that Learns from Experience",
+     "time": "2025.11",
+     "arxiv": "2511.14759",
+     "summary": "研究VLA如何在真实部署中持续学习，提出结合在线强化学习与人类纠错的ReCAP框架，使机器人能通过经验不断改进复杂操作任务。",
+     "deployed": "#projects"
+    },
+    {
+     "label": "π0.7 - 可控通用机器人基础模型",
+     "s": 0,
+     "read": true,
+     "title": "π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities",
+     "time": "2026.04",
+     "arxiv": "2604.15483",
+     "summary": "Physical Intelligence 发布的 π0.7 机器人基础模型，强调可控性（steerability）与泛化能力提升，展示出更强的 emergent capabilities。"
+    },
+    {
+     "label": "FAST - 高效动作tokenization",
+     "s": 0,
+     "read": true,
+     "title": "FAST: Efficient Action Tokenization for Vision-Language-Action Models",
+     "time": "2025.01",
+     "arxiv": "2501.09747",
+     "summary": "提出了一种高效的机器人动作tokenization方法，将连续动作序列压缩为离散token，大幅提升VLA模型的训练和推理效率。"
+    },
+    {
+     "label": "RTC - 实时动作分块执行",
+     "s": 0,
+     "read": true,
+     "title": "Real-Time Execution of Action Chunking Flow Policies",
+     "time": "2025.06",
+     "arxiv": "2506.07339",
+     "summary": "提出实时动作分块（RTC）推理方法，让Flow Matching策略在执行当前动作块时并行生成下一个动作块，显著降低高频控制场景中的延迟与卡顿。",
+     "deployed": "#demos"
+    },
+    {
+     "label": "Training-Time RTC - 训练时实时动作分块",
+     "s": 0,
+     "read": true,
+     "title": "Training-Time Action Conditioning for Efficient Real-Time Chunking",
+     "time": "2025.12",
+     "arxiv": "2512.05964",
+     "summary": "将动作前缀条件化提前到训练阶段，去掉RTC推理时的inpainting开销，在保持实时控制效果的同时进一步提升推理效率。"
+    },
+    {
+     "label": "Human-to-Robot Transfer - 人到机器人迁移",
+     "s": 0,
+     "read": true,
+     "title": "Emergence of Human to Robot Transfer in Vision-Language-Action Models",
+     "time": "2025.12",
+     "arxiv": "2512.22414",
+     "summary": "系统分析VLA中的人到机器人迁移现象，表明当机器人预训练数据足够多样时，模型能够从人类视频中学到可迁移到机器人执行的技能表征。"
+    },
+    {
+     "label": "HiRoBot - 听觉与思考增强",
+     "s": 0,
+     "read": true,
+     "title": "Hi Robot: Open-Ended Instruction Following with Hierarchical Vision-Language-Action Models",
+     "time": "2025.02",
+     "arxiv": "2502.19417",
+     "summary": "研究如何让机器人更好地理解语言指令并进行深度推理，提升机器人对复杂指令的理解和执行能力。"
+    },
+    {
+     "label": "πRL / Online RL Fine-tuning - Flow-based VLA 在线强化学习微调",
+     "s": 0,
+     "read": false,
+     "title": "Online RL Fine-tuning for Flow-based Vision-Language-Action Models",
+     "time": "2026.01",
+     "arxiv": "2510.25889",
+     "summary": "针对 flow-based VLA 难以进行在线强化学习微调的问题，提出 πRL，通过 Flow-Noise 与 Flow-SDE 两种技术实现可精确计算似然和更高效的探索，在多项基准上提升分布内与分布外性能。"
+    },
+    {
+     "label": "MEM - 多尺度具身记忆",
+     "s": 0,
+     "read": true,
+     "title": "MEM: Multi-Scale Embodied Memory for Vision Language Action Models",
+     "time": "2026.03",
+     "arxiv": "2603.03596",
+     "summary": "Physical Intelligence 引入视频短期记忆与文本长期记忆的多尺度记忆机制，使 VLA 能够处理长时序任务，并利用历史经验适应新的场景与操作流程。",
+     "notes": true
+    },
+    {
+     "label": "RL Token - 高效在线强化学习与精细操作",
+     "s": 0,
+     "read": true,
+     "title": "RL Token: Bootstrapping Online RL with Vision-Language-Action Models",
+     "time": "2026.04",
+     "arxiv": "2604.23073",
+     "summary": "Physical Intelligence 提出 RL Token 机制，用专用 token 将在线强化学习能力注入 VLA，在保留预训练通用能力的同时提升精细操作与在线适应效率；该论文与 PI 项目页中的“Precise Manipulation with Efficient Online RL”是同一项工作。"
+    },
+    {
+     "label": "LAPA - GR00T 的潜动作预训练前置工作",
+     "s": 1,
+     "read": false,
+     "title": "Latent Action Pretraining from Videos",
+     "time": "2024.10",
+     "arxiv": "2410.11758",
+     "venue": "ICLR 2025",
+     "summary": "提出无需真实机器人动作标签的潜动作预训练方法，先从互联网视频中学习 latent actions，再将其用于 VLA 预训练；这是理解 GR00T N1 如何利用无动作标注人类视频扩展训练数据的重要前置工作。"
+    },
+    {
+     "label": "GR00T N1 - NVIDIA人形机器人基础模型",
+     "s": 1,
+     "read": false,
+     "title": "GR00T N1: An Open Foundation Model for Generalist Humanoid Robots",
+     "time": "2025.03",
+     "arxiv": "2503.14734",
+     "summary": "NVIDIA发布的开源人形机器人基础模型，支持多种人形机器人平台，结合视觉语言模型实现通用任务理解和执行，是目前最重要的人形机器人基础模型之一。",
+     "deployed": "#projects"
+    },
+    {
+     "label": "FLARE - GR00T N1.5 的隐式世界建模方法",
+     "s": 1,
+     "read": false,
+     "title": "FLARE: Robot Learning with Implicit World Modeling",
+     "time": "2025.05",
+     "arxiv": "2505.15659",
+     "summary": "NVIDIA GEAR 提出 Future Latent Representation Alignment，在 GR00T 风格的 flow-matching DiT 策略中加入少量 future tokens，将内部特征与未来观测的潜在表征对齐，从而避免逐像素预测的高开销，同时提升策略性能并支持利用无动作标注的第一视角人类视频。该目标被直接用于 GR00T N1.5，是理解 N1.5 从纯策略学习走向“策略 + 隐式世界模型”联合训练的关键论文。"
+    },
+    {
+     "label": "DreamGen - GR00T N1.5 的合成机器人数据管线",
+     "s": 1,
+     "read": false,
+     "title": "DreamGen: Unlocking Generalization in Robot Learning through Video World Models",
+     "time": "2025.05",
+     "arxiv": "2505.12705",
+     "venue": "CoRL 2025",
+     "summary": "NVIDIA GEAR 用视频世界模型生成符合机器人本体的合成视频，再通过潜动作模型或逆动力学模型恢复伪动作，形成 neural trajectories 供策略训练；在仅有单一环境 pick-and-place 遥操作数据的条件下，使人形机器人泛化到新行为和新环境。DreamGen 生成的数据被纳入 GR00T N1.5 预训练，是该版本行为与环境泛化能力的重要数据来源。"
+    },
+    {
+     "label": "Qwen-RobotManip - 对齐解锁机器人操作规模化",
+     "s": 2,
+     "read": true,
+     "title": "Qwen-RobotManip Technical Report: Alignment Unlocks Scale for Robotic Manipulation Foundation Models",
+     "time": "2026.06",
+     "summary": "阿里 Qwen 团队基于 Qwen-VL 构建的机器人操作 VLA 基础模型，提出跨表征、运动、行为三个维度的统一对齐框架，仅用开源操作数据与人类演示视频构建约 38,100 小时预训练语料，展现零样本指令跟随、抗扰动、错误恢复与跨 embodiment 迁移等涌现泛化能力，在 RoboChallenge 上以 20% 相对提升排名第一、整体超越 π0.5，并在 AgileX ALOHA、Franka、UR、ARX 等真机平台验证。与同期 Qwen-RobotNav、Qwen-RobotWorld 同属 Qwen-Robot 系列技术报告。",
+     "notes": true
+    },
+    {
+     "label": "Qwen-RobotNav - 可扩展导航基座模型",
+     "s": 2,
+     "read": false,
+     "title": "Qwen-RobotNav Technical Report: A Scalable Navigation Model Designed for an Agentic Navigation System",
+     "time": "2026.06",
+     "summary": "阿里 Qwen 团队基于 Qwen3-VL 构建的可扩展导航模型，用参数化接口（多任务模式 + 可控观测参数）统一点目标导航、目标跟踪、指令跟随与自动驾驶等任务，训练时对参数随机化使推理时任意配置都鲁棒，在 VLN-CE RxR（76.5% 成功率）、EVT-Bench（90.0% 跟踪）、NAVSIM（91.4 PDMS）等基准刷新 SOTA，并作为 agentic 导航系统基座支持长时程规划与具身问答。与 Qwen-RobotManip、Qwen-RobotWorld 同属 Qwen-Robot 系列。"
+    },
+    {
+     "label": "Qwen-RobotWorld - 语言条件视频世界模型",
+     "s": 2,
+     "read": true,
+     "title": "Qwen-RobotWorld Technical Report: Unifying Embodied World Modeling through Language-Conditioned Video Generation",
+     "time": "2026.06",
+     "summary": "阿里 Qwen 团队提出的语言条件视频世界模型，用 Double-Stream MMDiT 把冻结的 Qwen2.5-VL 语义与视频 VAE 隐变量逐层联合注意力耦合，基于 8.6M 视频-文本语料（EWK，覆盖 20+ embodiment、500+ 动作类别）统一建模机器人操作、自动驾驶、室内导航与人到机器人迁移，可服务于合成数据生成、策略评估虚拟环境与语言引导规划，在 EWM-Bench、DreamGen Bench 上排名第一、并在 WorldModelBench、PBench 上超越所有开源模型。与 Cosmos 3、DreamZero、Fast-WAM 对照阅读，并与 Qwen-RobotManip、Qwen-RobotNav 同属 Qwen-Robot 系列。"
+    },
+    {
+     "label": "Gemini Robotics - Google DeepMind机器人VLA",
+     "s": 3,
+     "read": false,
+     "title": "Gemini Robotics: Bringing AI into the Physical World",
+     "time": "2025.03",
+     "arxiv": "2503.20020",
+     "summary": "Google DeepMind 基于 Gemini 2.0 构建的机器人 VLA 模型，直接控制机器人执行复杂操作任务，支持物体泛化、环境适应和安全交互，是当前最强的工业级 VLA 之一。"
+    },
+    {
+     "label": "Gemini Robotics 1.5 - 多本体VLA + 具身推理",
+     "s": 3,
+     "read": false,
+     "title": "Gemini Robotics 1.5: Pushing the Frontier of Generalist Robots with Advanced Embodied Reasoning, Thinking, and Motion Transfer",
+     "time": "2025.10",
+     "arxiv": "2510.03342",
+     "summary": "Google DeepMind 新一代机器人模型家族：多本体 VLA 模型 Gemini Robotics 1.5 与具身推理模型 Gemini Robotics-ER 1.5 配对。提出 Motion Transfer 机制从异构多本体数据迁移技能，并在动作之间交织多层自然语言内部推理，实现「先思考再行动」，显著提升复杂多步任务的分解与执行，是初代 Gemini Robotics 的重大升级。"
+    },
+    {
+     "label": "ForceVLA - 力觉感知VLA",
+     "s": 4,
+     "read": false,
+     "title": "ForceVLA: Enhancing VLA Models with a Force-aware MoE for Contact-rich Manipulation",
+     "time": "2025.05",
+     "arxiv": "2505.22159",
+     "summary": "将6轴力传感器作为独立模态融入VLA模型，提出FVLMoE（力感知混合专家融合模块）将力反馈与视觉语言特征融合，NeurIPS 2025。"
+    },
+    {
+     "label": "ForceVLA2 - 混合力-位置控制",
+     "s": 4,
+     "read": false,
+     "title": "ForceVLA2: Unleashing Hybrid Force-Position Control with Force Awareness for Contact-Rich Manipulation",
+     "time": "2026.03",
+     "arxiv": "2603.15169",
+     "summary": "ForceVLA的升级版，引入混合力-位置控制，用Cross-Scale MoE实现闭环力控调节，CVPR 2026。"
+    },
+    {
+     "label": "OmniVTLA - 视觉触觉语言动作模型",
+     "s": 4,
+     "read": false,
+     "title": "OmniVTLA: Vision-Tactile-Language-Action Model with Semantic-Aligned Tactile Sensing",
+     "time": "2025.08",
+     "arxiv": "2508.08706",
+     "summary": "用双路径触觉编码器（预训练ViT + 语义对齐SA-ViT）将触觉作为独立模态融入VLA，解决不同触觉传感器的异构问题。构建了135K三模态数据集ObjTac。"
+    },
+    {
+     "label": "VTAM - 视频-触觉-动作模型",
+     "s": 4,
+     "read": true,
+     "title": "VTAM: Video-Tactile-Action Models for Complex Physical Interaction Beyond VLAs",
+     "time": "2026.03",
+     "arxiv": "2603.23481",
+     "summary": "提出视频-触觉-动作模型（VTAM），将视觉、触觉和动作三模态统一建模，专门面向复杂物理交互任务。与 OmniVTLA、ForceVLA 同属触觉 VLA 方向。"
+    },
+    {
+     "label": "Touch Dreaming - 人形机器人触觉操作",
+     "s": 4,
+     "read": true,
+     "title": "Learning Versatile Humanoid Manipulation with Touch Dreaming",
+     "time": "2026.04",
+     "arxiv": "2604.13015",
+     "summary": "提出通过触觉感知学习通用人形机器人操作技能，结合触觉反馈与仿真数据增强，适合与 OmniVTLA、VTAM 对照阅读。"
+    },
+    {
+     "label": "DECO - 解耦多模态扩散Transformer + 触觉适配器",
+     "s": 4,
+     "read": false,
+     "title": "DECO: Decoupled Multimodal Diffusion Transformer for Bimanual Dexterous Manipulation with a Plugin Tactile Adapter",
+     "time": "2026.02",
+     "arxiv": "2602.05513",
+     "summary": "提出解耦式多模态 diffusion transformer DECO，将视觉、本体感觉与触觉信号解耦建模，并以可插拔触觉适配器（plugin tactile adapter）的形式接入，面向双臂灵巧操作。与 ForceVLA、OmniVTLA 同属把触觉作为独立模态融入策略的路线。"
+    },
+    {
+     "label": "UniForce - 跨触觉传感器统一潜力觉模型",
+     "s": 4,
+     "read": false,
+     "title": "UniForce: A Unified Latent Force Model for Robot Manipulation with Diverse Tactile Sensors",
+     "time": "2026.02",
+     "arxiv": "2602.01153",
+     "summary": "针对力觉策略学习受触觉传感器异构性（光学/磁式等不同传感原理、形态与材料）阻碍的问题，提出统一潜力觉模型 UniForce，将多种触觉传感器映射到统一的潜在力表征，实现跨传感器的力感知策略学习与迁移。与 OmniVTLA 解决传感器异构的思路可对照阅读。"
+    },
+    {
+     "label": "RT-1 - 机器人 Transformer 奠基",
+     "s": 5,
+     "read": false,
+     "title": "RT-1: Robotics Transformer for Real-World Control at Scale",
+     "time": "2022.12",
+     "arxiv": "2212.06817",
+     "summary": "Google 提出的机器人 Transformer，把图像与指令编码、动作离散化为 token 做大规模模仿学习，是 RT-2/OpenVLA 这条「VLM→动作 token」路线的前身与奠基工作。"
+    },
+    {
+     "label": "RT-2 - VLA概念开创者",
+     "s": 5,
+     "read": false,
+     "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+     "time": "2023.07",
+     "arxiv": "2307.15818",
+     "summary": "Google DeepMind 提出 VLA 这一概念的开创性论文，将视觉语言模型直接输出机器人动作 token，证明互联网知识可迁移到机器人控制。π0、OpenVLA 都在此基础上发展。"
+    },
+    {
+     "label": "LingBot-VLA 2.0 - 蚂蚁灵波通用机器人大脑",
+     "s": 6,
+     "read": true,
+     "title": "From Foundation to Application: Improving VLA Models in Practice",
+     "time": "2026.07",
+     "arxiv": "2607.06403",
+     "summary": "蚂蚁集团旗下灵波科技（Robbyant）发布的 LingBot-VLA 2.0 技术报告，在 v1.0（2026年1月，arXiv 2601.18692）基础上从三个方向改进真实部署能力：数据管线重构后预训练语料扩到约6万小时（5万小时覆盖20种机型的真机轨迹 + 1万小时第一人称人类操作视频）；动作空间从双臂扩展到头、腰、末端执行器与移动底盘的全身协同控制；并推出 RTX 4090 上延迟 <130ms 的高效后训练版本。在上海交大 GM-100 基准（AgileX Cobot Magic、Galaxea R1 Pro）上超越 π0.5 与 GR00T N1.7，长时程移动操作任务上也优于 π0.5，代码与权重已开源。"
+    },
+    {
+     "label": "BPP - 单次演示提示机器人新技能",
+     "s": 6,
+     "read": false,
+     "title": "Behavior Prompting Policy: Demonstrations as Prompts for Manipulation",
+     "time": "2026.06",
+     "arxiv": "2606.30457",
+     "summary": "提出 behavior prompting 范式：机器人仅凭测试时给出的单次人类演示（behavior prompt）即可执行新任务，无需针对新任务额外微调。核心是 in-context 视觉运动架构 Behavior Prompting Policy (BPP)，将 behavior prompt 与当前观测直接映射为动作；发现任务多样性是该能力的主要驱动因素，为此设计手持采集接口 iPhUMI 收集多样化训练数据，并提出 DrawAnything、LIBERO-Gen 两个测试时泛化评测基准。iPhUMI 同时可作为人类下达 behavior prompt 的实用交互方式，使机器人通过单次演示即可完成已知任务或习得新能力。"
+    },
+    {
+     "label": "StarVLA - Lego式VLA开发框架",
+     "s": 6,
+     "read": false,
+     "title": "StarVLA: A Lego-like Codebase for Vision-Language-Action Model Developing",
+     "time": "2026.04",
+     "arxiv": "2604.05014",
+     "summary": "提出 StarVLA，一个高度模块化的 VLA 开发框架，采用 Lego 积木式设计使研究者能灵活组合与扩展各个组件，降低 VLA 开发与实验的复杂度，加速通用机器人模型的迭代与演进。"
+    },
+    {
+     "label": "ATOMVLA - 可扩展后训练与世界模型",
+     "s": 6,
+     "read": true,
+     "title": "AtomVLA: Scalable Post-Training for Robotic Manipulation via Predictive Latent World Models",
+     "time": "2026.03",
+     "arxiv": "2603.08519",
+     "summary": "提出通过预测性潜空间世界模型对 VLA 进行可扩展后训练，增强机器人操作策略的泛化能力与数据效率。"
+    },
+    {
+     "label": "MoDE-VLA - 类人灵巧操作",
+     "s": 6,
+     "read": false,
+     "title": "Towards Human-Like Manipulation through RL-Augmented Teleoperation and Mixture-of-Dexterous-Experts VLA",
+     "time": "2026.03",
+     "arxiv": "2603.08122",
+     "summary": "提出结合 RL 增强遥操作数据与 Mixture-of-Dexterous-Experts VLA 的类人灵巧操作框架，面向高自由度、接触丰富的机器人操作任务，适合与 ForceVLA、OmniVTLA、UMI 和人到机器人迁移路线对照阅读。"
+    },
+    {
+     "label": "XVLA - 跨 embodiment 可扩展 VLA",
+     "s": 6,
+     "read": true,
+     "title": "X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model",
+     "time": "2025.10",
+     "arxiv": "2510.10274",
+     "summary": "提出 X-VLA，通过 soft prompts 和统一动作接口扩展不同 embodiment 间的参数共享能力，提升跨机器人平台的适配性与可扩展训练效率。"
+    },
+    {
+     "label": "WALL-OSS - 面向具身空间的开源 VLM/VLA",
+     "s": 6,
+     "read": false,
+     "title": "Igniting VLMs toward the Embodied Space",
+     "time": "2025.09",
+     "arxiv": "2509.11766",
+     "summary": "研究如何把视觉语言模型系统性推向具身控制场景，构建支持跨 embodiment 机器人控制的 WALL-OSS，并兼容 flow matching 与 FAST 两类动作预测方式。"
+    },
+    {
+     "label": "Multitask DiT / TRI LBM - 多任务灵巧操作大行为模型",
+     "s": 6,
+     "read": false,
+     "title": "A Careful Examination of Large Behavior Models for Multitask Dexterous Manipulation",
+     "time": "2025.07",
+     "arxiv": "2507.05331",
+     "summary": "系统研究大行为模型在多任务灵巧操作中的设计取舍，分析 diffusion transformer、数据混合与训练设定如何影响跨任务泛化与复杂操作能力。"
+    },
+    {
+     "label": "GR-3 - 字节跳动通用机器人策略",
+     "s": 6,
+     "read": false,
+     "title": "GR-3 Technical Report",
+     "time": "2025.07",
+     "arxiv": "2507.15493",
+     "summary": "字节跳动 Seed 团队的通用机器人策略 GR-3，大规模 VLA 模型，在新物体/新环境/抽象概念指令上泛化能力突出，擅长双臂灵巧操作与可变形物体操作，并能用少量人类轨迹数据高效微调；配套发布 22 自由度双臂移动机器人 ByteMini。后续 GR-RL 在其上用真实世界 RL 实现系鞋带等高精度任务。"
+    },
+    {
+     "label": "SmolVLA - 轻量高效视觉语言动作模型",
+     "s": 6,
+     "read": false,
+     "title": "SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics",
+     "time": "2025.06",
+     "arxiv": "2506.01844",
+     "summary": "Hugging Face 提出的轻量级 VLA，强调参数规模、训练成本与部署效率之间的平衡，让低成本平台也能使用具备语言条件控制能力的通用策略模型。"
+    },
+    {
+     "label": "RDT-1B - 双臂操作扩散基础模型",
+     "s": 6,
+     "read": false,
+     "title": "RDT-1B: a Diffusion Foundation Model for Bimanual Manipulation",
+     "time": "2024.10",
+     "arxiv": "2410.07864",
+     "summary": "清华提出的 1.2B 双臂操作扩散基础模型，用 diffusion transformer 在大规模多机器人数据上预训练再微调到双臂灵巧操作，ICLR 2025，是与 OpenVLA、π0 并列的重要开源 VLA 基线。"
+    },
+    {
+     "label": "OpenVLA - 开源视觉语言动作模型",
+     "s": 6,
+     "read": false,
+     "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+     "time": "2024.06",
+     "arxiv": "2406.09246",
+     "summary": "斯坦福大学发布的开源VLA模型，基于Llama 2语言模型和视觉编码器，在多个机器人操作任务上表现优异，是目前最重要的开源VLA基础模型之一，可与π0对比学习。"
+    },
+    {
+     "label": "Octo - 开源通用机器人策略",
+     "s": 6,
+     "read": false,
+     "title": "Octo: An Open-Source Generalist Robot Policy",
+     "time": "2024.05",
+     "arxiv": "2405.12213",
+     "summary": "UC Berkeley 等提出的开源通用机器人策略，用 transformer 主干 + diffusion action head，在 Open X-Embodiment 上预训练，可灵活适配新的观测与动作空间，是与 OpenVLA 并列的常用开源 VLA 基线。"
+    }
+   ],
+   "en": "VLA — Vision-Language-Action Models",
+   "read": 19
+  },
+  {
+   "zh": "策略学习与模仿学习",
+   "series": [],
+   "items": [
+    {
+     "label": "VQ-BeT - 潜变量行为生成",
+     "read": false,
+     "title": "Behavior Generation with Latent Actions",
+     "time": "2024.03",
+     "arxiv": "2403.03181",
+     "summary": "提出 VQ-BeT，将行为序列先编码为离散潜动作，再用 transformer 进行条件生成，兼顾了行为克隆的稳定性与生成式策略对多模态动作分布的表达能力。"
+    },
+    {
+     "label": "ACT - 动作分块Transformer",
+     "read": true,
+     "title": "Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware",
+     "time": "2023.04",
+     "arxiv": "2304.13705",
+     "summary": "提出ACT（Action Chunking with Transformers）方法，通过一次预测多个动作（action chunk）而非单个动作，结合CVAE处理多模态动作分布，显著提升双臂精细操作任务的成功率。",
+     "deployed": "#projects"
+    },
+    {
+     "label": "Diffusion Policy - 扩散策略",
+     "read": true,
+     "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
+     "time": "2023.03",
+     "arxiv": "2303.04137",
+     "summary": "将扩散模型引入机器人操作策略学习，通过去噪扩散概率模型（DDPM）生成动作序列。能够处理多模态动作分布，在多个操作任务上超越ACT等方法，是PP-Tac策略的基础。",
+     "deployed": "#projects"
+    }
+   ],
+   "en": "Policy Learning & Imitation",
+   "read": 2
+  },
+  {
+   "zh": "WAM — 世界模型 / 世界动作模型",
+   "series": [],
+   "items": [
+    {
+     "label": "Wh0 - 生成世界模型作为自中心人类手部操纵数据来源",
+     "read": true,
+     "title": "Wh0: Generative World Models as Scalable Sources of Egocentric Human Hand Manipulation Data",
+     "time": "2026.06",
+     "arxiv": "2606.22136",
+     "summary": "用生成世界模型作为可扩展数据源，生成第一视角人类手部操纵视频，在模拟环境中实现虚拟机器人数据采集。通过预训练世界模型的视频想象能力，规避了真实机器人数据采集的高成本，是联系 DreamZero/Fast-WAM 的世界模型范式与 EgoScale 人类数据迁移的方向。"
+    },
+    {
+     "label": "Cosmos 3 - NVIDIA 全模态世界模型",
+     "read": true,
+     "title": "Cosmos 3: Omnimodal World Models for Physical AI",
+     "time": "2026.06",
+     "summary": "NVIDIA 发布的 138 页全模态世界模型技术报告，用 Mixture-of-Transformers 双塔架构（reasoner + generator）把语言/图像/视频/音频/动作的理解与生成统一进单一模型，一并替代 VLM、视频生成、forward/inverse dynamics 与 VLA/WAM；后训练的 Cosmos3-Nano-Policy-DROID 在 RoboArena policy 榜排第一。注意其模态不含触觉/力觉，恰是触觉 VLA 的切入点，可与 ForceVLA、OmniVTLA、VTAM、DreamZero 对照阅读。",
+     "notes": true
+    },
+    {
+     "label": "World Action Models Survey - 具身AI世界动作模型综述",
+     "read": true,
+     "title": "World Action Models: The Next Frontier in Embodied AI",
+     "time": "2026.05",
+     "arxiv": "2605.12090",
+     "summary": "具身 AI 方向的世界动作模型综述，系统梳理 DreamZero、Fast-WAM、DAWN 等 WAM 路线的发展脉络与技术对比，适合整体了解这一新兴方向。"
+    },
+    {
+     "label": "DAWN - 世界动作交互模型",
+     "read": false,
+     "title": "The DAWN of World-Action Interactive Models",
+     "time": "2026.05",
+     "arxiv": "2605.11550",
+     "summary": "提出世界动作交互模型（WAM）新范式，将世界模型与动作生成统一，延续 DreamZero/Fast-WAM 路线，适合对照阅读。"
+    },
+    {
+     "label": "Fast-WAM - 快速世界动作模型",
+     "read": true,
+     "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+     "time": "2026.03",
+     "arxiv": "2603.16666",
+     "summary": "延续 DreamZero 的 WAM 路线，研究测试时未来视频想象是否真的是性能关键，尝试用更快的动作生成与训练设计保留世界建模优势，同时降低推理成本，适合和 DreamZero 连着对照阅读。"
+    },
+    {
+     "label": "DreamZero - 世界动作模型零样本策略",
+     "read": true,
+     "title": "DreamZero: World Action Models are Zero-shot Policies",
+     "time": "2026.02",
+     "arxiv": "2602.15922",
+     "summary": "NVIDIA 提出的 14B World Action Model（WAM），基于预训练视频扩散模型联合预测视频帧和动作，零样本泛化超越 SOTA VLA 2× 以上，支持 7Hz 实时闭环控制，仅需 10-30 分钟数据即可跨具身迁移。",
+     "notes": true
+    },
+    {
+     "label": "A Path Towards AMI - LeCun 自主智能体架构纲领",
+     "read": false,
+     "title": "A Path Towards Autonomous Machine Intelligence (Version 0.9.2)",
+     "time": "2022.06",
+     "summary": "LeCun 的立场论文，整个 JEPA 路线的纲领。提出由 configurator、perception、world model、cost、actor、short-term memory 六个模块组成的自主智能体架构，主张用可配置的预测式世界模型加内在动机驱动行为，并以层次化 JEPA（H-JEPA）自监督地学习多层次抽象表征来支撑推理与规划。它不给具体算法，而是定义了后续 I-JEPA、V-JEPA、LeWorldModel 要填的坑。"
+    },
+    {
+     "label": "LeWorldModel - 从像素端到端训练的 latent 世界模型",
+     "read": false,
+     "title": "LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels",
+     "time": "2026.03",
+     "arxiv": "2603.19312",
+     "summary": "首个能从原始像素稳定端到端训练的 JEPA 世界模型，只用两项损失：next-embedding 预测损失，加一项约束 latent 服从高斯分布的正则项（承自 LeJEPA），把可调损失超参从 6 个降到 1 个。约 15M 参数、单卡数小时可训完，规划速度比基于基础模型的世界模型最多快 48×，在 2D/3D 控制任务上保持竞争力；其 latent 空间可探测出物理量，并能可靠识别违反物理规律的事件。是 JEPA 路线上\"可规划的 latent world model\"的落点。"
+    }
+   ],
+   "en": "World Models / World-Action Models",
+   "read": 5
+  },
+  {
+   "zh": "强化学习（RL）",
+   "series": [
+    {
+     "zh": "经典算法与理论",
+     "en": "Classic algorithms & theory"
+    },
+    {
+     "zh": "具身 / VLA 强化学习与系统",
+     "en": "Embodied / VLA RL & systems"
+    }
+   ],
+   "items": [
+    {
+     "label": "Dreamer v3 - 世界模型强化学习",
+     "s": 0,
+     "read": false,
+     "title": "Mastering Diverse Domains through World Models",
+     "time": "2023.01",
+     "arxiv": "2301.04104",
+     "summary": "Hafner 提出的基于世界模型的 RL 方法，先学习环境动力学模型，再在想象（imagination）中进行策略训练。与 DreamZero/Fast-WAM 的世界模型思想一脉相承，是理解 WAM 路线的重要参考。"
+    },
+    {
+     "label": "TD-MPC - 时序差分模型预测控制",
+     "s": 0,
+     "read": false,
+     "title": "Temporal Difference Learning for Model Predictive Control",
+     "time": "2022.03",
+     "arxiv": "2203.04955",
+     "summary": "提出 TD-MPC，将时序差分学习与潜空间模型预测控制结合，在高维视觉控制任务上同时获得样本效率、规划能力与训练稳定性。"
+    },
+    {
+     "label": "IQL - 隐式Q学习",
+     "s": 0,
+     "read": false,
+     "title": "Implicit Q-Learning",
+     "time": "2021.10",
+     "arxiv": "2110.06169",
+     "summary": "提出更稳定的离线 RL 方法，通过期望分位数回归隐式约束策略，避免 CQL 中显式正则化的复杂性。是当前离线 RL 的主流方法之一。"
+    },
+    {
+     "label": "CQL - 保守Q学习",
+     "s": 0,
+     "read": false,
+     "title": "Conservative Q-Learning for Offline Reinforcement Learning",
+     "time": "2020.06",
+     "arxiv": "2006.04779",
+     "summary": "提出离线强化学习的保守 Q 学习方法，通过惩罚 OOD 动作的 Q 值避免过估计，让 RL 可以从固定数据集学习而无需交互。与 VLA 的离线微调场景直接相关。"
+    },
+    {
+     "label": "TD3 - 双重延迟Actor-Critic",
+     "s": 0,
+     "read": false,
+     "title": "Addressing Function Approximation Error in Actor-Critic Methods",
+     "time": "2018.02",
+     "arxiv": "1802.09477",
+     "summary": "Fujimoto 等人提出 TD3，通过双 Q 网络、延迟策略更新和目标策略平滑三项技巧解决 DDPG 的过估计问题，是连续控制任务的经典方法。"
+    },
+    {
+     "label": "SAC - 软Actor-Critic",
+     "s": 0,
+     "read": false,
+     "title": "Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor",
+     "time": "2018.01",
+     "arxiv": "1801.01290",
+     "summary": "提出最大熵框架下的 off-policy Actor-Critic 方法，在连续控制任务上兼具样本效率和探索能力。是机器人操作 RL 中最常用的算法之一，HIL-SERL 的基线方法。"
+    },
+    {
+     "label": "PPO - 近端策略优化",
+     "s": 0,
+     "read": true,
+     "title": "Proximal Policy Optimization Algorithms",
+     "time": "2017.07",
+     "arxiv": "1707.06347",
+     "summary": "OpenAI 提出的策略梯度方法，通过 clipping 机制限制策略更新幅度，兼顾训练稳定性和采样效率。是 RLHF（InstructGPT/DPO）的核心算法，也是目前最常用的策略优化方法。"
+    },
+    {
+     "label": "DQN - 深度强化学习突破",
+     "s": 0,
+     "read": false,
+     "title": "Human-level Control through Deep Reinforcement Learning",
+     "time": "2015",
+     "arxiv": "1312.5602",
+     "summary": "DeepMind 将深度神经网络与 Q-Learning 结合（DQN），在 Atari 游戏上达到人类水平，开创了深度强化学习时代。经验回放和目标网络是其关键技巧。"
+    },
+    {
+     "label": "Q-Learning - 离线策略学习",
+     "s": 0,
+     "read": false,
+     "title": "Q-Learning",
+     "time": "1992",
+     "summary": "Watkins & Dayan 提出 Q-Learning 算法，一种 model-free、off-policy 的强化学习方法，通过迭代更新 Q 值函数找到最优策略。是 DQN、CQL 等所有 Q 函数方法的鼻祖。"
+    },
+    {
+     "label": "TD Learning - 时序差分学习",
+     "s": 0,
+     "read": false,
+     "title": "Learning to Predict by the Methods of Temporal Differences",
+     "time": "1988",
+     "summary": "Richard Sutton 提出时序差分（TD）学习方法，结合蒙特卡洛和动态规划的思想，用后续状态的估计值更新当前状态，是现代强化学习的奠基之作。"
+    },
+    {
+     "label": "SARM - 长时任务阶段感知奖励建模",
+     "s": 1,
+     "read": false,
+     "title": "SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation",
+     "time": "2025.09",
+     "arxiv": "2509.25358",
+     "summary": "面向长时程机器人操作提出阶段感知奖励建模方法，用更细粒度的阶段监督缓解稀疏奖励问题，提升复杂任务中的强化学习训练稳定性与成功率。"
+    },
+    {
+     "label": "RLinf - 大规模强化学习系统",
+     "s": 1,
+     "read": true,
+     "title": "RLinf: Flexible and Efficient Large-scale Reinforcement Learning via Macro-to-Micro Flow Transformation",
+     "time": "2025.09",
+     "arxiv": "2509.15965",
+     "summary": "提出面向大规模强化学习训练的系统 RLinf，用 M2Flow（宏到微流变换）把逻辑工作流与物理执行规划解耦，并通过弹性流水、上下文切换、自适应通信和 profiling 引导调度，在推理型 RL 与具身 RL 上实现更高吞吐。适合与 veRL、Slime、SimpleVLA-RL 对照阅读。"
+    },
+    {
+     "label": "DAPO - 开源大规模LLM强化学习系统",
+     "s": 1,
+     "read": false,
+     "title": "DAPO: An Open-Source LLM Reinforcement Learning System at Scale",
+     "time": "2025.03",
+     "arxiv": "2503.14476",
+     "summary": "字节跳动 Seed 团队提出的开源大规模 LLM 强化学习系统，面向推理型 RL 训练，可与 RLinf、veRL 对照阅读。"
+    },
+    {
+     "label": "HIL-SERL - 人在环样本高效强化学习",
+     "s": 1,
+     "read": false,
+     "title": "Precise and Dexterous Robotic Manipulation via Human-in-the-Loop Reinforcement Learning",
+     "time": "2024.10",
+     "arxiv": "2410.21845",
+     "summary": "提出 HIL-SERL，通过示教初始化、奖励分类器、在线 actor-learner 更新和人类干预相结合，让机器人在真实环境中以更少样本完成精细操作强化学习。"
+    },
+    {
+     "label": "GRPO / DeepSeekMath - 组相对策略优化",
+     "s": 1,
+     "read": false,
+     "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+     "time": "2024.02",
+     "arxiv": "2402.03300",
+     "summary": "提出 GRPO（组相对策略优化），用一组采样的相对优势替代 PPO 的 critic，大幅降低 RL 训练开销，是现代推理型 RL（含 DAPO）的核心算法。与 PPO、DPO、DAPO 对照阅读。"
+    }
+   ],
+   "en": "Reinforcement Learning",
+   "read": 2
+  },
+  {
+   "zh": "大语言模型与对齐（LLM）",
+   "series": [
+    {
+     "zh": "GPT 系列",
+     "en": "GPT series"
+    },
+    {
+     "zh": "对齐方法",
+     "en": "Alignment methods"
+    },
+    {
+     "zh": "其他基础与推理工作",
+     "en": "Other foundations & reasoning"
+    }
+   ],
+   "items": [
+    {
+     "label": "GPT-2 - 无监督多任务语言模型",
+     "s": 0,
+     "read": false,
+     "title": "Language Models are Unsupervised Multitask Learners",
+     "time": "2019.02",
+     "summary": "OpenAI 提出 1.5B 参数的 GPT-2，展示语言模型在零样本条件下的多任务能力，揭示了 scaling 的潜力，是 GPT 系列的关键里程碑。"
+    },
+    {
+     "label": "GPT-3 - 少样本学习的大语言模型",
+     "s": 0,
+     "read": false,
+     "title": "Language Models are Few-Shot Learners",
+     "time": "2020.05",
+     "arxiv": "2005.14165",
+     "summary": "OpenAI 的 175B 参数 GPT-3，发现 in-context learning 能力，无需微调仅通过 few-shot prompt 即可完成多种任务，定义了大模型时代的核心范式。"
+    },
+    {
+     "label": "InstructGPT - RLHF对齐训练",
+     "s": 0,
+     "read": false,
+     "title": "Training Language Models to Follow Instructions with Human Feedback",
+     "time": "2022.03",
+     "arxiv": "2203.02155",
+     "summary": "OpenAI 提出 RLHF（基于人类反馈的强化学习）对齐方法，通过 SFT + 奖励模型 + PPO 三阶段训练让语言模型遵循人类指令，是 ChatGPT 的直接前身，也影响了 VLA 的对齐训练（πRL、RL Token）。"
+    },
+    {
+     "label": "Reinforcement Learning from Human Feedback - RLHF与大模型后训练",
+     "s": 1,
+     "read": false,
+     "title": "Reinforcement Learning from Human Feedback",
+     "authors": "Nathan Lambert",
+     "time": "2026.07",
+     "summary": "系统介绍面向大语言模型的 RLHF 与后训练，覆盖指令微调、偏好数据、奖励模型、策略梯度、PPO/GRPO/RLOO、RLVR、DPO 等直接对齐算法，以及奖励过度优化、工具使用和评测等主题。"
+    },
+    {
+     "label": "DPO - 直接偏好优化",
+     "s": 1,
+     "read": false,
+     "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model",
+     "time": "2023.05",
+     "arxiv": "2305.18290",
+     "summary": "提出用简洁的分类损失直接优化偏好数据，替代 RLHF 中复杂的奖励模型+PPO 流程，训练更稳定、实现更简单。具身 RL 方向的 πRL 等工作借鉴了此思路。"
+    },
+    {
+     "label": "LLaMA - 开源高效基础语言模型",
+     "s": 2,
+     "read": false,
+     "title": "LLaMA: Open and Efficient Foundation Language Models",
+     "time": "2023.02",
+     "arxiv": "2302.13971",
+     "summary": "Meta 发布的开源 LLM 系列（7B-65B），证明在更多数据上训练的较小模型可以匹仗更大模型，开启开源 LLM 生态。OpenVLA、LLaVA 等 VLA/VLM 的语言骨干大多基于 LLaMA 架构。"
+    },
+    {
+     "label": "Chain-of-Thought - 思维链推理",
+     "s": 2,
+     "read": false,
+     "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+     "time": "2022.01",
+     "arxiv": "2201.11903",
+     "summary": "发现通过在 prompt 中给出逐步推理示例，可以大幅提升 LLM 的数学、逻辑和常识推理能力，开创了思维链推理范式，影响了后续所有推理型 LLM 的设计。"
+    },
+    {
+     "label": "Scaling Laws - 神经语言模型缩放定律",
+     "s": 2,
+     "read": false,
+     "title": "Scaling Laws for Neural Language Models",
+     "time": "2020.01",
+     "arxiv": "2001.08361",
+     "summary": "Kaplan 等人揭示语言模型性能与参数量、数据量、算力之间的幂律关系，为大模型训练提供定量指导，是理解所有大模型 scaling 行为的理论基础。"
+    }
+   ],
+   "en": "LLMs & Alignment",
+   "read": 0
+  },
+  {
+   "zh": "基础架构与表征",
+   "series": [
+    {
+     "zh": "多模态与通用基础架构",
+     "en": "Multimodal & general architectures"
+    },
+    {
+     "zh": "生成式策略基础",
+     "en": "Generative policy foundations"
+    },
+    {
+     "zh": "JEPA 系列",
+     "en": "JEPA series"
+    }
+   ],
+   "items": [
+    {
+     "label": "PaliGemma - π0/π0.5 的 VLM 骨干",
+     "s": 0,
+     "read": false,
+     "title": "PaliGemma: A Versatile 3B VLM for Transfer",
+     "time": "2024.07",
+     "arxiv": "2407.07726",
+     "summary": "Google 提出的 3B 通用视觉语言模型，视觉塔用 SigLIP、语言塔用 Gemma，可高效迁移到各类下游任务。π0、π0.5 的 VLM 骨干就是它，是理解 π 系列视觉语言表征的关键基础。"
+    },
+    {
+     "label": "LLaVA - 视觉语言指令微调",
+     "s": 0,
+     "read": false,
+     "title": "Visual Instruction Tuning",
+     "time": "2023.04",
+     "arxiv": "2304.08485",
+     "summary": "提出视觉语言指令微调范式，将 CLIP 视觉编码器与 LLM 结合，通过指令数据实现多模态理解。当前主流 VLM 架构，VLA 的语言理解骨干大多源自此路线。"
+    },
+    {
+     "label": "SigLIP - Sigmoid 图文对比预训练",
+     "s": 0,
+     "read": false,
+     "title": "Sigmoid Loss for Language Image Pre-Training",
+     "time": "2023.03",
+     "arxiv": "2303.15343",
+     "summary": "用 sigmoid 损失替代 CLIP 的 softmax 对比损失，训练更稳定、对 batch size 不敏感、效果更好。是 PaliGemma 及众多现代 VLM/VLA 默认的视觉编码器，可与 CLIP 对照。"
+    },
+    {
+     "label": "CLIP - 视觉-语言对齐基石",
+     "s": 0,
+     "read": false,
+     "title": "Learning Transferable Visual Models From Natural Language Supervision",
+     "time": "2021.02",
+     "arxiv": "2103.00020",
+     "summary": "OpenAI 提出的对比视觉-语言预训练模型，通过图文对比学习实现零样本迁移。所有 VLA 的视觉编码器都基于 CLIP 或其变体，是理解 OpenVLA/π0 视觉表征的关键基础。"
+    },
+    {
+     "label": "ViT - 视觉Transformer奠基论文",
+     "s": 0,
+     "read": true,
+     "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+     "time": "2020.10",
+     "arxiv": "2010.11929",
+     "summary": "提出 Vision Transformer (ViT)，将图像分割为固定大小的 patch 序列，直接用标准 Transformer 编码器处理，摆脱卷积依赖。在大规模预训练下超越 CNN，成为后续所有视觉语言模型（VLM/VLA）的视觉编码器基础。"
+    },
+    {
+     "label": "ResNet - 深度残差学习",
+     "s": 0,
+     "read": false,
+     "title": "Deep Residual Learning for Image Recognition",
+     "time": "2015.12",
+     "arxiv": "1512.03385",
+     "summary": "Kaiming He 提出残差连接（skip connection），解决深层网络退化问题，是 CNN 的里程碑工作。ViT 之前几乎所有视觉模型的骨干网络，理解视觉表征演进的基础。"
+    },
+    {
+     "label": "Transformer - 自注意力架构奠基论文",
+     "s": 0,
+     "read": true,
+     "title": "Attention Is All You Need",
+     "time": "2017.06",
+     "arxiv": "1706.03762",
+     "summary": "提出完全基于自注意力的 Transformer 架构，用并行化序列建模替代循环网络，成为现代大语言模型与视觉语言模型的核心基础。"
+    },
+    {
+     "label": "注意力机制 - 软对齐机制经典论文",
+     "s": 0,
+     "read": false,
+     "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+     "time": "2014.09",
+     "arxiv": "1409.0473",
+     "summary": "Bahdanau 等人提出经典软注意力机制，在编码器-解码器翻译框架中显式学习对齐关系，为后续注意力模型和 Transformer 奠定重要基础。"
+    },
+    {
+     "label": "R3M - 人类视频预训练视觉表征",
+     "s": 0,
+     "read": false,
+     "title": "R3M: A Universal Visual Representation for Robot Manipulation",
+     "time": "2022.03",
+     "arxiv": "2203.12601",
+     "summary": "从大规模人类视频中预训练通用视觉表征，用于机器人操作任务。与 EgoScale 互补，是从人类视频学习机器人表征的经典工作，展示时间一致性在表征学习中的重要性。"
+    },
+    {
+     "label": "Flow Matching - π0核心机制",
+     "s": 1,
+     "read": false,
+     "title": "Flow Matching for Generative Modeling",
+     "time": "2022.10",
+     "arxiv": "2210.02747",
+     "summary": "提出 Flow Matching 生成建模框架，用常微分方程（ODE）路径替代扩散过程中的随机微分方程（SDE），训练更稳定、推理更高效。π0 到 π0.7 全部基于此方法。"
+    },
+    {
+     "label": "DiT - 扩散 Transformer",
+     "s": 1,
+     "read": false,
+     "title": "Scalable Diffusion Models with Transformers",
+     "time": "2022.12",
+     "arxiv": "2212.09748",
+     "summary": "用 Transformer 替代 U-Net 作为扩散模型骨干，证明其良好的可扩展性。是 Multitask DiT/TRI LBM 等「diffusion transformer」动作模型的架构基础，与 DDPM、Flow Matching 配合理解生成式策略。"
+    },
+    {
+     "label": "DDPM - 扩散模型基础",
+     "s": 1,
+     "read": false,
+     "title": "Denoising Diffusion Probabilistic Models",
+     "time": "2020.06",
+     "arxiv": "2006.11239",
+     "summary": "提出去噪扩散概率模型（DDPM），通过逐步去噪过程生成高质量样本。是 Diffusion Policy 的理论基础，理解扩散策略必须先理解 DDPM 的前向加噪与反向去噪框架。"
+    },
+    {
+     "label": "Adaptive Mixtures of Local Experts - MoE 奠基论文",
+     "s": 1,
+     "read": false,
+     "title": "Adaptive Mixtures of Local Experts",
+     "time": "1991.03",
+     "doi": "10.1162/neco.1991.3.1.79",
+     "summary": "MoE（Mixture of Experts）最经典的开山论文之一。Jacobs、Jordan、Nowlan 和 Hinton 提出用 gating network 在多个 expert 之间做软分配，让不同专家各自处理输入空间的不同区域。是后来层级 MoE、稀疏 MoE 乃至现代大模型路由机制的共同源头。"
+    },
+    {
+     "label": "I-JEPA - 图像联合嵌入预测架构",
+     "s": 2,
+     "read": false,
+     "title": "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture",
+     "time": "2023.01",
+     "arxiv": "2301.08243",
+     "summary": "LeCun 团队第一次把 JEPA 思想在图像上落地：从单张图的 context block 出发，在表征空间预测多个 target block 的 embedding，既不重建像素，也不依赖手工数据增强。相比 MAE 这类像素重建方法，学到的表征语义性更强、预训练算力效率更高。是\"不重建输入、只预测抽象状态\"这条路线的起点，与 A Path Towards AMI 的纲领相呼应。"
+    },
+    {
+     "label": "V-JEPA - 视频特征预测学习视觉表征",
+     "s": 2,
+     "read": false,
+     "title": "Revisiting Feature Prediction for Learning Visual Representations from Video",
+     "time": "2024.02",
+     "arxiv": "2404.08471",
+     "summary": "把 I-JEPA 从图像推广到视频：完全依靠特征预测目标（无像素重建、无预训练图像编码器、无文本监督）在 200 万视频上训练，学到同时编码 motion 与 appearance 的表征，在 Kinetics-400、SSv2 等下游任务上冻结评估表现优异。验证了表征空间预测在时序数据上同样成立，其续作见 V-JEPA 2。"
+    },
+    {
+     "label": "V-JEPA 2 - 视频自监督世界模型与零样本规划",
+     "s": 2,
+     "read": false,
+     "title": "V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning",
+     "time": "2025.06",
+     "arxiv": "2506.09985",
+     "summary": "V-JEPA 的续作，也是 JEPA 从\"表征学习\"跨向\"世界模型\"的转折点。先用超过 100 万小时互联网视频自监督预训练，再用少量机器人交互数据后训练出动作条件世界模型 V-JEPA 2-AC，可直接在潜在空间做 model-predictive planning，在新环境中零样本完成抓取、放置，无需该机器人的示教数据。"
+    },
+    {
+     "label": "LLM-JEPA - 语言模型的 JEPA 目标",
+     "s": 2,
+     "read": false,
+     "title": "LLM-JEPA: Large Language Models Meet Joint Embedding Predictive Architectures",
+     "time": "2025.09",
+     "arxiv": "2509.14252",
+     "summary": "LeCun、Balestriero 等把 JEPA 目标搬进 LLM：利用同一样本的多视图（如自然语言描述 ↔ 对应代码/正则表达式），在 embedding 空间加一项预测损失，与 next-token 目标共同训练。在 NL-RX、GSM8K、Spider 等数据集上显著超过标准 LLM 训练目标，且更抗过拟合。说明\"预测抽象表征\"不只对视觉有效。"
+    },
+    {
+     "label": "VL-JEPA - 视觉语言的嵌入预测架构",
+     "s": 2,
+     "read": false,
+     "title": "VL-JEPA: Joint Embedding Predictive Architecture for Vision-language",
+     "time": "2025.12",
+     "arxiv": "2512.10942",
+     "summary": "把 JEPA 推到视觉语言：不再自回归地逐 token 生成答案，而是非自回归地直接预测答案文本的连续 embedding，需要时再按需解码。可训练参数比同等 VLM 少 50%，1.6B 规模在四个 VQA 数据集上与 InstructBLIP、QwenVL 相当；支持选择性解码（解码次数减少 2.85×），其 embedding 空间天然支持开放词表分类与文本-视频检索。"
+    },
+    {
+     "label": "LeJEPA - 理论化、去启发式的 JEPA",
+     "s": 2,
+     "read": false,
+     "title": "LeJEPA: Provable and Scalable Self-Supervised Learning Without the Heuristics",
+     "time": "2025.11",
+     "arxiv": "2511.08544",
+     "summary": "Balestriero 与 LeCun 给出 JEPA 的系统理论：论证各向同性高斯是最小化下游预测风险的最优 embedding 分布，并提出 SIGReg（Sketched Isotropic Gaussian Regularization）把表征约束到该分布。由此得到的 LeJEPA 只有一个权衡超参、线性时空复杂度，彻底去掉 stop-gradient、teacher-student、超参调度等启发式手段，核心实现约 50 行；跨 10+ 数据集、60+ 架构验证，ViT-H/14 线性评估 ImageNet-1K 达 79%。是 JEPA 从\"能用\"走向\"可证明\"的关键一步，其正则思路被 LeWorldModel 直接继承。"
+    },
+    {
+     "label": "VLA-JEPA - 潜在世界模型增强的VLA",
+     "s": 2,
+     "read": false,
+     "title": "VLA-JEPA: Enhancing Vision-Language-Action Model with Latent World Model",
+     "time": "2026.02",
+     "arxiv": "2602.10098",
+     "summary": "针对当前 latent-action 预训练锚定像素变化、而非动作相关状态变化的问题，提出 leakage-free state prediction（target encoder 看未来帧、student 只看当前观测），在潜在空间而非像素空间学习动力学抽象，先 JEPA 预训练再接 action-head 微调，从而对相机运动与背景变化更鲁棒，在 LIBERO、LIBERO-Plus、SimplerEnv 及真机操作任务上一致提升泛化与鲁棒性。可与 DreamZero、Fast-WAM、Dreamer v3 及 V-JEPA 系世界模型工作对照阅读。"
+    }
+   ],
+   "en": "Architectures & Representations",
+   "read": 2
+  },
+  {
+   "zh": "触觉传感与表征",
+   "series": [
+    {
+     "zh": "Sparsh 系列",
+     "en": "Sparsh series"
+    },
+    {
+     "zh": "其他触觉传感器",
+     "en": "Other tactile sensors"
+    }
+   ],
+   "items": [
+    {
+     "label": "Sparsh-X / Tactile Beyond Pixels - 多感官触觉表征",
+     "s": 0,
+     "read": false,
+     "title": "Tactile Beyond Pixels: Multisensory Touch Representations for Robot Manipulation",
+     "time": "2025.06",
+     "arxiv": "2506.14754",
+     "summary": "Meta FAIR 提出 Sparsh-X，首个跨图像、音频、运动、压力四种触觉模态的多感官触觉表征，基于 Digit 360 传感器采集的约 100 万次接触交互训练，在不同时空尺度上捕捉互补触觉信号，可作为触觉 VLA 的触觉编码器。与 Sparsh-skin 同属 Meta 触觉表征栈。"
+    },
+    {
+     "label": "Sparsh-skin - 灵巧手磁性触觉皮肤自监督表征",
+     "s": 0,
+     "read": false,
+     "title": "Self-supervised perception for tactile skin covered dexterous hands",
+     "time": "2025.05",
+     "arxiv": "2505.11420",
+     "summary": "Meta FAIR 提出的 Sparsh-skin，面向覆盖指尖、指节与手掌的磁性触觉皮肤传感器的自监督预训练编码器。磁性触觉皮肤相比视觉触觉传感器具有柔性、全手覆盖与快速响应的优势；Sparsh-skin 学习通用触觉表征用于灵巧手操作，正好接上 Ego-Pi 的五指手方向。"
+    },
+    {
+     "label": "FlexiTac - 低成本开源可扩展触觉传感",
+     "s": 1,
+     "read": true,
+     "title": "FlexiTac: A Low-Cost, Open-Source, Scalable Tactile Sensing Solution for Robotic Systems",
+     "time": "2026.04",
+     "arxiv": "2604.28156",
+     "summary": "提出低成本、开源、可扩展的触觉传感方案，降低触觉传感器的制造门槛。与 DIGIT 同属视觉触觉传感器路线，了解传感器设计有助于理解触觉数据特性和实验部署。"
+    },
+    {
+     "label": "DIGIT - 视觉触觉传感器",
+     "s": 1,
+     "read": false,
+     "title": "DIGIT: A Novel Design for a Low-Cost Compact High-Resolution Tactile Sensor with Application to In-Hand Manipulation",
+     "time": "2020.05",
+     "arxiv": "2005.14679",
+     "summary": "提出低成本、高分辨率的视觉触觉传感器 DIGIT，基于 GelSight 技术路线。OmniVTLA、PP-Tac 等触觉 VLA 的传感器都源自此技术谱系，了解传感器有助于理解触觉数据特性。"
+    }
+   ],
+   "en": "Tactile Sensing & Representation",
+   "read": 1
+  },
+  {
+   "zh": "数据集与采集接口",
+   "series": [],
+   "items": [
+    {
+     "label": "EgoScale - 第一视角人类视频驱动的灵巧操作缩放律",
+     "read": false,
+     "title": "EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data",
+     "time": "2026.02",
+     "arxiv": "2602.16710",
+     "summary": "提出基于大规模第一视角人类视频的人到机器人迁移框架，使用超过2万小时数据预训练VLA，并揭示人类数据规模与机器人灵巧操作性能之间的缩放规律，是理解GR00T N1.7能力来源的关键论文。"
+    },
+    {
+     "label": "UMI - 通用操作接口",
+     "read": false,
+     "title": "Universal Manipulation Interface: In-The-Wild Robot Teaching Without In-The-Wild Robots",
+     "time": "2024.02",
+     "arxiv": "2402.10329",
+     "summary": "斯坦福大学提出的便携式数据采集与策略学习框架。使用手持夹爪+鱼眼相机在自然环境中采集人类演示数据，通过扩散策略直接将技能迁移到可部署的机器人策略上，无需在野外环境中部署真机器人。",
+     "notes": true
+    },
+    {
+     "label": "Open X-Embodiment - 大规模跨embodiment数据集",
+     "read": false,
+     "title": "Open X-Embodiment: Robotic Learning Datasets and RT-X Models",
+     "time": "2023.10",
+     "arxiv": "2310.08864",
+     "summary": "Google DeepMind 联合 20+ 机构构建的大规模跨 embodiment 机器人数据集与模型，涵盖多种机器人平台和任务，是当前理解 VLA 训练数据全貌的重要参考。"
+    },
+    {
+     "label": "Ego-Pi - 人类第一视角数据迁移高层任务语义到灵巧机器人",
+     "read": false,
+     "title": "Ego-Pi: VLA Fine-Tuning for Ego-Centric Human and Robot Data",
+     "time": "2026.06",
+     "arxiv": "2606.08107",
+     "summary": "斯坦福与 Meta 提出的跨 embodiment 学习框架，以 π0.5 为基础，将基于夹爪的 VLA 适配到灵巧五指手人形机器人控制。通过协同训练人类第一视角（ego-centric）数据，使机器人无需对应机器人数据即可学到新的高层任务语义——排序逻辑、技能组合、规则化顺序（如先搬重物），是 EgoScale 之后人到机器人语义迁移方向的延续。"
+    }
+   ],
+   "en": "Datasets & Collection Interfaces",
+   "read": 0
+  },
+  {
+   "zh": "电子书",
+   "series": [],
+   "items": [
+    {
+     "label": "Modern Robotics - 现代机器人学经典教材",
+     "read": false,
+     "title": "Modern Robotics: Mechanics, Planning, and Control",
+     "authors": "Kevin M. Lynch, Frank C. Park",
+     "time": "2019.12",
+     "summary": "机器人学经典教材，系统覆盖构型空间、刚体运动、正逆运动学、雅可比与静力学、动力学、轨迹生成、运动规划、控制、抓取与移动机器人，适合作为具身智能和机器人学基础参考书。"
+    }
+   ],
+   "en": "Textbooks",
+   "read": 0
+  }
+ ]
+}
