@@ -1304,6 +1304,21 @@
       }
     }
 
+    .demo-kind {
+      padding: 1px 8px;
+      border-radius: 999px;
+      background: var(--soft-green);
+      color: var(--green);
+      font-family: var(--mono);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .demo-kind.sim {
+      background: var(--soft-amber);
+      color: var(--amber);
+    }
+
     /* ── Papers（论文库板块）── */
     .paper-stats {
       display: grid;
@@ -1643,6 +1658,8 @@
     html.theme-dark .paper-stat, html.theme-dark .paper-featured, html.theme-dark .paper-group { background: #1a2433; }
     html.theme-dark .paper-stat strong, html.theme-dark .paper-group-count em, html.theme-dark .paper-series::before, html.theme-dark .papers-hint .dot-read { color: #5eead4; }
     html.theme-dark .paper-flag { background: rgba(94, 234, 212, 0.14); color: #5eead4; }
+    html.theme-dark .demo-kind { background: rgba(94, 234, 212, 0.14); color: #5eead4; }
+    html.theme-dark .demo-kind.sim { background: var(--soft-amber); color: #fcd34d; }
     html.theme-dark .paper-item.is-read .paper-dot { border-color: #5eead4; background: #5eead4; }
     html.theme-dark a.paper-title:hover, html.theme-dark a.paper-title::after, html.theme-dark .paper-group[open] > summary::after, html.theme-dark .paper-group > summary:hover .paper-group-title, html.theme-dark .paper-featured strong a:hover { color: #5eead4; }
 
@@ -1933,7 +1950,7 @@
         </svg>
         <p class="eyebrow">Embodied AI Engineer</p>
         <h2 data-i18n="heroTitle">让 VLA 走出仿真，驱动真实机器人。</h2>
-        <p class="lead" data-i18n="heroLead">具备机械臂、灵巧手与人形机器人项目经验，覆盖 teleoperation、数据集构建、模型训练、推理服务、技能调度和真实平台验证。近期重点在 LeRobot 生态、ACT、Diffusion Policy、π0/π0.5、GR00T、触觉反馈融合与异步推理部署。</p>
+        <p class="lead" data-i18n="heroLead">把 π0/π0.5、ACT、Diffusion Policy 从训练一路带到真机稳定执行的工程师——双臂精细操作成功率 30%→70%，覆盖机械臂、灵巧手、人形三类本体。工具链：LeRobot 生态、触觉融合、RTC 与异步推理部署。</p>
         <div class="hero-actions">
           <a class="button" href="mailto:puheliang122@gmail.com" data-i18n="btnContact">联系我</a>
           <a class="button secondary" href="https://github.com/heliang-pu" target="_blank" rel="noreferrer" data-i18n="btnGitHub">查看 GitHub</a>
@@ -1942,8 +1959,8 @@
         </div>
         <div class="metric-grid">
           <div class="metric">
-            <strong>70%</strong>
-            <span data-i18n="m1desc">双臂精细操作任务成功率，较初始方案提升约 40 个百分点</span>
+            <strong>30%→70%</strong>
+            <span data-i18n="m1desc">双臂精细操作任务成功率，2.3× 提升</span>
           </div>
           <div class="metric">
             <strong>500+</strong>
@@ -1954,8 +1971,8 @@
             <span data-i18n="m3desc">机械臂、灵巧手、人形机器人平台适配与部署经验</span>
           </div>
           <div class="metric">
-            <strong>No.1</strong>
-            <span data-i18n="m4desc">本科综合排名第一，2024 年国家奖学金获得者</span>
+            <strong>107</strong>
+            <span data-i18n="m4desc">篇论文系统跟进 · 31 精读 · 7 已上真机</span>
           </div>
         </div>
       </section>
@@ -1966,23 +1983,23 @@
           <span class="section-kicker" data-i18n="kickerFeatured">机器人推理与仿真演示</span>
         </div>
         <div class="featured-grid">
+          <a class="feature-card" href="#demo-07">
+            <div class="feature-thumb"><img src="assets/posters/demo9.webp" alt="π0.6 ReCap 手机插拔精细操作封面"></div>
+            <div class="feature-meta"><span>Demo 07</span><span class="demo-kind" data-i18n="kindReal">真机</span><span>01:02</span></div>
+            <h3 data-i18n="demo9Title">π0.6 ReCap 手机插拔精细操作</h3>
+            <p data-i18n="demo9Desc">基于 π0.6 ReCap 强化学习完成手机接口插入与拔出，验证真实平台在小间隙、强接触约束下的精细操作稳定性。</p>
+          </a>
           <a class="feature-card" href="#demo-09">
             <div class="feature-thumb"><img src="assets/posters/demo11.webp" alt="宇树 G1 全身控制搬箱子封面"></div>
-            <div class="feature-meta"><span>Demo 09</span><span class="latest-badge" data-i18n="latestBadge">最新</span><span>00:30</span></div>
+            <div class="feature-meta"><span>Demo 09</span><span class="latest-badge" data-i18n="latestBadge">最新</span><span class="demo-kind sim" data-i18n="kindSim">仿真</span><span>00:30</span></div>
             <h3 data-i18n="demo11Title">宇树 G1 全身 loco-manipulation 搬箱子</h3>
             <p data-i18n="demo11Desc">基于 Isaac Sim 中的宇树 G1 完成全身 loco-manipulation 搬箱子任务，结合 GR00T VLA 推理实现全身协同控制与目标搬运。</p>
           </a>
           <a class="feature-card" href="#demo-08">
             <div class="feature-thumb"><img src="assets/posters/demo10.webp" alt="openpi 复现 π0.5 Subtask 长任务拆解封面"></div>
-            <div class="feature-meta"><span>Demo 08</span><span>00:24</span></div>
+            <div class="feature-meta"><span>Demo 08</span><span class="demo-kind sim" data-i18n="kindSim">仿真</span><span>00:24</span></div>
             <h3 data-i18n="demo10Title">openpi 复现 π0.5 Subtask 长任务拆解</h3>
             <p data-i18n="demo10Desc">基于 openpi 复现 π0.5 中提出但官方未开源的 subtask 子任务拆解能力，将双杯放置长任务分解为可跟踪的阶段，并在仿真 rollout 中完成执行。</p>
-          </a>
-          <a class="feature-card" href="#demo-07">
-            <div class="feature-thumb"><img src="assets/posters/demo9.webp" alt="π0.6 ReCap 手机插拔精细操作封面"></div>
-            <div class="feature-meta"><span>Demo 07</span><span>01:02</span></div>
-            <h3 data-i18n="demo9Title">π0.6 ReCap 手机插拔精细操作</h3>
-            <p data-i18n="demo9Desc">基于 π0.6 ReCap 强化学习完成手机接口插入与拔出，验证真实平台在小间隙、强接触约束下的精细操作稳定性。</p>
           </a>
         </div>
       </section>
@@ -2035,6 +2052,9 @@
                 <h3 data-i18n="exp2title">华东师范大学</h3>
               </div>
               <div class="meta" data-i18n="exp2meta">软件工程 · 非全日制</div>
+              <ul class="plain-list">
+                <li data-i18n="exp2d1">2025 年毕业后专注备考，一次考取；2026.09 起边工作边攻读。</li>
+              </ul>
             </div>
           </div>
           <div class="timeline-item">
@@ -2701,13 +2721,14 @@
         name: '蒲贺良',
         /* hero */
         heroTitle: '让 VLA 走出仿真，驱动真实机器人。',
-        heroLead: '具备机械臂、灵巧手与人形机器人项目经验，覆盖 teleoperation、数据集构建、模型训练、推理服务、技能调度和真实平台验证。近期重点在 LeRobot 生态、ACT、Diffusion Policy、π0/π0.5、GR00T、触觉反馈融合与异步推理部署。',
+        heroLead: '把 π0/π0.5、ACT、Diffusion Policy 从训练一路带到真机稳定执行的工程师——双臂精细操作成功率 30%→70%，覆盖机械臂、灵巧手、人形三类本体。工具链：LeRobot 生态、触觉融合、RTC 与异步推理部署。',
         btnContact: '联系我', btnGitHub: '查看 GitHub', btnHF: '查看模型与数据', btnDownloadPDF: '下载 PDF',
-        m1desc: '双臂精细操作任务成功率，较初始方案提升约 40 个百分点',
+        m1desc: '双臂精细操作任务成功率，2.3× 提升',
         m2desc: 'S101 单臂抓取任务 demonstration 采集与策略验证',
         m3desc: '机械臂、灵巧手、人形机器人平台适配与部署经验',
         m3val: '3 类',
-        m4desc: '本科综合排名第一，2024 年国家奖学金获得者',
+        m4desc: '篇论文系统跟进 · 31 精读 · 7 已上真机',
+        kindReal: '真机', kindSim: '仿真',
         /* featured */
         secFeatured: '精选 Demo', kickerFeatured: '机器人推理与仿真演示',
         /* overview */
@@ -2722,6 +2743,7 @@
         exp1d1: '负责机器人真实平台适配、数据采集链路、策略训练脚本、推理服务与部署验证。',
         exp1d2: '在机械臂、灵巧手、人形机器人项目中推进 VLA/VLM Policy 的工程落地。',
         exp2title: '华东师范大学', exp2meta: '软件工程 · 非全日制',
+        exp2d1: '2025 年毕业后专注备考，一次考取；2026.09 起边工作边攻读。',
         exp3title: '江苏科技大学苏州理工学院', exp3meta: '计算机科学与技术 · 成绩均分 90',
         exp3d1: '本科综合排名第一，参与智能车、移动机器人、OpenMV 视觉应用等实践项目。',
         /* projects */
@@ -2855,13 +2877,14 @@
         name: 'Puheliang',
         /* hero */
         heroTitle: 'Taking VLA out of simulation, driving real robots.',
-        heroLead: 'Experienced with robotic arms, dexterous hands, and humanoid robots, covering teleoperation, dataset construction, model training, inference services, skill orchestration, and real-platform validation. Recent focus on the LeRobot ecosystem, ACT, Diffusion Policy, π0/π0.5, GR00T, tactile feedback fusion, and async inference deployment.',
+        heroLead: 'An engineer who takes π0/π0.5, ACT, and Diffusion Policy from training all the way to stable execution on real robots—dual-arm fine-manipulation success 30%→70%, across arms, dexterous hands, and humanoids. Toolchain: the LeRobot ecosystem, tactile fusion, RTC, and async inference deployment.',
         btnContact: 'Contact Me', btnGitHub: 'View GitHub', btnHF: 'View Models & Data', btnDownloadPDF: 'Download PDF',
-        m1desc: 'Dual-arm fine manipulation success rate, ~40pp improvement over baseline',
+        m1desc: 'Dual-arm fine-manipulation success rate—a 2.3× improvement',
         m2desc: 'S101 single-arm grasping task demonstration collection & policy validation',
         m3desc: 'Robotic arm, dexterous hand & humanoid platform adaptation & deployment',
         m3val: '3 Types',
-        m4desc: "Ranked #1 in undergraduate cohort, 2024 National Scholarship recipient",
+        m4desc: "papers tracked systematically · 31 read closely · 7 deployed on real robots",
+        kindReal: 'Real robot', kindSim: 'Simulation',
         /* featured */
         secFeatured: 'Featured Demos', kickerFeatured: 'Robot inference and simulation demos',
         /* overview */
@@ -2876,6 +2899,7 @@
         exp1d1: 'Responsible for real-platform adaptation, data collection pipelines, policy training scripts, inference services, and deployment validation.',
         exp1d2: 'Driving VLA/VLM Policy engineering deployment across robotic arm, dexterous hand, and humanoid robot projects.',
         exp2title: 'East China Normal University', exp2meta: 'Software Engineering · Part-time',
+        exp2d1: 'Spent the half-year after graduation preparing for the postgraduate entrance exam—admitted on the first attempt; studying part-time alongside full-time work from Sep 2026.',
         exp3title: 'Jiangsu Univ. of Sci. & Tech. Suzhou Institute of Technology', exp3meta: 'Computer Science & Technology · GPA 90',
         exp3d1: 'Ranked #1 in undergraduate cohort; participated in smart car, mobile robot, and OpenMV vision projects.',
         /* projects */

@@ -248,7 +248,7 @@ test('hero, sections, and metrics never begin with false content', () => {
   assert.doesNotMatch(index, /\.reveal\s*\{\s*opacity:\s*0/);
   assert.doesNotMatch(index, /\bnumObs\b|\brevObs\b/);
   assert.doesNotMatch(index, /requestAnimationFrame\(step\)/);
-  assert.match(index, /<strong>70%<\/strong>/);
+  assert.match(index, /<strong>30%→70%<\/strong>/);
   assert.match(index, /<strong>500\+<\/strong>/);
 });
 
