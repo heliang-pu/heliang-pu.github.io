@@ -140,7 +140,7 @@ test('mobile navigation is native and contains section and profile links', () =>
 
   for (const href of [
     '#overview', '#experience', '#projects', '#pipeline',
-    '#demos', '#skills', '#platforms', '#awards',
+    '#demos', '#locomotion', '#skills', '#platforms', '#awards',
     'mailto:puheliang122@gmail.com',
     'https://github.com/heliang-pu',
     'https://huggingface.co/puheliang',
@@ -188,8 +188,8 @@ test('pipeline uses tablet and narrow-mobile column counts', () => {
   );
 });
 
-test('all nine videos are network-idle until explicit activation', () => {
-  assert.equal(demoCards.length, 9);
+test('all ten videos are network-idle until explicit activation', () => {
+  assert.equal(demoCards.length, 10);
 
   for (const [position, card] of demoCards.entries()) {
     const video = card.match(/<video\b[^>]*>/i)?.[0];
@@ -200,7 +200,7 @@ test('all nine videos are network-idle until explicit activation', () => {
 
     assert.equal(attr(video, 'preload'), 'none');
     const deferredUrl = attr(source, 'data-src');
-    assert.match(deferredUrl, /site-media\/demo\d+\.mp4$/);
+    assert.match(deferredUrl, /site-media\/(?:demo|loco)\d+\.mp4$/);
     assert.equal(attr(source, 'src'), undefined);
     assert.equal(attr(fallback, 'href'), deferredUrl);
     assert.equal(attr(fallback, 'target'), '_blank');
@@ -217,13 +217,13 @@ test('all nine videos are network-idle until explicit activation', () => {
   assert.match(activation, /has-video-error/);
 });
 
-test('play buttons inherit nine unique labels and refresh after language changes', () => {
+test('play buttons inherit ten unique labels and refresh after language changes', () => {
   const videos = tags('video');
   const keys = videos.map((video) => attr(video, 'data-i18n-aria'));
   const initialLabels = videos.map((video) => attr(video, 'aria-label'));
-  assert.equal(videos.length, 9);
-  assert.equal(new Set(keys).size, 9);
-  assert.equal(new Set(initialLabels).size, 9);
+  assert.equal(videos.length, 10);
+  assert.equal(new Set(keys).size, 10);
+  assert.equal(new Set(initialLabels).size, 10);
 
   const zh = languageBlock('zh');
   const en = languageBlock('en');
@@ -231,8 +231,8 @@ test('play buttons inherit nine unique labels and refresh after language changes
   const enLabels = keys.map((key) => languageValue(en, key));
   assert.ok(zhLabels.every(Boolean));
   assert.ok(enLabels.every(Boolean));
-  assert.equal(new Set(zhLabels).size, 9);
-  assert.equal(new Set(enLabels).size, 9);
+  assert.equal(new Set(zhLabels).size, 10);
+  assert.equal(new Set(enLabels).size, 10);
   assert.ok(languageValue(zh, 'videoFallback'));
   assert.ok(languageValue(en, 'videoFallback'));
 
@@ -262,8 +262,8 @@ test('favicon, footer date, and local assets are consistent', async () => {
   const favicon = tags('link').find((tag) => attr(tag, 'rel') === 'icon');
   assert.equal(attr(favicon, 'href'), '/assets/icon-192.png');
   assert.doesNotMatch(attr(favicon, 'href'), /^data:/);
-  assert.equal((index.match(/Last updated: 2026\.07/g) ?? []).length, 3);
-  assert.doesNotMatch(index, /Last updated: 2026\.06/);
+  assert.equal((index.match(/Last updated: 2026\.08/g) ?? []).length, 3);
+  assert.doesNotMatch(index, /Last updated: 2026\.07/);
 
   const localRefs = [
     ...index.matchAll(/\b(?:src|href|poster)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)"/g),

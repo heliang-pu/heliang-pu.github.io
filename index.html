@@ -765,6 +765,17 @@
       gap: 14px;
     }
 
+    /* 单张卡时铺满整行；加入第二张后自动回到两列 */
+    .demo-card:only-child {
+      grid-column: 1 / -1;
+    }
+
+    /* 仿真渲染自带纯黑背景，媒体框跟着纯黑，4:3 画面在 16:10 框里补边时不留边界 */
+    #locomotion .demo-media,
+    #locomotion .demo-media video {
+      background: #000;
+    }
+
     .demo-card {
       overflow: hidden;
       border: 1px solid var(--line);
@@ -1561,6 +1572,7 @@
           <a href="#projects" data-i18n="navProjects">项目经历</a>
           <a href="#pipeline" data-i18n="navPipeline">推理闭环</a>
           <a href="#demos" data-i18n="navDemos">Demo 视频</a>
+          <a href="#locomotion" data-i18n="navLoco">运动控制</a>
           <a href="#skills" data-i18n="navSkills">能力矩阵</a>
           <a href="#platforms" data-i18n="navPlatforms">真机平台</a>
           <a href="#awards" data-i18n="navAwards">竞赛与荣誉</a>
@@ -1602,6 +1614,7 @@
           <a href="#projects" data-i18n="navProjects">项目经历</a>
           <a href="#pipeline" data-i18n="navPipeline">推理闭环</a>
           <a href="#demos" data-i18n="navDemos">Demo 视频</a>
+          <a href="#locomotion" data-i18n="navLoco">运动控制</a>
           <a href="#skills" data-i18n="navSkills">能力矩阵</a>
           <a href="#platforms" data-i18n="navPlatforms">真机平台</a>
           <a href="#awards" data-i18n="navAwards">竞赛与荣誉</a>
@@ -1694,7 +1707,7 @@
           </a>
           <a class="feature-card" href="#demo-09">
             <div class="feature-thumb"><img src="assets/posters/demo11.webp" alt="宇树 G1 全身控制搬箱子封面"></div>
-            <div class="feature-meta"><span>Demo 09</span><span class="latest-badge" data-i18n="latestBadge">最新</span><span class="demo-kind sim" data-i18n="kindSim">仿真</span><span>00:30</span></div>
+            <div class="feature-meta"><span>Demo 09</span><span class="demo-kind sim" data-i18n="kindSim">仿真</span><span>00:30</span></div>
             <h3 data-i18n="demo11Title">宇树 G1 全身 loco-manipulation 搬箱子</h3>
             <p data-i18n="demo11Desc">基于 Isaac Sim 中的宇树 G1 完成全身 loco-manipulation 搬箱子任务，结合 GR00T VLA 推理实现全身协同控制与目标搬运。</p>
           </a>
@@ -2195,7 +2208,7 @@
             </div>
             <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo11.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
             <div class="demo-body">
-              <div class="demo-meta"><span>Demo 09</span><span class="latest-badge" data-i18n="latestBadge">最新</span><span>00:30</span></div>
+              <div class="demo-meta"><span>Demo 09</span><span>00:30</span></div>
               <h3 data-i18n="demo11Title">宇树 G1 全身 loco-manipulation 搬箱子</h3>
               <p data-i18n="demo11Desc">基于 Isaac Sim 中的宇树 G1 完成全身 loco-manipulation 搬箱子任务，结合 GR00T VLA 推理实现全身协同控制与目标搬运。</p>
               <div class="demo-spec-grid">
@@ -2217,6 +2230,48 @@
                 <span class="demo-tag" data-i18n="demoTagIsaacSim">Isaac Sim</span>
                 <span class="demo-tag" data-i18n="demoTagGR00T">GR00T VLA</span>
                 <span class="demo-tag" data-i18n="demoTagWholeBody">全身控制</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="locomotion">
+        <div class="section-head">
+          <h2 data-i18n="secLoco">运动控制</h2>
+          <span class="section-kicker" data-i18n="kickerLoco">人形机器人强化学习步态</span>
+        </div>
+        <div class="demo-grid">
+          <article class="demo-card" id="loco-01">
+            <div class="demo-media">
+              <video controls muted playsinline preload="none" poster="assets/posters/loco1.webp" aria-label="播放宇树 G1 崎岖地形强化学习步态" data-i18n-aria="loco1Aria">
+                <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/loco1.mp4" type="video/mp4">
+              </video>
+            </div>
+            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/loco1.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
+            <div class="demo-body">
+              <div class="demo-meta"><span>Loco 01</span><span class="latest-badge" data-i18n="latestBadge">最新</span><span class="demo-kind sim" data-i18n="kindSim">仿真</span><span>00:12</span></div>
+              <h3 data-i18n="loco1Title">宇树 G1 崎岖地形强化学习步态</h3>
+              <p data-i18n="loco1Desc">在 MuJoCo Playground 中用 PPO 从零训练宇树 G1 的行走策略，采用非对称 Actor-Critic（本体观测 103 维、特权观测 216 维，网络 512-256-128），累计 1.81 亿仿真步；策略在随机崎岖地形上跟随速度指令行走并维持平衡。</p>
+              <div class="demo-spec-grid">
+                <div class="demo-spec-row">
+                  <span class="demo-spec-label" data-i18n="specPlatform">平台</span>
+                  <strong class="demo-spec-value" data-i18n="loco1Platform">MuJoCo Playground · 宇树 G1（29 自由度）</strong>
+                </div>
+                <div class="demo-spec-row">
+                  <span class="demo-spec-label" data-i18n="specPolicy">策略</span>
+                  <strong class="demo-spec-value" data-i18n="loco1Policy">PPO · 非对称 Actor-Critic · 1.81 亿步</strong>
+                </div>
+                <div class="demo-spec-row">
+                  <span class="demo-spec-label" data-i18n="specMode">模式</span>
+                  <strong class="demo-spec-value" data-i18n="loco1Mode">崎岖地形速度指令跟随</strong>
+                </div>
+              </div>
+              <div class="demo-tags">
+                <span class="demo-tag" data-i18n="demoTagG1">宇树 G1</span>
+                <span class="demo-tag" data-i18n="demoTagRL">强化学习</span>
+                <span class="demo-tag" data-i18n="demoTagPPO">PPO</span>
+                <span class="demo-tag" data-i18n="demoTagRoughTerrain">崎岖地形</span>
               </div>
             </div>
           </article>
@@ -2357,7 +2412,7 @@
         </div>
       </section>
 
-      <footer class="footer">© 2026 蒲贺良 · <span data-i18n="footerUpdated">Last updated: 2026.07</span></footer>
+      <footer class="footer">© 2026 蒲贺良 · <span data-i18n="footerUpdated">Last updated: 2026.08</span></footer>
     </main>
   </div>
   <button class="control-btn to-top" type="button" aria-label="回到顶部" title="回到顶部" onclick="scrollToTop()"><span aria-hidden="true">↑</span></button>
@@ -2390,7 +2445,7 @@
         pitch: '关注机器人从数据采集、策略训练到真机部署的完整闭环，擅长把模型能力落到可运行、可复现、可迭代的机器人系统里。',
         bilibili: '哔哩哔哩',
         navTitle: '目录',
-        navOverview: '个人概览', navExp: '工作与教育', navProjects: '项目经历', navPipeline: '推理闭环', navDemos: 'Demo 视频', navSkills: '能力矩阵', navAwards: '竞赛与荣誉',
+        navOverview: '个人概览', navExp: '工作与教育', navProjects: '项目经历', navPipeline: '推理闭环', navDemos: 'Demo 视频', navLoco: '运动控制', navSkills: '能力矩阵', navAwards: '竞赛与荣誉',
         navPlatforms: '真机平台',
         secPlatforms: '真机平台', kickerPlatforms: '上手过的机器人本体、动捕与遥操作硬件',
         ptHumanoid: '人形机器人', ptArm: '协作机械臂', ptResearchArm: '科研机械臂', ptIndustrial: '工业自动化', ptGlove: '数据手套', ptMocap: '全身动捕', ptVR: 'VR 遥操作',
@@ -2453,6 +2508,7 @@
         pipeStep5Title: '真机闭环验证', pipeStep5Desc: '在真实任务中观察成功率、延迟、动作稳定性和失败模式，反向迭代数据与策略。',
         /* demos */
         secDemos: 'Demo 视频', kickerDemos: '真实机器人、仿真与视觉控制演示',
+        secLoco: '运动控制', kickerLoco: '人形机器人强化学习步态',
         videoFallback: '视频无法播放？在 GitHub Releases 中打开',
         demo1Title: '双臂灵巧手小物品精细抓取',
         demo1Desc: '双臂平台完成小目标定位、夹取与放置，展示灵巧手精细控制与真实任务稳定性。',
@@ -2482,6 +2538,9 @@
         demo9Platform: '单臂真实平台', demo9Policy: 'π0.6 ReCap 强化学习', demo9Mode: '手机插拔精细任务',
         demo10Platform: 'openpi 仿真环境', demo10Policy: '复现 π0.5 Subtask', demo10Mode: '双杯放置长任务',
         demo11Platform: 'Isaac Sim', demo11Policy: 'GR00T VLA 推理', demo11Mode: '宇树 G1 全身搬箱子',
+        loco1Title: '宇树 G1 崎岖地形强化学习步态',
+        loco1Desc: '在 MuJoCo Playground 中用 PPO 从零训练宇树 G1 的行走策略，采用非对称 Actor-Critic（本体观测 103 维、特权观测 216 维，网络 512-256-128），累计 1.81 亿仿真步；策略在随机崎岖地形上跟随速度指令行走并维持平衡。',
+        loco1Platform: 'MuJoCo Playground · 宇树 G1（29 自由度）', loco1Policy: 'PPO · 非对称 Actor-Critic · 1.81 亿步', loco1Mode: '崎岖地形速度指令跟随',
         demoTagDualArm: '双臂协作', demoTagDexterous: '灵巧手', demoTagFine: '精细操作',
         demoTagHandRgb: '手内 RGB', demoTagData: '数据采集',
         demoTagHandKeypoints: '手部关键点', demoTagRetargeting: 'Retargeting', demoTagOpposition: '手内对指',
@@ -2495,6 +2554,7 @@
         demoTagRL: '强化学习', demoTagPhonePlug: '手机插拔',
         demoTagSubtask: '子任务拆解', demoTagLongHorizon: '长任务',
         demoTagG1: '宇树 G1', demoTagIsaacSim: 'Isaac Sim', demoTagGR00T: 'GR00T VLA', demoTagWholeBody: '全身控制',
+        demoTagRL: '强化学习', demoTagPPO: 'PPO', demoTagRoughTerrain: '崎岖地形',
         /* skills */
         secSkills: '能力矩阵', kickerSkills: '工程、模型、数据、部署四线闭环',
         cap1t: '数据采集与数据集工程', cap1d: 'Teleoperation、外骨骼采集、多相机数据、数据清洗、Replay、LeRobot Dataset、Demonstration 管理。',
@@ -2513,7 +2573,7 @@
         a4y: '机器人', a4t: '航天杯移动机器人 AI 创新技术挑战赛', a4d: '队长，全国三等奖。',
         a5y: '科研实践', a5t: '江苏省大学生创新创业训练计划项目', a5d: '期刊：基于 OpenMV 的新型智能门锁设计。',
         /* footer & a11y */
-        skip: '跳到主内容', footerUpdated: 'Last updated: 2026.07',
+        skip: '跳到主内容', footerUpdated: 'Last updated: 2026.08',
         themeLabel: '切换深色 / 浅色模式', langLabel: 'Switch language',
         portraitAlt: '蒲贺良头像',
         ecnuLogoAlt: '华东师范大学校徽',
@@ -2530,7 +2590,8 @@
         demo8Aria: '播放 π0.5 JAX 纸巾分拣',
         demo9Aria: '播放 π0.6 ReCap 手机插拔精细操作',
         demo10Aria: '播放 openpi 复现 π0.5 Subtask 长任务拆解',
-        demo11Aria: '播放宇树 G1 全身 loco-manipulation 搬箱子'
+        demo11Aria: '播放宇树 G1 全身 loco-manipulation 搬箱子',
+        loco1Aria: '播放宇树 G1 崎岖地形强化学习步态'
       },
       en: {
         /* meta */
@@ -2541,7 +2602,7 @@
         pitch: 'Full-loop robotics from data collection and policy training to real-robot deployment. Specializing in turning model capabilities into runnable, reproducible, and iterable robotic systems.',
         bilibili: 'Bilibili',
         navTitle: 'Contents',
-        navOverview: 'Overview', navExp: 'Experience', navProjects: 'Projects', navPipeline: 'Inference Loop', navDemos: 'Demos', navSkills: 'Skills', navAwards: 'Awards',
+        navOverview: 'Overview', navExp: 'Experience', navProjects: 'Projects', navPipeline: 'Inference Loop', navDemos: 'Demos', navLoco: 'Locomotion', navSkills: 'Skills', navAwards: 'Awards',
         navPlatforms: 'Hardware',
         secPlatforms: 'Hardware Platforms', kickerPlatforms: 'Robots, mocap & teleop hardware I have worked on',
         ptHumanoid: 'Humanoid Robot', ptArm: 'Collaborative Arm', ptResearchArm: 'Research Arm', ptIndustrial: 'Industrial Automation', ptGlove: 'Data Glove', ptMocap: 'Motion Capture', ptVR: 'VR Teleoperation',
@@ -2604,6 +2665,7 @@
         pipeStep5Title: 'Real-Robot Validation', pipeStep5Desc: 'Measure success rate, latency, motion stability, and failure modes in real tasks, then iterate data and policies.',
         /* demos */
         secDemos: 'Demo Videos', kickerDemos: 'Real-robot, simulation, and vision-control demos',
+        secLoco: 'Locomotion', kickerLoco: 'Reinforcement-learning gaits for humanoid robots',
         videoFallback: 'Video unavailable? Open it on GitHub Releases',
         demo1Title: 'Dual-Arm Dexterous-Hand Fine Grasping',
         demo1Desc: 'A dual-arm platform localizes, grasps, and places small objects, showing fine dexterous-hand control and real-world task stability.',
@@ -2633,6 +2695,9 @@
         demo9Platform: 'Single-arm real platform', demo9Policy: 'π0.6 ReCap reinforcement learning', demo9Mode: 'Phone plug-unplug fine task',
         demo10Platform: 'openpi simulation environment', demo10Policy: 'Reproduced π0.5 subtask', demo10Mode: 'Two-mug long-horizon task',
         demo11Platform: 'Isaac Sim', demo11Policy: 'GR00T VLA inference', demo11Mode: 'Unitree G1 whole-body box carrying',
+        loco1Title: 'Unitree G1 RL Locomotion on Rough Terrain',
+        loco1Desc: 'A walking policy trained from scratch for Unitree G1 with PPO in MuJoCo Playground, using an asymmetric actor-critic (103-dim proprioceptive state, 216-dim privileged state, 512-256-128 networks) over 181M simulation steps; the policy tracks velocity commands and keeps its balance across randomized rough terrain.',
+        loco1Platform: 'MuJoCo Playground · Unitree G1 (29 DoF)', loco1Policy: 'PPO · asymmetric actor-critic · 181M steps', loco1Mode: 'Velocity-command tracking on rough terrain',
         demoTagDualArm: 'Dual-Arm', demoTagDexterous: 'Dexterous Hand', demoTagFine: 'Fine Manipulation',
         demoTagHandRgb: 'In-Hand RGB', demoTagData: 'Data Collection',
         demoTagHandKeypoints: 'Hand Keypoints', demoTagRetargeting: 'Retargeting', demoTagOpposition: 'Finger Opposition',
@@ -2646,6 +2711,7 @@
         demoTagRL: 'Reinforcement Learning', demoTagPhonePlug: 'Phone Plug-Unplug',
         demoTagSubtask: 'Subtask Decomposition', demoTagLongHorizon: 'Long-Horizon',
         demoTagG1: 'Unitree G1', demoTagIsaacSim: 'Isaac Sim', demoTagGR00T: 'GR00T VLA', demoTagWholeBody: 'Whole-Body Control',
+        demoTagRL: 'Reinforcement Learning', demoTagPPO: 'PPO', demoTagRoughTerrain: 'Rough Terrain',
         /* skills */
         secSkills: 'Skills', kickerSkills: 'Engineering, Models, Data & Deployment in Closed Loop',
         cap1t: 'Data Collection & Dataset Engineering', cap1d: 'Teleoperation, exoskeleton capture, multi-camera data, data cleaning, replay, LeRobot Dataset, and demonstration management.',
@@ -2664,7 +2730,7 @@
         a4y: 'Robotics', a4t: 'Hangtian Cup Mobile Robot AI Innovation Challenge', a4d: 'Team leader, National 3rd Prize.',
         a5y: 'Research', a5t: 'Jiangsu Province College Students Innovation & Entrepreneurship Training Program', a5d: 'Publication: Design of a Novel Smart Door Lock Based on OpenMV.',
         /* footer & a11y */
-        skip: 'Skip to main content', footerUpdated: 'Last updated: 2026.07',
+        skip: 'Skip to main content', footerUpdated: 'Last updated: 2026.08',
         themeLabel: 'Toggle dark / light mode', langLabel: '切换中 / 英文',
         portraitAlt: 'Portrait of Puheliang',
         ecnuLogoAlt: 'East China Normal University emblem',
@@ -2681,7 +2747,8 @@
         demo8Aria: 'Play π0.5 JAX tissue sorting demo',
         demo9Aria: 'Play π0.6 ReCap phone plug-unplug manipulation demo',
         demo10Aria: 'Play openpi reproducing π0.5 subtask demo',
-        demo11Aria: 'Play Unitree G1 whole-body loco-manipulation box-carrying demo'
+        demo11Aria: 'Play Unitree G1 whole-body loco-manipulation box-carrying demo',
+        loco1Aria: 'Play Unitree G1 rough-terrain RL locomotion demo'
       }
     };
 
