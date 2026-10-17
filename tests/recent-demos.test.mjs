@@ -13,7 +13,7 @@ const dictionary = vm.runInNewContext('(' + index.match(/var i18n = (\{[\s\S]*?\
 
 test('new demo entries link to two playable videos and one bilingual interactive replay', () => {
   for (const id of ['10', '11', '12']) {
-    assert.match(index, new RegExp(`href="#demo-${id}"`));
+    assert.match(index, new RegExp(`id="demo-${id}"`));
     const card = index.match(new RegExp(`<article class="demo-card[^\"]*" id="demo-${id}">[\\s\\S]*?</article>`))[0];
     for (const [, key] of card.matchAll(/data-i18n(?:-aria|-alt)?="([^"]+)"/g)) {
       for (const lang of ['zh', 'en']) assert.ok(dictionary[lang][key], `${lang}: ${key}`);
@@ -28,8 +28,7 @@ test('new demo entries link to two playable videos and one bilingual interactive
     }
   }
   assert.match(replay, /mock 规划器与执行器/);
-  const behaviorFeatured = index.match(/<a class="feature-card" href="#demo-12">[\s\S]*?<\/a>/)[0];
-  assert.match(behaviorFeatured, /data-i18n="kindSim">仿真</);
+  assert.match(dictionary.zh.demo13Platform, /仿真/);
   assert.match(dictionary.zh.demo13Mode, /4 \/ 10/);
 });
 

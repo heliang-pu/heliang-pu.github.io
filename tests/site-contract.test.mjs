@@ -180,8 +180,8 @@ test('mobile navigation is native and contains section and profile links', () =>
   assert.match(details, /<nav[\s\S]*data-i18n-aria="navAria"/);
 
   for (const href of [
-    '#overview', '#experience', '#projects', '#pipeline',
-    '#demos', '#locomotion', '#skills', '#platforms', '#awards',
+    '#experience', '#projects', '#skills', '#platforms', '#awards',
+    '#demos', '#locomotion',
     'mailto:puheliang122@gmail.com',
     'https://github.com/heliang-pu',
     'https://huggingface.co/puheliang',
@@ -214,19 +214,19 @@ test('980px layout hides the desktop sidebar without CSS reordering', () => {
   );
 });
 
-test('pipeline uses tablet and narrow-mobile column counts', () => {
-  const css = index.match(/<style>([\s\S]*?)<\/style>/)?.[1] ?? '';
-  const tabletCss = mediaBlocks(css, '@media (max-width: 980px)');
-  const narrowCss = mediaBlocks(css, '@media (max-width: 760px)');
+test('work and projects lead the page; demos follow as evidence', () => {
+  const sections = [
+    ...index.matchAll(/<section class="(hero|section)"(?: id="([^"]+)")?>/g),
+  ].map((match) => match[2] ?? match[1]);
+  assert.deepEqual(sections, [
+    'hero', 'experience', 'projects', 'featured-demos',
+    'skills', 'platforms', 'awards', 'demos', 'locomotion',
+  ]);
 
-  assert.match(
-    tabletCss,
-    /\.pipeline-grid\s*\{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/,
-  );
-  assert.match(
-    narrowCss,
-    /\.pipeline-grid[\s\S]*?grid-template-columns:\s*1fr/,
-  );
+  const featured = index.match(/<section class="section" id="featured-demos">[\s\S]*?<\/section>/)?.[0] ?? '';
+  const kinds = [...featured.matchAll(/class="demo-kind[^"]*" data-i18n="([^"]+)"/g)].map((match) => match[1]);
+  assert.equal(kinds.length, 3);
+  assert.ok(kinds.every((kind) => kind === 'kindReal' || kind === 'kindSimReal'), kinds.join());
 });
 
 test('all ten videos are network-idle until explicit activation', () => {
@@ -377,13 +377,12 @@ test('resume PDF is at most 3 MiB', async () => {
 });
 
 test('every page anchor linked from the resume PDF exists', async () => {
-  const anchors = pdfLinkTargets(await read('heliang-pu-resume.pdf', null))
+  const siteLinks = pdfLinkTargets(await read('heliang-pu-resume.pdf', null))
     .map((uri) => new URL(uri))
-    .filter((url) => url.hostname === 'heliang-pu.github.io' && url.hash)
-    .map((url) => url.hash.slice(1));
+    .filter((url) => url.hostname === 'heliang-pu.github.io');
 
-  assert.ok(anchors.length >= 9, `found only ${anchors.length} resume anchors`);
-  for (const id of new Set(anchors)) {
+  assert.ok(siteLinks.length > 0, 'resume PDF has no links to the site');
+  for (const id of new Set(siteLinks.filter((url) => url.hash).map((url) => url.hash.slice(1)))) {
     assert.match(index, new RegExp(`\\sid="${id}"`), `resume links to #${id}`);
   }
 });

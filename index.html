@@ -514,37 +514,6 @@
       text-align: right;
     }
 
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .summary-item {
-      min-height: 144px;
-      padding: 18px;
-      border-radius: 8px;
-      border: 1px solid var(--line);
-      background: #fffdfa;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .summary-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    }
-
-    .summary-item h3 {
-      margin: 0 0 10px;
-      font-size: 1rem;
-    }
-
-    .summary-item p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
     .timeline {
       display: grid;
       gap: 18px;
@@ -712,61 +681,6 @@
       display: grid;
       align-content: start;
       gap: 12px;
-    }
-
-    .pipeline-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .pipeline-step {
-      position: relative;
-      overflow: hidden;
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fffdfa;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .pipeline-step::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto;
-      height: 4px;
-      background: linear-gradient(90deg, var(--green), var(--amber), var(--red));
-      opacity: 0.85;
-    }
-
-    .pipeline-step:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    }
-
-    .pipeline-index {
-      display: inline-grid;
-      place-items: center;
-      width: 32px;
-      height: 32px;
-      margin-bottom: 14px;
-      border-radius: 999px;
-      background: var(--ink);
-      color: #fff;
-      font-size: 0.82rem;
-      font-weight: 850;
-    }
-
-    .pipeline-step h3 {
-      margin: 0;
-      font-size: 0.98rem;
-      line-height: 1.3;
-    }
-
-    .pipeline-step p {
-      margin: 8px 0 0;
-      color: var(--muted);
-      font-size: 0.9rem;
     }
 
     .demo-grid {
@@ -1273,9 +1187,6 @@
         overflow-wrap: anywhere;
       }
 
-      .pipeline-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
     }
 
     @media (max-width: 760px) {
@@ -1289,10 +1200,8 @@
       }
 
       .contact,
-      .summary-grid,
       .featured-grid,
       .capability-grid,
-      .pipeline-grid,
       .demo-grid,
       .project-card,
       .timeline-item {
@@ -1378,7 +1287,7 @@
     }
 
     html.theme-dark .hero, html.theme-dark .section { background: rgba(30, 41, 59, 0.94); }
-    html.theme-dark .metric, html.theme-dark .summary-item, html.theme-dark .timeline-card, html.theme-dark .project-card, html.theme-dark .pipeline-step, html.theme-dark .demo-card, html.theme-dark .capability, html.theme-dark .chip, html.theme-dark .platform { background: #1a2433; }
+    html.theme-dark .metric, html.theme-dark .timeline-card, html.theme-dark .project-card, html.theme-dark .demo-card, html.theme-dark .capability, html.theme-dark .chip, html.theme-dark .platform { background: #1a2433; }
     html.theme-dark .platform-tag { background: rgba(94, 234, 212, 0.12); color: #5eead4; }
     html.theme-dark .platform-icon { background: #ffffff; border-color: rgba(255, 255, 255, 0.55); }
     html.theme-dark .result { background: var(--soft-green); border-color: #1a4a44; }
@@ -1389,14 +1298,13 @@
     html.theme-dark .tech.red { background: var(--soft-red); color: #fca5a5; }
     html.theme-dark .demo-spec-row { background: rgba(94, 234, 212, 0.08); }
     html.theme-dark .latest-badge { background: rgba(94, 234, 212, 0.14); color: #5eead4; }
-    html.theme-dark .pipeline-index { background: #5eead4; color: #0f172a; }
     html.theme-dark .school-emblem { background: #f8fafc; border-color: #334155; }
     html.theme-dark .demo-tag { color: #5eead4; }
     html.theme-dark .portrait-wrap { background: linear-gradient(135deg, #0f2b27 0%, #2a2520 100%); }
     html.theme-dark .button { background: #e2e8f0; color: #0f172a; border-color: #e2e8f0; }
     html.theme-dark .button.secondary { background: #1e293b; color: #e2e8f0; border-color: #334155; }
     html.theme-dark .button.accent { background: #134e4a; color: #5eead4; border-color: #5eead4; }
-    html.theme-dark .summary-item:hover, html.theme-dark .timeline-card:hover, html.theme-dark .project-card:hover, html.theme-dark .pipeline-step:hover, html.theme-dark .demo-card:hover, html.theme-dark .capability:hover {
+    html.theme-dark .timeline-card:hover, html.theme-dark .project-card:hover, html.theme-dark .demo-card:hover, html.theme-dark .capability:hover {
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
     html.theme-dark .chip:hover { background: var(--soft-green); }
@@ -1522,7 +1430,7 @@
         display: none;
       }
 
-      .project-card, .timeline-card, .summary-item, .capability {
+      .project-card, .timeline-card, .capability {
         break-inside: avoid;
       }
 
@@ -1591,15 +1499,13 @@
       <summary data-i18n="navTitle">目录</summary>
       <nav class="mobile-nav-body" aria-label="页面导航" data-i18n-aria="navAria">
         <div class="mobile-nav-links">
-          <a href="#overview" data-i18n="navOverview">个人概览</a>
           <a href="#experience" data-i18n="navExp">工作与教育</a>
           <a href="#projects" data-i18n="navProjects">项目经历</a>
-          <a href="#pipeline" data-i18n="navPipeline">推理闭环</a>
-          <a href="#demos" data-i18n="navDemos">Demo 展示</a>
-          <a href="#locomotion" data-i18n="navLoco">运动控制</a>
           <a href="#skills" data-i18n="navSkills">能力矩阵</a>
           <a href="#platforms" data-i18n="navPlatforms">真机平台</a>
           <a href="#awards" data-i18n="navAwards">竞赛与荣誉</a>
+          <a href="#demos" data-i18n="navDemos">Demo 展示</a>
+          <a href="#locomotion" data-i18n="navLoco">运动控制</a>
         </div>
         <div class="mobile-profile-links">
           <a href="mailto:puheliang122@gmail.com">Email</a>
@@ -1633,15 +1539,13 @@
       <nav class="side-section" aria-label="页面导航" data-i18n-aria="navAria">
         <p class="side-title" data-i18n="navTitle">目录</p>
         <div class="nav-links">
-          <a href="#overview" data-i18n="navOverview">个人概览</a>
           <a href="#experience" data-i18n="navExp">工作与教育</a>
           <a href="#projects" data-i18n="navProjects">项目经历</a>
-          <a href="#pipeline" data-i18n="navPipeline">推理闭环</a>
-          <a href="#demos" data-i18n="navDemos">Demo 展示</a>
-          <a href="#locomotion" data-i18n="navLoco">运动控制</a>
           <a href="#skills" data-i18n="navSkills">能力矩阵</a>
           <a href="#platforms" data-i18n="navPlatforms">真机平台</a>
           <a href="#awards" data-i18n="navAwards">竞赛与荣誉</a>
+          <a href="#demos" data-i18n="navDemos">Demo 展示</a>
+          <a href="#locomotion" data-i18n="navLoco">运动控制</a>
         </div>
       </nav>
 
@@ -1713,72 +1617,6 @@
           <div class="metric">
             <strong>No.1</strong>
             <span data-i18n="m4desc">本科综合排名第一 · 绩点 3.98/5 · 2024 年国家奖学金</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="featured-demos">
-        <div class="section-head">
-          <h2 data-i18n="secFeatured">精选 Demo</h2>
-          <span class="section-kicker" data-i18n="kickerFeatured">机器人推理与仿真演示</span>
-        </div>
-        <div class="featured-grid">
-          <a class="feature-card" href="#demo-10">
-            <div class="feature-thumb"><img src="assets/posters/demo12-sim2real.jpg" alt="PiPER 双臂 sim2real 抓笔交接" data-i18n-alt="demo12Title"></div>
-            <div class="feature-meta"><span>Demo 10</span><span class="demo-kind sim" data-i18n="kindSimReal">仿真 / 真机</span><span>00:23</span></div>
-            <h3 data-i18n="demo12Title">PiPER 双臂 sim2real 抓笔交接</h3>
-            <p data-i18n="demo12Desc">左右对照同一抓笔交接任务：左侧为孪生场景中的官方专家示范，右侧为混训策略的真机成功回合（2 倍速）。仿真先结束后保持末帧，完整展示抓笔、交接与放入笔筒。</p>
-          </a>
-          <a class="feature-card" href="#demo-11">
-            <div class="feature-thumb"><img src="assets/posters/harness.svg" alt="Embodied Harness 长任务调度" data-i18n-alt="harnessTitle"></div>
-            <div class="feature-meta"><span>Demo 11</span><span class="demo-kind sim" data-i18n="kindSystem">系统演示</span><span data-i18n="interactive">交互回放</span></div>
-            <h3 data-i18n="harnessTitle">Embodied Harness 长任务调度</h3>
-            <p data-i18n="harnessDesc">将规划器与机器人策略连接起来，管理子任务、记忆、结果校验和失败恢复。交互回放展示模拟分拣记录中的抓空重试与掉落后重新规划。</p>
-          </a>
-          <a class="feature-card" href="#demo-12">
-            <div class="feature-thumb"><img src="assets/posters/demo13.jpg" alt="BEHAVIOR-1K 微波炉爆米花复现" data-i18n-alt="demo13Title"></div>
-            <div class="feature-meta"><span>Demo 12</span><span class="demo-kind sim" data-i18n="kindSim">仿真</span><span>01:31</span></div>
-            <h3 data-i18n="demo13Title">BEHAVIOR-1K 微波炉爆米花复现</h3>
-            <p data-i18n="demo13Desc">基于公开代码与权重复现微波炉爆米花长任务，完成开门、抓取、放入与关门。视频来自本地成功回合；首轮 10 个实例完成 4 个，用于复现与失败分析。</p>
-          </a>
-          <a class="feature-card" href="#demo-07">
-            <div class="feature-thumb"><img src="assets/posters/demo9.webp" alt="π0.6 RECAP 手机插拔精细操作封面"></div>
-            <div class="feature-meta"><span>Demo 07</span><span class="demo-kind" data-i18n="kindReal">真机</span><span>01:02</span></div>
-            <h3 data-i18n="demo9Title">π0.6 RECAP 手机插拔精细操作</h3>
-            <p data-i18n="demo9Desc">基于 π0.6 RECAP 强化学习完成手机接口插入与拔出，验证真实平台在小间隙、强接触约束下的精细操作稳定性。</p>
-          </a>
-          <a class="feature-card" href="#demo-09">
-            <div class="feature-thumb"><img src="assets/posters/demo11.webp" alt="宇树 G1 全身控制搬箱子封面"></div>
-            <div class="feature-meta"><span>Demo 09</span><span class="demo-kind sim" data-i18n="kindSim">仿真</span><span>00:30</span></div>
-            <h3 data-i18n="demo11Title">宇树 G1 全身 loco-manipulation 搬箱子</h3>
-            <p data-i18n="demo11Desc">基于 Isaac Sim 中的宇树 G1 完成全身 loco-manipulation 搬箱子任务，结合 GR00T VLA 推理实现全身协同控制与目标搬运。</p>
-          </a>
-          <a class="feature-card" href="#demo-08">
-            <div class="feature-thumb"><img src="assets/posters/demo10.webp" alt="openpi 复现 π0.5 Subtask 长任务拆解封面"></div>
-            <div class="feature-meta"><span>Demo 08</span><span class="demo-kind sim" data-i18n="kindSim">仿真</span><span>00:24</span></div>
-            <h3 data-i18n="demo10Title">openpi 复现 π0.5 Subtask 长任务拆解</h3>
-            <p data-i18n="demo10Desc">基于 openpi 复现 π0.5 中提出但官方未开源的 subtask 子任务拆解能力，将双杯放置长任务分解为可跟踪的阶段，并在仿真 rollout 中完成执行。</p>
-          </a>
-        </div>
-      </section>
-
-      <section class="section" id="overview">
-        <div class="section-head">
-          <h2 data-i18n="secOverview">个人概览</h2>
-          <span class="section-kicker" data-i18n="kickerOverview">能把研究模型接到真实设备上的工程型选手</span>
-        </div>
-        <div class="summary-grid">
-          <div class="summary-item">
-            <h3 data-i18n="sum1t">前沿算法 → 真机</h3>
-            <p data-i18n="sum1d">能读懂并复现 VLA、Diffusion Policy、Offline RL 等前沿方法（如 π0.6 RECAP 自改进、π0.5 subtask 拆解），并把模型能力落到真实机器人上。</p>
-          </div>
-          <div class="summary-item">
-            <h3 data-i18n="sum2t">全链路工程</h3>
-            <p data-i18n="sum2d">硬件联调、遥操作与外骨骼数采、数据清洗、训练配置、inference server 到技能调度一条链路打通，沉淀跨平台可复用的机器人适配层。</p>
-          </div>
-          <div class="summary-item">
-            <h3 data-i18n="sum3t">多本体落地</h3>
-            <p data-i18n="sum3d">机械臂、灵巧手、人形三类本体的策略迁移与部署：松灵、智元、傅利叶 GR2 真机，宇树 G1 仿真验证。</p>
           </div>
         </div>
       </section>
@@ -1973,37 +1811,171 @@
         </div>
       </section>
 
-      <section class="section" id="pipeline">
+      <section class="section" id="featured-demos">
         <div class="section-head">
-          <h2 data-i18n="secPipeline">端到端推理闭环</h2>
-          <span class="section-kicker" data-i18n="kickerPipeline">从数据到真机执行的可复现实验链路</span>
+          <h2 data-i18n="secFeatured">精选 Demo</h2>
+          <span class="section-kicker" data-i18n="kickerFeatured">真机部署与 sim2real 演示</span>
         </div>
-        <div class="pipeline-grid">
-          <article class="pipeline-step">
-            <span class="pipeline-index">01</span>
-            <h3 data-i18n="pipeStep1Title">真实平台采集</h3>
-            <p data-i18n="pipeStep1Desc">接入机械臂、灵巧手、人形机器人与多相机输入，完成示教、外骨骼或任务过程数据采集。</p>
-          </article>
-          <article class="pipeline-step">
-            <span class="pipeline-index">02</span>
-            <h3 data-i18n="pipeStep2Title">数据集转换</h3>
-            <p data-i18n="pipeStep2Desc">统一状态、动作、图像和时间戳格式，沉淀 LeRobot Dataset、Replay 与质量检查流程。</p>
-          </article>
-          <article class="pipeline-step">
-            <span class="pipeline-index">03</span>
-            <h3 data-i18n="pipeStep3Title">策略训练对比</h3>
-            <p data-i18n="pipeStep3Desc">围绕 ACT、Diffusion Policy、π0 / π0.5 / π0.6、GR00T 管理训练配置、Checkpoint 和实验指标。</p>
-          </article>
-          <article class="pipeline-step">
-            <span class="pipeline-index">04</span>
-            <h3 data-i18n="pipeStep4Title">推理服务部署</h3>
-            <p data-i18n="pipeStep4Desc">构建 inference server，适配 get_state / send_action，支持异步推理、RTC 与 action chunk 执行。</p>
-          </article>
-          <article class="pipeline-step">
-            <span class="pipeline-index">05</span>
-            <h3 data-i18n="pipeStep5Title">真机闭环验证</h3>
-            <p data-i18n="pipeStep5Desc">在真实任务中观察成功率、延迟、动作稳定性和失败模式，反向迭代数据与策略。</p>
-          </article>
+        <div class="featured-grid">
+          <a class="feature-card" href="#demo-07">
+            <div class="feature-thumb"><img src="assets/posters/demo9.webp" alt="π0.6 RECAP 手机插拔精细操作" data-i18n-alt="demo9Title"></div>
+            <div class="feature-meta"><span>Demo 07</span><span class="demo-kind" data-i18n="kindReal">真机</span><span>01:02</span></div>
+            <h3 data-i18n="demo9Title">π0.6 RECAP 手机插拔精细操作</h3>
+            <p data-i18n="demo9Desc">基于 π0.6 RECAP 强化学习完成手机接口插入与拔出，验证真实平台在小间隙、强接触约束下的精细操作稳定性。</p>
+          </a>
+          <a class="feature-card" href="#demo-01">
+            <div class="feature-thumb"><img src="assets/posters/demo1.webp" alt="双臂灵巧手小物品精细抓取" data-i18n-alt="demo1Title"></div>
+            <div class="feature-meta"><span>Demo 01</span><span class="demo-kind" data-i18n="kindReal">真机</span><span>00:18</span></div>
+            <h3 data-i18n="demo1Title">双臂灵巧手小物品精细抓取</h3>
+            <p data-i18n="demo1Desc">双臂平台完成小目标定位、夹取与放置，展示灵巧手精细控制与真实任务稳定性。</p>
+          </a>
+          <a class="feature-card" href="#demo-10">
+            <div class="feature-thumb"><img src="assets/posters/demo12-sim2real.jpg" alt="PiPER 双臂 sim2real 抓笔交接" data-i18n-alt="demo12Title"></div>
+            <div class="feature-meta"><span>Demo 10</span><span class="demo-kind sim" data-i18n="kindSimReal">仿真 / 真机</span><span>00:23</span></div>
+            <h3 data-i18n="demo12Title">PiPER 双臂 sim2real 抓笔交接</h3>
+            <p data-i18n="demo12Desc">左右对照同一抓笔交接任务：左侧为孪生场景中的官方专家示范，右侧为混训策略的真机成功回合（2 倍速）。仿真先结束后保持末帧，完整展示抓笔、交接与放入笔筒。</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="section-head">
+          <h2 data-i18n="secSkills">能力矩阵</h2>
+          <span class="section-kicker" data-i18n="kickerSkills">工程、模型、数据、部署四线闭环</span>
+        </div>
+        <div class="capability-grid">
+          <div class="capability">
+            <h3 data-i18n="cap1t">数据采集与数据集工程</h3>
+            <p data-i18n="cap1d">Teleoperation、外骨骼采集、多相机数据、数据清洗、Replay、LeRobot Dataset、Demonstration 管理。</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap2t">机器人平台适配</h3>
+            <p data-i18n="cap2d">完成机械臂、灵巧手、人形机器人平台的 get_state / send_action、相机、夹爪、触觉与控制接口适配。</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap3t">策略模型训练</h3>
+            <p data-i18n="cap3d">基于 ACT、Diffusion Policy、π0 / π0.5 / π0.6、GR00T 开展策略训练与对比，复现 RECAP 的 offline RL 与 advantage conditioning 自改进流程。</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap4t">真机推理与实时执行</h3>
+            <p data-i18n="cap4d">构建 inference server，支持异步推理、RTC、Action Chunk 执行、延迟优化与真实设备闭环测试。</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap5t">多模态感知与融合</h3>
+            <p data-i18n="cap5d">围绕 RGB 相机、腕部相机、触觉 encoder、VLM/RoboBrain VLM 进行多模态状态输入与反馈融合。</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap6t">技能调度与任务编排</h3>
+            <p data-i18n="cap6d">集成 RoboOS Skill 调用、高层任务分解、多技能调度与分拣流程控制。</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap7t">评估与失败分析</h3>
+            <p data-i18n="cap7d">关注成功率、动作稳定性、Baseline 对比、失败案例归因、数据分布检查与策略泛化表现。</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap8t">AI 辅助工程开发</h3>
+            <p data-i18n="cap8d">结合 Cursor、Claude Code、Codex 提升机器人接口适配、数据脚本开发、训练调参与实验迭代效率。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="platforms">
+        <div class="section-head">
+          <h2 data-i18n="secPlatforms">真机平台</h2>
+          <span class="section-kicker" data-i18n="kickerPlatforms">上手过的机器人本体、动捕与遥操作硬件</span>
+        </div>
+        <div class="platform-grid">
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/fourier.png" alt="" loading="lazy"></span>
+            <strong class="platform-name">傅利叶</strong>
+            <span class="platform-tag" data-i18n="ptHumanoid">人形机器人</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/agibot.png" alt="" loading="lazy"></span>
+            <strong class="platform-name">智元</strong>
+            <span class="platform-tag" data-i18n="ptHumanoid">人形机器人</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/agilex.png" alt="" loading="lazy"></span>
+            <strong class="platform-name">松灵</strong>
+            <span class="platform-tag" data-i18n="ptArm">协作机械臂</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/discover.png" alt="" loading="lazy"></span>
+            <strong class="platform-name">求之</strong>
+            <span class="platform-tag" data-i18n="ptResearchArm">科研机械臂</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/inovance.png" alt="" loading="lazy"></span>
+            <strong class="platform-name">汇川</strong>
+            <span class="platform-tag" data-i18n="ptIndustrial">工业自动化</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/manus.png" alt="" loading="lazy"></span>
+            <strong class="platform-name">Manus</strong>
+            <span class="platform-tag" data-i18n="ptGlove">数据手套</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/xsens.png" alt="" loading="lazy"></span>
+            <strong class="platform-name">Xsens</strong>
+            <span class="platform-tag" data-i18n="ptMocap">全身动捕</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/meta.png" alt="" loading="lazy"></span>
+            <strong class="platform-name">Meta Quest</strong>
+            <span class="platform-tag" data-i18n="ptVR">VR 遥操作</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="awards">
+        <div class="section-head">
+          <h2 data-i18n="secAwards">竞赛与荣誉</h2>
+          <span class="section-kicker" data-i18n="kickerAwards">算法、机器人与综合能力积累</span>
+        </div>
+        <div class="awards">
+          <div class="award">
+            <div class="award-year" data-i18n="a1y">奖学金</div>
+            <div>
+              <strong data-i18n="a1t">2024 国家奖学金</strong>
+              <span data-i18n="a1d">综合排名第一；连续三次人民奖学金、三好学生，国家励志奖学金。</span>
+            </div>
+          </div>
+          <div class="award">
+            <div class="award-year" data-i18n="a6y">边缘 AI</div>
+            <div>
+              <strong data-i18n="a6t">ICAN 大学生创新创业大赛「边缘 AI+行业」挑战赛</strong>
+              <span data-i18n="a6d">队长，全国二等奖。</span>
+            </div>
+          </div>
+          <div class="award">
+            <div class="award-year" data-i18n="a2y">智能车</div>
+            <div>
+              <strong data-i18n="a2t">全国大学生智能车竞赛智慧物流创意组</strong>
+              <span data-i18n="a2d">队长，全国三等奖 / 华东赛区二等奖。</span>
+            </div>
+          </div>
+          <div class="award">
+            <div class="award-year" data-i18n="a3y">模型训练</div>
+            <div>
+              <strong data-i18n="a3t">全国大学生智能车竞赛智慧医疗创意组</strong>
+              <span data-i18n="a3d">负责模型训练与量化，华东赛区二等奖。</span>
+            </div>
+          </div>
+          <div class="award">
+            <div class="award-year" data-i18n="a4y">机器人</div>
+            <div>
+              <strong data-i18n="a4t">航天杯移动机器人 AI 创新技术挑战赛</strong>
+              <span data-i18n="a4d">队长，全国三等奖。</span>
+            </div>
+          </div>
+          <div class="award">
+            <div class="award-year" data-i18n="a5y">科研实践</div>
+            <div>
+              <strong data-i18n="a5t">江苏省大学生创新创业训练计划项目</strong>
+              <span data-i18n="a5d">期刊：基于 OpenMV 的新型智能门锁设计。</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -2345,147 +2317,6 @@
         </div>
       </section>
 
-      <section class="section" id="skills">
-        <div class="section-head">
-          <h2 data-i18n="secSkills">能力矩阵</h2>
-          <span class="section-kicker" data-i18n="kickerSkills">工程、模型、数据、部署四线闭环</span>
-        </div>
-        <div class="capability-grid">
-          <div class="capability">
-            <h3 data-i18n="cap1t">数据采集与数据集工程</h3>
-            <p data-i18n="cap1d">Teleoperation、外骨骼采集、多相机数据、数据清洗、Replay、LeRobot Dataset、Demonstration 管理。</p>
-          </div>
-          <div class="capability">
-            <h3 data-i18n="cap2t">机器人平台适配</h3>
-            <p data-i18n="cap2d">完成机械臂、灵巧手、人形机器人平台的 get_state / send_action、相机、夹爪、触觉与控制接口适配。</p>
-          </div>
-          <div class="capability">
-            <h3 data-i18n="cap3t">策略模型训练</h3>
-            <p data-i18n="cap3d">基于 ACT、Diffusion Policy、π0 / π0.5 / π0.6、GR00T 开展策略训练与对比，复现 RECAP 的 offline RL 与 advantage conditioning 自改进流程。</p>
-          </div>
-          <div class="capability">
-            <h3 data-i18n="cap4t">真机推理与实时执行</h3>
-            <p data-i18n="cap4d">构建 inference server，支持异步推理、RTC、Action Chunk 执行、延迟优化与真实设备闭环测试。</p>
-          </div>
-          <div class="capability">
-            <h3 data-i18n="cap5t">多模态感知与融合</h3>
-            <p data-i18n="cap5d">围绕 RGB 相机、腕部相机、触觉 encoder、VLM/RoboBrain VLM 进行多模态状态输入与反馈融合。</p>
-          </div>
-          <div class="capability">
-            <h3 data-i18n="cap6t">技能调度与任务编排</h3>
-            <p data-i18n="cap6d">集成 RoboOS Skill 调用、高层任务分解、多技能调度与分拣流程控制。</p>
-          </div>
-          <div class="capability">
-            <h3 data-i18n="cap7t">评估与失败分析</h3>
-            <p data-i18n="cap7d">关注成功率、动作稳定性、Baseline 对比、失败案例归因、数据分布检查与策略泛化表现。</p>
-          </div>
-          <div class="capability">
-            <h3 data-i18n="cap8t">AI 辅助工程开发</h3>
-            <p data-i18n="cap8d">结合 Cursor、Claude Code、Codex 提升机器人接口适配、数据脚本开发、训练调参与实验迭代效率。</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="platforms">
-        <div class="section-head">
-          <h2 data-i18n="secPlatforms">真机平台</h2>
-          <span class="section-kicker" data-i18n="kickerPlatforms">上手过的机器人本体、动捕与遥操作硬件</span>
-        </div>
-        <div class="platform-grid">
-          <div class="platform">
-            <span class="platform-icon"><img src="assets/logos/fourier.png" alt="" loading="lazy"></span>
-            <strong class="platform-name">傅利叶</strong>
-            <span class="platform-tag" data-i18n="ptHumanoid">人形机器人</span>
-          </div>
-          <div class="platform">
-            <span class="platform-icon"><img src="assets/logos/agibot.png" alt="" loading="lazy"></span>
-            <strong class="platform-name">智元</strong>
-            <span class="platform-tag" data-i18n="ptHumanoid">人形机器人</span>
-          </div>
-          <div class="platform">
-            <span class="platform-icon"><img src="assets/logos/agilex.png" alt="" loading="lazy"></span>
-            <strong class="platform-name">松灵</strong>
-            <span class="platform-tag" data-i18n="ptArm">协作机械臂</span>
-          </div>
-          <div class="platform">
-            <span class="platform-icon"><img src="assets/logos/discover.png" alt="" loading="lazy"></span>
-            <strong class="platform-name">求之</strong>
-            <span class="platform-tag" data-i18n="ptResearchArm">科研机械臂</span>
-          </div>
-          <div class="platform">
-            <span class="platform-icon"><img src="assets/logos/inovance.png" alt="" loading="lazy"></span>
-            <strong class="platform-name">汇川</strong>
-            <span class="platform-tag" data-i18n="ptIndustrial">工业自动化</span>
-          </div>
-          <div class="platform">
-            <span class="platform-icon"><img src="assets/logos/manus.png" alt="" loading="lazy"></span>
-            <strong class="platform-name">Manus</strong>
-            <span class="platform-tag" data-i18n="ptGlove">数据手套</span>
-          </div>
-          <div class="platform">
-            <span class="platform-icon"><img src="assets/logos/xsens.png" alt="" loading="lazy"></span>
-            <strong class="platform-name">Xsens</strong>
-            <span class="platform-tag" data-i18n="ptMocap">全身动捕</span>
-          </div>
-          <div class="platform">
-            <span class="platform-icon"><img src="assets/logos/meta.png" alt="" loading="lazy"></span>
-            <strong class="platform-name">Meta Quest</strong>
-            <span class="platform-tag" data-i18n="ptVR">VR 遥操作</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="awards">
-        <div class="section-head">
-          <h2 data-i18n="secAwards">竞赛与荣誉</h2>
-          <span class="section-kicker" data-i18n="kickerAwards">算法、机器人与综合能力积累</span>
-        </div>
-        <div class="awards">
-          <div class="award">
-            <div class="award-year" data-i18n="a1y">奖学金</div>
-            <div>
-              <strong data-i18n="a1t">2024 国家奖学金</strong>
-              <span data-i18n="a1d">综合排名第一；连续三次人民奖学金、三好学生，国家励志奖学金。</span>
-            </div>
-          </div>
-          <div class="award">
-            <div class="award-year" data-i18n="a6y">边缘 AI</div>
-            <div>
-              <strong data-i18n="a6t">ICAN 大学生创新创业大赛「边缘 AI+行业」挑战赛</strong>
-              <span data-i18n="a6d">队长，全国二等奖。</span>
-            </div>
-          </div>
-          <div class="award">
-            <div class="award-year" data-i18n="a2y">智能车</div>
-            <div>
-              <strong data-i18n="a2t">全国大学生智能车竞赛智慧物流创意组</strong>
-              <span data-i18n="a2d">队长，全国三等奖 / 华东赛区二等奖。</span>
-            </div>
-          </div>
-          <div class="award">
-            <div class="award-year" data-i18n="a3y">模型训练</div>
-            <div>
-              <strong data-i18n="a3t">全国大学生智能车竞赛智慧医疗创意组</strong>
-              <span data-i18n="a3d">负责模型训练与量化，华东赛区二等奖。</span>
-            </div>
-          </div>
-          <div class="award">
-            <div class="award-year" data-i18n="a4y">机器人</div>
-            <div>
-              <strong data-i18n="a4t">航天杯移动机器人 AI 创新技术挑战赛</strong>
-              <span data-i18n="a4d">队长，全国三等奖。</span>
-            </div>
-          </div>
-          <div class="award">
-            <div class="award-year" data-i18n="a5y">科研实践</div>
-            <div>
-              <strong data-i18n="a5t">江苏省大学生创新创业训练计划项目</strong>
-              <span data-i18n="a5d">期刊：基于 OpenMV 的新型智能门锁设计。</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <footer class="footer">© 2026 蒲贺良 · <span data-i18n="footerUpdated">Last updated: 2026.10</span></footer>
     </main>
   </div>
@@ -2519,7 +2350,7 @@
         pitch: '从 π0、π0.5 到 π0.6 RECAP，覆盖数据采集、策略训练、推理部署到技能调度的全链路，让研究模型在真实机器人上稳定落地。',
         bilibili: '哔哩哔哩',
         navTitle: '目录',
-        navOverview: '个人概览', navExp: '工作与教育', navProjects: '项目经历', navPipeline: '推理闭环', navDemos: 'Demo 展示', navLoco: '运动控制', navSkills: '能力矩阵', navAwards: '竞赛与荣誉',
+        navExp: '工作与教育', navProjects: '项目经历', navDemos: 'Demo 展示', navLoco: '运动控制', navSkills: '能力矩阵', navAwards: '竞赛与荣誉',
         navPlatforms: '真机平台',
         secPlatforms: '真机平台', kickerPlatforms: '上手过的机器人本体、动捕与遥操作硬件',
         ptHumanoid: '人形机器人', ptArm: '协作机械臂', ptResearchArm: '科研机械臂', ptIndustrial: '工业自动化', ptGlove: '数据手套', ptMocap: '全身动捕', ptVR: 'VR 遥操作',
@@ -2562,12 +2393,7 @@
         harnessOpen: "打开交互式任务回放",
         harnessPreviewAlt: "Embodied Harness 规划、执行、校验与失败恢复示意图",
         /* featured */
-        secFeatured: '精选 Demo', kickerFeatured: '机器人推理与仿真演示',
-        /* overview */
-        secOverview: '个人概览', kickerOverview: '能把研究模型接到真实设备上的工程型选手',
-        sum1t: '前沿算法 → 真机', sum1d: '能读懂并复现 VLA、Diffusion Policy、Offline RL 等前沿方法（如 π0.6 RECAP 自改进、π0.5 subtask 拆解），并把模型能力落到真实机器人上。',
-        sum2t: '全链路工程', sum2d: '硬件联调、遥操作与外骨骼数采、数据清洗、训练配置、inference server 到技能调度一条链路打通，沉淀跨平台可复用的机器人适配层。',
-        sum3t: '多本体落地', sum3d: '机械臂、灵巧手、人形三类本体的策略迁移与部署：松灵、智元、傅利叶 GR2 真机，宇树 G1 仿真验证。',
+        secFeatured: '精选 Demo', kickerFeatured: '真机部署与 sim2real 演示',
         /* experience */
         secExp: '工作与教育', kickerExp: '机器人实践 + 软件工程训练',
         exp1time: '2026.01 - 至今',
@@ -2602,13 +2428,6 @@
         p3b2: '基于 ACT、Diffusion Policy、π0 开展策略训练与验证，完成模型训练、推理部署和闭环测试。',
         p3b3: '对比不同策略在异形物体抓取、夹取入盒场景下的动作稳定性、任务完成效果与部署流程。',
         tech_real: '真实部署', p3r1v: '示教数据采集', p3r2k: '3 种策略', p3r2v: 'ACT / DP / π0 对比验证',
-        /* pipeline */
-        secPipeline: '端到端推理闭环', kickerPipeline: '从数据到真机执行的可复现实验链路',
-        pipeStep1Title: '真实平台采集', pipeStep1Desc: '接入机械臂、灵巧手、人形机器人与多相机输入，完成示教、外骨骼或任务过程数据采集。',
-        pipeStep2Title: '数据集转换', pipeStep2Desc: '统一状态、动作、图像和时间戳格式，沉淀 LeRobot Dataset、Replay 与质量检查流程。',
-        pipeStep3Title: '策略训练对比', pipeStep3Desc: '围绕 ACT、Diffusion Policy、π0 / π0.5 / π0.6、GR00T 管理训练配置、Checkpoint 和实验指标。',
-        pipeStep4Title: '推理服务部署', pipeStep4Desc: '构建 inference server，适配 get_state / send_action，支持异步推理、RTC 与 action chunk 执行。',
-        pipeStep5Title: '真机闭环验证', pipeStep5Desc: '在真实任务中观察成功率、延迟、动作稳定性和失败模式，反向迭代数据与策略。',
         /* demos */
         secDemos: 'Demo 与系统演示', kickerDemos: '真实机器人、仿真与视觉控制演示',
         secLoco: '运动控制', kickerLoco: '人形机器人强化学习步态',
@@ -2698,7 +2517,7 @@
         pitch: 'From π0 and π0.5 to π0.6 RECAP—covering data collection, policy training, inference deployment, and skill orchestration so research models run reliably on real robots.',
         bilibili: 'Bilibili',
         navTitle: 'Contents',
-        navOverview: 'Overview', navExp: 'Experience', navProjects: 'Projects', navPipeline: 'Inference Loop', navDemos: 'Demos', navLoco: 'Locomotion', navSkills: 'Skills', navAwards: 'Awards',
+        navExp: 'Experience', navProjects: 'Projects', navDemos: 'Demos', navLoco: 'Locomotion', navSkills: 'Skills', navAwards: 'Awards',
         navPlatforms: 'Hardware',
         secPlatforms: 'Hardware Platforms', kickerPlatforms: 'Robots, mocap & teleop hardware I have worked on',
         ptHumanoid: 'Humanoid Robot', ptArm: 'Collaborative Arm', ptResearchArm: 'Research Arm', ptIndustrial: 'Industrial Automation', ptGlove: 'Data Glove', ptMocap: 'Motion Capture', ptVR: 'VR Teleoperation',
@@ -2741,12 +2560,7 @@
         harnessOpen: "Open interactive task replay",
         harnessPreviewAlt: "Embodied Harness planning, execution, verification, and recovery diagram",
         /* featured */
-        secFeatured: 'Featured Demos', kickerFeatured: 'Robot inference and simulation demos',
-        /* overview */
-        secOverview: 'Overview', kickerOverview: 'An engineer who bridges research models to real hardware',
-        sum1t: 'Frontier Methods → Real Robots', sum1d: 'Reads and reproduces frontier methods such as VLA, Diffusion Policy, and offline RL (e.g., π0.6 RECAP self-improvement, π0.5 subtask decomposition), and turns them into capabilities on real robots.',
-        sum2t: 'Full-Stack Engineering', sum2d: 'Hardware bring-up, teleoperation and exoskeleton data capture, data cleaning, training configs, inference servers, and skill orchestration in one connected pipeline, with a reusable cross-platform robot adaptation layer.',
-        sum3t: 'Multi-Embodiment Deployment', sum3d: 'Policy transfer and deployment across arms, dexterous hands, and humanoids: AgileX, AgiBot, and Fourier GR2 on real hardware; Unitree G1 validated in simulation.',
+        secFeatured: 'Featured Demos', kickerFeatured: 'Real-robot deployment and sim2real demos',
         /* experience */
         secExp: 'Experience', kickerExp: 'Robotics Practice + Software Engineering',
         exp1time: '2026.01 - Present',
@@ -2781,13 +2595,6 @@
         p3b2: 'Trained and validated policies with ACT, Diffusion Policy, and π0; completed model training, inference deployment, and closed-loop testing.',
         p3b3: 'Compared different policies on irregular object grasping and box-insertion for motion stability, task completion, and deployment workflow.',
         tech_real: 'Real Deployment', p3r1v: 'Demonstration data collected', p3r2k: '3 Policies', p3r2v: 'ACT / DP / π0 compared',
-        /* pipeline */
-        secPipeline: 'End-to-End Inference Loop', kickerPipeline: 'A reproducible path from data to real-robot execution',
-        pipeStep1Title: 'Real-Platform Capture', pipeStep1Desc: 'Connect robotic arms, dexterous hands, humanoids, and multi-camera inputs for teaching, exoskeleton, or task-process data capture.',
-        pipeStep2Title: 'Dataset Conversion', pipeStep2Desc: 'Normalize states, actions, images, and timestamps into LeRobot Dataset, replay, and quality-check workflows.',
-        pipeStep3Title: 'Policy Training', pipeStep3Desc: 'Manage training configs, checkpoints, and experiment metrics across ACT, Diffusion Policy, π0 / π0.5 / π0.6, and GR00T.',
-        pipeStep4Title: 'Inference Service', pipeStep4Desc: 'Build inference servers, adapt get_state / send_action, and support async inference, RTC, and action chunk execution.',
-        pipeStep5Title: 'Real-Robot Validation', pipeStep5Desc: 'Measure success rate, latency, motion stability, and failure modes in real tasks, then iterate data and policies.',
         /* demos */
         secDemos: 'Demos & System Replays', kickerDemos: 'Real-robot, simulation, and vision-control demos',
         secLoco: 'Locomotion', kickerLoco: 'Reinforcement-learning gaits for humanoid robots',
