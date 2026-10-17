@@ -1703,10 +1703,10 @@
         </div>
         <div class="featured-grid">
           <a class="feature-card" href="#demo-10">
-            <div class="feature-thumb"><img src="assets/posters/demo12.jpg" alt="PiPER 双臂 sim2real 抓笔交接" data-i18n-alt="demo12Title"></div>
-            <div class="feature-meta"><span>Demo 10</span><span class="demo-kind" data-i18n="kindReal">真机</span><span>00:23</span></div>
+            <div class="feature-thumb"><img src="assets/posters/demo12-sim2real.jpg" alt="PiPER 双臂 sim2real 抓笔交接" data-i18n-alt="demo12Title"></div>
+            <div class="feature-meta"><span>Demo 10</span><span class="demo-kind sim" data-i18n="kindSimReal">仿真 / 真机</span><span>00:23</span></div>
             <h3 data-i18n="demo12Title">PiPER 双臂 sim2real 抓笔交接</h3>
-            <p data-i18n="demo12Desc">双臂 PiPER 完成抓笔、交接与放入笔筒。结合相机位姿对齐、数字孪生与仿真/真机数据混训，验证策略从仿真走向真实平台；视频为单次成功演示，2 倍速播放。</p>
+            <p data-i18n="demo12Desc">左右对照同一抓笔交接任务：左侧为孪生场景中的官方专家示范，右侧为混训策略的真机成功回合（2 倍速）。仿真先结束后保持末帧，完整展示抓笔、交接与放入笔筒。</p>
           </a>
           <a class="feature-card" href="#demo-11">
             <div class="feature-thumb"><img src="assets/posters/harness.svg" alt="Embodied Harness 长任务调度" data-i18n-alt="harnessTitle"></div>
@@ -1958,19 +1958,19 @@
         <div class="demo-grid">
           <article class="demo-card" id="demo-10">
             <div class="demo-media">
-              <video controls muted playsinline preload="none" poster="assets/posters/demo12.jpg" aria-label="播放 PiPER 双臂 sim2real 抓笔交接真机演示" data-i18n-aria="demo12Aria">
-                <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo12.mp4" type="video/mp4">
+              <video controls muted playsinline preload="none" poster="assets/posters/demo12-sim2real.jpg" aria-label="播放 PiPER 双臂仿真与真机抓笔交接对照" data-i18n-aria="demo12Aria">
+                <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo12-sim2real.mp4" type="video/mp4">
               </video>
             </div>
-            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo12.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
+            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo12-sim2real.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
             <div class="demo-body">
               <div class="demo-meta"><span>Demo 10 · PiPER</span><span>00:23</span></div>
               <h3 data-i18n="demo12Title">PiPER 双臂 sim2real 抓笔交接</h3>
-              <p data-i18n="demo12Desc">双臂 PiPER 完成抓笔、交接与放入笔筒。结合相机位姿对齐、数字孪生与仿真/真机数据混训，验证策略从仿真走向真实平台；视频为单次成功演示，2 倍速播放。</p>
+              <p data-i18n="demo12Desc">左右对照同一抓笔交接任务：左侧为孪生场景中的官方专家示范，右侧为混训策略的真机成功回合（2 倍速）。仿真先结束后保持末帧，完整展示抓笔、交接与放入笔筒。</p>
               <div class="demo-spec-grid">
                 <div class="demo-spec-row"><span class="demo-spec-label" data-i18n="specPlatform">平台</span><strong class="demo-spec-value" data-i18n="demo12Platform">双臂 PiPER · 三路 RealSense</strong></div>
                 <div class="demo-spec-row"><span class="demo-spec-label" data-i18n="specPolicy">策略</span><strong class="demo-spec-value" data-i18n="demo12Policy">仿真 / 真机数据混训</strong></div>
-                <div class="demo-spec-row"><span class="demo-spec-label" data-i18n="specMode">模式</span><strong class="demo-spec-value" data-i18n="demo12Mode">真机单次成功 · 2 倍速</strong></div>
+                <div class="demo-spec-row"><span class="demo-spec-label" data-i18n="specMode">模式</span><strong class="demo-spec-value" data-i18n="demo12Mode">仿真专家 / 真机策略对照</strong></div>
               </div>
             </div>
           </article>
@@ -2541,15 +2541,15 @@
         m3desc: '机械臂、灵巧手、人形机器人平台适配与部署经验',
         m3val: '3 类',
         m4desc: '本科综合排名第一，2024 年国家奖学金获得者',
-        kindReal: '真机', kindSim: '仿真',
+        kindReal: '真机', kindSim: '仿真', kindSimReal: '仿真 / 真机',
         kindSystem: "系统演示",
         interactive: "交互回放",
         demo12Title: "PiPER 双臂 sim2real 抓笔交接",
-        demo12Desc: "双臂 PiPER 完成抓笔、交接与放入笔筒。结合相机位姿对齐、数字孪生与仿真/真机数据混训，验证策略从仿真走向真实平台；视频为单次成功演示，2 倍速播放。",
+        demo12Desc: "左右对照同一抓笔交接任务：左侧为孪生场景中的官方专家示范，右侧为混训策略的真机成功回合（2 倍速）。仿真先结束后保持末帧，完整展示抓笔、交接与放入笔筒。",
         demo12Platform: "双臂 PiPER · 三路 RealSense",
         demo12Policy: "仿真 / 真机数据混训",
-        demo12Mode: "真机单次成功 · 2 倍速",
-        demo12Aria: "播放 PiPER 双臂 sim2real 抓笔交接真机演示",
+        demo12Mode: "仿真专家 / 真机策略对照",
+        demo12Aria: "播放 PiPER 双臂仿真与真机抓笔交接对照",
         demo13Title: "BEHAVIOR-1K 微波炉爆米花复现",
         demo13Desc: "基于公开代码与权重复现微波炉爆米花长任务，完成开门、抓取、放入与关门。视频来自本地成功回合；首轮 10 个实例完成 4 个，用于复现与失败分析。",
         demo13Platform: "BEHAVIOR-1K · 仿真",
@@ -2720,15 +2720,15 @@
         m3desc: 'Robotic arm, dexterous hand & humanoid platform adaptation & deployment',
         m3val: '3 Types',
         m4desc: "Ranked #1 in undergraduate cohort, 2024 National Scholarship recipient",
-        kindReal: 'Real robot', kindSim: 'Simulation',
+        kindReal: 'Real robot', kindSim: 'Simulation', kindSimReal: 'Sim / Real',
         kindSystem: "System demo",
         interactive: "Interactive replay",
         demo12Title: "PiPER Dual-Arm Sim2Real Handover",
-        demo12Desc: "Two PiPER arms pick up a pen, hand it over, and place it in a holder. Camera-pose alignment, a digital twin, and mixed simulation/real training support deployment. One successful real-robot rollout, shown at 2× speed.",
+        demo12Desc: "Side-by-side pen handover: an official expert demonstration in the digital twin on the left, and one successful real-robot rollout from the mixed-data policy at 2× speed on the right. The simulation holds its final frame after completion.",
         demo12Platform: "Dual PiPER arms · Three RealSense cameras",
         demo12Policy: "Mixed simulation / real training",
-        demo12Mode: "One real-robot success · 2× speed",
-        demo12Aria: "Play PiPER dual-arm sim2real pen handover",
+        demo12Mode: "Simulated expert / Real robot policy",
+        demo12Aria: "Play PiPER simulation and real-robot handover comparison",
         demo13Title: "BEHAVIOR-1K Microwave Popcorn Reproduction",
         demo13Desc: "Reproducing a long-horizon popcorn task with public code and weights: open, grasp, place, and close. This successful local episode is part of an initial 10-instance run with 4 successes, used for reproduction and failure analysis.",
         demo13Platform: "BEHAVIOR-1K · Simulation",

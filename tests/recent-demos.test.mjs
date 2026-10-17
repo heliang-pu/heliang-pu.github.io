@@ -24,7 +24,7 @@ test('new demo entries link to two playable videos and one bilingual interactive
       assert.doesNotMatch(card, /<video/);
     } else {
       assert.match(card, /preload="none"/);
-      assert.match(card, /site-media\/demo1[23]\.mp4/);
+      assert.match(card, /site-media\/(?:demo12-sim2real|demo13)\.mp4/);
     }
   }
   assert.match(replay, /mock 规划器与执行器/);

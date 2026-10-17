@@ -202,7 +202,7 @@ test('all twelve videos are network-idle until explicit activation', () => {
 
     assert.equal(attr(video, 'preload'), 'none');
     const deferredUrl = attr(source, 'data-src');
-    assert.match(deferredUrl, /site-media\/(?:demo|loco)\d+\.mp4$/);
+    assert.match(deferredUrl, /site-media\/(?:demo|loco)\d+(?:-[a-z0-9-]+)?\.mp4$/);
     assert.equal(attr(source, 'src'), undefined);
     assert.equal(attr(fallback, 'href'), deferredUrl);
     assert.equal(attr(fallback, 'target'), '_blank');
