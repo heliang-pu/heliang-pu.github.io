@@ -1,18 +1,18 @@
 # heliang-pu.github.io
 
-蒲贺良的个人主页 / 作品集 —— 具身智能 / VLA 全栈工程师。
+蒲贺良的个人主页 / 在线简历 —— 具身智能 / VLA 全栈工程师。
 
 🔗 **在线访问:** https://heliang-pu.github.io/
 
 ## 技术栈
 
-- 纯静态单页（`index.html`），原生 HTML + 内联 CSS / JS，无构建步骤、无框架依赖
+- 纯静态单页，原生 HTML / CSS / JS，无构建步骤、无框架依赖
 - 部署：GitHub Pages（`main` 分支根目录，push 即自动发布）
 - 特性：中英双语 i18n、暗色模式、响应式布局、JSON-LD 结构化数据、SEO（sitemap / robots / Open Graph）
 
 ## 本地预览
 
-直接用浏览器打开 `index.html`，或起一个本地服务器（视频走外链，本地也能播）：
+直接用浏览器打开 `index.html`，或起一个本地服务器：
 
 ```bash
 python3 -m http.server 8000
@@ -22,38 +22,31 @@ python3 -m http.server 8000
 ## 目录结构
 
 ```
-index.html              # 全部页面（结构 + 样式 + 脚本 + i18n 文案）
+index.html              # 页面结构，中文为默认文案
 heliang-pu-resume.pdf   # 简历
 assets/
-  posters/              # demo 视频缩略图（首屏显示，视频懒加载前的封面）
+  site.css              # 全部样式
+  site.js               # 主题、语言切换、滚动进度、指标卡高光
+  i18n.js               # 中英文案字典（data-i18n / data-i18n-aria / data-i18n-alt 引用的键）
+  projects/             # 项目卡上的真机截图
   logos/                # 真机平台 logo
-  videos/               # demo 视频源文件（本地保留，已 gitignore，不提交）
+  fonts/                # 自托管字体（拉丁子集）
   portrait.jpg          # 头像
 404.html  robots.txt  sitemap.xml  site.webmanifest
 ```
 
-## 视频托管
+## 改文案
 
-demo 视频**不放进 git**（二进制会撑大仓库），而是作为 GitHub Release **`site-media`** 的 assets 托管，`index.html` 通过 `<source data-src="...">` + IntersectionObserver 懒加载引用。
+可翻译的文字都带 `data-i18n="键"`：中文直接写在 `index.html` 里（首屏不等脚本就能显示），同一个键在 `assets/i18n.js` 的 `zh` 和 `en` 里各有一份，改中文时两处保持一致。测试会检查每个键在中英文里都存在，并检查 `<title>`、description、Open Graph 分享卡与 `zh` 文案一致（微信等爬虫只读静态 HTML）。
 
-替换 / 新增视频：
+## 简历里的旧链接
 
-```bash
-gh release upload site-media demoN.mp4 --clobber   # 覆盖上传，勿 git add 视频
-```
+简历 PDF 曾链接到 `#demos`、`#demo-01` … `#demo-09` 等 Demo 锚点。Demo 视频已从主页撤下，这些锚点改挂在对应的项目卡或「更多项目」条目上（`.legacy-anchor`），旧版简历里的链接仍能落到相关内容。GitHub Release `site-media` 里的旧视频已不再被页面引用。
 
-新文件名需与 `index.html` 中的 release URL 对应。
-
-## 近期 Demo（2026-10）
-
-- `demo12-sim2real.mp4`：PiPER 双臂 sim2real 左右对照，约 23 秒、1280×720。左侧为孪生场景的官方专家示范（原速，结束后保持末帧），右侧为混训策略的真机成功回合（2 倍速）；两个独立回合，画面内有中英文标注。
-- `demo13.mp4`：BEHAVIOR-1K 微波炉爆米花复现，约 91 秒，使用 [IliaLarchenko/behavior-1k-solution](https://github.com/IliaLarchenko/behavior-1k-solution) 的公开代码和权重；本地首轮 10 个实例成功 4 个。
-- `demos/embodied-harness.html`：中英双语交互回放，支持逐步查看、时间线与失败恢复跳转。`harness-trace.json` 从 Embodied Harness 的 `runs/demo/ep_0001`、`ep_0002` 记录中导出，仅保留展示所需的事件字段。
-
-Harness 回放使用 `mock_sorting` 环境、`mock_oracle` 规划器与 mock 执行器，展示运行时调度机制。它不是真机录像，也不作为训练后模型的性能指标。
-
-检查主页与回放的数据约定：
+## 测试
 
 ```bash
-node --test tests/site-contract.test.mjs tests/recent-demos.test.mjs
+node --test tests/site-contract.test.mjs
 ```
+
+测试会解析简历 PDF 里指向主页的链接，逐个确认锚点存在。

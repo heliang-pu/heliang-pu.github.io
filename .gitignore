@@ -2,8 +2,7 @@
 **/.DS_Store
 Thumbs.db
 
-# Videos are hosted as GitHub Release assets (tag "site-media"), not committed.
-# assets/videos/ kept locally as source; raw .MOV / oversized media also local-only.
+# Demo videos are no longer shown on the site; local copies and raw .MOV stay out of git.
 *.MOV
 assets/*.mp4
 assets/videos/

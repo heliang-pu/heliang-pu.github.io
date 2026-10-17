@@ -8,12 +8,17 @@ const root = new URL('../', import.meta.url);
 const read = (path, encoding = 'utf8') =>
   readFile(new URL(path, root), encoding);
 
-const [index, robots, sitemap, notFound] = await Promise.all([
+const [index, css, script, i18nSource, robots, sitemap, notFound] = await Promise.all([
   read('index.html'),
+  read('assets/site.css'),
+  read('assets/site.js'),
+  read('assets/i18n.js'),
   read('robots.txt'),
   read('sitemap.xml'),
   read('404.html'),
 ]);
+
+const dictionary = vm.runInNewContext(`${i18nSource}\ni18n;`);
 
 function attr(tag, name) {
   return tag.match(
@@ -63,26 +68,6 @@ function mediaBlocks(source, header) {
   return blocks.join('\n');
 }
 
-function languageBlock(lang) {
-  return bracedBlock(index, `${lang}: {`);
-}
-
-function languageValue(block, key) {
-  return block.match(
-    new RegExp(`\\b${key}:\\s*(["'])(.*?)\\1`),
-  )?.[2];
-}
-
-const demoCards = [
-  ...index.matchAll(
-    /<article class="demo-card"[^>]*>[\s\S]*?<\/article>/g,
-  ),
-].map((match) => match[0]);
-
-const dictionary = vm.runInNewContext(
-  `(${index.match(/var i18n = (\{[\s\S]*?\n    \});/)[1]})`,
-);
-
 // Link annotations can sit inside Flate-compressed object streams.
 function pdfLinkTargets(bytes) {
   const raw = bytes.toString('latin1');
@@ -119,11 +104,9 @@ test('canonical, robots, and sitemap use one production host', () => {
   assert.equal(canonical.hostname, 'heliang-pu.github.io');
   assert.equal(robotsSitemap.origin, canonical.origin);
   assert.equal(robotsSitemap.pathname, '/sitemap.xml');
-  assert.equal(locations.length, 2);
+  assert.equal(locations.length, 1);
   assert.equal(locations[0].origin, canonical.origin);
   assert.equal(locations[0].pathname, '/');
-  assert.equal(locations[1].origin, canonical.origin);
-  assert.equal(locations[1].pathname, '/demos/embodied-harness.html');
   assert.doesNotMatch(
     `${index}\n${robots}\n${sitemap}`,
     /aurorabot-ai\.github\.io/i,
@@ -141,6 +124,21 @@ test('static title and share cards match the zh copy that crawlers read', () => 
   assert.equal(meta('property', 'og:description'), dictionary.zh.metaDesc);
   assert.equal(meta('name', 'twitter:title'), dictionary.zh.docTitle);
   assert.equal(meta('name', 'twitter:description'), dictionary.zh.metaDesc);
+});
+
+test('styles and scripts live in assets and load in order', () => {
+  assert.doesNotMatch(index, /<style\b/);
+  assert.doesNotMatch(index, /\sonclick=/);
+  assert.match(index, /<link rel="stylesheet" href="assets\/site\.css">/);
+
+  const scripts = tags('script').map((tag) => attr(tag, 'src')).filter(Boolean);
+  assert.deepEqual(scripts, ['assets/i18n.js', 'assets/site.js']);
+
+  for (const [selector, handler] of [
+    ['langBtn', 'toggleLang'], ['themeBtn', 'toggleTheme'], ['toTop', 'scrollToTop'],
+  ]) {
+    assert.match(script, new RegExp(`${selector}\\.addEventListener\\('click', ${handler}\\)`));
+  }
 });
 
 test('mobile header and navigation follow visible focus order', () => {
@@ -180,8 +178,7 @@ test('mobile navigation is native and contains section and profile links', () =>
   assert.match(details, /<nav[\s\S]*data-i18n-aria="navAria"/);
 
   for (const href of [
-    '#experience', '#projects', '#skills', '#platforms', '#awards',
-    '#demos', '#locomotion',
+    '#experience', '#projects', '#more-projects', '#skills', '#platforms', '#awards',
     'mailto:puheliang122@gmail.com',
     'https://github.com/heliang-pu',
     'https://huggingface.co/puheliang',
@@ -194,10 +191,9 @@ test('mobile navigation is native and contains section and profile links', () =>
 });
 
 test('980px layout hides the desktop sidebar without CSS reordering', () => {
-  const css = index.match(/<style>([\s\S]*?)<\/style>/)?.[1] ?? '';
   const mobileCss = mediaBlocks(css, '@media (max-width: 980px)');
   const controlsBaseIndex = css.indexOf('.site-controls {');
-  const hiddenMobileIndex = css.indexOf('.mobile-id,\n    .mobile-nav {');
+  const hiddenMobileIndex = css.indexOf('.mobile-id,\n.mobile-nav {');
   const firstMobileMediaIndex = css.indexOf('@media (max-width: 980px)');
 
   assert.match(mobileCss, /\.sidebar\s*\{[^}]*display:\s*none/);
@@ -214,76 +210,34 @@ test('980px layout hides the desktop sidebar without CSS reordering', () => {
   );
 });
 
-test('work and projects lead the page; demos follow as evidence', () => {
+test('the page reads like a resume: work first, no demo videos', () => {
   const sections = [
     ...index.matchAll(/<section class="(hero|section)"(?: id="([^"]+)")?>/g),
   ].map((match) => match[2] ?? match[1]);
   assert.deepEqual(sections, [
-    'hero', 'experience', 'projects', 'featured-demos',
-    'skills', 'platforms', 'awards', 'demos', 'locomotion',
+    'hero', 'experience', 'projects', 'more-projects', 'skills', 'platforms', 'awards',
   ]);
 
-  const featured = index.match(/<section class="section" id="featured-demos">[\s\S]*?<\/section>/)?.[0] ?? '';
-  const kinds = [...featured.matchAll(/class="demo-kind[^"]*" data-i18n="([^"]+)"/g)].map((match) => match[1]);
-  assert.equal(kinds.length, 3);
-  assert.ok(kinds.every((kind) => kind === 'kindReal' || kind === 'kindSimReal'), kinds.join());
-});
-
-test('all ten videos are network-idle until explicit activation', () => {
-  assert.equal(demoCards.length, 10);
-
-  for (const [position, card] of demoCards.entries()) {
-    const video = card.match(/<video\b[^>]*>/i)?.[0];
-    const source = card.match(/<source\b[^>]*>/i)?.[0];
-    const fallback = card.match(
-      /<a\b[^>]*class="video-fallback"[^>]*>/i,
-    )?.[0];
-
-    assert.equal(attr(video, 'preload'), 'none');
-    const deferredUrl = attr(source, 'data-src');
-    assert.match(deferredUrl, /site-media\/(?:demo|loco)\d+(?:-[a-z0-9-]+)?\.mp4$/);
-    assert.equal(attr(source, 'src'), undefined);
-    assert.equal(attr(fallback, 'href'), deferredUrl);
-    assert.equal(attr(fallback, 'target'), '_blank');
-    assert.match(attr(fallback, 'rel'), /\bnoreferrer\b/);
-    assert.equal(attr(fallback, 'data-i18n'), 'videoFallback');
-    assert.ok(video, `demo ${position + 1}: missing video`);
+  for (const source of [index, css, script]) {
+    assert.doesNotMatch(source, /<video\b|<source\b|releases\/download|site-media|demos\/|demo-card|play-badge/);
   }
-
-  assert.doesNotMatch(index, /\bvidObs\b/);
-  const activation = bracedBlock(index, 'function activateVideo(media, video)');
-  assert.match(activation, /source\.setAttribute\(['"]src['"],\s*source\.dataset\.src\)/);
-  assert.match(activation, /video\.load\(\)/);
-  assert.match(activation, /video\.play\(\)/);
-  assert.match(activation, /has-video-error/);
 });
 
-test('play buttons inherit ten unique labels and refresh after language changes', () => {
-  const videos = tags('video');
-  const keys = videos.map((video) => attr(video, 'data-i18n-aria'));
-  const initialLabels = videos.map((video) => attr(video, 'aria-label'));
-  assert.equal(videos.length, 10);
-  assert.equal(new Set(keys).size, 10);
-  assert.equal(new Set(initialLabels).size, 10);
-
-  const zh = languageBlock('zh');
-  const en = languageBlock('en');
-  const zhLabels = keys.map((key) => languageValue(zh, key));
-  const enLabels = keys.map((key) => languageValue(en, key));
-  assert.ok(zhLabels.every(Boolean));
-  assert.ok(enLabels.every(Boolean));
-  assert.equal(new Set(zhLabels).size, 10);
-  assert.equal(new Set(enLabels).size, 10);
-  assert.ok(languageValue(zh, 'videoFallback'));
-  assert.ok(languageValue(en, 'videoFallback'));
-
-  const refresh = bracedBlock(index, 'function refreshPlayButtonLabel(media)');
-  assert.match(refresh, /video\.getAttribute\(['"]aria-label['"]\)/);
-  assert.match(refresh, /badge\.setAttribute\(['"]aria-label['"],\s*label\)/);
-  assert.match(bracedBlock(index, 'function applyLang(lang)'), /refreshPlayButtonLabels\(\)/);
+test('project screenshots are static, lazy, and described', () => {
+  const shots = tags('img').filter((tag) => attr(tag, 'class') === 'project-shot');
+  assert.equal(shots.length, 3);
+  for (const shot of shots) {
+    assert.match(attr(shot, 'src'), /^assets\/projects\/[a-z0-9-]+\.webp$/);
+    assert.equal(attr(shot, 'loading'), 'lazy');
+    assert.ok(Number(attr(shot, 'width')) > 0 && Number(attr(shot, 'height')) > 0);
+    assert.ok(attr(shot, 'alt'));
+    assert.equal(attr(shot, 'alt'), dictionary.zh[attr(shot, 'data-i18n-alt')]);
+  }
 });
 
-test('every translated element has zh and en copy', () => {
+test('zh and en dictionaries match and every key is used', () => {
+  assert.deepEqual(Object.keys(dictionary.zh).sort(), Object.keys(dictionary.en).sort());
+
   const keys = new Set(
     [...index.matchAll(/data-i18n(?:-aria|-alt)?="([^"]+)"/g)].map((match) => match[1]),
   );
@@ -292,14 +246,18 @@ test('every translated element has zh and en copy', () => {
       assert.ok(dictionary[lang][key], `${lang}: ${key}`);
     }
   }
+
+  const scriptKeys = new Set([...script.matchAll(/\bt\.(\w+)/g)].map((match) => match[1]));
+  const unused = Object.keys(dictionary.zh).filter((key) => !keys.has(key) && !scriptKeys.has(key));
+  assert.deepEqual(unused, []);
 });
 
 test('hero, sections, and metrics never begin with false content', () => {
-  assert.doesNotMatch(index, /\.hero\s*\{\s*animation:\s*fadeUp/);
-  assert.doesNotMatch(index, /\.main\s*>\s*\.section[^{}]*\{\s*animation:\s*fadeUp/);
-  assert.doesNotMatch(index, /\.reveal\s*\{\s*opacity:\s*0/);
-  assert.doesNotMatch(index, /\bnumObs\b|\brevObs\b/);
-  assert.doesNotMatch(index, /requestAnimationFrame\(step\)/);
+  assert.doesNotMatch(css, /\.hero\s*\{\s*animation:\s*fadeUp/);
+  assert.doesNotMatch(css, /\.main\s*>\s*\.section[^{}]*\{\s*animation:\s*fadeUp/);
+  assert.doesNotMatch(css, /\.reveal\s*\{\s*opacity:\s*0/);
+  assert.doesNotMatch(script, /\bnumObs\b|\brevObs\b/);
+  assert.doesNotMatch(script, /requestAnimationFrame\(step\)/);
   assert.match(index, /<strong>30%→70%<\/strong>/);
   assert.match(index, /<strong>500\+<\/strong>/);
 });
@@ -316,22 +274,24 @@ test('hero metrics and projects lead with the resume headline results', () => {
 });
 
 test('reduced motion and dark skip-link styles are complete', () => {
-  const reduced = bracedBlock(index, '@media (prefers-reduced-motion: reduce)');
+  const reduced = bracedBlock(css, '@media (prefers-reduced-motion: reduce)');
   assert.match(reduced, /html\s*\{[\s\S]*?scroll-behavior:\s*auto\s*!important/);
-  assert.match(index, /html\.theme-dark\s+\.skip-link:focus\s*\{[^}]*color:\s*#0f172a/);
+  assert.match(css, /html\.theme-dark\s+\.skip-link:focus\s*\{[^}]*color:\s*#0f172a/);
 });
 
 test('favicon, footer date, and local assets are consistent', async () => {
   const favicon = tags('link').find((tag) => attr(tag, 'rel') === 'icon');
   assert.equal(attr(favicon, 'href'), '/assets/icon-192.png');
   assert.doesNotMatch(attr(favicon, 'href'), /^data:/);
-  assert.equal((index.match(/Last updated: 2026\.10/g) ?? []).length, 3);
-  assert.doesNotMatch(index, /Last updated: 2026\.08/);
+  assert.equal((`${index}\n${i18nSource}`.match(/Last updated: 2026\.10/g) ?? []).length, 3);
+  assert.doesNotMatch(`${index}\n${i18nSource}`, /Last updated: 2026\.08/);
 
-  const localRefs = [
-    ...index.matchAll(/\b(?:src|href|poster)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)"/g),
+  const pageRefs = [
+    ...index.matchAll(/\b(?:src|href)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)"/g),
   ].map((match) => match[1].replace(/^\//, ''));
-  await Promise.all([...new Set(localRefs)].map((path) => access(new URL(path, root))));
+  const cssRefs = [...css.matchAll(/url\("([^"]+)"\)/g)].map((match) => `assets/${match[1]}`);
+  assert.ok(cssRefs.length >= 2, 'expected the font-face URLs in site.css');
+  await Promise.all([...new Set([...pageRefs, ...cssRefs])].map((path) => access(new URL(path, root))));
 });
 
 test('404 uses border-box and the small viewport height', () => {
