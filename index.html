@@ -797,8 +797,6 @@
     #demo-07 { order: 3; }
     #demo-06 { order: 4; }
     #demo-05 { order: 5; }
-    #demo-04 { order: 6; }
-    #demo-03 { order: 7; }
     #demo-02 { order: 8; }
     #demo-01 { order: 9; }
 
@@ -2078,73 +2076,6 @@
             </div>
           </article>
 
-          <article class="demo-card" id="demo-03">
-            <div class="demo-media">
-              <video controls muted playsinline preload="none" poster="assets/posters/demo4.webp" aria-label="播放单臂物体抓取与放置多任务切换" data-i18n-aria="demo4Aria">
-                <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo4.mp4" type="video/mp4">
-              </video>
-            </div>
-            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo4.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
-            <div class="demo-body">
-              <div class="demo-meta"><span>Demo 03</span><span>00:23</span></div>
-              <h3 data-i18n="demo4Title">单臂物体抓取与放置多任务切换</h3>
-              <p data-i18n="demo4Desc">单臂在多目标、多位置场景下完成抓取、搬运和放置，验证策略在不同物体上的执行稳定性；多任务切换基于多 LoRA 适配器实现。</p>
-              <div class="demo-spec-grid">
-                <div class="demo-spec-row">
-                  <span class="demo-spec-label" data-i18n="specPlatform">平台</span>
-                  <strong class="demo-spec-value" data-i18n="demo4Platform">单臂真实平台</strong>
-                </div>
-                <div class="demo-spec-row">
-                  <span class="demo-spec-label" data-i18n="specPolicy">策略</span>
-                  <strong class="demo-spec-value" data-i18n="demo4Policy">多 LoRA 切换策略</strong>
-                </div>
-                <div class="demo-spec-row">
-                  <span class="demo-spec-label" data-i18n="specMode">模式</span>
-                  <strong class="demo-spec-value" data-i18n="demo4Mode">多任务推理切换</strong>
-                </div>
-              </div>
-              <div class="demo-tags">
-                <span class="demo-tag" data-i18n="demoTagSingleArm">单臂</span>
-                <span class="demo-tag" data-i18n="demoTagMultiTask">多任务</span>
-                <span class="demo-tag" data-i18n="demoTagPickPlace">抓取放置</span>
-                <span class="demo-tag" data-i18n="demoTagMultiLora">多 LoRA</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="demo-card" id="demo-04">
-            <div class="demo-media">
-              <video controls muted playsinline preload="none" poster="assets/posters/demo5.webp" aria-label="播放 ACT 和 π0 任意位置抓取入盒" data-i18n-aria="demo5Aria">
-                <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo5.mp4" type="video/mp4">
-              </video>
-            </div>
-            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo5.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
-            <div class="demo-body">
-              <div class="demo-meta"><span>Demo 04</span><span>01:10</span></div>
-              <h3 data-i18n="demo5Title">ACT + π0 任意位置抓取入盒</h3>
-              <p data-i18n="demo5Desc">基于 ACT 和 π0 完成单臂任意位置抓取入盒，支持不同桌面位置下的目标抓取、移动与精准放置。</p>
-              <div class="demo-spec-grid">
-                <div class="demo-spec-row">
-                  <span class="demo-spec-label" data-i18n="specPlatform">平台</span>
-                  <strong class="demo-spec-value" data-i18n="demo5Platform">单臂桌面操作平台</strong>
-                </div>
-                <div class="demo-spec-row">
-                  <span class="demo-spec-label" data-i18n="specPolicy">策略</span>
-                  <strong class="demo-spec-value" data-i18n="demo5Policy">ACT + π0</strong>
-                </div>
-                <div class="demo-spec-row">
-                  <span class="demo-spec-label" data-i18n="specMode">模式</span>
-                  <strong class="demo-spec-value" data-i18n="demo5Mode">任意位置抓取入盒</strong>
-                </div>
-              </div>
-              <div class="demo-tags">
-                <span class="demo-tag">ACT</span>
-                <span class="demo-tag">π0</span>
-                <span class="demo-tag" data-i18n="demoTagBoxInsertion">抓取入盒</span>
-              </div>
-            </div>
-          </article>
-
           <article class="demo-card" id="demo-05">
             <div class="demo-media">
               <video controls muted playsinline preload="none" poster="assets/posters/demo7.webp" aria-label="播放人形机器人 minimax 井字棋与 π0.5 棋子放置" data-i18n-aria="demo7Aria">
@@ -2613,10 +2544,6 @@
         demo1Desc: '双臂平台完成小目标定位、夹取与放置，展示灵巧手精细控制与真实任务稳定性。',
         demo2Title: '视觉关键点 retargeting 到灵巧手',
         demo2Desc: '通过视觉提取手部特征点与关节姿态，并 retargeting 到机器人灵巧手，实现稳定、准确的手内对指控制。',
-        demo4Title: '单臂物体抓取与放置多任务切换',
-        demo4Desc: '单臂在多目标、多位置场景下完成抓取、搬运和放置，验证策略在不同物体上的执行稳定性；多任务切换基于多 LoRA 适配器实现。',
-        demo5Title: 'ACT + π0 任意位置抓取入盒',
-        demo5Desc: '基于 ACT 和 π0 完成单臂任意位置抓取入盒，支持不同桌面位置下的目标抓取、移动与精准放置。',
         demo7Title: 'Minimax 井字棋 + π0.5 棋子放置',
         demo7Desc: '井字棋决策使用 minimax 算法，棋子移动由 π0.5 结合视觉 prompts 控制放置位置，用视觉定位补足语言跟随性差的问题。',
         demo8Title: 'π0.5 JAX 纸巾分拣',
@@ -2630,8 +2557,6 @@
         specPlatform: '平台', specPolicy: '策略', specMode: '模式',
         demo1Platform: '双臂灵巧手平台', demo1Policy: 'π0.5 + 触觉反馈', demo1Mode: '真实平台推理',
         demo2Platform: 'RGB 视觉 + 灵巧手', demo2Policy: '关键点提取 + Retargeting', demo2Mode: '手内对指控制',
-        demo4Platform: '单臂真实平台', demo4Policy: '多 LoRA 切换策略', demo4Mode: '多任务推理切换',
-        demo5Platform: '单臂桌面操作平台', demo5Policy: 'ACT + π0', demo5Mode: '任意位置抓取入盒',
         demo7Platform: '人形机器人交互平台', demo7Policy: 'Minimax + π0.5', demo7Mode: '视觉 prompts 放置',
         demo8Platform: '双臂真实平台', demo8Policy: 'π0.5 JAX', demo8Mode: '异步推理 + RTC',
         demo9Platform: '单臂真实平台', demo9Policy: 'π0.6 ReCap 强化学习', demo9Mode: '手机插拔精细任务',
@@ -2683,8 +2608,6 @@
         siteControlsAria: '站点设置',
         demo1Aria: '播放双臂灵巧手小物品精细抓取',
         demo2Aria: '播放视觉关键点 retargeting 到灵巧手',
-        demo4Aria: '播放单臂物体抓取与放置多任务切换',
-        demo5Aria: '播放 ACT 和 π0 任意位置抓取入盒',
         demo7Aria: '播放人形机器人 minimax 井字棋与 π0.5 棋子放置',
         demo8Aria: '播放 π0.5 JAX 纸巾分拣',
         demo9Aria: '播放 π0.6 ReCap 手机插拔精细操作',
@@ -2792,10 +2715,6 @@
         demo1Desc: 'A dual-arm platform localizes, grasps, and places small objects, showing fine dexterous-hand control and real-world task stability.',
         demo2Title: 'Visual Keypoint Retargeting to Dexterous Hand',
         demo2Desc: 'Visual hand keypoints and joint posture are extracted and retargeted to a robot dexterous hand, enabling stable and accurate in-hand finger opposition.',
-        demo4Title: 'Single-Arm Multi-Task Pick-and-Place Switching',
-        demo4Desc: 'A single arm completes grasping, transport, and placement across multiple targets and positions, validating execution stability across objects; task switching is implemented via multiple LoRA adapters.',
-        demo5Title: 'ACT + π0 Arbitrary-Position Grasp-to-Box',
-        demo5Desc: 'ACT and π0 enable single-arm grasp-to-box manipulation from arbitrary tabletop positions, covering target grasping, transport, and accurate box placement.',
         demo7Title: 'Minimax Tic-Tac-Toe + π0.5 Piece Placement',
         demo7Desc: 'Tic-tac-toe decisions use the minimax algorithm, while π0.5 uses visual prompts to control piece placement, compensating for weak language-following behavior with visual localization.',
         demo8Title: 'π0.5 JAX Tissue Sorting',
@@ -2809,8 +2728,6 @@
         specPlatform: 'Platform', specPolicy: 'Policy', specMode: 'Mode',
         demo1Platform: 'Dual-arm dexterous-hand platform', demo1Policy: 'π0.5 + tactile feedback', demo1Mode: 'Real-platform inference',
         demo2Platform: 'RGB vision + dexterous hand', demo2Policy: 'Keypoint extraction + retargeting', demo2Mode: 'In-hand finger opposition',
-        demo4Platform: 'Single-arm real platform', demo4Policy: 'Multi-LoRA switching policy', demo4Mode: 'Multi-task inference switching',
-        demo5Platform: 'Single-arm desktop platform', demo5Policy: 'ACT + π0', demo5Mode: 'Arbitrary-position grasp-to-box',
         demo7Platform: 'Humanoid interaction platform', demo7Policy: 'Minimax + π0.5', demo7Mode: 'Visual-prompt placement',
         demo8Platform: 'Dual-arm real platform', demo8Policy: 'π0.5 JAX', demo8Mode: 'Async inference + RTC',
         demo9Platform: 'Single-arm real platform', demo9Policy: 'π0.6 ReCap reinforcement learning', demo9Mode: 'Phone plug-unplug fine task',
@@ -2862,8 +2779,6 @@
         siteControlsAria: 'Site settings',
         demo1Aria: 'Play dual-arm dexterous-hand fine grasping demo',
         demo2Aria: 'Play visual keypoint retargeting to dexterous hand demo',
-        demo4Aria: 'Play single-arm multi-task pick-and-place switching demo',
-        demo5Aria: 'Play ACT and π0 arbitrary-position grasp-to-box demo',
         demo7Aria: 'Play humanoid minimax tic-tac-toe and π0.5 piece placement demo',
         demo8Aria: 'Play π0.5 JAX tissue sorting demo',
         demo9Aria: 'Play π0.6 ReCap phone plug-unplug manipulation demo',

@@ -190,8 +190,8 @@ test('pipeline uses tablet and narrow-mobile column counts', () => {
   );
 });
 
-test('all twelve videos are network-idle until explicit activation', () => {
-  assert.equal(demoCards.length, 12);
+test('all ten videos are network-idle until explicit activation', () => {
+  assert.equal(demoCards.length, 10);
 
   for (const [position, card] of demoCards.entries()) {
     const video = card.match(/<video\b[^>]*>/i)?.[0];
@@ -219,13 +219,13 @@ test('all twelve videos are network-idle until explicit activation', () => {
   assert.match(activation, /has-video-error/);
 });
 
-test('play buttons inherit twelve unique labels and refresh after language changes', () => {
+test('play buttons inherit ten unique labels and refresh after language changes', () => {
   const videos = tags('video');
   const keys = videos.map((video) => attr(video, 'data-i18n-aria'));
   const initialLabels = videos.map((video) => attr(video, 'aria-label'));
-  assert.equal(videos.length, 12);
-  assert.equal(new Set(keys).size, 12);
-  assert.equal(new Set(initialLabels).size, 12);
+  assert.equal(videos.length, 10);
+  assert.equal(new Set(keys).size, 10);
+  assert.equal(new Set(initialLabels).size, 10);
 
   const zh = languageBlock('zh');
   const en = languageBlock('en');
@@ -233,8 +233,8 @@ test('play buttons inherit twelve unique labels and refresh after language chang
   const enLabels = keys.map((key) => languageValue(en, key));
   assert.ok(zhLabels.every(Boolean));
   assert.ok(enLabels.every(Boolean));
-  assert.equal(new Set(zhLabels).size, 12);
-  assert.equal(new Set(enLabels).size, 12);
+  assert.equal(new Set(zhLabels).size, 10);
+  assert.equal(new Set(enLabels).size, 10);
   assert.ok(languageValue(zh, 'videoFallback'));
   assert.ok(languageValue(en, 'videoFallback'));
 
