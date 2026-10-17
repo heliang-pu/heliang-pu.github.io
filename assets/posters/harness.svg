@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <defs><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#cfdcd5" stroke-opacity=".5"/></pattern></defs>
+  <rect width="960" height="600" fill="#f0f4ee"/><rect width="960" height="600" fill="url(#grid)"/>
+  <g font-family="system-ui,sans-serif"><text x="64" y="91" fill="#0f766e" font-size="17" letter-spacing="3">EMBODIED HARNESS</text><text x="64" y="151" fill="#17211f" font-size="42" font-weight="700">Plan. Execute. Verify.</text><text x="64" y="191" fill="#62706d" font-size="18">Recorded task replay · Memory · Recovery</text>
+  <g stroke="#b8cec2" fill="#fffdfa"><rect x="64" y="245" width="240" height="126" rx="12"/><rect x="360" y="245" width="240" height="126" rx="12"/><rect x="656" y="245" width="240" height="126" rx="12"/></g>
+  <g fill="#0f766e" text-anchor="middle" font-size="25" font-weight="650"><text x="184" y="301">PLANNER</text><text x="480" y="301">POLICY</text><text x="776" y="301">VERIFIER</text></g>
+  <g fill="#62706d" text-anchor="middle" font-size="15"><text x="184" y="336">Next skill + memory</text><text x="480" y="336">Execute the skill</text><text x="776" y="336">Check + update progress</text></g>
+  <g fill="none" stroke="#0f766e" stroke-width="3"><path d="M311 308h40m-10-8 10 8-10 8M607 308h40m-10-8 10 8-10 8"/><path d="M776 383v55H184v-55" stroke-dasharray="7 7"/></g>
+  <rect x="321" y="415" width="318" height="44" rx="22" fill="#e1ede5"/><text x="480" y="443" text-anchor="middle" fill="#0f766e" font-size="16">Verify failure → recover → replan</text>
+  <rect x="64" y="511" width="400" height="37" rx="18" fill="#17211f"/><text x="84" y="536" fill="#fffdfa" font-size="14">INTERACTIVE · MOCK SORTING TRACE</text></g>
+</svg>

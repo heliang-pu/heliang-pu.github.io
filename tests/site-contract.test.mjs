@@ -92,9 +92,11 @@ test('canonical, robots, and sitemap use one production host', () => {
   assert.equal(canonical.hostname, 'heliang-pu.github.io');
   assert.equal(robotsSitemap.origin, canonical.origin);
   assert.equal(robotsSitemap.pathname, '/sitemap.xml');
-  assert.equal(locations.length, 1);
+  assert.equal(locations.length, 2);
   assert.equal(locations[0].origin, canonical.origin);
   assert.equal(locations[0].pathname, '/');
+  assert.equal(locations[1].origin, canonical.origin);
+  assert.equal(locations[1].pathname, '/demos/embodied-harness.html');
   assert.doesNotMatch(
     `${index}\n${robots}\n${sitemap}`,
     /aurorabot-ai\.github\.io/i,
@@ -188,8 +190,8 @@ test('pipeline uses tablet and narrow-mobile column counts', () => {
   );
 });
 
-test('all ten videos are network-idle until explicit activation', () => {
-  assert.equal(demoCards.length, 10);
+test('all twelve videos are network-idle until explicit activation', () => {
+  assert.equal(demoCards.length, 12);
 
   for (const [position, card] of demoCards.entries()) {
     const video = card.match(/<video\b[^>]*>/i)?.[0];
@@ -217,13 +219,13 @@ test('all ten videos are network-idle until explicit activation', () => {
   assert.match(activation, /has-video-error/);
 });
 
-test('play buttons inherit ten unique labels and refresh after language changes', () => {
+test('play buttons inherit twelve unique labels and refresh after language changes', () => {
   const videos = tags('video');
   const keys = videos.map((video) => attr(video, 'data-i18n-aria'));
   const initialLabels = videos.map((video) => attr(video, 'aria-label'));
-  assert.equal(videos.length, 10);
-  assert.equal(new Set(keys).size, 10);
-  assert.equal(new Set(initialLabels).size, 10);
+  assert.equal(videos.length, 12);
+  assert.equal(new Set(keys).size, 12);
+  assert.equal(new Set(initialLabels).size, 12);
 
   const zh = languageBlock('zh');
   const en = languageBlock('en');
@@ -231,8 +233,8 @@ test('play buttons inherit ten unique labels and refresh after language changes'
   const enLabels = keys.map((key) => languageValue(en, key));
   assert.ok(zhLabels.every(Boolean));
   assert.ok(enLabels.every(Boolean));
-  assert.equal(new Set(zhLabels).size, 10);
-  assert.equal(new Set(enLabels).size, 10);
+  assert.equal(new Set(zhLabels).size, 12);
+  assert.equal(new Set(enLabels).size, 12);
   assert.ok(languageValue(zh, 'videoFallback'));
   assert.ok(languageValue(en, 'videoFallback'));
 
@@ -262,8 +264,8 @@ test('favicon, footer date, and local assets are consistent', async () => {
   const favicon = tags('link').find((tag) => attr(tag, 'rel') === 'icon');
   assert.equal(attr(favicon, 'href'), '/assets/icon-192.png');
   assert.doesNotMatch(attr(favicon, 'href'), /^data:/);
-  assert.equal((index.match(/Last updated: 2026\.08/g) ?? []).length, 3);
-  assert.doesNotMatch(index, /Last updated: 2026\.07/);
+  assert.equal((index.match(/Last updated: 2026\.10/g) ?? []).length, 3);
+  assert.doesNotMatch(index, /Last updated: 2026\.08/);
 
   const localRefs = [
     ...index.matchAll(/\b(?:src|href|poster)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)"/g),

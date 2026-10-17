@@ -789,6 +789,9 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
+    #demo-10, #demo-11, #demo-12 { order: 0; }
+    .system-preview img { display: block; width: 100%; height: 100%; object-fit: contain; }
+
     #demo-09 { order: 1; }
     #demo-08 { order: 2; }
     #demo-07 { order: 3; }
@@ -1571,7 +1574,7 @@
           <a href="#experience" data-i18n="navExp">工作与教育</a>
           <a href="#projects" data-i18n="navProjects">项目经历</a>
           <a href="#pipeline" data-i18n="navPipeline">推理闭环</a>
-          <a href="#demos" data-i18n="navDemos">Demo 视频</a>
+          <a href="#demos" data-i18n="navDemos">Demo 展示</a>
           <a href="#locomotion" data-i18n="navLoco">运动控制</a>
           <a href="#skills" data-i18n="navSkills">能力矩阵</a>
           <a href="#platforms" data-i18n="navPlatforms">真机平台</a>
@@ -1613,7 +1616,7 @@
           <a href="#experience" data-i18n="navExp">工作与教育</a>
           <a href="#projects" data-i18n="navProjects">项目经历</a>
           <a href="#pipeline" data-i18n="navPipeline">推理闭环</a>
-          <a href="#demos" data-i18n="navDemos">Demo 视频</a>
+          <a href="#demos" data-i18n="navDemos">Demo 展示</a>
           <a href="#locomotion" data-i18n="navLoco">运动控制</a>
           <a href="#skills" data-i18n="navSkills">能力矩阵</a>
           <a href="#platforms" data-i18n="navPlatforms">真机平台</a>
@@ -1699,6 +1702,24 @@
           <span class="section-kicker" data-i18n="kickerFeatured">机器人推理与仿真演示</span>
         </div>
         <div class="featured-grid">
+          <a class="feature-card" href="#demo-10">
+            <div class="feature-thumb"><img src="assets/posters/demo12.jpg" alt="PiPER 双臂 sim2real 抓笔交接" data-i18n-alt="demo12Title"></div>
+            <div class="feature-meta"><span>Demo 10</span><span class="demo-kind" data-i18n="kindReal">真机</span><span>00:23</span></div>
+            <h3 data-i18n="demo12Title">PiPER 双臂 sim2real 抓笔交接</h3>
+            <p data-i18n="demo12Desc">双臂 PiPER 完成抓笔、交接与放入笔筒。结合相机位姿对齐、数字孪生与仿真/真机数据混训，验证策略从仿真走向真实平台；视频为单次成功演示，2 倍速播放。</p>
+          </a>
+          <a class="feature-card" href="#demo-11">
+            <div class="feature-thumb"><img src="assets/posters/harness.svg" alt="Embodied Harness 长任务调度" data-i18n-alt="harnessTitle"></div>
+            <div class="feature-meta"><span>Demo 11</span><span class="demo-kind sim" data-i18n="kindSystem">系统演示</span><span data-i18n="interactive">交互回放</span></div>
+            <h3 data-i18n="harnessTitle">Embodied Harness 长任务调度</h3>
+            <p data-i18n="harnessDesc">将规划器与机器人策略连接起来，管理子任务、记忆、结果校验和失败恢复。交互回放展示模拟分拣记录中的抓空重试与掉落后重新规划。</p>
+          </a>
+          <a class="feature-card" href="#demo-12">
+            <div class="feature-thumb"><img src="assets/posters/demo13.jpg" alt="BEHAVIOR-1K 微波炉爆米花复现" data-i18n-alt="demo13Title"></div>
+            <div class="feature-meta"><span>Demo 12</span><span class="demo-kind sim" data-i18n="kindSim">仿真</span><span>01:31</span></div>
+            <h3 data-i18n="demo13Title">BEHAVIOR-1K 微波炉爆米花复现</h3>
+            <p data-i18n="demo13Desc">基于公开代码与权重复现微波炉爆米花长任务，完成开门、抓取、放入与关门。视频来自本地成功回合；首轮 10 个实例完成 4 个，用于复现与失败分析。</p>
+          </a>
           <a class="feature-card" href="#demo-07">
             <div class="feature-thumb"><img src="assets/posters/demo9.webp" alt="π0.6 ReCap 手机插拔精细操作封面"></div>
             <div class="feature-meta"><span>Demo 07</span><span class="demo-kind" data-i18n="kindReal">真机</span><span>01:02</span></div>
@@ -1931,10 +1952,66 @@
 
       <section class="section" id="demos">
         <div class="section-head">
-          <h2 data-i18n="secDemos">Demo 视频</h2>
+          <h2 data-i18n="secDemos">Demo 与系统演示</h2>
           <span class="section-kicker" data-i18n="kickerDemos">真实机器人、仿真与视觉控制演示</span>
         </div>
         <div class="demo-grid">
+          <article class="demo-card" id="demo-10">
+            <div class="demo-media">
+              <video controls muted playsinline preload="none" poster="assets/posters/demo12.jpg" aria-label="播放 PiPER 双臂 sim2real 抓笔交接真机演示" data-i18n-aria="demo12Aria">
+                <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo12.mp4" type="video/mp4">
+              </video>
+            </div>
+            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo12.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
+            <div class="demo-body">
+              <div class="demo-meta"><span>Demo 10 · PiPER</span><span>00:23</span></div>
+              <h3 data-i18n="demo12Title">PiPER 双臂 sim2real 抓笔交接</h3>
+              <p data-i18n="demo12Desc">双臂 PiPER 完成抓笔、交接与放入笔筒。结合相机位姿对齐、数字孪生与仿真/真机数据混训，验证策略从仿真走向真实平台；视频为单次成功演示，2 倍速播放。</p>
+              <div class="demo-spec-grid">
+                <div class="demo-spec-row"><span class="demo-spec-label" data-i18n="specPlatform">平台</span><strong class="demo-spec-value" data-i18n="demo12Platform">双臂 PiPER · 三路 RealSense</strong></div>
+                <div class="demo-spec-row"><span class="demo-spec-label" data-i18n="specPolicy">策略</span><strong class="demo-spec-value" data-i18n="demo12Policy">仿真 / 真机数据混训</strong></div>
+                <div class="demo-spec-row"><span class="demo-spec-label" data-i18n="specMode">模式</span><strong class="demo-spec-value" data-i18n="demo12Mode">真机单次成功 · 2 倍速</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="demo-card system-card" id="demo-11">
+            <a class="demo-media system-preview" href="demos/embodied-harness.html?lang=zh" data-demo-lang aria-label="打开交互式任务回放" data-i18n-aria="harnessOpen">
+              <img src="assets/posters/harness.svg" alt="Embodied Harness 规划、执行、校验与失败恢复示意图" data-i18n-alt="harnessPreviewAlt" width="960" height="600" loading="lazy">
+            </a>
+            <a class="video-fallback" href="demos/embodied-harness.html?lang=zh" data-demo-lang data-i18n="harnessOpen">打开交互式任务回放</a>
+            <div class="demo-body">
+              <div class="demo-meta"><span>Demo 11 · Embodied Harness</span><span data-i18n="interactive">交互回放</span></div>
+              <h3 data-i18n="harnessTitle">Embodied Harness 长任务调度</h3>
+              <p data-i18n="harnessDesc">将规划器与机器人策略连接起来，管理子任务、记忆、结果校验和失败恢复。交互回放展示模拟分拣记录中的抓空重试与掉落后重新规划。</p>
+              <div class="demo-spec-grid">
+                <div class="demo-spec-row"><span class="demo-spec-label" data-i18n="specPlatform">平台</span><strong class="demo-spec-value" data-i18n="harnessPlatform">模型无关的任务运行时</strong></div>
+                <div class="demo-spec-row"><span class="demo-spec-label" data-i18n="specPolicy">策略</span><strong class="demo-spec-value" data-i18n="harnessPolicy">VLM 规划 + VLA / WAM 执行</strong></div>
+                <div class="demo-spec-row"><span class="demo-spec-label" data-i18n="specMode">模式</span><strong class="demo-spec-value" data-i18n="harnessMode">模拟分拣调度记录回放</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="demo-card" id="demo-12">
+            <div class="demo-media">
+              <video controls muted playsinline preload="none" poster="assets/posters/demo13.jpg" aria-label="播放 BEHAVIOR-1K 微波炉爆米花长任务复现" data-i18n-aria="demo13Aria">
+                <source data-src="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo13.mp4" type="video/mp4">
+              </video>
+            </div>
+            <a class="video-fallback" href="https://github.com/heliang-pu/heliang-pu.github.io/releases/download/site-media/demo13.mp4" target="_blank" rel="noreferrer" data-i18n="videoFallback">视频无法播放？在 GitHub Releases 中打开</a>
+            <div class="demo-body">
+              <div class="demo-meta"><span>Demo 12 · BEHAVIOR-1K</span><span>01:31</span></div>
+              <h3 data-i18n="demo13Title">BEHAVIOR-1K 微波炉爆米花复现</h3>
+              <p data-i18n="demo13Desc">基于公开代码与权重复现微波炉爆米花长任务，完成开门、抓取、放入与关门。视频来自本地成功回合；首轮 10 个实例完成 4 个，用于复现与失败分析。</p>
+              <div class="demo-spec-grid">
+                <div class="demo-spec-row"><span class="demo-spec-label" data-i18n="specPlatform">平台</span><strong class="demo-spec-value" data-i18n="demo13Platform">BEHAVIOR-1K · 仿真</strong></div>
+                <div class="demo-spec-row"><span class="demo-spec-label" data-i18n="specPolicy">策略</span><strong class="demo-spec-value" data-i18n="demo13Policy">公开方案与权重复现</strong></div>
+                <div class="demo-spec-row"><span class="demo-spec-label" data-i18n="specMode">模式</span><strong class="demo-spec-value" data-i18n="demo13Mode">本地首轮 4 / 10 成功</strong></div>
+              </div>
+              <div class="demo-tags"><a class="demo-tag" href="https://github.com/IliaLarchenko/behavior-1k-solution" target="_blank" rel="noreferrer" data-i18n="demo13Source">原方案与代码 ↗</a></div>
+            </div>
+          </article>
+
           <article class="demo-card" id="demo-01">
             <div class="demo-media">
               <video controls muted playsinline preload="none" poster="assets/posters/demo1.webp" aria-label="播放双臂灵巧手小物品精细抓取" data-i18n-aria="demo1Aria">
@@ -2412,7 +2489,7 @@
         </div>
       </section>
 
-      <footer class="footer">© 2026 蒲贺良 · <span data-i18n="footerUpdated">Last updated: 2026.08</span></footer>
+      <footer class="footer">© 2026 蒲贺良 · <span data-i18n="footerUpdated">Last updated: 2026.10</span></footer>
     </main>
   </div>
   <button class="control-btn to-top" type="button" aria-label="回到顶部" title="回到顶部" onclick="scrollToTop()"><span aria-hidden="true">↑</span></button>
@@ -2445,7 +2522,7 @@
         pitch: '关注机器人从数据采集、策略训练到真机部署的完整闭环，擅长把模型能力落到可运行、可复现、可迭代的机器人系统里。',
         bilibili: '哔哩哔哩',
         navTitle: '目录',
-        navOverview: '个人概览', navExp: '工作与教育', navProjects: '项目经历', navPipeline: '推理闭环', navDemos: 'Demo 视频', navLoco: '运动控制', navSkills: '能力矩阵', navAwards: '竞赛与荣誉',
+        navOverview: '个人概览', navExp: '工作与教育', navProjects: '项目经历', navPipeline: '推理闭环', navDemos: 'Demo 展示', navLoco: '运动控制', navSkills: '能力矩阵', navAwards: '竞赛与荣誉',
         navPlatforms: '真机平台',
         secPlatforms: '真机平台', kickerPlatforms: '上手过的机器人本体、动捕与遥操作硬件',
         ptHumanoid: '人形机器人', ptArm: '协作机械臂', ptResearchArm: '科研机械臂', ptIndustrial: '工业自动化', ptGlove: '数据手套', ptMocap: '全身动捕', ptVR: 'VR 遥操作',
@@ -2465,6 +2542,28 @@
         m3val: '3 类',
         m4desc: '本科综合排名第一，2024 年国家奖学金获得者',
         kindReal: '真机', kindSim: '仿真',
+        kindSystem: "系统演示",
+        interactive: "交互回放",
+        demo12Title: "PiPER 双臂 sim2real 抓笔交接",
+        demo12Desc: "双臂 PiPER 完成抓笔、交接与放入笔筒。结合相机位姿对齐、数字孪生与仿真/真机数据混训，验证策略从仿真走向真实平台；视频为单次成功演示，2 倍速播放。",
+        demo12Platform: "双臂 PiPER · 三路 RealSense",
+        demo12Policy: "仿真 / 真机数据混训",
+        demo12Mode: "真机单次成功 · 2 倍速",
+        demo12Aria: "播放 PiPER 双臂 sim2real 抓笔交接真机演示",
+        demo13Title: "BEHAVIOR-1K 微波炉爆米花复现",
+        demo13Desc: "基于公开代码与权重复现微波炉爆米花长任务，完成开门、抓取、放入与关门。视频来自本地成功回合；首轮 10 个实例完成 4 个，用于复现与失败分析。",
+        demo13Platform: "BEHAVIOR-1K · 仿真",
+        demo13Policy: "公开方案与权重复现",
+        demo13Mode: "本地首轮 4 / 10 成功",
+        demo13Source: "原方案与代码 ↗",
+        demo13Aria: "播放 BEHAVIOR-1K 微波炉爆米花长任务复现",
+        harnessTitle: "Embodied Harness 长任务调度",
+        harnessDesc: "将规划器与机器人策略连接起来，管理子任务、记忆、结果校验和失败恢复。交互回放展示模拟分拣记录中的抓空重试与掉落后重新规划。",
+        harnessPlatform: "模型无关的任务运行时",
+        harnessPolicy: "VLM 规划 + VLA / WAM 执行",
+        harnessMode: "模拟分拣调度记录回放",
+        harnessOpen: "打开交互式任务回放",
+        harnessPreviewAlt: "Embodied Harness 规划、执行、校验与失败恢复示意图",
         /* featured */
         secFeatured: '精选 Demo', kickerFeatured: '机器人推理与仿真演示',
         /* overview */
@@ -2507,7 +2606,7 @@
         pipeStep4Title: '推理服务部署', pipeStep4Desc: '构建 inference server，适配 get_state / send_action，支持异步推理、RTC 与 action chunk 执行。',
         pipeStep5Title: '真机闭环验证', pipeStep5Desc: '在真实任务中观察成功率、延迟、动作稳定性和失败模式，反向迭代数据与策略。',
         /* demos */
-        secDemos: 'Demo 视频', kickerDemos: '真实机器人、仿真与视觉控制演示',
+        secDemos: 'Demo 与系统演示', kickerDemos: '真实机器人、仿真与视觉控制演示',
         secLoco: '运动控制', kickerLoco: '人形机器人强化学习步态',
         videoFallback: '视频无法播放？在 GitHub Releases 中打开',
         demo1Title: '双臂灵巧手小物品精细抓取',
@@ -2573,7 +2672,7 @@
         a4y: '机器人', a4t: '航天杯移动机器人 AI 创新技术挑战赛', a4d: '队长，全国三等奖。',
         a5y: '科研实践', a5t: '江苏省大学生创新创业训练计划项目', a5d: '期刊：基于 OpenMV 的新型智能门锁设计。',
         /* footer & a11y */
-        skip: '跳到主内容', footerUpdated: 'Last updated: 2026.08',
+        skip: '跳到主内容', footerUpdated: 'Last updated: 2026.10',
         themeLabel: '切换深色 / 浅色模式', langLabel: 'Switch language',
         portraitAlt: '蒲贺良头像',
         ecnuLogoAlt: '华东师范大学校徽',
@@ -2622,6 +2721,28 @@
         m3val: '3 Types',
         m4desc: "Ranked #1 in undergraduate cohort, 2024 National Scholarship recipient",
         kindReal: 'Real robot', kindSim: 'Simulation',
+        kindSystem: "System demo",
+        interactive: "Interactive replay",
+        demo12Title: "PiPER Dual-Arm Sim2Real Handover",
+        demo12Desc: "Two PiPER arms pick up a pen, hand it over, and place it in a holder. Camera-pose alignment, a digital twin, and mixed simulation/real training support deployment. One successful real-robot rollout, shown at 2× speed.",
+        demo12Platform: "Dual PiPER arms · Three RealSense cameras",
+        demo12Policy: "Mixed simulation / real training",
+        demo12Mode: "One real-robot success · 2× speed",
+        demo12Aria: "Play PiPER dual-arm sim2real pen handover",
+        demo13Title: "BEHAVIOR-1K Microwave Popcorn Reproduction",
+        demo13Desc: "Reproducing a long-horizon popcorn task with public code and weights: open, grasp, place, and close. This successful local episode is part of an initial 10-instance run with 4 successes, used for reproduction and failure analysis.",
+        demo13Platform: "BEHAVIOR-1K · Simulation",
+        demo13Policy: "Public code and weights reproduction",
+        demo13Mode: "Initial local run: 4 / 10 successes",
+        demo13Source: "Source implementation ↗",
+        demo13Aria: "Play BEHAVIOR-1K microwave popcorn reproduction",
+        harnessTitle: "Embodied Harness Task Orchestration",
+        harnessDesc: "Connects planners and robot policies while managing subtasks, memory, verification, and recovery. The interactive mock-sorting replay shows empty-grasp retries and replanning after a dropped object.",
+        harnessPlatform: "Model-independent task runtime",
+        harnessPolicy: "VLM planning + VLA / WAM execution",
+        harnessMode: "Recorded mock-sorting scheduler replay",
+        harnessOpen: "Open interactive task replay",
+        harnessPreviewAlt: "Embodied Harness planning, execution, verification, and recovery diagram",
         /* featured */
         secFeatured: 'Featured Demos', kickerFeatured: 'Robot inference and simulation demos',
         /* overview */
@@ -2664,7 +2785,7 @@
         pipeStep4Title: 'Inference Service', pipeStep4Desc: 'Build inference servers, adapt get_state / send_action, and support async inference, RTC, and action chunk execution.',
         pipeStep5Title: 'Real-Robot Validation', pipeStep5Desc: 'Measure success rate, latency, motion stability, and failure modes in real tasks, then iterate data and policies.',
         /* demos */
-        secDemos: 'Demo Videos', kickerDemos: 'Real-robot, simulation, and vision-control demos',
+        secDemos: 'Demos & System Replays', kickerDemos: 'Real-robot, simulation, and vision-control demos',
         secLoco: 'Locomotion', kickerLoco: 'Reinforcement-learning gaits for humanoid robots',
         videoFallback: 'Video unavailable? Open it on GitHub Releases',
         demo1Title: 'Dual-Arm Dexterous-Hand Fine Grasping',
@@ -2730,7 +2851,7 @@
         a4y: 'Robotics', a4t: 'Hangtian Cup Mobile Robot AI Innovation Challenge', a4d: 'Team leader, National 3rd Prize.',
         a5y: 'Research', a5t: 'Jiangsu Province College Students Innovation & Entrepreneurship Training Program', a5d: 'Publication: Design of a Novel Smart Door Lock Based on OpenMV.',
         /* footer & a11y */
-        skip: 'Skip to main content', footerUpdated: 'Last updated: 2026.08',
+        skip: 'Skip to main content', footerUpdated: 'Last updated: 2026.10',
         themeLabel: 'Toggle dark / light mode', langLabel: '切换中 / 英文',
         portraitAlt: 'Portrait of Puheliang',
         ecnuLogoAlt: 'East China Normal University emblem',
@@ -2799,6 +2920,9 @@
       });
       var portrait = document.querySelector('.portrait');
       if (portrait) portrait.alt = t.portraitAlt;
+      document.querySelectorAll('[data-demo-lang]').forEach(function (link) {
+        link.setAttribute('href', link.getAttribute('href').split('?')[0] + '?lang=' + lang);
+      });
       try { localStorage.setItem('lang', lang); } catch (e) {}
     }
 

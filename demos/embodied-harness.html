@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Embodied Harness 交互演示：回放模拟分拣中的子任务调度、记忆、进度校验与失败恢复。">
+  <meta name="theme-color" content="#0f766e">
+  <title>Embodied Harness · 任务回放</title>
+  <link rel="canonical" href="https://heliang-pu.github.io/demos/embodied-harness.html">
+  <link rel="icon" href="../assets/icon-192.png">
+  <link rel="stylesheet" href="harness.css">
+  <script src="harness.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="topbar">
+      <a href="../#demo-11" data-i18n="back">← 返回个人主页</a>
+      <button id="language" type="button" aria-label="Switch language">EN</button>
+    </header>
+    <section class="intro">
+      <p class="eyebrow">EMBODIED HARNESS / RECORDED REPLAY</p>
+      <h1 data-i18n="title">让长任务的每一步都有迹可循。</h1>
+      <p class="lead" data-i18n="lead">从抓取到分拣，查看调度器如何检查执行结果、更新进度，并在抓空或掉落后恢复。</p>
+      <p class="evidence" data-i18n="evidence">模拟分拣 · 已记录的调度事件 · mock 规划器与执行器</p>
+    </section>
+
+    <section class="replay" aria-label="Task replay">
+      <div class="toolbar">
+        <label><span data-i18n="episode">记录</span> <select id="episode" disabled></select></label>
+        <span class="record-date" id="record-date"></span>
+        <span class="state" id="state" role="status">READY</span>
+      </div>
+      <div class="workspace">
+        <div class="scene-panel">
+          <div class="panel-heading"><h2 data-i18n="world">分拣进度</h2><span id="clock">0.0 / 0.0 s</span></div>
+          <div class="packages" id="packages" aria-label="Packages"></div>
+          <div class="flow">
+            <div class="flow-node" data-node="plan"><span>01</span><strong data-i18n="plan">规划</strong><small data-i18n="planHint">技能与记忆</small></div>
+            <span class="arrow" aria-hidden="true">→</span>
+            <div class="flow-node" data-node="execute"><span>02</span><strong data-i18n="execute">执行</strong><small id="active-skill">—</small></div>
+            <span class="arrow" aria-hidden="true">→</span>
+            <div class="flow-node" data-node="verify"><span>03</span><strong data-i18n="verify">校验</strong><small data-i18n="verifyHint">结果更新进度</small></div>
+          </div>
+          <div class="bins">
+            <div class="bin a"><span>A <small data-i18n="small">小件</small></span><strong id="bin-a">0</strong></div>
+            <div class="bin b"><span>B <small data-i18n="medium">中件</small></span><strong id="bin-b">0</strong></div>
+            <div class="bin c"><span>C <small data-i18n="large">大件</small></span><strong id="bin-c">0</strong></div>
+          </div>
+          <p class="scene-note" data-i18n="sceneNote">示意图依据事件记录更新，不代表机器人运动轨迹。</p>
+        </div>
+        <aside class="detail-panel">
+          <div class="panel-heading"><h2 data-i18n="runtime">运行记录</h2><span id="sequence">#1</span></div>
+          <div class="metrics">
+            <div><strong id="progress">0 / 10</strong><span data-i18n="completed">已校验分拣</span></div>
+            <div><strong id="calls">0</strong><span data-i18n="calls">技能调用</span></div>
+            <div><strong id="recoveries">0</strong><span data-i18n="recoveries">恢复事件</span></div>
+          </div>
+          <h3 data-i18n="event">当前事件</h3>
+          <p class="event-text" id="event-text">—</p>
+          <h3 data-i18n="memory">规划器记忆</h3>
+          <p class="memory" id="memory">—</p>
+          <p class="detail-note" data-i18n="memoryNote">保留原始记忆；它可能滞后一轮，完成进度以校验后的记录为准。</p>
+          <h3 data-i18n="prompt">当前技能指令</h3>
+          <code id="prompt">—</code>
+        </aside>
+      </div>
+      <div class="transport">
+        <div class="transport-buttons">
+          <button type="button" id="play" disabled data-i18n="play">播放回放</button>
+          <button type="button" id="previous" disabled data-i18n="previous">上一步</button>
+          <button type="button" id="next" disabled data-i18n="next">下一步</button>
+          <button type="button" id="recovery" disabled data-i18n="jump">跳到失败恢复</button>
+          <label><span data-i18n="speed">速度</span> <select id="speed"><option value="1">1×</option><option value="2">2×</option><option value="4" selected>4×</option></select></label>
+        </div>
+        <label class="scrubber"><span class="sr-only" data-i18n="timeline">回放时间线</span><input id="timeline" type="range" min="0" max="1" value="0" disabled><span id="step">0 / 0</span></label>
+        <p id="load-status" role="status" data-i18n="loading">正在加载记录…</p>
+      </div>
+    </section>
+
+    <section class="about">
+      <div><h2 data-i18n="aboutTitle">连接规划与执行</h2><p data-i18n="aboutText">VLM 决定下一步，VLA / WAM 执行子任务。Harness 管理指令、校验、恢复与轨迹，模型通过独立服务接入。</p></div>
+      <div><h2 data-i18n="boundaryTitle">这段回放展示什么</h2><p data-i18n="boundaryText">这是模拟分拣环境的历史调度记录，展示运行时机制。它不用于衡量真实机器人或训练后模型的成功率。</p></div>
+    </section>
+    <noscript><p>请启用 JavaScript 查看交互回放。 / Enable JavaScript to view the replay.</p></noscript>
+    <footer>Heliang Pu · Embodied AI / VLA Engineering · 2026</footer>
+  </main>
+</body>
+</html>

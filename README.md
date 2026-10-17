@@ -43,3 +43,17 @@ gh release upload site-media demoN.mp4 --clobber   # 覆盖上传，勿 git add 
 ```
 
 新文件名需与 `index.html` 中的 release URL 对应。
+
+## 近期 Demo（2026-10）
+
+- `demo12.mp4`：PiPER 双臂 sim2real 抓笔交接，23 秒，真机成功回合，2 倍速。
+- `demo13.mp4`：BEHAVIOR-1K 微波炉爆米花复现，约 91 秒，使用 [IliaLarchenko/behavior-1k-solution](https://github.com/IliaLarchenko/behavior-1k-solution) 的公开代码和权重；本地首轮 10 个实例成功 4 个。
+- `demos/embodied-harness.html`：中英双语交互回放，支持逐步查看、时间线与失败恢复跳转。`harness-trace.json` 从 Embodied Harness 的 `runs/demo/ep_0001`、`ep_0002` 记录中导出，仅保留展示所需的事件字段。
+
+Harness 回放使用 `mock_sorting` 环境、`mock_oracle` 规划器与 mock 执行器，展示运行时调度机制。它不是真机录像，也不作为训练后模型的性能指标。
+
+检查主页与回放的数据约定：
+
+```bash
+node --test tests/site-contract.test.mjs tests/recent-demos.test.mjs
+```
