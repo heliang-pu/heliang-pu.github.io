@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { access, readFile, stat } from 'node:fs/promises';
+import vm from 'node:vm';
+import { inflateSync } from 'node:zlib';
 
 const root = new URL('../', import.meta.url);
 const read = (path, encoding = 'utf8') =>
@@ -77,6 +79,31 @@ const demoCards = [
   ),
 ].map((match) => match[0]);
 
+const dictionary = vm.runInNewContext(
+  `(${index.match(/var i18n = (\{[\s\S]*?\n    \});/)[1]})`,
+);
+
+// Link annotations can sit inside Flate-compressed object streams.
+function pdfLinkTargets(bytes) {
+  const raw = bytes.toString('latin1');
+  const texts = [raw];
+  for (let at = raw.indexOf('stream'); at !== -1; at = raw.indexOf('stream', at + 1)) {
+    if (raw.startsWith('endstream', at - 3)) continue;
+    let start = at + 'stream'.length;
+    if (raw[start] === '\r') start += 1;
+    if (raw[start] === '\n') start += 1;
+    try {
+      texts.push(inflateSync(bytes.subarray(start, raw.indexOf('endstream', start))).toString('latin1'));
+    } catch {
+      // Not a Flate stream (images, fonts).
+    }
+  }
+  const unescape = (value) =>
+    value.replace(/\\([0-7]{1,3})/g, (_, octal) => String.fromCharCode(parseInt(octal, 8)));
+  return [...texts.join('\n').matchAll(/\/URI\s*\(((?:\\.|[^\\)])*)\)/g)]
+    .map((match) => unescape(match[1]));
+}
+
 test('canonical, robots, and sitemap use one production host', () => {
   const canonicalTag = tags('link').find(
     (tag) => attr(tag, 'rel') === 'canonical',
@@ -102,6 +129,18 @@ test('canonical, robots, and sitemap use one production host', () => {
     /aurorabot-ai\.github\.io/i,
   );
   assert.doesNotMatch(sitemap, /<lastmod\b/i);
+});
+
+test('static title and share cards match the zh copy that crawlers read', () => {
+  const meta = (key, value) =>
+    attr(tags('meta').find((tag) => attr(tag, key) === value), 'content');
+
+  assert.equal(index.match(/<title>(.*?)<\/title>/)?.[1], dictionary.zh.docTitle);
+  assert.equal(meta('name', 'description'), dictionary.zh.metaDesc);
+  assert.equal(meta('property', 'og:title'), dictionary.zh.docTitle);
+  assert.equal(meta('property', 'og:description'), dictionary.zh.metaDesc);
+  assert.equal(meta('name', 'twitter:title'), dictionary.zh.docTitle);
+  assert.equal(meta('name', 'twitter:description'), dictionary.zh.metaDesc);
 });
 
 test('mobile header and navigation follow visible focus order', () => {
@@ -244,6 +283,17 @@ test('play buttons inherit ten unique labels and refresh after language changes'
   assert.match(bracedBlock(index, 'function applyLang(lang)'), /refreshPlayButtonLabels\(\)/);
 });
 
+test('every translated element has zh and en copy', () => {
+  const keys = new Set(
+    [...index.matchAll(/data-i18n(?:-aria|-alt)?="([^"]+)"/g)].map((match) => match[1]),
+  );
+  for (const key of keys) {
+    for (const lang of ['zh', 'en']) {
+      assert.ok(dictionary[lang][key], `${lang}: ${key}`);
+    }
+  }
+});
+
 test('hero, sections, and metrics never begin with false content', () => {
   assert.doesNotMatch(index, /\.hero\s*\{\s*animation:\s*fadeUp/);
   assert.doesNotMatch(index, /\.main\s*>\s*\.section[^{}]*\{\s*animation:\s*fadeUp/);
@@ -252,6 +302,17 @@ test('hero, sections, and metrics never begin with false content', () => {
   assert.doesNotMatch(index, /requestAnimationFrame\(step\)/);
   assert.match(index, /<strong>30%→70%<\/strong>/);
   assert.match(index, /<strong>500\+<\/strong>/);
+});
+
+test('hero metrics and projects lead with the resume headline results', () => {
+  const metrics = [
+    ...index.matchAll(/<div class="metric">\s*<strong[^>]*>(.*?)<\/strong>/g),
+  ].map((match) => match[1]);
+  assert.deepEqual(metrics.slice(0, 2), ['≈2×', '30%→70%']);
+
+  const firstProject = index.match(/<article class="project-card">[\s\S]*?<\/article>/)?.[0] ?? '';
+  assert.match(firstProject, /data-i18n="p4t">π0\.6 RECAP/);
+  assert.match(firstProject, /<strong>≈2×<\/strong>/);
 });
 
 test('reduced motion and dark skip-link styles are complete', () => {
@@ -313,6 +374,18 @@ test('resume PDF is at most 3 MiB', async () => {
     size <= 3 * 1024 * 1024,
     `resume is ${size} bytes; expected at most 3 MiB`,
   );
+});
+
+test('every page anchor linked from the resume PDF exists', async () => {
+  const anchors = pdfLinkTargets(await read('heliang-pu-resume.pdf', null))
+    .map((uri) => new URL(uri))
+    .filter((url) => url.hostname === 'heliang-pu.github.io' && url.hash)
+    .map((url) => url.hash.slice(1));
+
+  assert.ok(anchors.length >= 9, `found only ${anchors.length} resume anchors`);
+  for (const id of new Set(anchors)) {
+    assert.match(index, new RegExp(`\\sid="${id}"`), `resume links to #${id}`);
+  }
 });
 
 test('work and education timeline is visible and linked from navigation', () => {

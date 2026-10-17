@@ -1,6 +1,6 @@
 # heliang-pu.github.io
 
-蒲贺良的个人主页 / 作品集 —— 具身智能 / VLA 工程师。
+蒲贺良的个人主页 / 作品集 —— 具身智能 / VLA 全栈工程师。
 
 🔗 **在线访问:** https://heliang-pu.github.io/
 
