@@ -522,7 +522,7 @@ a {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* 简历 PDF 第 2 页仍链接已下线的 #demo-03 / #demo-04（单臂抓取），让它们落到 S101 项目卡 */
+/* 旧版简历 PDF 链接的 Demo 锚点（#demos、#demo-NN）已下线，用空锚点落到对应项目卡或板块 */
 .legacy-anchor {
   position: absolute;
   top: 0;

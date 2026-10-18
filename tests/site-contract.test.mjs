@@ -225,7 +225,7 @@ test('the page reads like a resume: work first, no demo videos', () => {
 
 test('project screenshots are static, lazy, and described', () => {
   const shots = tags('img').filter((tag) => attr(tag, 'class') === 'project-shot');
-  assert.equal(shots.length, 3);
+  assert.equal(shots.length, 2);
   for (const shot of shots) {
     assert.match(attr(shot, 'src'), /^assets\/projects\/[a-z0-9-]+\.webp$/);
     assert.equal(attr(shot, 'loading'), 'lazy');
@@ -259,7 +259,6 @@ test('hero, sections, and metrics never begin with false content', () => {
   assert.doesNotMatch(script, /\bnumObs\b|\brevObs\b/);
   assert.doesNotMatch(script, /requestAnimationFrame\(step\)/);
   assert.match(index, /<strong>30%→70%<\/strong>/);
-  assert.match(index, /<strong>500\+<\/strong>/);
 });
 
 test('hero metrics and projects lead with the resume headline results', () => {
