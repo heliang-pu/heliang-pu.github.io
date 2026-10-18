@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>蒲贺良简历-A画廊版</title>
+<!--
+  简历 PDF 第 2 页（工作 & 项目经历续 / 专业能力 / 竞赛与荣誉 / 在线主页）的源文件。
+  第 1 页沿用 page1.pdf，不从这里生成。构建：python3 resume-src/build.py
+  样式照第 1 页量出（标题、项目卡、标签与第 1 页同尺寸同配色）。
+  事实只取自现简历、自我介绍.md、站点和工业案例 PPT；不加没有出处的数字，也不链接 #demo 锚点。
+-->
+<style>
+  @font-face {
+    font-family: "Space Grotesk";
+    font-style: normal;
+    font-weight: 500 700;
+    src: url("../assets/fonts/space-grotesk-latin.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-weight: 500 700;
+    src: url("../assets/fonts/jetbrains-mono-latin.woff2") format("woff2");
+  }
+  @page { size: A4; margin: 0; }
+
+  :root {
+    --ink: #17211f;
+    --text: #4c5652;
+    --sub: #62706d;
+    --muted: #8a938f;
+    --green: #0f766e;
+    --line: #d9ded7;
+    --card-line: #e6e9e3;
+    --soft-green: #e7f3ef;
+    --tag-bg: #f0f2ee;
+    --card: #fffdfa;
+    --foot-line: #e6e9e3;
+    --head: "Space Grotesk", "PingFang SC", sans-serif;
+    --mono: "JetBrains Mono", "PingFang SC", monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  h2, h3, p { margin: 0; }
+
+  .page {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    padding: 10mm 10mm 0;
+    overflow: hidden;
+  }
+  .sec + .sec { margin-top: 16px; }
+
+  /* 栏目标题：与第 1 页「教育背景 / 工作 & 项目经历」同款 */
+  .sec-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 4px;
+    margin-bottom: 9px;
+    border-bottom: 1px solid var(--line);
+  }
+  .sec-head h2 {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font: 700 15px/1.48 var(--head);
+    letter-spacing: 0.2em;
+  }
+  .sec-head h2::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--green);
+  }
+  .sec-head .en {
+    margin-right: -0.31px;
+    font: 400 10px/1 var(--mono);
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  /* 公司行：与第 1 页同款 */
+  .org {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+    font-size: 11.5px;
+    color: var(--sub);
+  }
+  .org strong { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+  .org time { font: 400 10.5px var(--mono); color: var(--muted); }
+
+  /* 项目卡：与第 1 页同款 */
+  .proj {
+    padding: 10px 12px 9px;
+    border: 1px solid var(--card-line);
+    border-left: 3px solid var(--green);
+    border-radius: 8px;
+    background: var(--card);
+  }
+  .proj + .proj { margin-top: 6px; }
+  .proj-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .proj h3 { font-size: 12.5px; line-height: 18px; font-weight: 600; }
+  .badge {
+    flex: none;
+    padding: 0 9px;
+    border-radius: 999px;
+    background: var(--soft-green);
+    color: var(--green);
+    font: 600 9.5px/18px var(--mono);
+  }
+  .proj p { margin-top: 4px; font-size: 11.5px; line-height: 16px; color: var(--text); }
+  .proj ul { margin-top: 3px; }
+  .proj li {
+    position: relative;
+    padding-left: 15px;
+    font-size: 11px;
+    line-height: 17.4px;
+    color: var(--text);
+  }
+  .proj li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6.7px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--text);
+  }
+  .ptags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; }
+  .ptags span {
+    padding: 0 8px;
+    border-radius: 5px;
+    background: var(--tag-bg);
+    color: var(--text);
+    font: 400 9px/17px var(--mono);
+  }
+  .ptags span:first-child { background: var(--green); color: #fff; font-weight: 600; }
+
+  /* 应用场景：三格，对应工业案例 PPT 的「应用关联」 */
+  .scenes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .scenes li {
+    padding: 8px 11px 9px;
+    border: 1px solid var(--card-line);
+    border-top: 3px solid var(--green);
+    border-radius: 8px;
+    background: var(--card);
+    font-size: 10.5px;
+    line-height: 16px;
+    color: var(--text);
+  }
+  .scenes b { display: block; margin-bottom: 2px; font-size: 12px; line-height: 18px; font-weight: 600; color: var(--ink); }
+  .scenes span { display: block; }
+
+  /* 专业能力 / 竞赛与荣誉：左侧固定标签列，折行时正文对齐 */
+  .skills, .awards { display: grid; row-gap: 3px; font-size: 11px; line-height: 17px; color: var(--text); }
+  .awards { font-size: 10.5px; }
+  .skills li, .awards li { display: grid; grid-template-columns: 70px 1fr; column-gap: 6px; }
+  .skills b, .awards b { font-weight: 600; color: var(--ink); }
+  .awards li { position: relative; padding-left: 14px; }
+  .awards li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  /* 在线主页 */
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin-top: 14px;
+    padding-top: 9px;
+    border-top: 1px dashed var(--line);
+    font-size: 11px;
+    line-height: 17px;
+    color: var(--muted);
+  }
+  .links-label { font-weight: 600; color: var(--ink); }
+  .links a { margin-left: 5px; font: 500 10.5px/17px var(--mono); color: var(--green); }
+
+  .foot {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 35.5px;
+    padding: 5px calc(10mm + 0.69px) 0 10mm;
+    border-top: 1px solid var(--foot-line);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font: 400 9px/1.48 var(--mono);
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <section class="sec">
+    <header class="sec-head"><h2>工作 &amp; 项目经历（续）</h2><span class="en">EXPERIENCE</span></header>
+    <div class="org">
+      <span><strong>FMC3-Robotics</strong> · 上海 · 具身智能全栈工程师</span>
+      <time>2026.01 – 至今</time>
+    </div>
+
+    <article class="proj">
+      <div class="proj-head"><h3>项目四 · 双臂机器人 π0.5 JAX 纸巾分拣</h3><span class="badge">真机 · 物料分拣与连续作业</span></div>
+      <p>在双臂真实平台上部署 π0.5 JAX 操作策略，完成纸巾的连续抓取与放置分拣。</p>
+      <ul>
+        <li>针对多次抓取与放置之间的衔接、推理延迟影响动作连续性等难点，结合异步推理与 RTC（Real-Time Chunking）优化执行链路</li>
+        <li>改善真实平台的动作连续性与响应效率，完成抓取、放置与执行链路的分拣真机闭环验证</li>
+      </ul>
+      <div class="ptags"><span>π0.5 JAX</span><span>异步推理</span><span>RTC</span><span>双臂真机</span></div>
+    </article>
+
+    <article class="proj">
+      <div class="proj-head"><h3>项目五 · PiPER 双臂 sim2real 抓笔交接</h3><span class="badge">仿真 + 真机 · 数据混训</span></div>
+      <p>在双臂 PiPER 平台（三路 RealSense）上用仿真与真机数据混合训练策略，完成抓笔、双臂交接并放入笔筒。</p>
+      <ul>
+        <li>以孪生场景中的官方专家示范作为仿真数据来源，与真机数据混合训练</li>
+        <li>混训策略在真机上完成抓笔、交接与放入笔筒，并与同一任务的仿真专家示范左右对照</li>
+      </ul>
+      <div class="ptags"><span>sim2real</span><span>PiPER 双臂</span><span>仿真 / 真机混训</span><span>RealSense</span></div>
+    </article>
+
+    <article class="proj">
+      <div class="proj-head"><h3>项目六 · openpi 复现 π0.5 Subtask 长任务拆解</h3><span class="badge">仿真 · 复现</span></div>
+      <p>基于 openpi 复现 π0.5 中提出但官方未开源的 subtask 子任务拆解能力。</p>
+      <ul>
+        <li>将双杯放置长任务分解为可跟踪的阶段，并在仿真 rollout 中完成执行</li>
+      </ul>
+      <div class="ptags"><span>openpi</span><span>π0.5</span><span>子任务拆解</span><span>长任务</span></div>
+    </article>
+
+    <!-- 站点已删除 Embodied Harness；用户 2026-10-17 确认简历保留，只写到 mock 回放为止 -->
+    <article class="proj" id="proj-harness">
+      <div class="proj-head"><h3>项目七 · Embodied Harness 长任务调度运行时</h3><span class="badge">开发中 · mock 回放</span></div>
+      <p>模型无关的任务运行时：把规划器与机器人策略连接起来，管理子任务、记忆、结果校验与失败恢复。</p>
+      <ul>
+        <li>VLM 规划 / VLA 执行可插拔；当前以 mock 规划器与执行器的模拟分拣记录做交互回放，覆盖抓空重试与掉落后重新规划</li>
+      </ul>
+      <div class="ptags"><span>Harness</span><span>任务编排</span><span>失败恢复</span><span>VLM / VLA 可插拔</span></div>
+    </article>
+  </section>
+
+  <section class="sec">
+    <header class="sec-head"><h2>应用场景</h2><span class="en">SCENARIOS</span></header>
+    <ul class="scenes">
+      <li><b>3C 接口插接与精细装配</b><span>项目一 · π0.6 RECAP 手机插拔（真机）</span><span>标杆任务吞吐约翻倍、失败率约减半</span></li>
+      <li><b>物料分拣与连续作业</b><span>项目四 · π0.5 JAX 双臂纸巾分拣（真机）</span><span>异步推理 + RTC，连续抓取与放置</span></li>
+      <li><b>仓储与货物搬运</b><span>项目二 · 傅利叶 GR2 货物搬运（真机）</span><span>宇树 G1 全身搬箱（Isaac Sim 仿真）</span></li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <header class="sec-head"><h2>专业能力</h2><span class="en">SKILLS</span></header>
+    <ul class="skills">
+      <li><b>模型与训练</b><span>π0 / π0.5 / π0.6 · ACT · Diffusion Policy · GR00T · RECAP（Offline RL + Advantage Conditioning）· LoRA · PyTorch / JAX</span></li>
+      <li><b>数据与平台</b><span>遥操作 / 外骨骼 / 多相机采集 · 数据清洗 · Replay · LeRobot Dataset · 机械臂 / 灵巧手 / 人形 get_state / send_action 适配</span></li>
+      <li><b>部署与系统</b><span>Inference server · 异步推理 · RTC · Action Chunk · 延迟优化 · DDS / RoboOS Skill 调度 · RoboBrain VLM 任务分解</span></li>
+      <li><b>评估与工具</b><span>成功率与动作稳定性评估 · Baseline 对比 · 失败案例归因 · 数据分布检查 · Cursor / Claude Code / Codex 辅助开发</span></li>
+      <li><b>真机平台</b><span>傅利叶 GR2 · 智元灵巧手 · 松灵 PiperX / PiPER · 求之 · 汇川 · Manus 数据手套 · Xsens 全身动捕 · Meta Quest 遥操作</span></li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <header class="sec-head"><h2>竞赛与荣誉</h2><span class="en">AWARDS</span></header>
+    <ul class="awards">
+      <li><b>荣誉 &amp; 校园</b><span>2024 国家奖学金（综合第一）· 国家励志奖学金 · 连续三次人民奖学金 · 三次三好学生 · 智能小车实验室负责人 · 电子协会核心人员</span></li>
+      <li><b>队长参赛</b><span>ICAN「边缘 AI+行业」挑战赛全国二等奖 · 智能车智慧物流创意组全国三等奖 / 华东二等奖 · 航天杯移动机器人 AI 挑战赛全国三等奖</span></li>
+      <li><b>其他竞赛</b><span>智能车智慧医疗华东二等奖（模型训练与量化）· 市场调研大赛全国三等奖 · 江苏省高数竞赛省二等奖 · 数学建模省三等奖</span></li>
+      <li><b>科研实践</b><span>江苏省大学生创新创业训练计划项目 / 期刊：基于 OpenMV 的新型智能门锁设计</span></li>
+    </ul>
+  </section>
+
+  <nav class="links" aria-label="在线主页">
+    <span class="links-label">在线主页</span>
+    <span>GitHub<a href="https://github.com/heliang-pu">github.com/heliang-pu</a></span>
+    <span>Hugging Face<a href="https://huggingface.co/puheliang">huggingface.co/puheliang</a></span>
+    <span>LinkedIn<a href="https://www.linkedin.com/in/heliang-pu-a26538416/">heliang-pu</a></span>
+    <span>B 站<a href="https://space.bilibili.com/389273511">小智-Robotics</a></span>
+  </nav>
+
+  <footer class="foot">
+    <span>蒲贺良 · 具身智能 / VLA 工程师</span>
+    <a href="https://heliang-pu.github.io/">heliang-pu.github.io</a>
+  </footer>
+</main>
+</body>
+</html>
