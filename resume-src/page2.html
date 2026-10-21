@@ -7,7 +7,8 @@
   简历 PDF 第 2 页（工作 & 项目经历续 / 专业能力 / 竞赛与荣誉 / 在线主页）的源文件。
   第 1 页沿用 page1.pdf，不从这里生成。构建：python3 resume-src/build.py
   样式照第 1 页量出（标题、项目卡、标签与第 1 页同尺寸同配色）。
-  事实只取自现简历、自我介绍.md、站点和工业案例 PPT；不加没有出处的数字，也不链接 #demo 锚点。
+  事实只取自现简历、自我介绍.md、站点、工业案例 PPT 和 Codex 会话记录（2026-10-18 核对）；
+  不加没有出处的数字（比赛成绩、训练成功率未经核实，不写），也不链接 #demo 锚点。
 -->
 <style>
   @font-face {
@@ -58,7 +59,7 @@
     padding: 10mm 10mm 0;
     overflow: hidden;
   }
-  .sec + .sec { margin-top: 16px; }
+  .sec + .sec { margin-top: 12px; }
 
   /* 栏目标题：与第 1 页「教育背景 / 工作 & 项目经历」同款 */
   .sec-head {
@@ -110,7 +111,7 @@
     border-radius: 8px;
     background: var(--card);
   }
-  .proj + .proj { margin-top: 6px; }
+  .proj + .proj { margin-top: 5px; }
   .proj-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
   .proj h3 { font-size: 12.5px; line-height: 18px; font-weight: 600; }
   .badge {
@@ -186,7 +187,7 @@
     flex-wrap: wrap;
     align-items: baseline;
     gap: 4px 12px;
-    margin-top: 14px;
+    margin-top: 10px;
     padding-top: 9px;
     border-top: 1px dashed var(--line);
     font-size: 11px;
@@ -257,18 +258,20 @@
       <p>模型无关的任务运行时：把规划器与机器人策略连接起来，管理子任务、记忆、结果校验与失败恢复。</p>
       <ul>
         <li>VLM 规划 / VLA 执行可插拔；当前以 mock 规划器与执行器的模拟分拣记录做交互回放，覆盖抓空重试与掉落后重新规划</li>
+        <li>接入 OpenPI 远程推理（WebSocket 服务）与 LeRobot v3 数据格式，390 项自动化验证通过（真实权重的 GPU 联调待完成）</li>
       </ul>
       <div class="ptags"><span>Harness</span><span>任务编排</span><span>失败恢复</span><span>VLM / VLA 可插拔</span></div>
     </article>
-  </section>
 
-  <section class="sec">
-    <header class="sec-head"><h2>应用场景</h2><span class="en">SCENARIOS</span></header>
-    <ul class="scenes">
-      <li><b>3C 接口插接与精细装配</b><span>项目一 · π0.6 RECAP 手机插拔（真机）</span><span>标杆任务吞吐约翻倍、失败率约减半</span></li>
-      <li><b>物料分拣与连续作业</b><span>项目四 · π0.5 JAX 双臂纸巾分拣（真机）</span><span>异步推理 + RTC，连续抓取与放置</span></li>
-      <li><b>仓储与货物搬运</b><span>项目二 · 傅利叶 GR2 货物搬运（真机）</span><span>宇树 G1 全身搬箱（Isaac Sim 仿真）</span></li>
-    </ul>
+    <article class="proj">
+      <div class="proj-head"><h3>项目八 · FineART-VLA 子任务与记忆：仿真数据管线</h3><span class="badge">仿真 · 数据工程</span></div>
+      <p>参照 FineART-VLA（子任务生成 + 文本记忆）的思路，在 MuJoCo 中搭建分拣仿真与专家数据管线。</p>
+      <ul>
+        <li>专家示范 200 组（约 87 万帧，LeRobot v3 格式），5000 段子任务与文本记忆标注</li>
+        <li>8 卡 A100 DDP 训练（全局 batch 256）；修复夹爪目标跳变与假夹持后重新采集</li>
+      </ul>
+      <div class="ptags"><span>MuJoCo</span><span>LeRobot v3</span><span>子任务标注</span><span>8 × A100</span></div>
+    </article>
   </section>
 
   <section class="sec">
@@ -276,8 +279,9 @@
     <ul class="skills">
       <li><b>模型与训练</b><span>π0 / π0.5 / π0.6 · ACT · Diffusion Policy · GR00T · RECAP（Offline RL + Advantage Conditioning）· LoRA · PyTorch / JAX</span></li>
       <li><b>数据与平台</b><span>遥操作 / 外骨骼 / 多相机采集 · 数据清洗 · Replay · LeRobot Dataset · 机械臂 / 灵巧手 / 人形 get_state / send_action 适配</span></li>
-      <li><b>部署与系统</b><span>Inference server · 异步推理 · RTC · Action Chunk · 延迟优化 · DDS / RoboOS Skill 调度 · RoboBrain VLM 任务分解</span></li>
+      <li><b>部署与系统</b><span>Inference server · 异步推理 · RTC · Action Chunk · 多相机 SigLIP 批处理与 BF16 推理优化（π0 / π0.5）· DDS / RoboOS Skill 调度 · RoboBrain VLM 任务分解</span></li>
       <li><b>评估与工具</b><span>成功率与动作稳定性评估 · Baseline 对比 · 失败案例归因 · 数据分布检查 · Cursor / Claude Code / Codex 辅助开发</span></li>
+      <li><b>论文与写作</b><span>VLA 强化学习后训练综述（CSUR 投稿准备中）· FineART-VLA 精读 PPT 39 页与约 19 分钟讲解视频</span></li>
       <li><b>真机平台</b><span>傅利叶 GR2 · 智元灵巧手 · 松灵 PiperX / PiPER · 求之 · 汇川 · Manus 数据手套 · Xsens 全身动捕 · Meta Quest 遥操作</span></li>
     </ul>
   </section>
@@ -288,6 +292,7 @@
       <li><b>荣誉 &amp; 校园</b><span>2024 国家奖学金（综合第一）· 国家励志奖学金 · 连续三次人民奖学金 · 三次三好学生 · 智能小车实验室负责人 · 电子协会核心人员</span></li>
       <li><b>队长参赛</b><span>ICAN「边缘 AI+行业」挑战赛全国二等奖 · 智能车智慧物流创意组全国三等奖 / 华东二等奖 · 航天杯移动机器人 AI 挑战赛全国三等奖</span></li>
       <li><b>其他竞赛</b><span>智能车智慧医疗华东二等奖（模型训练与量化）· 市场调研大赛全国三等奖 · 江苏省高数竞赛省二等奖 · 数学建模省三等奖</span></li>
+      <li><b>赛事参与</b><span>RoboSynChallenge 具身操作挑战赛（10 任务）· fmc3-no1 队参赛</span></li>
       <li><b>科研实践</b><span>江苏省大学生创新创业训练计划项目 / 期刊：基于 OpenMV 的新型智能门锁设计</span></li>
     </ul>
   </section>
