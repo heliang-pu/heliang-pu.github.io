@@ -105,7 +105,7 @@
 
   /* 项目卡：与第 1 页同款 */
   .proj {
-    padding: 10px 12px 9px;
+    padding: 9px 12px 8px;
     border: 1px solid var(--card-line);
     border-left: 3px solid var(--green);
     border-radius: 8px;
@@ -141,7 +141,7 @@
     border-radius: 50%;
     background: var(--text);
   }
-  .ptags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; }
+  .ptags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
   .ptags span {
     padding: 0 8px;
     border-radius: 5px;
@@ -171,6 +171,7 @@
   .awards { font-size: 10.5px; }
   .skills li, .awards li { display: grid; grid-template-columns: 70px 1fr; column-gap: 6px; }
   .skills b, .awards b { font-weight: 600; color: var(--ink); }
+  .awards strong { font-weight: 600; color: var(--green); }
   .awards li { position: relative; padding-left: 14px; }
   .awards li::before {
     content: "▸";
@@ -278,6 +279,7 @@
     <header class="sec-head"><h2>专业能力</h2><span class="en">SKILLS</span></header>
     <ul class="skills">
       <li><b>模型与训练</b><span>π0 / π0.5 / π0.6 · ACT · Diffusion Policy · GR00T · RECAP（Offline RL + Advantage Conditioning）· LoRA · PyTorch / JAX</span></li>
+      <li><b>前沿方向</b><span>世界动作模型（Phoenix-MWA · InternW0 · OpenWAM）· sim2real · 真机强化学习 · 人在环学习（human-in-the-loop）</span></li>
       <li><b>数据与平台</b><span>遥操作 / 外骨骼 / 多相机采集 · 数据清洗 · Replay · LeRobot Dataset · 机械臂 / 灵巧手 / 人形 get_state / send_action 适配</span></li>
       <li><b>部署与系统</b><span>Inference server · 异步推理 · RTC · Action Chunk · 多相机 SigLIP 批处理与 BF16 推理优化（π0 / π0.5）· DDS / RoboOS Skill 调度 · RoboBrain VLM 任务分解</span></li>
       <li><b>评估与工具</b><span>成功率与动作稳定性评估 · Baseline 对比 · 失败案例归因 · 数据分布检查 · Cursor / Claude Code / Codex 辅助开发</span></li>
@@ -289,10 +291,10 @@
   <section class="sec">
     <header class="sec-head"><h2>竞赛与荣誉</h2><span class="en">AWARDS</span></header>
     <ul class="awards">
+      <li><b>顶会竞赛</b><span><strong>NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军（队长）</strong>· fmc3-no1 队 · 10 项具身操作任务</span></li>
       <li><b>荣誉 &amp; 校园</b><span>2024 国家奖学金（综合第一）· 国家励志奖学金 · 连续三次人民奖学金 · 三次三好学生 · 智能小车实验室负责人 · 电子协会核心人员</span></li>
       <li><b>队长参赛</b><span>ICAN「边缘 AI+行业」挑战赛全国二等奖 · 智能车智慧物流创意组全国三等奖 / 华东二等奖 · 航天杯移动机器人 AI 挑战赛全国三等奖</span></li>
       <li><b>其他竞赛</b><span>智能车智慧医疗华东二等奖（模型训练与量化）· 市场调研大赛全国三等奖 · 江苏省高数竞赛省二等奖 · 数学建模省三等奖</span></li>
-      <li><b>赛事参与</b><span>RoboSynChallenge 具身操作挑战赛（10 任务）· fmc3-no1 队参赛</span></li>
       <li><b>科研实践</b><span>江苏省大学生创新创业训练计划项目 / 期刊：基于 OpenMV 的新型智能门锁设计</span></li>
     </ul>
   </section>
