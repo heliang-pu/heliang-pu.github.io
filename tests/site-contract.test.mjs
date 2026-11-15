@@ -178,7 +178,7 @@ test('mobile navigation is native and contains section and profile links', () =>
   assert.match(details, /<nav[\s\S]*data-i18n-aria="navAria"/);
 
   for (const href of [
-    '#experience', '#projects', '#more-projects', '#skills', '#platforms', '#awards',
+    '#experience', '#projects', '#competition', '#more-projects', '#skills', '#platforms', '#awards',
     'mailto:puheliang122@gmail.com',
     'https://github.com/heliang-pu',
     'https://huggingface.co/puheliang',
@@ -210,17 +210,59 @@ test('980px layout hides the desktop sidebar without CSS reordering', () => {
   );
 });
 
-test('the page reads like a resume: work first, no demo videos', () => {
+const competition = index.match(
+  /<section class="section" id="competition">[\s\S]*?<\/section>/,
+)?.[0] ?? '';
+
+test('the page reads like a resume: work first, videos only in the competition section', () => {
   const sections = [
     ...index.matchAll(/<section class="(hero|section)"(?: id="([^"]+)")?>/g),
   ].map((match) => match[2] ?? match[1]);
   assert.deepEqual(sections, [
-    'hero', 'experience', 'projects', 'more-projects', 'skills', 'platforms', 'awards',
+    'hero', 'experience', 'projects', 'competition', 'more-projects', 'skills', 'platforms', 'awards',
   ]);
 
+  // The old demo wall (GitHub Release videos, demos/ pages, demo cards) stays gone.
   for (const source of [index, css, script]) {
-    assert.doesNotMatch(source, /<video\b|<source\b|releases\/download|site-media|demos\/|demo-card|play-badge/);
+    assert.doesNotMatch(source, /releases\/download|site-media|demos\/|demo-card|play-badge/);
   }
+  assert.equal(tags('video').length, 4);
+  assert.equal(tags('video', competition).length, 4);
+  assert.equal(tags('source').length, tags('source', competition).length);
+});
+
+test('competition clips are same-origin, load on demand, and stay small', async () => {
+  const videos = [...competition.matchAll(/<video\b[^>]*>[\s\S]*?<\/video>/g)].map((match) => match[0]);
+  assert.equal(videos.length, 4);
+
+  let total = 0;
+  for (const video of videos) {
+    const tag = tags('video', video)[0];
+    assert.equal(attr(tag, 'preload'), 'none');
+    assert.match(tag, /\scontrols\b/);
+    assert.match(tag, /\splaysinline\b/);
+    assert.ok(Number(attr(tag, 'width')) > 0 && Number(attr(tag, 'height')) > 0);
+    assert.match(competition, new RegExp(`<strong id="${attr(tag, 'aria-labelledby')}" data-i18n="`));
+
+    const sources = tags('source', video);
+    assert.equal(sources.length, 1);
+    const src = attr(sources[0], 'src');
+    const poster = attr(tag, 'poster');
+    assert.match(src, /^assets\/competition\/[a-z0-9-]+\.mp4$/);
+    assert.equal(attr(sources[0], 'type'), 'video/mp4');
+    assert.equal(poster, src.replace(/\.mp4$/, '.webp'));
+    await access(new URL(poster, root));
+
+    // moov before mdat, so playback starts before the whole file arrives
+    const bytes = await read(src, null);
+    const head = bytes.subarray(0, 64 * 1024).toString('latin1');
+    const moov = head.indexOf('moov');
+    const mdat = head.indexOf('mdat');
+    assert.ok(moov !== -1 && (mdat === -1 || moov < mdat), `${src} is not faststart`);
+    assert.ok(bytes.length <= 4 * 1024 * 1024, `${src} is ${bytes.length} bytes`);
+    total += bytes.length;
+  }
+  assert.ok(total <= 10 * 1024 * 1024, `competition clips total ${total} bytes`);
 });
 
 test('project screenshots are static, lazy, and described', () => {
@@ -282,8 +324,8 @@ test('favicon, footer date, and local assets are consistent', async () => {
   const favicon = tags('link').find((tag) => attr(tag, 'rel') === 'icon');
   assert.equal(attr(favicon, 'href'), '/assets/icon-192.png');
   assert.doesNotMatch(attr(favicon, 'href'), /^data:/);
-  assert.equal((`${index}\n${i18nSource}`.match(/Last updated: 2026\.10/g) ?? []).length, 3);
-  assert.doesNotMatch(`${index}\n${i18nSource}`, /Last updated: 2026\.08/);
+  assert.equal((`${index}\n${i18nSource}`.match(/Last updated: 2026\.11/g) ?? []).length, 3);
+  assert.doesNotMatch(`${index}\n${i18nSource}`, /Last updated: 2026\.(?:08|10)/);
 
   const pageRefs = [
     ...index.matchAll(/\b(?:src|href)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)"/g),

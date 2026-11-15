@@ -86,6 +86,7 @@
         <div class="mobile-nav-links">
           <a href="#experience" data-i18n="navExp">工作与教育</a>
           <a href="#projects" data-i18n="navProjects">项目经历</a>
+          <a href="#competition" data-i18n="navComp">竞赛专栏</a>
           <a href="#more-projects" data-i18n="navMore">更多项目</a>
           <a href="#skills" data-i18n="navSkills">能力矩阵</a>
           <a href="#platforms" data-i18n="navPlatforms">真机平台</a>
@@ -125,6 +126,7 @@
         <div class="nav-links">
           <a href="#experience" data-i18n="navExp">工作与教育</a>
           <a href="#projects" data-i18n="navProjects">项目经历</a>
+          <a href="#competition" data-i18n="navComp">竞赛专栏</a>
           <a href="#more-projects" data-i18n="navMore">更多项目</a>
           <a href="#skills" data-i18n="navSkills">能力矩阵</a>
           <a href="#platforms" data-i18n="navPlatforms">真机平台</a>
@@ -368,6 +370,67 @@
         </div>
       </section>
 
+      <section class="section" id="competition">
+        <div class="section-head">
+          <h2 data-i18n="secComp">竞赛专栏</h2>
+          <span class="section-kicker" data-i18n="kickerComp">NeurIPS 2026 RoboSynChallenge · 仿真与真机 Demo</span>
+        </div>
+        <div class="comp-intro">
+          <strong data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军（队长）</strong>
+          <p data-i18n="compDesc">fmc3-no1 队。在 AgileX CobotMagic 双臂平台（两条 PiPER 机械臂、三路 RGB 相机）上完成 10 个双臂操作任务：先在 EmbodiChain 仿真中比赛，再上真机。仿真赛每个任务微调一个 π0.5；真机阶段对比了 π0.5 与世界动作模型 Phoenix-MWA，后者只用真机数据后训练。</p>
+        </div>
+
+        <div class="clip-group">
+          <h3 data-i18n="compSimHead">仿真赛 · EmbodiChain</h3>
+          <p class="clip-note" data-i18n="compSimNote">每个任务一个 π0.5 权重；两段都是 2026 年 9 月本地评测中的成功回合。评测时物体位姿、光照和纹理都是随机的，所以一局中途桌面会变色。</p>
+          <div class="clip-grid">
+            <figure class="clip">
+              <video controls preload="none" playsinline width="640" height="480" poster="assets/competition/sim-items-handover.webp" aria-labelledby="clip-sim-handover">
+                <source src="assets/competition/sim-items-handover.mp4" type="video/mp4">
+              </video>
+              <figcaption>
+                <strong id="clip-sim-handover" data-i18n="compClip1t">items_handover · 交接笔并放进笔筒</strong>
+                <span data-i18n="clipSimResult">π0.5 自主执行，成功回合</span>
+              </figcaption>
+            </figure>
+            <figure class="clip">
+              <video controls preload="none" playsinline width="640" height="480" poster="assets/competition/sim-manipulate-pipette.webp" aria-labelledby="clip-sim-pipette">
+                <source src="assets/competition/sim-manipulate-pipette.mp4" type="video/mp4">
+              </video>
+              <figcaption>
+                <strong id="clip-sim-pipette" data-i18n="compClip2t">manipulate_pipette · 操作移液枪</strong>
+                <span data-i18n="clipSimResult">π0.5 自主执行，成功回合</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="clip-group">
+          <h3 data-i18n="compRealHead">真机阶段 · 自有台架</h3>
+          <p class="clip-note" data-i18n="compRealNote">两段是同一任务 sample_loading（交接试管并竖直插入试管架），2026 年 10 月在自有台架上录制。左侧为顶部相机，右侧上下为左、右腕相机。</p>
+          <div class="clip-grid">
+            <figure class="clip">
+              <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/real-sample-loading-pi05.webp" aria-labelledby="clip-real-pi05">
+                <source src="assets/competition/real-sample-loading-pi05.mp4" type="video/mp4">
+              </video>
+              <figcaption>
+                <strong id="clip-real-pi05" data-i18n="compClip3t">π0.5 · 仿真 + 真机数据联合训练</strong>
+                <span data-i18n="clipRealResult">自主成功，全程无人接管</span>
+              </figcaption>
+            </figure>
+            <figure class="clip">
+              <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/real-sample-loading-phoenix.webp" aria-labelledby="clip-real-phoenix">
+                <source src="assets/competition/real-sample-loading-phoenix.mp4" type="video/mp4">
+              </video>
+              <figcaption>
+                <strong id="clip-real-phoenix" data-i18n="compClip4t">Phoenix-MWA · 只用真机数据后训练</strong>
+                <span data-i18n="clipRealResult">自主成功，全程无人接管</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="more-projects">
         <span class="legacy-anchor" id="demos" aria-hidden="true"></span>
         <div class="section-head">
@@ -503,6 +566,13 @@
         </div>
         <div class="awards">
           <div class="award">
+            <div class="award-year" data-i18n="a7y">顶会竞赛</div>
+            <div>
+              <strong data-i18n="a7t">NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军</strong>
+              <span data-i18n="a7d">队长，fmc3-no1 队；10 项双臂操作任务。仿真与真机 Demo 见「竞赛专栏」。</span>
+            </div>
+          </div>
+          <div class="award">
             <div class="award-year" data-i18n="a1y">奖学金</div>
             <div>
               <strong data-i18n="a1t">2024 国家奖学金</strong>
@@ -547,7 +617,7 @@
         </div>
       </section>
 
-      <footer class="footer">© 2026 蒲贺良 · <span data-i18n="footerUpdated">Last updated: 2026.10</span></footer>
+      <footer class="footer">© 2026 蒲贺良 · <span data-i18n="footerUpdated">Last updated: 2026.11</span></footer>
     </main>
   </div>
   <button class="control-btn to-top" type="button" aria-label="回到顶部" title="回到顶部"><span aria-hidden="true">↑</span></button>

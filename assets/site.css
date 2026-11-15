@@ -765,6 +765,78 @@ a {
   color: var(--amber);
 }
 
+/* 竞赛专栏：冠军说明 + 仿真 / 真机两组视频。视频与站点同源，点播放才加载 */
+.comp-intro {
+  padding: 14px 16px;
+  border: 1px solid #cce3dc;
+  border-left: 4px solid var(--green);
+  border-radius: 8px;
+  background: var(--soft-green);
+}
+
+.comp-intro strong {
+  display: block;
+  color: var(--green);
+  font-size: 1.04rem;
+  line-height: 1.4;
+}
+
+.comp-intro p {
+  margin: 6px 0 0;
+  color: #42645e;
+  font-size: 0.92rem;
+}
+
+.clip-group {
+  margin-top: 22px;
+}
+
+.clip-group h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.clip-note {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.clip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.clip {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffdfa;
+}
+
+.clip video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: #111816;
+}
+
+.clip figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.clip figcaption strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
 .awards {
   display: grid;
   gap: 10px;
@@ -948,6 +1020,7 @@ a {
 
   .contact,
   .capability-grid,
+  .clip-grid,
   .project-card,
   .timeline-item {
     grid-template-columns: 1fr;
@@ -1039,6 +1112,9 @@ html.theme-dark .timeline-card:hover, html.theme-dark .project-card:hover, html.
 html.theme-dark .chip:hover { background: var(--soft-green); }
 html.theme-dark .kind { background: rgba(94, 234, 212, 0.14); color: #5eead4; }
 html.theme-dark .kind.sim { background: var(--soft-amber); color: #fcd34d; }
+html.theme-dark .comp-intro { border-color: #1a4a44; border-left-color: var(--green); }
+html.theme-dark .comp-intro p { color: #cbd5e1; }
+html.theme-dark .clip { background: #1a2433; }
 
 .skip-link {
   position: absolute;
@@ -1159,7 +1235,7 @@ html.theme-dark .skip-link:focus {
     display: none;
   }
 
-  .project-card, .timeline-card, .capability {
+  .project-card, .timeline-card, .capability, .clip {
     break-inside: avoid;
   }
 

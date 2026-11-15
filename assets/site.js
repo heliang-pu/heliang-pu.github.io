@@ -98,6 +98,16 @@ function toggleLang() {
     if (localStorage.getItem('lang') === 'en') applyLang('en');
   } catch (e) {}
 
+  /* 竞赛专栏：一次只播一段视频 */
+  var clips = document.querySelectorAll('.clip video');
+  clips.forEach(function (video) {
+    video.addEventListener('play', function () {
+      clips.forEach(function (other) {
+        if (other !== video) other.pause();
+      });
+    });
+  });
+
   /* 指标卡跟随鼠标高光（触摸设备无 pointermove hover，自然不触发） */
   document.querySelectorAll('.metric').forEach(function (card) {
     card.addEventListener('pointermove', function (e) {
