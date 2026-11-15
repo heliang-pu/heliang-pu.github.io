@@ -215,9 +215,11 @@
               <h3 data-i18n="exp1title">具身智能全栈工程师</h3>
               <div class="meta">FMC3-Robotics · <span data-i18n="exp1loc">上海</span></div>
               <ul class="plain-list">
+                <li data-i18n="exp1d4">带队参加 NeurIPS 2026 RoboSynChallenge，获仿真赛道全球总冠军：按任务微调 π0.5，分数主要来自数据（扩充专家数据、失败场景重采、宽域随机化）。</li>
+                <li data-i18n="exp1d5">真机阶段只用真机数据后训练世界动作模型 Phoenix-MWA；搭建带人接管的数据流程，切掉失败段和停顿，解决模型卡住。</li>
+                <li data-i18n="exp1d6">写好只读观测的推理规则和动作块 inpainting，把十个任务封装成仿真、真机通用的一键评测；接入 RynnBrain 规划模型串联长任务。</li>
                 <li data-i18n="exp1d1">独立负责 π0.6 RECAP 真机自改进项目：标杆手机插拔任务吞吐约翻倍、失败率约减半。</li>
                 <li data-i18n="exp1d2">从零搭建机械臂 + 智元灵巧手双臂平台，融合触觉使精细操作成功率从 30% 提升至 70%。</li>
-                <li data-i18n="exp1d4">带队参加 NeurIPS 2026 RoboSynChallenge（10 个双臂操作任务），获仿真赛道全球总冠军。</li>
               </ul>
             </div>
           </div>
@@ -311,7 +313,7 @@
         </div>
         <div class="comp-intro">
           <strong data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军（队长）</strong>
-          <p data-i18n="compDesc">fmc3-no1 队，10 个双臂操作任务：仿真赛每个任务微调一个 π0.5，真机阶段改用世界动作模型 Phoenix-MWA。</p>
+          <p data-i18n="compDesc">fmc3-no1 队，10 个双臂操作任务：仿真赛按任务微调 π0.5，分数主要来自数据；真机阶段只用真机数据后训练世界动作模型 Phoenix-MWA。</p>
         </div>
         <div class="task-grid">
           <a class="task-tile" href="competition.html#click-bell">
@@ -357,7 +359,10 @@
         </div>
         <div class="task-grid-foot">
           <p data-i18n="compTileNote">每张图左半仿真、右半真机，点开看并排对照。</p>
-          <a class="button accent" href="competition.html" data-i18n="compOpen">打开十个任务的对照页 →</a>
+          <span class="foot-links">
+            <a class="section-link" href="competition.html#methods" data-i18n="compMethodsLink">比赛方法 →</a>
+            <a class="button accent" href="competition.html" data-i18n="compOpen">打开十个任务的对照页 →</a>
+          </span>
         </div>
       </section>
 

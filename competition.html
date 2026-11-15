@@ -51,6 +51,7 @@
       <div class="comp-intro">
         <strong data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军（队长）</strong>
         <p data-i18n="compPageDesc">fmc3-no1 队。比赛在 AgileX CobotMagic 双臂平台（两条 PiPER 机械臂、三路 RGB 相机）上进行，共 10 个双臂操作任务：先在 EmbodiChain 仿真中比赛，再上真机。每个任务左边是仿真赛提交的 π0.5 在官方评测中的成功回合，右边是真机阶段世界动作模型 Phoenix-MWA 在我们台架上的自主成功回合。</p>
+        <a class="section-link methods-jump" href="#methods" data-i18n="compMethodsJump">比赛方法 ↓</a>
       </div>
       <ul class="plain-list comp-legend">
         <li data-i18n="compLegendLayout">两段视频排布相同：左侧是顶部相机，右侧上、下分别是左腕、右腕相机。</li>
@@ -393,6 +394,38 @@
           <a href="#click-bell" data-i18n="compNext">下一个任务 →</a>
         </nav>
       </section>
+        <section class="section" id="methods">
+          <div class="section-head">
+            <h2 data-i18n="secMethods">比赛方法</h2>
+            <span class="section-kicker" data-i18n="methodsKicker">整理自我们提交的技术报告</span>
+          </div>
+          <p class="method-flow" data-i18n="methodsFlow">仿真策略带着人工接管采到第一批真机数据；真机数据再后训练世界动作模型，它的自主运行和接管又进入下一轮数据。</p>
+          <div class="method-grid">
+            <article class="method-card">
+              <h3 data-i18n="mSimT">仿真赛：数据驱动的 π0.5 配方</h3>
+              <ul class="plain-list">
+              <li data-i18n="mSim1">每个任务微调一个 π0.5（openpi / JAX），预测 50 步增量关节动作，EMA 0.99。</li>
+              <li data-i18n="mSim2">换 seed 重跑官方脚本专家、只留判定通过的组，把专家数据翻倍到约 2 万组。</li>
+              <li data-i18n="mSim3">在策略失败的场景上换专家配置重放（比如抬高交接点），再用小学习率微调。</li>
+              <li data-i18n="mSim4">宽域随机化：物体位姿范围 ×1.6、初始关节噪声 ×2、纹理从 100 种加到 300 种、顶部相机也会动；最后一轮原始数据和宽域数据按 1:2 混合。</li>
+              <li data-i18n="mSim5">按任务选每次执行的步数（预测 50 步、执行多少再重新规划），影响比大多数训练侧改动都大。</li>
+              <li data-i18n="mSim6">毫米级的 sample_loading 重做脚本专家，让它插到位并且会重试。</li>
+              </ul>
+            </article>
+            <article class="method-card">
+              <h3 data-i18n="mRealT">真机阶段：只用真机数据的世界动作模型</h3>
+              <ul class="plain-list">
+              <li data-i18n="mReal1">数字孪生查出仿真权重上真机失效的原因是腕部相机位姿；台架保持组委会的相机布局，改用真机数据修模型。</li>
+              <li data-i18n="mReal2">对比 π0.5 和三个世界动作模型后选了 Phoenix-MWA（Wan2.2-5B 视频专家加约 10 亿参数的动作专家，每次预测 32 步），在 16 张 A100 上只用真机数据后训练。</li>
+              <li data-i18n="mReal3">网页控制台里策略自主运行，操作员用主臂接管，每次接管都变成训练数据。</li>
+              <li data-i18n="mReal4">切掉接管前的失败段，把 0.5 秒以上的停顿压成一帧、去掉结尾静止帧，这是治卡住的主要办法。</li>
+              <li data-i18n="mReal5">只读观测的推理规则写在策略适配器里：按任务设夹紧阈值、卡住时遮住顶部相机并往前推一下、关节限位和单步限幅。</li>
+              <li data-i18n="mReal6">动作块 inpainting：用 RTC 软掩码让新动作块接上上一块没执行完的部分，只改推理、不用重训，接缝处的跳变明显变小。</li>
+              </ul>
+            </article>
+          </div>
+          <p class="method-note" data-i18n="mTried">也试过 Spatial Forcing、仿真 RECAP、RLT、真机 RECAP-ACP 和 HIL-SERL，在比赛时间里都没有见效。</p>
+        </section>
     </main>
 
     <footer class="footer">© 2026 <span data-i18n="name">蒲贺良</span> · <span data-i18n="footerUpdated">Last updated: 2026.11</span></footer>

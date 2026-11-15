@@ -275,6 +275,17 @@ test('the homepage reads like a resume: highlights and entries, details on other
   }
 });
 
+test('competition page explains the methods after the clips, and the homepage links to them', () => {
+  const methods = competitionPage.match(/<section class="section" id="methods">[\s\S]*?<\/section>/)?.[0] ?? '';
+  assert.equal((methods.match(/<article class="method-card">/g) ?? []).length, 2);
+  assert.ok(
+    competitionPage.indexOf('<section class="section" id="methods">') >
+      competitionPage.lastIndexOf('<section class="section task-panel"'),
+  );
+  assert.match(competition, /href="competition\.html#methods"/);
+  assert.ok(competitionIds.has('methods'));
+});
+
 test('competition page shows ten tasks, each with a sim clip and a real clip', async () => {
   assert.equal(panels.length, 10);
   const tabs = competitionPage.match(/<nav class="task-tabs"[\s\S]*?<\/nav>/)?.[0] ?? '';
