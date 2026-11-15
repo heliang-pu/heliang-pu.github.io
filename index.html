@@ -37,13 +37,13 @@
     "url": "https://heliang-pu.github.io/",
     "email": "puheliang122@gmail.com",
     "image": "https://heliang-pu.github.io/assets/portrait.jpg",
-    "description": "具身智能 / VLA 全栈工程师：独立复现 π0.6 RECAP 并在真机落地，π0.5 融合触觉使双臂精细操作成功率 30%→70%，覆盖机械臂、灵巧手与人形机器人。",
+    "description": "具身智能 / VLA 全栈工程师：带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军，独立复现 π0.6 RECAP 并在真机落地，π0.5 融合触觉使双臂精细操作成功率 30%→70%，覆盖机械臂、灵巧手与人形机器人。",
     "address": { "@type": "PostalAddress", "addressLocality": "上海", "addressCountry": "CN" },
     "alumniOf": [
       { "@type": "CollegeOrUniversity", "name": "华东师范大学" },
       { "@type": "CollegeOrUniversity", "name": "江苏科技大学苏州理工学院" }
     ],
-    "knowsAbout": ["LeRobot", "VLA Policy", "VLM", "π0", "π0.5", "π0.6", "RECAP", "Offline RL", "ACT", "Diffusion Policy", "GR00T", "触觉融合", "LoRA", "机器人真机部署", "异步推理"],
+    "knowsAbout": ["LeRobot", "VLA Policy", "World Action Model", "Phoenix-MWA", "Sim2Real", "VLM", "π0", "π0.5", "π0.6", "RECAP", "Offline RL", "ACT", "Diffusion Policy", "GR00T", "触觉融合", "LoRA", "机器人真机部署", "异步推理"],
     "sameAs": [
       "https://github.com/heliang-pu",
       "https://huggingface.co/puheliang",
@@ -109,7 +109,7 @@
       <div class="identity">
         <h1 data-i18n="name">蒲贺良</h1>
         <p class="role" data-i18n="role">具身智能 / VLA 全栈工程师</p>
-        <p class="pitch" data-i18n="pitch">从 π0、π0.5 到 π0.6 RECAP，覆盖数据采集、策略训练、推理部署到技能调度的全链路，让研究模型在真实机器人上稳定落地。</p>
+        <p class="pitch" data-i18n="pitch">VLA 策略、世界动作模型和 sim2real，从数据采集、训练、推理部署到技能调度的全链路，落在机械臂、灵巧手和人形机器人上。</p>
       </div>
 
       <div class="contact">
@@ -176,7 +176,7 @@
           </g>
         </svg>
         <p class="eyebrow">Embodied AI Engineer</p>
-        <h2 data-i18n="heroTitle">从 π0 到 π0.6，把每一代 VLA 跑上真机。</h2>
+        <h2 data-i18n="heroTitle">从仿真到真机，让机器人真正学会干活。</h2>
         <p class="lead" data-i18n="heroLead">FMC3-Robotics 具身智能全栈工程师，负责 VLA 策略从数据采集、训练到真机部署的全链路。独立复现 π0.6 RECAP 并在真机落地，带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军。</p>
         <div class="hero-actions">
           <a class="button" href="mailto:puheliang122@gmail.com" data-i18n="btnContact">联系我</a>
@@ -282,7 +282,9 @@
           </article>
           <article class="pick">
             <span class="legacy-anchor" id="demo-01" aria-hidden="true"></span>
-            <img class="pick-shot" src="assets/projects/dual-arm-dexterous.webp" alt="机械臂 + 灵巧手双臂真机抓取" data-i18n-alt="p1img" width="720" height="960" loading="lazy" decoding="async">
+            <video class="pick-shot pick-video" controls preload="none" playsinline width="720" height="408" poster="assets/projects/tissue-sorting.webp" aria-label="播放：双臂灵巧手纸巾分拣" data-i18n-aria="p1video">
+              <source src="assets/projects/tissue-sorting.mp4" type="video/mp4">
+            </video>
             <div class="pick-body">
               <h3 data-i18n="p1t">机械臂 + 智元灵巧手双臂协作操作</h3>
               <p data-i18n="p1s">基于 LeRobot 从零搭建机械臂 + 智元灵巧手双臂平台，在 π0.5 中融合触觉 encoder，配合 RTC 异步推理。</p>

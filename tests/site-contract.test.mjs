@@ -260,7 +260,12 @@ test('the homepage reads like a resume: highlights and entries, details on other
   for (const page of [competitionPage, projectsPage]) assert.match(page, /<a class="back-link" href="\.\/#/);
 
   // The homepage only links to the clips, and the old demo wall (Release videos, demos/ pages) stays gone.
-  assert.doesNotMatch(index, /<video\b|<source\b/);
+  // The only video on the homepage is the tissue-sorting clip in the dual-arm project; the rest live on competition.html.
+  const homeVideos = [...index.matchAll(/<video\b[^>]*>[\s\S]*?<\/video>/g)].map((match) => match[0]);
+  assert.equal(homeVideos.length, 1);
+  assert.equal(tags('source').length, 1);
+  const pickWithVideo = index.match(/<article class="pick">(?:(?!<\/article>)[\s\S])*?<video[\s\S]*?<\/article>/)?.[0] ?? '';
+  assert.match(pickWithVideo, /data-i18n="p1t"/);
   for (const source of [index, competitionPage, css, script]) {
     assert.doesNotMatch(source, /releases\/download|site-media|demos\/|demo-card|play-badge/);
   }
@@ -330,6 +335,24 @@ test('competition page shows ten tasks, each with a sim clip and a real clip', a
   assert.ok(total <= 40 * 1024 * 1024, `competition clips total ${total} bytes`);
 });
 
+test('the homepage project video is same-origin, loads on demand, and stays small', async () => {
+  const tag = tags('video')[0];
+  assert.equal(attr(tag, 'preload'), 'none');
+  assert.match(tag, /\scontrols\b/);
+  assert.match(tag, /\splaysinline\b/);
+  assert.equal(attr(tag, 'aria-label'), dictionary.zh[attr(tag, 'data-i18n-aria')]);
+  assert.equal(attr(tag, 'poster'), 'assets/projects/tissue-sorting.webp');
+  await access(new URL(attr(tag, 'poster'), root));
+  const src = attr(tags('source')[0], 'src');
+  assert.equal(src, 'assets/projects/tissue-sorting.mp4');
+  const bytes = await read(src, null);
+  const head = bytes.subarray(0, 64 * 1024).toString('latin1');
+  const moov = head.indexOf('moov');
+  const mdat = head.indexOf('mdat');
+  assert.ok(moov !== -1 && (mdat === -1 || moov < mdat), `${src} is not faststart`);
+  assert.ok(bytes.length <= 4 * 1024 * 1024, `${src} is ${bytes.length} bytes`);
+});
+
 test('old resume PDFs still land on the homepage', () => {
   // Older PDFs sent to recruiters link to these anchors; never drop them from index.html.
   for (const id of ['demos', 'demo-01', 'demo-02', 'demo-03', 'demo-04', 'demo-05', 'demo-06',
@@ -343,7 +366,7 @@ test('project screenshots are static, lazy, and described', () => {
     ...tags('img', projectsPage).filter((tag) => attr(tag, 'class') === 'project-shot'),
     ...tags('img').filter((tag) => attr(tag, 'class') === 'pick-shot'),
   ];
-  assert.equal(shots.length, 4);
+  assert.equal(shots.length, 3);
   for (const shot of shots) {
     assert.match(attr(shot, 'src'), /^assets\/projects\/[a-z0-9-]+\.webp$/);
     assert.equal(attr(shot, 'loading'), 'lazy');

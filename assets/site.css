@@ -1089,7 +1089,7 @@ a {
 .pick {
   position: relative;
   display: grid;
-  grid-template-columns: 200px minmax(0, 1fr);
+  grid-template-columns: 240px minmax(0, 1fr);
   gap: 16px;
   align-items: start;
   padding: 14px;
@@ -1117,6 +1117,13 @@ a {
   border: 1px solid var(--line);
   border-radius: 6px;
   background: #111816;
+}
+
+/* 双臂灵巧手这条放的是纸巾分拣视频：保持原比例，点播放才加载 */
+.pick-video {
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: #000;
 }
 
 .pick h3 {

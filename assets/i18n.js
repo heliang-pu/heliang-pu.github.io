@@ -6,7 +6,7 @@ var i18n = {
     metaDesc: '蒲贺良，具身智能 / VLA 全栈工程师（FMC3-Robotics）。带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军；独立复现 π0.6 RECAP 并在真机落地，标杆任务吞吐约翻倍、失败率约减半；π0.5 融合触觉，双臂精细操作成功率 30%→70%。',
     /* sidebar */
     role: '具身智能 / VLA 全栈工程师',
-    pitch: '从 π0、π0.5 到 π0.6 RECAP，覆盖数据采集、策略训练、推理部署到技能调度的全链路，让研究模型在真实机器人上稳定落地。',
+    pitch: 'VLA 策略、世界动作模型和 sim2real，从数据采集、训练、推理部署到技能调度的全链路，落在机械臂、灵巧手和人形机器人上。',
     bilibili: '哔哩哔哩',
     navTitle: '目录',
     navExp: '工作与教育', navProjects: '项目经历', navComp: '竞赛专栏', navSkills: '专业技能', navAwards: '竞赛与荣誉',
@@ -18,7 +18,7 @@ var i18n = {
     edu_degree: '华东师大硕士在读', edu_major: '软件工程 · 具身智能方向', city: '上海',
     name: '蒲贺良',
     /* hero */
-    heroTitle: '从 π0 到 π0.6，把每一代 VLA 跑上真机。',
+    heroTitle: '从仿真到真机，让机器人真正学会干活。',
     heroLead: 'FMC3-Robotics 具身智能全栈工程师，负责 VLA 策略从数据采集、训练到真机部署的全链路。独立复现 π0.6 RECAP 并在真机落地，带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军。',
     btnContact: '联系我', btnGitHub: '查看 GitHub', btnHF: '查看模型与数据', btnDownloadPDF: '下载 PDF',
     m1desc: 'π0.6 RECAP 真机自改进：标杆任务吞吐约翻倍、失败率约减半',
@@ -181,6 +181,7 @@ var i18n = {
     compMethodsLink: '比赛方法 →',
     exp1d5: '真机阶段只用真机数据后训练世界动作模型 Phoenix-MWA；搭建带人接管的数据流程，切掉失败段和停顿，解决模型卡住。',
     exp1d6: '写好只读观测的推理规则和动作块 inpainting，把十个任务封装成仿真、真机通用的一键评测；接入 RynnBrain 规划模型串联长任务。',
+    p1video: '播放：双臂灵巧手纸巾分拣',
     /* footer & a11y */
     skip: '跳到主内容', footerUpdated: 'Last updated: 2026.11',
     themeLabel: '切换深色 / 浅色模式',
@@ -198,7 +199,7 @@ var i18n = {
     metaDesc: 'Puheliang, Embodied AI / VLA full-stack engineer at FMC3-Robotics. Led the team that won the NeurIPS 2026 RoboSynChallenge simulation track; reproduced π0.6 RECAP on a real robot (~2× throughput, ~half the failures on the benchmark task); tactile fusion in π0.5 lifted dual-arm fine-manipulation success from 30% to 70%.',
     /* sidebar */
     role: 'Embodied AI / VLA Full-Stack Engineer',
-    pitch: 'From π0 and π0.5 to π0.6 RECAP—covering data collection, policy training, inference deployment, and skill orchestration so research models run reliably on real robots.',
+    pitch: 'VLA policies, world action models and sim2real, from data collection and training to deployment and skill orchestration, on arms, dexterous hands and humanoids.',
     bilibili: 'Bilibili',
     navTitle: 'Contents',
     navExp: 'Experience', navProjects: 'Projects', navComp: 'Competition', navSkills: 'Skills', navAwards: 'Awards',
@@ -210,7 +211,7 @@ var i18n = {
     edu_degree: 'M.S. student · ECNU', edu_major: 'Software Eng. · Embodied AI', city: 'Shanghai',
     name: 'Puheliang',
     /* hero */
-    heroTitle: 'From π0 to π0.6: every generation of VLA, running on real robots.',
+    heroTitle: 'From simulation to the real world: robots that actually get work done.',
     heroLead: 'Embodied AI full-stack engineer at FMC3-Robotics, owning VLA policies from data collection and training to real-robot deployment. Reproduced π0.6 RECAP on a real robot and led the team that won the NeurIPS 2026 RoboSynChallenge simulation track.',
     btnContact: 'Contact Me', btnGitHub: 'View GitHub', btnHF: 'View Models & Data', btnDownloadPDF: 'Download PDF',
     m1desc: 'π0.6 RECAP on a real robot: benchmark throughput ~2×, failures ~halved',
@@ -373,6 +374,7 @@ var i18n = {
     compMethodsLink: 'Methods →',
     exp1d5: 'For the real-robot stage, post-trained the world action model Phoenix-MWA on real data only, and built a takeover data pipeline that cuts failed lead-ins and pauses to stop the model from stalling.',
     exp1d6: 'Wrote the observation-only inference rules and action-chunk inpainting, packaged all ten tasks as one-command evaluation for both sim and real, and connected a RynnBrain planner to chain long-horizon tasks.',
+    p1video: 'Play: dual-arm dexterous-hand tissue sorting',
     /* footer & a11y */
     skip: 'Skip to main content', footerUpdated: 'Last updated: 2026.11',
     themeLabel: 'Toggle dark / light mode',
