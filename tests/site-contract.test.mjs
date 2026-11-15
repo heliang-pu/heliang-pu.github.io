@@ -8,7 +8,7 @@ const root = new URL('../', import.meta.url);
 const read = (path, encoding = 'utf8') =>
   readFile(new URL(path, root), encoding);
 
-const [index, css, script, i18nSource, robots, sitemap, notFound, competitionPage] = await Promise.all([
+const [index, css, script, i18nSource, robots, sitemap, notFound, competitionPage, projectsPage] = await Promise.all([
   read('index.html'),
   read('assets/site.css'),
   read('assets/site.js'),
@@ -17,7 +17,9 @@ const [index, css, script, i18nSource, robots, sitemap, notFound, competitionPag
   read('sitemap.xml'),
   read('404.html'),
   read('competition.html'),
+  read('projects.html'),
 ]);
+const pages = [index, competitionPage, projectsPage];
 
 const dictionary = vm.runInNewContext(`${i18nSource}\ni18n;`);
 
@@ -105,10 +107,10 @@ test('canonical, robots, and sitemap use one production host', () => {
   assert.equal(canonical.hostname, 'heliang-pu.github.io');
   assert.equal(robotsSitemap.origin, canonical.origin);
   assert.equal(robotsSitemap.pathname, '/sitemap.xml');
-  assert.deepEqual(locations.map((url) => url.pathname), ['/', '/competition.html']);
+  assert.deepEqual(locations.map((url) => url.pathname), ['/', '/competition.html', '/projects.html']);
   for (const url of locations) assert.equal(url.origin, canonical.origin);
   assert.doesNotMatch(
-    `${index}\n${competitionPage}\n${robots}\n${sitemap}`,
+    `${pages.join('\n')}\n${robots}\n${sitemap}`,
     /aurorabot-ai\.github\.io/i,
   );
   assert.doesNotMatch(sitemap, /<lastmod\b/i);
@@ -126,23 +128,28 @@ test('static title and share cards match the zh copy that crawlers read', () => 
   assert.equal(meta('name', 'twitter:description'), dictionary.zh.metaDesc);
 });
 
-test('competition page title and share cards match its zh copy', () => {
-  const meta = (key, value) =>
-    attr(tags('meta', competitionPage).find((tag) => attr(tag, key) === value), 'content');
-  const canonical = tags('link', competitionPage).find((tag) => attr(tag, 'rel') === 'canonical');
+for (const [file, page, titleKey, descKey] of [
+  ['competition.html', competitionPage, 'compDocTitle', 'compMetaDesc'],
+  ['projects.html', projectsPage, 'projDocTitle', 'projMetaDesc'],
+]) {
+  test(`${file} title and share cards match its zh copy`, () => {
+    const meta = (key, value) =>
+      attr(tags('meta', page).find((tag) => attr(tag, key) === value), 'content');
+    const canonical = tags('link', page).find((tag) => attr(tag, 'rel') === 'canonical');
 
-  assert.equal(attr(canonical, 'href'), 'https://heliang-pu.github.io/competition.html');
-  assert.match(competitionPage, /<body data-i18n-title="compDocTitle" data-i18n-desc="compMetaDesc">/);
-  assert.equal(competitionPage.match(/<title>(.*?)<\/title>/)?.[1], dictionary.zh.compDocTitle);
-  assert.equal(meta('property', 'og:title'), dictionary.zh.compDocTitle);
-  assert.equal(meta('name', 'twitter:title'), dictionary.zh.compDocTitle);
-  assert.equal(meta('name', 'description'), dictionary.zh.compMetaDesc);
-  assert.equal(meta('property', 'og:description'), dictionary.zh.compMetaDesc);
-  assert.equal(meta('name', 'twitter:description'), dictionary.zh.compMetaDesc);
-});
+    assert.equal(attr(canonical, 'href'), `https://heliang-pu.github.io/${file}`);
+    assert.match(page, new RegExp(`<body data-i18n-title="${titleKey}" data-i18n-desc="${descKey}">`));
+    assert.equal(page.match(/<title>(.*?)<\/title>/)?.[1], dictionary.zh[titleKey]);
+    assert.equal(meta('property', 'og:title'), dictionary.zh[titleKey]);
+    assert.equal(meta('name', 'twitter:title'), dictionary.zh[titleKey]);
+    assert.equal(meta('name', 'description'), dictionary.zh[descKey]);
+    assert.equal(meta('property', 'og:description'), dictionary.zh[descKey]);
+    assert.equal(meta('name', 'twitter:description'), dictionary.zh[descKey]);
+  });
+}
 
 test('styles and scripts live in assets and load in order', () => {
-  for (const page of [index, competitionPage]) {
+  for (const page of pages) {
     assert.doesNotMatch(page, /<style\b/);
     assert.doesNotMatch(page, /\sonclick=/);
     assert.match(page, /<link rel="stylesheet" href="assets\/site\.css">/);
@@ -195,7 +202,7 @@ test('mobile navigation is native and contains section and profile links', () =>
   assert.match(details, /<nav[\s\S]*data-i18n-aria="navAria"/);
 
   for (const href of [
-    '#experience', '#projects', '#competition', '#more-projects', '#skills', '#platforms', '#awards',
+    '#experience', '#projects', '#competition', '#skills', '#awards', 'projects.html',
     'mailto:puheliang122@gmail.com',
     'https://github.com/heliang-pu',
     'https://huggingface.co/puheliang',
@@ -236,13 +243,21 @@ const panels = [
 ].map((match) => ({ id: match[1], html: match[0] }));
 const competitionIds = new Set([...competitionPage.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]));
 
-test('the page reads like a resume: work first, competition clips on their own page', () => {
+test('the homepage reads like a resume: highlights and entries, details on other pages', () => {
   const sections = [
     ...index.matchAll(/<section class="(hero|section)"(?: id="([^"]+)")?>/g),
   ].map((match) => match[2] ?? match[1]);
-  assert.deepEqual(sections, [
-    'hero', 'experience', 'projects', 'competition', 'more-projects', 'skills', 'platforms', 'awards',
-  ]);
+  assert.deepEqual(sections, ['hero', 'experience', 'projects', 'competition', 'skills', 'awards']);
+
+  // The long write-ups live on projects.html; the homepage keeps one or two lines per item.
+  assert.doesNotMatch(index, /class="(?:project-card|capability-grid|platform-grid|more-item)\b/);
+  const projectSections = [...projectsPage.matchAll(/<section class="section" id="([^"]+)">/g)].map((m) => m[1]);
+  assert.deepEqual(projectSections, ['projects', 'more-projects', 'skills', 'platforms']);
+  const projectIds = new Set([...projectsPage.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]));
+  const detailLinks = [...index.matchAll(/href="projects\.html#([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(detailLinks, ['recap', 'dual-arm', 'gr2']);
+  for (const id of detailLinks) assert.ok(projectIds.has(id), `projects.html#${id}`);
+  for (const page of [competitionPage, projectsPage]) assert.match(page, /<a class="back-link" href="\.\/#/);
 
   // The homepage only links to the clips, and the old demo wall (Release videos, demos/ pages) stays gone.
   assert.doesNotMatch(index, /<video\b|<source\b/);
@@ -304,9 +319,20 @@ test('competition page shows ten tasks, each with a sim clip and a real clip', a
   assert.ok(total <= 40 * 1024 * 1024, `competition clips total ${total} bytes`);
 });
 
+test('old resume PDFs still land on the homepage', () => {
+  // Older PDFs sent to recruiters link to these anchors; never drop them from index.html.
+  for (const id of ['demos', 'demo-01', 'demo-02', 'demo-03', 'demo-04', 'demo-05', 'demo-06',
+    'demo-07', 'demo-08', 'demo-09', 'demo-10', 'demo-12']) {
+    assert.match(index, new RegExp(`\\sid="${id}"`), id);
+  }
+});
+
 test('project screenshots are static, lazy, and described', () => {
-  const shots = tags('img').filter((tag) => attr(tag, 'class') === 'project-shot');
-  assert.equal(shots.length, 2);
+  const shots = [
+    ...tags('img', projectsPage).filter((tag) => attr(tag, 'class') === 'project-shot'),
+    ...tags('img').filter((tag) => attr(tag, 'class') === 'pick-shot'),
+  ];
+  assert.equal(shots.length, 4);
   for (const shot of shots) {
     assert.match(attr(shot, 'src'), /^assets\/projects\/[a-z0-9-]+\.webp$/);
     assert.equal(attr(shot, 'loading'), 'lazy');
@@ -320,7 +346,7 @@ test('zh and en dictionaries match and every key is used', () => {
   assert.deepEqual(Object.keys(dictionary.zh).sort(), Object.keys(dictionary.en).sort());
 
   const keys = new Set(
-    [...`${index}\n${competitionPage}`.matchAll(/data-i18n(?:-aria|-alt|-title|-desc)?="([^"]+)"/g)]
+    [...pages.join('\n').matchAll(/data-i18n(?:-aria|-alt|-title|-desc)?="([^"]+)"/g)]
       .map((match) => match[1]),
   );
   for (const key of keys) {
@@ -349,7 +375,10 @@ test('hero metrics and projects lead with the resume headline results', () => {
   ].map((match) => match[1]);
   assert.deepEqual(metrics.slice(0, 2), ['≈2×', '30%→70%']);
 
-  const firstProject = index.match(/<article class="project-card">[\s\S]*?<\/article>/)?.[0] ?? '';
+  const firstPick = index.match(/<article class="pick">[\s\S]*?<\/article>/)?.[0] ?? '';
+  assert.match(firstPick, /data-i18n="p4t">π0\.6 RECAP/);
+  assert.match(firstPick, /<strong>≈2×<\/strong>/);
+  const firstProject = projectsPage.match(/<article class="project-card"[^>]*>[\s\S]*?<\/article>/)?.[0] ?? '';
   assert.match(firstProject, /data-i18n="p4t">π0\.6 RECAP/);
   assert.match(firstProject, /<strong>≈2×<\/strong>/);
 });
@@ -365,11 +394,13 @@ test('favicon, footer date, and local assets are consistent', async () => {
   assert.equal(attr(favicon, 'href'), '/assets/icon-192.png');
   assert.doesNotMatch(attr(favicon, 'href'), /^data:/);
   assert.equal((`${index}\n${i18nSource}`.match(/Last updated: 2026\.11/g) ?? []).length, 3);
-  assert.equal((competitionPage.match(/Last updated: 2026\.11/g) ?? []).length, 1);
-  assert.doesNotMatch(`${index}\n${competitionPage}\n${i18nSource}`, /Last updated: 2026\.(?:08|10)/);
+  for (const page of [competitionPage, projectsPage]) {
+    assert.equal((page.match(/Last updated: 2026\.11/g) ?? []).length, 1);
+  }
+  assert.doesNotMatch(`${pages.join('\n')}\n${i18nSource}`, /Last updated: 2026\.(?:08|10)/);
 
   const pageRefs = [
-    ...`${index}\n${competitionPage}`.matchAll(/\b(?:src|href|poster)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)"/g),
+    ...pages.join('\n').matchAll(/\b(?:src|href|poster)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)"/g),
   ].map((match) => match[1].replace(/^\//, ''));
   const cssRefs = [...css.matchAll(/url\("([^"]+)"\)/g)].map((match) => `assets/${match[1]}`);
   assert.ok(cssRefs.length >= 2, 'expected the font-face URLs in site.css');

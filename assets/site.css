@@ -1011,22 +1011,137 @@ a {
   font-size: 0.9rem;
 }
 
-.awards {
-  display: grid;
-  gap: 10px;
+/* 首页按简历写：每段经历、技能、荣誉都只占一两行，细节放到 projects.html */
+.section-link {
+  flex: none;
+  color: var(--green);
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
-.award {
+.section-link:hover {
+  text-decoration: underline;
+}
+
+.edu-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.pick-list {
+  display: grid;
+  gap: 12px;
+}
+
+.pick {
+  position: relative;
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffdfa;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pick:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.pick.no-shot {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.pick-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #111816;
+}
+
+.pick h3 {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.pick p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.pick-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 14px;
+  margin-top: 10px;
+}
+
+.pick-result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  color: #42645e;
+  font-size: 0.86rem;
+}
+
+.pick-result strong {
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 1.05rem;
+}
+
+.pick-link {
+  color: var(--green);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.pick-link:hover {
+  text-decoration: underline;
+}
+
+.skill-rows,
+.award-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-rows > div,
+.award-list li {
   display: grid;
   grid-template-columns: 92px minmax(0, 1fr);
   gap: 14px;
-  align-items: start;
-  padding: 14px 0;
+  padding: 10px 0;
   border-bottom: 1px solid var(--line);
+  font-size: 0.92rem;
 }
 
-.award:last-child {
+.skill-rows > div:last-child,
+.award-list li:last-child {
   border-bottom: 0;
+}
+
+.skill-rows dt {
+  color: var(--green);
+  font-weight: 800;
+}
+
+.skill-rows dd {
+  margin: 0;
 }
 
 .award-year {
@@ -1035,15 +1150,37 @@ a {
   font-size: 0.9rem;
 }
 
-.award strong {
-  display: block;
-  margin-bottom: 3px;
-  font-size: 0.96rem;
+/* projects.html 顶部：一句说明 + 本页目录 */
+.page-desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
 }
 
-.award span {
-  color: var(--muted);
-  font-size: 0.9rem;
+.page-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.page-toc a {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fffdfa;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.page-toc a:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.project-card[id] {
+  scroll-margin-top: 18px;
 }
 
 .footer {
@@ -1195,9 +1332,16 @@ a {
   .contact,
   .capability-grid,
   .vs-grid,
+  .pick,
   .project-card,
   .timeline-item {
     grid-template-columns: 1fr;
+  }
+
+  .skill-rows > div,
+  .award-list li {
+    grid-template-columns: 1fr;
+    gap: 2px;
   }
 
   .task-grid,
@@ -1299,7 +1443,9 @@ html.theme-dark .kind { background: rgba(94, 234, 212, 0.14); color: #5eead4; }
 html.theme-dark .kind.sim { background: var(--soft-amber); color: #fcd34d; }
 html.theme-dark .comp-intro { border-color: #1a4a44; border-left-color: var(--green); }
 html.theme-dark .comp-intro p { color: #cbd5e1; }
-html.theme-dark .clip, html.theme-dark .task-tile, html.theme-dark .task-tabs a { background: #1a2433; }
+html.theme-dark .clip, html.theme-dark .task-tile, html.theme-dark .task-tabs a, html.theme-dark .pick, html.theme-dark .page-toc a { background: #1a2433; }
+html.theme-dark .pick-result { color: #cbd5e1; }
+html.theme-dark .pick:hover { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25); }
 html.theme-dark .task-tabs a.active { background: var(--soft-green); color: var(--green); }
 html.theme-dark .task-tile:hover { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25); }
 
@@ -1422,7 +1568,7 @@ html.theme-dark .skip-link:focus {
     display: none;
   }
 
-  .project-card, .timeline-card, .capability, .clip {
+  .project-card, .timeline-card, .capability, .clip, .pick {
     break-inside: avoid;
   }
 
