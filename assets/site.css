@@ -765,7 +765,7 @@ a {
   color: var(--amber);
 }
 
-/* 竞赛专栏：冠军说明 + 仿真 / 真机两组视频。视频与站点同源，点播放才加载 */
+/* 竞赛专栏（首页）与竞赛页 competition.html：冠军说明卡共用 */
 .comp-intro {
   padding: 14px 16px;
   border: 1px solid #cce3dc;
@@ -787,26 +787,200 @@ a {
   font-size: 0.92rem;
 }
 
-.clip-group {
-  margin-top: 22px;
+/* 首页：十个任务的入口，每张缩略图左半仿真、右半真机 */
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
 }
 
-.clip-group h3 {
+.task-tile {
+  display: grid;
+  gap: 6px;
+  padding: 6px 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffdfa;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.task-tile:hover {
+  transform: translateY(-2px);
+  border-color: var(--green);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.task-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  background: #111816;
+}
+
+.task-tile-text {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 0 2px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.task-num {
+  flex: none;
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.task-grid-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-top: 14px;
+}
+
+.task-grid-foot p {
   margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+/* 竞赛页 competition.html：没有侧栏，标题 + 任务切换 + 当前任务的仿真 / 真机对照 */
+.comp-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 28px auto;
+  display: grid;
+  gap: 18px;
+}
+
+.comp-header h1 {
+  margin: 0 0 16px;
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 1.4vw + 1rem, 2.4rem);
+  line-height: 1.15;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: var(--green);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.comp-legend {
+  margin-top: 14px;
+}
+
+.task-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  scroll-margin-top: 18px;
+}
+
+.task-tabs a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffdfa;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.3;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.task-tabs a:hover {
+  border-color: var(--green);
+}
+
+.task-tabs a.active {
+  border-color: var(--green);
+  background: var(--soft-green);
+  color: var(--green);
+}
+
+.task-list {
+  display: grid;
+  gap: 18px;
+}
+
+.task-panel {
+  scroll-margin-top: 18px;
+}
+
+.task-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.task-head .task-num {
   font-size: 1rem;
 }
 
-.clip-note {
-  margin: 4px 0 0;
+.task-head h2 code {
+  margin-left: 6px;
   color: var(--muted);
-  font-size: 0.88rem;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  overflow-wrap: anywhere;
 }
 
-.clip-grid {
+.task-desc {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.vs-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 12px;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.task-pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.task-pager a {
+  color: var(--green);
+}
+
+.task-pager a:hover {
+  text-decoration: underline;
 }
 
 .clip {
@@ -1020,10 +1194,21 @@ a {
 
   .contact,
   .capability-grid,
-  .clip-grid,
+  .vs-grid,
   .project-card,
   .timeline-item {
     grid-template-columns: 1fr;
+  }
+
+  .task-grid,
+  .task-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .comp-shell {
+    width: min(100% - 20px, 1120px);
+    margin: 10px auto;
+    gap: 16px;
   }
 
   .section-head {
@@ -1114,7 +1299,9 @@ html.theme-dark .kind { background: rgba(94, 234, 212, 0.14); color: #5eead4; }
 html.theme-dark .kind.sim { background: var(--soft-amber); color: #fcd34d; }
 html.theme-dark .comp-intro { border-color: #1a4a44; border-left-color: var(--green); }
 html.theme-dark .comp-intro p { color: #cbd5e1; }
-html.theme-dark .clip { background: #1a2433; }
+html.theme-dark .clip, html.theme-dark .task-tile, html.theme-dark .task-tabs a { background: #1a2433; }
+html.theme-dark .task-tabs a.active { background: var(--soft-green); color: var(--green); }
+html.theme-dark .task-tile:hover { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25); }
 
 .skip-link {
   position: absolute;

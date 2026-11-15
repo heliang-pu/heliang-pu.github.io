@@ -8,7 +8,7 @@ const root = new URL('../', import.meta.url);
 const read = (path, encoding = 'utf8') =>
   readFile(new URL(path, root), encoding);
 
-const [index, css, script, i18nSource, robots, sitemap, notFound] = await Promise.all([
+const [index, css, script, i18nSource, robots, sitemap, notFound, competitionPage] = await Promise.all([
   read('index.html'),
   read('assets/site.css'),
   read('assets/site.js'),
@@ -16,6 +16,7 @@ const [index, css, script, i18nSource, robots, sitemap, notFound] = await Promis
   read('robots.txt'),
   read('sitemap.xml'),
   read('404.html'),
+  read('competition.html'),
 ]);
 
 const dictionary = vm.runInNewContext(`${i18nSource}\ni18n;`);
@@ -104,11 +105,10 @@ test('canonical, robots, and sitemap use one production host', () => {
   assert.equal(canonical.hostname, 'heliang-pu.github.io');
   assert.equal(robotsSitemap.origin, canonical.origin);
   assert.equal(robotsSitemap.pathname, '/sitemap.xml');
-  assert.equal(locations.length, 1);
-  assert.equal(locations[0].origin, canonical.origin);
-  assert.equal(locations[0].pathname, '/');
+  assert.deepEqual(locations.map((url) => url.pathname), ['/', '/competition.html']);
+  for (const url of locations) assert.equal(url.origin, canonical.origin);
   assert.doesNotMatch(
-    `${index}\n${robots}\n${sitemap}`,
+    `${index}\n${competitionPage}\n${robots}\n${sitemap}`,
     /aurorabot-ai\.github\.io/i,
   );
   assert.doesNotMatch(sitemap, /<lastmod\b/i);
@@ -126,13 +126,30 @@ test('static title and share cards match the zh copy that crawlers read', () => 
   assert.equal(meta('name', 'twitter:description'), dictionary.zh.metaDesc);
 });
 
-test('styles and scripts live in assets and load in order', () => {
-  assert.doesNotMatch(index, /<style\b/);
-  assert.doesNotMatch(index, /\sonclick=/);
-  assert.match(index, /<link rel="stylesheet" href="assets\/site\.css">/);
+test('competition page title and share cards match its zh copy', () => {
+  const meta = (key, value) =>
+    attr(tags('meta', competitionPage).find((tag) => attr(tag, key) === value), 'content');
+  const canonical = tags('link', competitionPage).find((tag) => attr(tag, 'rel') === 'canonical');
 
-  const scripts = tags('script').map((tag) => attr(tag, 'src')).filter(Boolean);
-  assert.deepEqual(scripts, ['assets/i18n.js', 'assets/site.js']);
+  assert.equal(attr(canonical, 'href'), 'https://heliang-pu.github.io/competition.html');
+  assert.match(competitionPage, /<body data-i18n-title="compDocTitle" data-i18n-desc="compMetaDesc">/);
+  assert.equal(competitionPage.match(/<title>(.*?)<\/title>/)?.[1], dictionary.zh.compDocTitle);
+  assert.equal(meta('property', 'og:title'), dictionary.zh.compDocTitle);
+  assert.equal(meta('name', 'twitter:title'), dictionary.zh.compDocTitle);
+  assert.equal(meta('name', 'description'), dictionary.zh.compMetaDesc);
+  assert.equal(meta('property', 'og:description'), dictionary.zh.compMetaDesc);
+  assert.equal(meta('name', 'twitter:description'), dictionary.zh.compMetaDesc);
+});
+
+test('styles and scripts live in assets and load in order', () => {
+  for (const page of [index, competitionPage]) {
+    assert.doesNotMatch(page, /<style\b/);
+    assert.doesNotMatch(page, /\sonclick=/);
+    assert.match(page, /<link rel="stylesheet" href="assets\/site\.css">/);
+
+    const scripts = tags('script', page).map((tag) => attr(tag, 'src')).filter(Boolean);
+    assert.deepEqual(scripts, ['assets/i18n.js', 'assets/site.js']);
+  }
 
   for (const [selector, handler] of [
     ['langBtn', 'toggleLang'], ['themeBtn', 'toggleTheme'], ['toTop', 'scrollToTop'],
@@ -214,7 +231,12 @@ const competition = index.match(
   /<section class="section" id="competition">[\s\S]*?<\/section>/,
 )?.[0] ?? '';
 
-test('the page reads like a resume: work first, videos only in the competition section', () => {
+const panels = [
+  ...competitionPage.matchAll(/<section class="section task-panel" id="([^"]+)"[\s\S]*?<\/section>/g),
+].map((match) => ({ id: match[1], html: match[0] }));
+const competitionIds = new Set([...competitionPage.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]));
+
+test('the page reads like a resume: work first, competition clips on their own page', () => {
   const sections = [
     ...index.matchAll(/<section class="(hero|section)"(?: id="([^"]+)")?>/g),
   ].map((match) => match[2] ?? match[1]);
@@ -222,47 +244,64 @@ test('the page reads like a resume: work first, videos only in the competition s
     'hero', 'experience', 'projects', 'competition', 'more-projects', 'skills', 'platforms', 'awards',
   ]);
 
-  // The old demo wall (GitHub Release videos, demos/ pages, demo cards) stays gone.
-  for (const source of [index, css, script]) {
+  // The homepage only links to the clips, and the old demo wall (Release videos, demos/ pages) stays gone.
+  assert.doesNotMatch(index, /<video\b|<source\b/);
+  for (const source of [index, competitionPage, css, script]) {
     assert.doesNotMatch(source, /releases\/download|site-media|demos\/|demo-card|play-badge/);
   }
-  assert.equal(tags('video').length, 4);
-  assert.equal(tags('video', competition).length, 4);
-  assert.equal(tags('source').length, tags('source', competition).length);
+
+  const tiles = [...competition.matchAll(/<a class="task-tile" href="competition\.html#([^"]+)">/g)]
+    .map((match) => match[1]);
+  assert.equal(tiles.length, 10);
+  assert.deepEqual(tiles, panels.map((panel) => panel.id));
+  for (const img of tags('img', competition)) {
+    assert.match(attr(img, 'src'), /^assets\/competition\/[a-z-]+-tile\.webp$/);
+    assert.equal(attr(img, 'loading'), 'lazy');
+  }
 });
 
-test('competition clips are same-origin, load on demand, and stay small', async () => {
-  const videos = [...competition.matchAll(/<video\b[^>]*>[\s\S]*?<\/video>/g)].map((match) => match[0]);
-  assert.equal(videos.length, 4);
+test('competition page shows ten tasks, each with a sim clip and a real clip', async () => {
+  assert.equal(panels.length, 10);
+  const tabs = competitionPage.match(/<nav class="task-tabs"[\s\S]*?<\/nav>/)?.[0] ?? '';
+  assert.deepEqual([...tabs.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]), panels.map((panel) => panel.id));
+  for (const [, target] of competitionPage.matchAll(/href="#([^"]+)"/g)) {
+    assert.ok(competitionIds.has(target), `#${target} has no target`);
+  }
 
   let total = 0;
-  for (const video of videos) {
-    const tag = tags('video', video)[0];
-    assert.equal(attr(tag, 'preload'), 'none');
-    assert.match(tag, /\scontrols\b/);
-    assert.match(tag, /\splaysinline\b/);
-    assert.ok(Number(attr(tag, 'width')) > 0 && Number(attr(tag, 'height')) > 0);
-    assert.match(competition, new RegExp(`<strong id="${attr(tag, 'aria-labelledby')}" data-i18n="`));
+  for (const panel of panels) {
+    const videos = [...panel.html.matchAll(/<video\b[^>]*>[\s\S]*?<\/video>/g)].map((match) => match[0]);
+    assert.equal(videos.length, 2, panel.id);
 
-    const sources = tags('source', video);
-    assert.equal(sources.length, 1);
-    const src = attr(sources[0], 'src');
-    const poster = attr(tag, 'poster');
-    assert.match(src, /^assets\/competition\/[a-z0-9-]+\.mp4$/);
-    assert.equal(attr(sources[0], 'type'), 'video/mp4');
-    assert.equal(poster, src.replace(/\.mp4$/, '.webp'));
-    await access(new URL(poster, root));
+    for (const [i, video] of videos.entries()) {
+      const name = `${panel.id}-${['sim', 'real'][i]}`;
+      const tag = tags('video', video)[0];
+      assert.equal(attr(tag, 'preload'), 'none');
+      assert.match(tag, /\scontrols\b/);
+      assert.match(tag, /\splaysinline\b/);
+      assert.ok(Number(attr(tag, 'width')) > 0 && Number(attr(tag, 'height')) > 0);
+      assert.equal(attr(tag, 'aria-labelledby'), `${panel.id}-title ${name}`);
+      assert.ok(competitionIds.has(`${panel.id}-title`) && competitionIds.has(name), name);
+      assert.equal(attr(tag, 'poster'), `assets/competition/${name}.webp`);
+      await access(new URL(attr(tag, 'poster'), root));
 
-    // moov before mdat, so playback starts before the whole file arrives
-    const bytes = await read(src, null);
-    const head = bytes.subarray(0, 64 * 1024).toString('latin1');
-    const moov = head.indexOf('moov');
-    const mdat = head.indexOf('mdat');
-    assert.ok(moov !== -1 && (mdat === -1 || moov < mdat), `${src} is not faststart`);
-    assert.ok(bytes.length <= 4 * 1024 * 1024, `${src} is ${bytes.length} bytes`);
-    total += bytes.length;
+      const sources = tags('source', video);
+      assert.equal(sources.length, 1);
+      const src = attr(sources[0], 'src');
+      assert.equal(src, `assets/competition/${name}.mp4`);
+      assert.equal(attr(sources[0], 'type'), 'video/mp4');
+
+      // moov before mdat, so playback starts before the whole file arrives
+      const bytes = await read(src, null);
+      const head = bytes.subarray(0, 64 * 1024).toString('latin1');
+      const moov = head.indexOf('moov');
+      const mdat = head.indexOf('mdat');
+      assert.ok(moov !== -1 && (mdat === -1 || moov < mdat), `${src} is not faststart`);
+      assert.ok(bytes.length <= 4 * 1024 * 1024, `${src} is ${bytes.length} bytes`);
+      total += bytes.length;
+    }
   }
-  assert.ok(total <= 10 * 1024 * 1024, `competition clips total ${total} bytes`);
+  assert.ok(total <= 40 * 1024 * 1024, `competition clips total ${total} bytes`);
 });
 
 test('project screenshots are static, lazy, and described', () => {
@@ -281,7 +320,8 @@ test('zh and en dictionaries match and every key is used', () => {
   assert.deepEqual(Object.keys(dictionary.zh).sort(), Object.keys(dictionary.en).sort());
 
   const keys = new Set(
-    [...index.matchAll(/data-i18n(?:-aria|-alt)?="([^"]+)"/g)].map((match) => match[1]),
+    [...`${index}\n${competitionPage}`.matchAll(/data-i18n(?:-aria|-alt|-title|-desc)?="([^"]+)"/g)]
+      .map((match) => match[1]),
   );
   for (const key of keys) {
     for (const lang of ['zh', 'en']) {
@@ -325,10 +365,11 @@ test('favicon, footer date, and local assets are consistent', async () => {
   assert.equal(attr(favicon, 'href'), '/assets/icon-192.png');
   assert.doesNotMatch(attr(favicon, 'href'), /^data:/);
   assert.equal((`${index}\n${i18nSource}`.match(/Last updated: 2026\.11/g) ?? []).length, 3);
-  assert.doesNotMatch(`${index}\n${i18nSource}`, /Last updated: 2026\.(?:08|10)/);
+  assert.equal((competitionPage.match(/Last updated: 2026\.11/g) ?? []).length, 1);
+  assert.doesNotMatch(`${index}\n${competitionPage}\n${i18nSource}`, /Last updated: 2026\.(?:08|10)/);
 
   const pageRefs = [
-    ...index.matchAll(/\b(?:src|href)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)"/g),
+    ...`${index}\n${competitionPage}`.matchAll(/\b(?:src|href|poster)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)"/g),
   ].map((match) => match[1].replace(/^\//, ''));
   const cssRefs = [...css.matchAll(/url\("([^"]+)"\)/g)].map((match) => `assets/${match[1]}`);
   assert.ok(cssRefs.length >= 2, 'expected the font-face URLs in site.css');

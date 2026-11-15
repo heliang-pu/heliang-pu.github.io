@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="蒲贺良带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军。十个双臂操作任务逐一对照：左边是仿真赛提交的 π0.5 在官方评测中的成功回合，右边是真机阶段 Phoenix-MWA 在我们台架上的自主成功回合。">
+  <meta name="theme-color" content="#0f766e">
+  <meta property="og:title" content="RoboSynChallenge 十个任务：仿真与真机对照 - 蒲贺良">
+  <meta property="og:description" content="蒲贺良带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军。十个双臂操作任务逐一对照：左边是仿真赛提交的 π0.5 在官方评测中的成功回合，右边是真机阶段 Phoenix-MWA 在我们台架上的自主成功回合。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://heliang-pu.github.io/competition.html">
+  <meta property="og:image" content="https://heliang-pu.github.io/assets/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RoboSynChallenge 十个任务：仿真与真机对照 - 蒲贺良">
+  <meta name="twitter:description" content="蒲贺良带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军。十个双臂操作任务逐一对照：左边是仿真赛提交的 π0.5 在官方评测中的成功回合，右边是真机阶段 Phoenix-MWA 在我们台架上的自主成功回合。">
+  <meta name="twitter:image" content="https://heliang-pu.github.io/assets/og-cover.png">
+  <link rel="canonical" href="https://heliang-pu.github.io/competition.html">
+  <link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <title>RoboSynChallenge 十个任务：仿真与真机对照 - 蒲贺良</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        if (t === 'dark') document.documentElement.classList.add('theme-dark');
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body data-i18n-title="compDocTitle" data-i18n-desc="compMetaDesc">
+  <a class="skip-link" href="#tasks" data-i18n="skip">跳到主内容</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <div class="comp-shell">
+    <div class="site-controls" role="group" aria-label="站点设置" data-i18n-aria="siteControlsAria">
+      <button class="control-btn lang-toggle" type="button" aria-label="Switch language" title="Switch language">EN</button>
+      <button class="control-btn theme-toggle" type="button" aria-pressed="false" aria-label="切换深色 / 浅色模式" title="切换深色 / 浅色模式"><span aria-hidden="true">🌓</span></button>
+    </div>
+
+    <header class="section comp-header">
+      <a class="back-link" href="./#competition" data-i18n="compBack">← 返回主页</a>
+      <p class="eyebrow">NeurIPS 2026 · RoboSynChallenge</p>
+      <h1 data-i18n="compPageTitle">十个任务：仿真与真机对照</h1>
+      <div class="comp-intro">
+        <strong data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军（队长）</strong>
+        <p data-i18n="compPageDesc">fmc3-no1 队。比赛在 AgileX CobotMagic 双臂平台（两条 PiPER 机械臂、三路 RGB 相机）上进行，共 10 个双臂操作任务：先在 EmbodiChain 仿真中比赛，再上真机。每个任务左边是仿真赛提交的 π0.5 在官方评测中的成功回合，右边是真机阶段世界动作模型 Phoenix-MWA 在我们台架上的自主成功回合。</p>
+      </div>
+      <ul class="plain-list comp-legend">
+        <li data-i18n="compLegendLayout">两段视频排布相同：左侧是顶部相机，右侧上、下分别是左腕、右腕相机。</li>
+        <li data-i18n="compLegendRandom">仿真评测会随机物体位姿、光照和纹理，所以仿真画面的颜色每秒变一次。</li>
+        <li data-i18n="compLegendPlay">视频点播放才加载，同一时间只播一段。</li>
+      </ul>
+    </header>
+
+    <nav class="task-tabs" id="task-tabs" aria-label="十个任务" data-i18n-aria="compTabsAria">
+      <a href="#click-bell"><span class="task-num">01</span><span data-i18n="tkBell">按铃</span></a>
+      <a href="#drawer-open-place"><span class="task-num">02</span><span data-i18n="tkDrawer">开抽屉放番茄</span></a>
+      <a href="#handle-basket"><span class="task-num">03</span><span data-i18n="tkBasket">装瓶提篮</span></a>
+      <a href="#item-assembly"><span class="task-num">04</span><span data-i18n="tkAssembly">离心管对接</span></a>
+      <a href="#items-handover"><span class="task-num">05</span><span data-i18n="tkHandover">递笔入筒</span></a>
+      <a href="#manipulate-pipette"><span class="task-num">06</span><span data-i18n="tkPipette">移液</span></a>
+      <a href="#mixer-operating"><span class="task-num">07</span><span data-i18n="tkMixer">搅拌器</span></a>
+      <a href="#sample-loading"><span class="task-num">08</span><span data-i18n="tkSample">试管上架</span></a>
+      <a href="#table-rearrangement"><span class="task-num">09</span><span data-i18n="tkTable">摆放餐具</span></a>
+      <a href="#water-pouring"><span class="task-num">10</span><span data-i18n="tkWater">倒水</span></a>
+    </nav>
+
+    <main class="task-list" id="tasks">
+      <section class="section task-panel" id="click-bell" aria-labelledby="click-bell-title">
+        <div class="task-head">
+          <span class="task-num">01</span>
+          <h2 id="click-bell-title"><span data-i18n="tkBell">按铃</span> <code>click_bell</code></h2>
+        </div>
+        <p class="task-desc" data-i18n="tdBell">用夹爪按响桌上的铃。</p>
+        <div class="vs-grid">
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/click-bell-sim.webp" aria-labelledby="click-bell-title click-bell-sim">
+              <source src="assets/competition/click-bell-sim.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="click-bell-sim" data-i18n="vsSimT">仿真 · 提交版 π0.5</strong>
+              <span data-i18n="vsSimD">官方评测器的随机化场景，成功回合</span>
+            </figcaption>
+          </figure>
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/click-bell-real.webp" aria-labelledby="click-bell-title click-bell-real">
+              <source src="assets/competition/click-bell-real.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="click-bell-real" data-i18n="vsRealT">真机 · Phoenix-MWA</strong>
+              <span data-i18n="vsRealD">自有台架，按任务选用的权重；自主成功，无人接管</span>
+            </figcaption>
+          </figure>
+        </div>
+        <nav class="task-pager" aria-label="切换任务" data-i18n-aria="compPagerAria">
+          <a href="#water-pouring" data-i18n="compPrev">← 上一个任务</a>
+          <a href="#task-tabs" data-i18n="compAll">全部任务</a>
+          <a href="#drawer-open-place" data-i18n="compNext">下一个任务 →</a>
+        </nav>
+      </section>
+      <section class="section task-panel" id="drawer-open-place" aria-labelledby="drawer-open-place-title">
+        <div class="task-head">
+          <span class="task-num">02</span>
+          <h2 id="drawer-open-place-title"><span data-i18n="tkDrawer">开抽屉放番茄</span> <code>drawer_open_place</code></h2>
+        </div>
+        <p class="task-desc" data-i18n="tdDrawer">一只手拉开抽屉，另一只手拿起番茄放进抽屉。</p>
+        <div class="vs-grid">
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/drawer-open-place-sim.webp" aria-labelledby="drawer-open-place-title drawer-open-place-sim">
+              <source src="assets/competition/drawer-open-place-sim.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="drawer-open-place-sim" data-i18n="vsSimT">仿真 · 提交版 π0.5</strong>
+              <span data-i18n="vsSimD">官方评测器的随机化场景，成功回合</span>
+            </figcaption>
+          </figure>
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/drawer-open-place-real.webp" aria-labelledby="drawer-open-place-title drawer-open-place-real">
+              <source src="assets/competition/drawer-open-place-real.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="drawer-open-place-real" data-i18n="vsRealT">真机 · Phoenix-MWA</strong>
+              <span data-i18n="vsRealD">自有台架，按任务选用的权重；自主成功，无人接管</span>
+            </figcaption>
+          </figure>
+        </div>
+        <nav class="task-pager" aria-label="切换任务" data-i18n-aria="compPagerAria">
+          <a href="#click-bell" data-i18n="compPrev">← 上一个任务</a>
+          <a href="#task-tabs" data-i18n="compAll">全部任务</a>
+          <a href="#handle-basket" data-i18n="compNext">下一个任务 →</a>
+        </nav>
+      </section>
+      <section class="section task-panel" id="handle-basket" aria-labelledby="handle-basket-title">
+        <div class="task-head">
+          <span class="task-num">03</span>
+          <h2 id="handle-basket-title"><span data-i18n="tkBasket">装瓶提篮</span> <code>handle_basket</code></h2>
+        </div>
+        <p class="task-desc" data-i18n="tdBasket">拿起瓶子放进篮子，再用另一只手提起篮子。</p>
+        <div class="vs-grid">
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/handle-basket-sim.webp" aria-labelledby="handle-basket-title handle-basket-sim">
+              <source src="assets/competition/handle-basket-sim.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="handle-basket-sim" data-i18n="vsSimT">仿真 · 提交版 π0.5</strong>
+              <span data-i18n="vsSimD">官方评测器的随机化场景，成功回合</span>
+            </figcaption>
+          </figure>
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/handle-basket-real.webp" aria-labelledby="handle-basket-title handle-basket-real">
+              <source src="assets/competition/handle-basket-real.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="handle-basket-real" data-i18n="vsRealT">真机 · Phoenix-MWA</strong>
+              <span data-i18n="vsRealD">自有台架，按任务选用的权重；自主成功，无人接管</span>
+            </figcaption>
+          </figure>
+        </div>
+        <nav class="task-pager" aria-label="切换任务" data-i18n-aria="compPagerAria">
+          <a href="#drawer-open-place" data-i18n="compPrev">← 上一个任务</a>
+          <a href="#task-tabs" data-i18n="compAll">全部任务</a>
+          <a href="#item-assembly" data-i18n="compNext">下一个任务 →</a>
+        </nav>
+      </section>
+      <section class="section task-panel" id="item-assembly" aria-labelledby="item-assembly-title">
+        <div class="task-head">
+          <span class="task-num">04</span>
+          <h2 id="item-assembly-title"><span data-i18n="tkAssembly">离心管对接</span> <code>item_assembly</code></h2>
+        </div>
+        <p class="task-desc" data-i18n="tdAssembly">从桌上拿起两根离心管，水平对接在一起。</p>
+        <div class="vs-grid">
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/item-assembly-sim.webp" aria-labelledby="item-assembly-title item-assembly-sim">
+              <source src="assets/competition/item-assembly-sim.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="item-assembly-sim" data-i18n="vsSimT">仿真 · 提交版 π0.5</strong>
+              <span data-i18n="vsSimD">官方评测器的随机化场景，成功回合</span>
+            </figcaption>
+          </figure>
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/item-assembly-real.webp" aria-labelledby="item-assembly-title item-assembly-real">
+              <source src="assets/competition/item-assembly-real.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="item-assembly-real" data-i18n="vsRealT">真机 · Phoenix-MWA</strong>
+              <span data-i18n="vsRealD">自有台架，按任务选用的权重；自主成功，无人接管</span>
+            </figcaption>
+          </figure>
+        </div>
+        <nav class="task-pager" aria-label="切换任务" data-i18n-aria="compPagerAria">
+          <a href="#handle-basket" data-i18n="compPrev">← 上一个任务</a>
+          <a href="#task-tabs" data-i18n="compAll">全部任务</a>
+          <a href="#items-handover" data-i18n="compNext">下一个任务 →</a>
+        </nav>
+      </section>
+      <section class="section task-panel" id="items-handover" aria-labelledby="items-handover-title">
+        <div class="task-head">
+          <span class="task-num">05</span>
+          <h2 id="items-handover-title"><span data-i18n="tkHandover">递笔入筒</span> <code>items_handover</code></h2>
+        </div>
+        <p class="task-desc" data-i18n="tdHandover">拿起笔交给另一只手，再放进笔筒。</p>
+        <div class="vs-grid">
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/items-handover-sim.webp" aria-labelledby="items-handover-title items-handover-sim">
+              <source src="assets/competition/items-handover-sim.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="items-handover-sim" data-i18n="vsSimT">仿真 · 提交版 π0.5</strong>
+              <span data-i18n="vsSimD">官方评测器的随机化场景，成功回合</span>
+            </figcaption>
+          </figure>
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/items-handover-real.webp" aria-labelledby="items-handover-title items-handover-real">
+              <source src="assets/competition/items-handover-real.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="items-handover-real" data-i18n="vsRealT">真机 · Phoenix-MWA</strong>
+              <span data-i18n="vsRealD">自有台架，按任务选用的权重；自主成功，无人接管</span>
+            </figcaption>
+          </figure>
+        </div>
+        <nav class="task-pager" aria-label="切换任务" data-i18n-aria="compPagerAria">
+          <a href="#item-assembly" data-i18n="compPrev">← 上一个任务</a>
+          <a href="#task-tabs" data-i18n="compAll">全部任务</a>
+          <a href="#manipulate-pipette" data-i18n="compNext">下一个任务 →</a>
+        </nav>
+      </section>
+      <section class="section task-panel" id="manipulate-pipette" aria-labelledby="manipulate-pipette-title">
+        <div class="task-head">
+          <span class="task-num">06</span>
+          <h2 id="manipulate-pipette-title"><span data-i18n="tkPipette">移液</span> <code>manipulate_pipette</code></h2>
+        </div>
+        <p class="task-desc" data-i18n="tdPipette">用桌上的移液枪把液体从一个烧杯移到另一个烧杯。</p>
+        <div class="vs-grid">
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/manipulate-pipette-sim.webp" aria-labelledby="manipulate-pipette-title manipulate-pipette-sim">
+              <source src="assets/competition/manipulate-pipette-sim.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="manipulate-pipette-sim" data-i18n="vsSimT">仿真 · 提交版 π0.5</strong>
+              <span data-i18n="vsSimD">官方评测器的随机化场景，成功回合</span>
+            </figcaption>
+          </figure>
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/manipulate-pipette-real.webp" aria-labelledby="manipulate-pipette-title manipulate-pipette-real">
+              <source src="assets/competition/manipulate-pipette-real.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="manipulate-pipette-real" data-i18n="vsRealT">真机 · Phoenix-MWA</strong>
+              <span data-i18n="vsRealD">自有台架，按任务选用的权重；自主成功，无人接管</span>
+            </figcaption>
+          </figure>
+        </div>
+        <nav class="task-pager" aria-label="切换任务" data-i18n-aria="compPagerAria">
+          <a href="#items-handover" data-i18n="compPrev">← 上一个任务</a>
+          <a href="#task-tabs" data-i18n="compAll">全部任务</a>
+          <a href="#mixer-operating" data-i18n="compNext">下一个任务 →</a>
+        </nav>
+      </section>
+      <section class="section task-panel" id="mixer-operating" aria-labelledby="mixer-operating-title">
+        <div class="task-head">
+          <span class="task-num">07</span>
+          <h2 id="mixer-operating-title"><span data-i18n="tkMixer">搅拌器</span> <code>mixer_operating</code></h2>
+        </div>
+        <p class="task-desc" data-i18n="tdMixer">拿起烧杯放到搅拌器上，再用另一只手拨动开关。</p>
+        <div class="vs-grid">
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/mixer-operating-sim.webp" aria-labelledby="mixer-operating-title mixer-operating-sim">
+              <source src="assets/competition/mixer-operating-sim.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="mixer-operating-sim" data-i18n="vsSimT">仿真 · 提交版 π0.5</strong>
+              <span data-i18n="vsSimD">官方评测器的随机化场景，成功回合</span>
+            </figcaption>
+          </figure>
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/mixer-operating-real.webp" aria-labelledby="mixer-operating-title mixer-operating-real">
+              <source src="assets/competition/mixer-operating-real.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="mixer-operating-real" data-i18n="vsRealT">真机 · Phoenix-MWA</strong>
+              <span data-i18n="vsRealD">自有台架，按任务选用的权重；自主成功，无人接管</span>
+            </figcaption>
+          </figure>
+        </div>
+        <nav class="task-pager" aria-label="切换任务" data-i18n-aria="compPagerAria">
+          <a href="#manipulate-pipette" data-i18n="compPrev">← 上一个任务</a>
+          <a href="#task-tabs" data-i18n="compAll">全部任务</a>
+          <a href="#sample-loading" data-i18n="compNext">下一个任务 →</a>
+        </nav>
+      </section>
+      <section class="section task-panel" id="sample-loading" aria-labelledby="sample-loading-title">
+        <div class="task-head">
+          <span class="task-num">08</span>
+          <h2 id="sample-loading-title"><span data-i18n="tkSample">试管上架</span> <code>sample_loading</code></h2>
+        </div>
+        <p class="task-desc" data-i18n="tdSample">拿起试管交给另一只手，再插进试管架。</p>
+        <div class="vs-grid">
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/sample-loading-sim.webp" aria-labelledby="sample-loading-title sample-loading-sim">
+              <source src="assets/competition/sample-loading-sim.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="sample-loading-sim" data-i18n="vsSimT">仿真 · 提交版 π0.5</strong>
+              <span data-i18n="vsSimD">官方评测器的随机化场景，成功回合</span>
+            </figcaption>
+          </figure>
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/sample-loading-real.webp" aria-labelledby="sample-loading-title sample-loading-real">
+              <source src="assets/competition/sample-loading-real.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="sample-loading-real" data-i18n="vsRealT">真机 · Phoenix-MWA</strong>
+              <span data-i18n="vsRealD">自有台架，按任务选用的权重；自主成功，无人接管</span>
+            </figcaption>
+          </figure>
+        </div>
+        <nav class="task-pager" aria-label="切换任务" data-i18n-aria="compPagerAria">
+          <a href="#mixer-operating" data-i18n="compPrev">← 上一个任务</a>
+          <a href="#task-tabs" data-i18n="compAll">全部任务</a>
+          <a href="#table-rearrangement" data-i18n="compNext">下一个任务 →</a>
+        </nav>
+      </section>
+      <section class="section task-panel" id="table-rearrangement" aria-labelledby="table-rearrangement-title">
+        <div class="task-head">
+          <span class="task-num">09</span>
+          <h2 id="table-rearrangement-title"><span data-i18n="tkTable">摆放餐具</span> <code>table_rearrangement</code></h2>
+        </div>
+        <p class="task-desc" data-i18n="tdTable">拿起叉子和勺子，放到盘子旁边。</p>
+        <div class="vs-grid">
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/table-rearrangement-sim.webp" aria-labelledby="table-rearrangement-title table-rearrangement-sim">
+              <source src="assets/competition/table-rearrangement-sim.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="table-rearrangement-sim" data-i18n="vsSimT">仿真 · 提交版 π0.5</strong>
+              <span data-i18n="vsSimD">官方评测器的随机化场景，成功回合</span>
+            </figcaption>
+          </figure>
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/table-rearrangement-real.webp" aria-labelledby="table-rearrangement-title table-rearrangement-real">
+              <source src="assets/competition/table-rearrangement-real.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="table-rearrangement-real" data-i18n="vsRealT">真机 · Phoenix-MWA</strong>
+              <span data-i18n="vsRealD">自有台架，按任务选用的权重；自主成功，无人接管</span>
+            </figcaption>
+          </figure>
+        </div>
+        <nav class="task-pager" aria-label="切换任务" data-i18n-aria="compPagerAria">
+          <a href="#sample-loading" data-i18n="compPrev">← 上一个任务</a>
+          <a href="#task-tabs" data-i18n="compAll">全部任务</a>
+          <a href="#water-pouring" data-i18n="compNext">下一个任务 →</a>
+        </nav>
+      </section>
+      <section class="section task-panel" id="water-pouring" aria-labelledby="water-pouring-title">
+        <div class="task-head">
+          <span class="task-num">10</span>
+          <h2 id="water-pouring-title"><span data-i18n="tkWater">倒水</span> <code>water_pouring</code></h2>
+        </div>
+        <p class="task-desc" data-i18n="tdWater">一只手拿杯子，另一只手拿瓶子，把水倒进杯子。</p>
+        <div class="vs-grid">
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/water-pouring-sim.webp" aria-labelledby="water-pouring-title water-pouring-sim">
+              <source src="assets/competition/water-pouring-sim.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="water-pouring-sim" data-i18n="vsSimT">仿真 · 提交版 π0.5</strong>
+              <span data-i18n="vsSimD">官方评测器的随机化场景，成功回合</span>
+            </figcaption>
+          </figure>
+          <figure class="clip">
+            <video controls preload="none" playsinline width="960" height="480" poster="assets/competition/water-pouring-real.webp" aria-labelledby="water-pouring-title water-pouring-real">
+              <source src="assets/competition/water-pouring-real.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <strong id="water-pouring-real" data-i18n="vsRealT">真机 · Phoenix-MWA</strong>
+              <span data-i18n="vsRealD">自有台架，按任务选用的权重；自主成功，无人接管</span>
+            </figcaption>
+          </figure>
+        </div>
+        <nav class="task-pager" aria-label="切换任务" data-i18n-aria="compPagerAria">
+          <a href="#table-rearrangement" data-i18n="compPrev">← 上一个任务</a>
+          <a href="#task-tabs" data-i18n="compAll">全部任务</a>
+          <a href="#click-bell" data-i18n="compNext">下一个任务 →</a>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="footer">© 2026 <span data-i18n="name">蒲贺良</span> · <span data-i18n="footerUpdated">Last updated: 2026.11</span></footer>
+  </div>
+  <button class="control-btn to-top" type="button" aria-label="回到顶部" title="回到顶部"><span aria-hidden="true">↑</span></button>
+
+  <script src="assets/i18n.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>

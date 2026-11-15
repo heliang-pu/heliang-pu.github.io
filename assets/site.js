@@ -36,18 +36,22 @@ function applyLang(lang) {
   });
   var portrait = document.querySelector('.portrait');
   if (portrait) portrait.alt = t.portraitAlt;
-  /* meta tags */
-  document.title = t.docTitle;
+  /* meta tags：其他页面在 <body> 上用 data-i18n-title / data-i18n-desc 指定自己的键，默认是首页的 */
+  var titleKey = document.body.getAttribute('data-i18n-title');
+  var descKey = document.body.getAttribute('data-i18n-desc');
+  var title = titleKey ? t[titleKey] : t.docTitle;
+  var desc = descKey ? t[descKey] : t.metaDesc;
+  document.title = title;
   var mDesc = document.querySelector('meta[name="description"]');
-  if (mDesc) mDesc.content = t.metaDesc;
+  if (mDesc) mDesc.content = desc;
   var ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle) ogTitle.content = t.docTitle;
+  if (ogTitle) ogTitle.content = title;
   var ogDesc = document.querySelector('meta[property="og:description"]');
-  if (ogDesc) ogDesc.content = t.metaDesc;
+  if (ogDesc) ogDesc.content = desc;
   var twTitle = document.querySelector('meta[name="twitter:title"]');
-  if (twTitle) twTitle.content = t.docTitle;
+  if (twTitle) twTitle.content = title;
   var twDesc = document.querySelector('meta[name="twitter:description"]');
-  if (twDesc) twDesc.content = t.metaDesc;
+  if (twDesc) twDesc.content = desc;
   /* control buttons */
   var langBtn = document.querySelector('.lang-toggle');
   if (langBtn) langBtn.textContent = lang === 'zh' ? 'EN' : '中';
@@ -98,7 +102,7 @@ function toggleLang() {
     if (localStorage.getItem('lang') === 'en') applyLang('en');
   } catch (e) {}
 
-  /* 竞赛专栏：一次只播一段视频 */
+  /* 竞赛页：一次只播一段视频 */
   var clips = document.querySelectorAll('.clip video');
   clips.forEach(function (video) {
     video.addEventListener('play', function () {
@@ -107,6 +111,32 @@ function toggleLang() {
       });
     });
   });
+
+  /* 竞赛页：按地址里的 #任务 只显示这一个任务；没有 JS 时十个任务依次排开。
+     #task-tabs、#tasks 这类不是任务的锚点不切换，留在当前任务。 */
+  var panels = [].slice.call(document.querySelectorAll('.task-panel'));
+  if (panels.length) {
+    var tabs = [].slice.call(document.querySelectorAll('.task-tabs a'));
+    var current = null;
+    var showTask = function () {
+      var id = decodeURIComponent(location.hash.slice(1));
+      var match = panels.filter(function (panel) { return panel.id === id; })[0];
+      if (!match && current) return;
+      current = match || panels[0];
+      panels.forEach(function (panel) { panel.hidden = panel !== current; });
+      tabs.forEach(function (tab) {
+        var on = tab.getAttribute('href') === '#' + current.id;
+        tab.classList.toggle('active', on);
+        if (on) tab.setAttribute('aria-current', 'true');
+        else tab.removeAttribute('aria-current');
+      });
+      clips.forEach(function (video) {
+        if (!current.contains(video)) video.pause();
+      });
+    };
+    window.addEventListener('hashchange', showTask);
+    showTask();
+  }
 
   /* 指标卡跟随鼠标高光（触摸设备无 pointermove hover，自然不触发） */
   document.querySelectorAll('.metric').forEach(function (card) {
