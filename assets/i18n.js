@@ -3,7 +3,7 @@ var i18n = {
   zh: {
     /* meta */
     docTitle: '蒲贺良 - 具身智能 / VLA 全栈工程师',
-    metaDesc: '蒲贺良，具身智能 / VLA 全栈工程师（FMC3-Robotics）。带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军；独立复现 π0.6 RECAP 并在真机落地，标杆任务吞吐约翻倍、失败率约减半；π0.5 融合触觉，双臂精细操作成功率 30%→70%。',
+    metaDesc: '蒲贺良，具身智能 / VLA 全栈工程师（FMC3-Robotics）。带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军；π0.6 RECAP 真机自改进，标杆任务吞吐约翻倍、失败率约减半；π0.5 融合触觉，双臂精细操作成功率 30%→70%。',
     /* sidebar */
     role: '具身智能 / VLA 全栈工程师',
     pitch: 'VLA 策略、世界动作模型和 sim2real，从数据采集、训练、推理部署到技能调度的全链路，落在机械臂、灵巧手和人形机器人上。',
@@ -19,7 +19,7 @@ var i18n = {
     name: '蒲贺良',
     /* hero */
     heroTitle: '从仿真到真机，让机器人真正学会干活。',
-    heroLead: 'FMC3-Robotics 具身智能全栈工程师，负责 VLA 策略从数据采集、训练到真机部署的全链路。独立复现 π0.6 RECAP 并在真机落地，带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军。',
+    heroLead: 'FMC3-Robotics 具身智能全栈工程师，负责 VLA 策略从数据采集、训练到真机部署的全链路。带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军。',
     btnContact: '联系我', btnGitHub: '查看 GitHub', btnHF: '查看模型与数据', btnDownloadPDF: '下载 PDF',
     m1desc: 'π0.6 RECAP 真机自改进：标杆任务吞吐约翻倍、失败率约减半',
     m2desc: '双臂精细操作成功率：π0.5 融合触觉 + RTC 异步推理',
@@ -38,7 +38,7 @@ var i18n = {
     exp3title: '江苏科技大学苏州理工学院', exp3meta: '计算机科学与技术 · 绩点 3.98/5 · 综合排名第一',
     exp3d1: '2024 年国家奖学金 · 智能小车实验室负责人。',
     /* projects */
-    secProjects: '项目经历', kickerProjects: '从策略到真机，从单臂到人形',
+    secProjects: '项目经历', kickerProjects: '从策略到真机，从单臂到双臂',
     p4t: 'π0.6 RECAP 真机自改进（松灵 PiperX 单臂）', p4d: '独立负责。在松灵 PiperX 单臂平台复现并落地 π0.6（RECAP）自改进方案，以手机插拔精细操作为标杆任务，让策略在真机部署中通过自主 rollout 与专家干预纠错持续从经验中学习，逐步超越示教水平。',
     p4b1: '完成机械臂、夹爪、多路相机联调与遥操作示教链路，采集并清洗 200 条 demonstration 作为冷启动数据。',
     p4b2: '复现 RECAP 流程：offline RL 预训练并引入 advantage conditioning，融合示教、自主采集与专家干预三类异构数据。',
@@ -49,12 +49,6 @@ var i18n = {
     p1b2: '采集双臂协同抓取与精细操作数据，基于 ACT、Diffusion Policy、π0.5 完成策略训练与真机部署。',
     p1b3: '在 π0.5 中引入 tactile encoder 融合触觉信号；结合 RTC 与异步推理降低延迟，提升双臂协同的时序一致性。',
     p1r1: '双臂精细操作成功率提升', p1r2k: '4 大模块', p1r2v: '遥操作 / 采集 / 推理 / 回放适配层',
-    p2t: '傅利叶 GR2 人形机器人货物搬运与技能调度', p2d: '将单臂平台操作策略迁移适配至傅利叶 GR2 人形机器人，打通本体—感知—控制—推理—技能调度全链路，并接入多模态大模型实现高层任务分解与闭环执行。',
-    p2b1: '设计并安装 GR2 腕部相机支架，使用外骨骼遥操作采集分拣搬运数据，编写数据集格式转换与训练脚本。',
-    p2b2: '基于 π0 与 GR00T 完成操作策略训练与验证，适配 get_state / send_action 接口并编写 inference server。',
-    p2b3: '结合 DDS 深度集成 RoboOS，接入 RoboBrain VLM，实现自然语言任务的高层分解与多技能调度编排。',
-    p2b4: '在 Isaac Sim 中基于 GR00T 验证宇树 G1 全身 loco-manipulation 搬运，检验策略跨人形本体的可迁移性。',
-    p2r1k: '2 款人形', p2r1v: '傅利叶 GR2 真机 · 宇树 G1 仿真', p2r2k: '端到端', p2r2v: 'VLA 部署到货物搬运闭环验证',
     p4img: 'π0.6 RECAP 真机：松灵 PiperX 单臂手机插拔', p1img: '机械臂 + 灵巧手双臂真机抓取',
     /* competition: homepage section and competition.html */
     secComp: '竞赛专栏',
@@ -107,7 +101,6 @@ var i18n = {
     more3t: '视觉关键点 retargeting 到灵巧手', more3d: '从 RGB 画面提取手部关键点与关节姿态，retargeting 到机器人灵巧手，实现稳定、准确的手内对指控制。',
     more4t: 'Minimax 井字棋 + π0.5 落子', more4d: '井字棋决策用 minimax 算法，落子由 π0.5 结合视觉 prompts 控制放置位置，用视觉定位补足语言跟随性差的问题。',
     more5t: 'openpi 复现 π0.5 Subtask 长任务拆解', more5d: '复现 π0.5 中提出但官方未开源的 subtask 子任务拆解，将双杯放置长任务分解为可跟踪的阶段，并在仿真中完成执行。',
-    more6t: 'BEHAVIOR-1K 微波炉爆米花复现', more6d: '基于公开代码与权重复现开门、抓取、放入、关门的长任务，本地首轮 10 个实例成功 4 个，用于复现与失败分析。',
     more7t: '宇树 G1 强化学习步态', more7d: '在 MuJoCo Playground 中用 PPO 训练宇树 G1 崎岖地形速度跟踪策略（官方基线配置，1.81 亿仿真步）。',
     /* skills */
     secSkills: '能力矩阵', kickerSkills: '工程、模型、数据、部署四线闭环',
@@ -135,7 +128,6 @@ var i18n = {
     pickMore: '详情 →',
     p4s: '在松灵 PiperX 单臂上复现 π0.6 RECAP：200 条示教冷启动，offline RL 加 advantage conditioning，再用自主 rollout 与专家纠错做多轮真机自改进。',
     p1s: '基于 LeRobot 从零搭建机械臂 + 智元灵巧手双臂平台，在 π0.5 中融合触觉 encoder，配合 RTC 异步推理。',
-    p2s: '把单臂操作策略迁移到傅利叶 GR2 人形，基于 π0 / GR00T 训练部署，接入 RoboOS 与 RoboBrain VLM 做自然语言任务分解和多技能调度。',
     secSkillRows: '专业技能',
     sk1t: '模型与训练',
     sk1d: 'π0 / π0.5 / π0.6 · ACT · Diffusion Policy · GR00T · RECAP（Offline RL + Advantage Conditioning）· LoRA · PyTorch / JAX',
@@ -154,7 +146,7 @@ var i18n = {
     a4l: '航天杯移动机器人 AI 创新技术挑战赛全国三等奖（队长）',
     a5l: '江苏省大学生创新创业训练计划项目 · 期刊：基于 OpenMV 的新型智能门锁设计',
     projDocTitle: '全部项目 - 蒲贺良',
-    projMetaDesc: '蒲贺良的项目详情：π0.6 RECAP 真机自改进、双臂灵巧手触觉融合、傅利叶 GR2 人形技能调度，以及更多真机与仿真项目、能力矩阵和上手过的真机平台。',
+    projMetaDesc: '蒲贺良的项目详情：π0.6 RECAP 真机自改进、双臂灵巧手触觉融合，以及更多真机与仿真项目、能力矩阵和上手过的真机平台。',
     projPageTitle: '全部项目',
     projPageDesc: '首页只放了重点。这里是每个项目的完整说明，以及更多项目、能力矩阵和上手过的真机平台。',
     projTocAria: '本页目录',
@@ -196,7 +188,7 @@ var i18n = {
   en: {
     /* meta */
     docTitle: 'Puheliang - Embodied AI / VLA Full-Stack Engineer',
-    metaDesc: 'Puheliang, Embodied AI / VLA full-stack engineer at FMC3-Robotics. Led the team that won the NeurIPS 2026 RoboSynChallenge simulation track; reproduced π0.6 RECAP on a real robot (~2× throughput, ~half the failures on the benchmark task); tactile fusion in π0.5 lifted dual-arm fine-manipulation success from 30% to 70%.',
+    metaDesc: 'Puheliang, Embodied AI / VLA full-stack engineer at FMC3-Robotics. Led the team that won the NeurIPS 2026 RoboSynChallenge simulation track; π0.6 RECAP self-improvement on a real robot (~2× throughput, ~half the failures on the benchmark task); tactile fusion in π0.5 lifted dual-arm fine-manipulation success from 30% to 70%.',
     /* sidebar */
     role: 'Embodied AI / VLA Full-Stack Engineer',
     pitch: 'VLA policies, world action models and sim2real, from data collection and training to deployment and skill orchestration, on arms, dexterous hands and humanoids.',
@@ -212,7 +204,7 @@ var i18n = {
     name: 'Puheliang',
     /* hero */
     heroTitle: 'From simulation to the real world: robots that actually get work done.',
-    heroLead: 'Embodied AI full-stack engineer at FMC3-Robotics, owning VLA policies from data collection and training to real-robot deployment. Reproduced π0.6 RECAP on a real robot and led the team that won the NeurIPS 2026 RoboSynChallenge simulation track.',
+    heroLead: 'Embodied AI full-stack engineer at FMC3-Robotics, owning VLA policies from data collection and training to real-robot deployment. Led the team that won the NeurIPS 2026 RoboSynChallenge simulation track.',
     btnContact: 'Contact Me', btnGitHub: 'View GitHub', btnHF: 'View Models & Data', btnDownloadPDF: 'Download PDF',
     m1desc: 'π0.6 RECAP on a real robot: benchmark throughput ~2×, failures ~halved',
     m2desc: 'Dual-arm fine-manipulation success: π0.5 with tactile fusion + RTC async inference',
@@ -231,7 +223,7 @@ var i18n = {
     exp3title: 'Jiangsu Univ. of Sci. & Tech. Suzhou Institute of Technology', exp3meta: 'Computer Science & Technology · GPA 3.98/5 · Ranked #1',
     exp3d1: '2024 National Scholarship · led the smart-car lab.',
     /* projects */
-    secProjects: 'Projects', kickerProjects: 'From policy to robot, from arm to humanoid',
+    secProjects: 'Projects', kickerProjects: 'From policy to robot, from single arm to dual arm',
     p4t: 'π0.6 RECAP Real-Robot Self-Improvement (AgileX PiperX Arm)', p4d: 'Owned end to end. Reproduced and deployed π0.6 (RECAP) self-improvement on an AgileX PiperX single-arm platform, using phone plug-in as the benchmark task, so the policy keeps learning from autonomous rollouts and expert corrections on the real robot and gradually surpasses the demonstrations.',
     p4b1: 'Brought up the arm, gripper, multi-camera rig, and teleoperation pipeline; collected and cleaned 200 demonstrations as cold-start data.',
     p4b2: 'Reproduced the RECAP recipe: offline-RL pre-training with advantage conditioning, fusing demonstrations, autonomous rollouts, and expert interventions.',
@@ -242,12 +234,6 @@ var i18n = {
     p1b2: 'Collected dual-arm coordinated grasping and fine-manipulation data; trained and deployed ACT, Diffusion Policy, and π0.5 policies on the real robot.',
     p1b3: 'Added a tactile encoder to π0.5 to fuse touch signals; RTC and async inference cut latency and improved timing consistency between the two arms.',
     p1r1: 'Dual-arm fine manipulation success rate', p1r2k: '4 Modules', p1r2v: 'Teleop / capture / inference / replay layer',
-    p2t: 'Fourier GR2 Humanoid Cargo Handling & Skill Orchestration', p2d: 'Transferred single-arm manipulation policies to the Fourier GR2 humanoid, connecting embodiment, perception, control, inference, and skill orchestration, with a multimodal model for high-level task decomposition and closed-loop execution.',
-    p2b1: 'Designed and mounted GR2 wrist-camera brackets, collected sorting and handling data via exoskeleton teleoperation, and wrote dataset conversion and training scripts.',
-    p2b2: 'Trained and validated manipulation policies with π0 and GR00T, adapted the get_state / send_action interfaces, and wrote the inference server.',
-    p2b3: 'Integrated RoboOS over DDS and connected RoboBrain VLM for high-level decomposition of natural-language tasks and multi-skill orchestration.',
-    p2b4: 'Validated Unitree G1 whole-body loco-manipulation carrying with GR00T in Isaac Sim, testing policy transfer across humanoid embodiments.',
-    p2r1k: '2 Humanoids', p2r1v: 'Fourier GR2 real · Unitree G1 sim', p2r2k: 'End-to-End', p2r2v: 'VLA deployment through the cargo-handling loop',
     p4img: 'π0.6 RECAP on a real AgileX PiperX arm: phone plug-in', p1img: 'Real dual-arm grasping with a dexterous hand',
     /* competition: homepage section and competition.html */
     secComp: 'Competition',
@@ -300,7 +286,6 @@ var i18n = {
     more3t: 'Visual Keypoint Retargeting to a Dexterous Hand', more3d: 'Extracted hand keypoints and joint posture from RGB video and retargeted them to a robot dexterous hand for stable, accurate in-hand finger opposition.',
     more4t: 'Minimax Tic-Tac-Toe with π0.5 Placement', more4d: 'Minimax picks the move and π0.5 places the piece using visual prompts, compensating for weak language following with visual localization.',
     more5t: 'openpi Reproduction of π0.5 Subtask Decomposition', more5d: 'Reproduced the subtask decomposition introduced in π0.5 but not open-sourced, splitting a two-mug placement task into trackable stages and completing it in simulation.',
-    more6t: 'BEHAVIOR-1K Microwave Popcorn Reproduction', more6d: 'Reproduced the open, grasp, place, and close long-horizon task from public code and weights; an initial local run solved 4 of 10 instances, used for failure analysis.',
     more7t: 'Unitree G1 RL Locomotion', more7d: 'Trained a rough-terrain velocity-tracking policy for Unitree G1 with PPO in MuJoCo Playground (official baseline configuration, 181M simulation steps).',
     /* skills */
     secSkills: 'Capabilities', kickerSkills: 'Engineering, Models, Data & Deployment in Closed Loop',
@@ -328,7 +313,6 @@ var i18n = {
     pickMore: 'Details →',
     p4s: 'Reproduced π0.6 RECAP on an AgileX PiperX arm: 200 demonstrations for a cold start, offline RL with advantage conditioning, then several rounds of real-robot self-improvement from autonomous rollouts and expert corrections.',
     p1s: 'Built a dual-arm platform with an AgiBot dexterous hand from scratch on LeRobot, fused a tactile encoder into π0.5, and paired it with RTC async inference.',
-    p2s: 'Transferred manipulation policies to the Fourier GR2 humanoid, trained and deployed them with π0 / GR00T, and connected RoboOS and RoboBrain VLM for natural-language task decomposition and multi-skill orchestration.',
     secSkillRows: 'Skills',
     sk1t: 'Models & training',
     sk1d: 'π0 / π0.5 / π0.6 · ACT · Diffusion Policy · GR00T · RECAP (offline RL + advantage conditioning) · LoRA · PyTorch / JAX',
@@ -347,7 +331,7 @@ var i18n = {
     a4l: 'Hangtian Cup Mobile Robot AI Innovation Challenge: National 3rd Prize (team leader)',
     a5l: 'Jiangsu provincial student innovation project · journal paper on an OpenMV-based smart door lock',
     projDocTitle: 'All projects - Puheliang',
-    projMetaDesc: 'Project details by Puheliang: π0.6 RECAP real-robot self-improvement, tactile fusion on a dual-arm dexterous platform, Fourier GR2 humanoid skill orchestration, plus more real-robot and simulation projects, a capability matrix and the hardware he has worked with.',
+    projMetaDesc: 'Project details by Puheliang: π0.6 RECAP real-robot self-improvement, tactile fusion on a dual-arm dexterous platform, plus more real-robot and simulation projects, a capability matrix and the hardware he has worked with.',
     projPageTitle: 'All projects',
     projPageDesc: 'The homepage keeps to the highlights. Here are the full write-ups, plus more projects, a capability matrix and the hardware I have worked with.',
     projTocAria: 'On this page',

@@ -255,7 +255,7 @@ test('the homepage reads like a resume: highlights and entries, details on other
   assert.deepEqual(projectSections, ['projects', 'more-projects', 'skills', 'platforms']);
   const projectIds = new Set([...projectsPage.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]));
   const detailLinks = [...index.matchAll(/href="projects\.html#([^"]+)"/g)].map((match) => match[1]);
-  assert.deepEqual(detailLinks, ['recap', 'dual-arm', 'gr2']);
+  assert.deepEqual(detailLinks, ['recap', 'dual-arm']);
   for (const id of detailLinks) assert.ok(projectIds.has(id), `projects.html#${id}`);
   for (const page of [competitionPage, projectsPage]) assert.match(page, /<a class="back-link" href="\.\/#/);
 
@@ -499,4 +499,14 @@ test('work and education timeline is visible and linked from navigation', () => 
   assert.match(index, /<section class="section" id="experience">[\s\S]*?工作与教育/);
   assert.match(index, /<h3 data-i18n="exp2title">华东师范大学<\/h3>/);
   assert.match(index, /<h3 data-i18n="exp3title">江苏科技大学苏州理工学院<\/h3>/);
+});
+
+test('items the owner removed stay off the site', () => {
+  // 2026-11-16: the hero's "independently reproduced π0.6 RECAP" clause, the Fourier GR2
+  // humanoid project and the BEHAVIOR-1K popcorn item were taken down on request.
+  for (const [name, source] of [['index.html', index], ['projects.html', projectsPage], ['i18n.js', i18nSource]]) {
+    assert.doesNotMatch(source, /独立复现 π0\.6 RECAP|Reproduced π0\.6 RECAP on a real robot/i, name);
+    assert.doesNotMatch(source, /id="gr2"|projects\.html#gr2|货物搬运与技能调度|Cargo Handling/, name);
+    assert.doesNotMatch(source, /BEHAVIOR-1K|爆米花|Popcorn/, name);
+  }
 });

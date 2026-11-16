@@ -1104,10 +1104,6 @@ a {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.pick.no-shot {
-  grid-template-columns: minmax(0, 1fr);
-}
-
 .pick-shot {
   display: block;
   width: 100%;
