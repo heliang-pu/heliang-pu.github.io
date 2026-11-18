@@ -1238,6 +1238,61 @@ a {
   scroll-margin-top: 18px;
 }
 
+/* ChainPlanner 项目卡：视频按原比例放；方法图占满整卡宽，按页面语言显示中文或英文版；下面一排演示视频 */
+.project-shot.project-video {
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: #000;
+}
+
+.project-link {
+  display: inline-block;
+  margin-top: 14px;
+}
+
+.project-figure {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.project-figure img {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.project-figure figcaption {
+  margin-top: 10px;
+  color: #5b6472;
+  font-size: 0.86rem;
+  text-align: center;
+}
+
+html[lang="en"] .lang-zh,
+html:not([lang="en"]) .lang-en {
+  display: none;
+}
+
+.demo-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.demo-note {
+  grid-column: 1 / -1;
+  margin: -6px 0 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
 .footer {
   color: var(--muted);
   font-size: 0.84rem;
@@ -1388,6 +1443,7 @@ a {
   .capability-grid,
   .vs-grid,
   .method-grid,
+  .demo-grid,
   .pick,
   .project-card,
   .timeline-item {

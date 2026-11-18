@@ -255,17 +255,20 @@ test('the homepage reads like a resume: highlights and entries, details on other
   assert.deepEqual(projectSections, ['projects', 'more-projects', 'skills', 'platforms']);
   const projectIds = new Set([...projectsPage.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]));
   const detailLinks = [...index.matchAll(/href="projects\.html#([^"]+)"/g)].map((match) => match[1]);
-  assert.deepEqual(detailLinks, ['recap', 'dual-arm']);
+  assert.deepEqual(detailLinks, ['recap', 'dual-arm', 'chainplanner']);
   for (const id of detailLinks) assert.ok(projectIds.has(id), `projects.html#${id}`);
   for (const page of [competitionPage, projectsPage]) assert.match(page, /<a class="back-link" href="\.\/#/);
 
   // The homepage only links to the clips, and the old demo wall (Release videos, demos/ pages) stays gone.
-  // The only video on the homepage is the tissue-sorting clip in the dual-arm project; the rest live on competition.html.
+  // Homepage videos: the tissue-sorting clip (dual-arm) and the ChainPlanner demo; the rest live on other pages.
   const homeVideos = [...index.matchAll(/<video\b[^>]*>[\s\S]*?<\/video>/g)].map((match) => match[0]);
-  assert.equal(homeVideos.length, 1);
-  assert.equal(tags('source').length, 1);
-  const pickWithVideo = index.match(/<article class="pick">(?:(?!<\/article>)[\s\S])*?<video[\s\S]*?<\/article>/)?.[0] ?? '';
-  assert.match(pickWithVideo, /data-i18n="p1t"/);
+  assert.equal(homeVideos.length, 2);
+  assert.equal(tags('source').length, 2);
+  const picksWithVideo = [...index.matchAll(/<article class="pick">[\s\S]*?<\/article>/g)]
+    .map((match) => match[0])
+    .filter((pick) => pick.includes('<video'))
+    .map((pick) => pick.match(/data-i18n="(p\d+t)"/)?.[1]);
+  assert.deepEqual(picksWithVideo, ['p1t', 'p5t']);
   for (const source of [index, competitionPage, css, script]) {
     assert.doesNotMatch(source, /releases\/download|site-media|demos\/|demo-card|play-badge/);
   }
@@ -335,22 +338,56 @@ test('competition page shows ten tasks, each with a sim clip and a real clip', a
   assert.ok(total <= 40 * 1024 * 1024, `competition clips total ${total} bytes`);
 });
 
-test('the homepage project video is same-origin, loads on demand, and stays small', async () => {
-  const tag = tags('video')[0];
-  assert.equal(attr(tag, 'preload'), 'none');
-  assert.match(tag, /\scontrols\b/);
-  assert.match(tag, /\splaysinline\b/);
-  assert.equal(attr(tag, 'aria-label'), dictionary.zh[attr(tag, 'data-i18n-aria')]);
-  assert.equal(attr(tag, 'poster'), 'assets/projects/tissue-sorting.webp');
-  await access(new URL(attr(tag, 'poster'), root));
-  const src = attr(tags('source')[0], 'src');
-  assert.equal(src, 'assets/projects/tissue-sorting.mp4');
-  const bytes = await read(src, null);
-  const head = bytes.subarray(0, 64 * 1024).toString('latin1');
-  const moov = head.indexOf('moov');
-  const mdat = head.indexOf('mdat');
-  assert.ok(moov !== -1 && (mdat === -1 || moov < mdat), `${src} is not faststart`);
-  assert.ok(bytes.length <= 4 * 1024 * 1024, `${src} is ${bytes.length} bytes`);
+test('project videos are same-origin, load on demand, and stay small', async () => {
+  // Homepage picks and projects.html: the tissue-sorting clip and the ChainPlanner real-robot demos.
+  const clips = [
+    'tissue-sorting',
+    'chainplanner-goal-only',
+    'chainplanner-five-steps',
+    'chainplanner-bell-three-times',
+    'chainplanner-pen-tube-bell',
+  ];
+  const seen = new Set();
+  for (const page of [index, projectsPage]) {
+    for (const [video] of page.matchAll(/<video\b[^>]*>[\s\S]*?<\/video>/g)) {
+      const tag = tags('video', video)[0];
+      const src = attr(tags('source', video)[0], 'src');
+      const name = src.match(/^assets\/projects\/([a-z0-9-]+)\.mp4$/)?.[1];
+      assert.ok(clips.includes(name), src);
+      seen.add(name);
+      assert.equal(attr(tag, 'poster'), `assets/projects/${name}.webp`);
+      assert.equal(attr(tag, 'preload'), 'none');
+      assert.match(tag, /\scontrols\b/);
+      assert.match(tag, /\splaysinline\b/);
+      const ariaKey = attr(tag, 'data-i18n-aria');
+      if (ariaKey) {
+        assert.equal(attr(tag, 'aria-label'), dictionary.zh[ariaKey]);
+      } else {
+        for (const id of attr(tag, 'aria-labelledby').split(' ')) {
+          assert.match(page, new RegExp(`\\sid="${id}"`), `${src} label #${id}`);
+        }
+      }
+      await access(new URL(attr(tag, 'poster'), root));
+      const bytes = await read(src, null);
+      const head = bytes.subarray(0, 64 * 1024).toString('latin1');
+      const moov = head.indexOf('moov');
+      const mdat = head.indexOf('mdat');
+      assert.ok(moov !== -1 && (mdat === -1 || moov < mdat), `${src} is not faststart`);
+      assert.ok(bytes.length <= 4 * 1024 * 1024, `${src} is ${bytes.length} bytes`);
+    }
+  }
+  assert.deepEqual([...seen].sort(), [...clips].sort());
+});
+
+test('ChainPlanner shows its method figure in the page language and links the code', () => {
+  const card = projectsPage.match(/<article class="project-card" id="chainplanner">[\s\S]*?<\/article>/)?.[0] ?? '';
+  assert.match(card, /<img class="lang-zh" src="assets\/projects\/chainplanner-method-zh\.webp"/);
+  assert.match(card, /<img class="lang-en" src="assets\/projects\/chainplanner-method-en\.webp"/);
+  assert.match(card, /href="https:\/\/github\.com\/heliang-pu\/wam-long-horizon-planner"/);
+  assert.equal(card.match(/<video\b/g)?.length, 4);
+  assert.match(css, /html\[lang="en"\] \.lang-zh,\s*html:not\(\[lang="en"\]\) \.lang-en\s*\{\s*display:\s*none;/);
+  // applyLang sets <html lang>, which is what switches the figure.
+  assert.match(script, /document\.documentElement\.lang = lang === 'zh' \? 'zh-CN' : 'en';/);
 });
 
 test('old resume PDFs still land on the homepage', () => {

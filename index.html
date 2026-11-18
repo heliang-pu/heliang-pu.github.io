@@ -43,7 +43,7 @@
       { "@type": "CollegeOrUniversity", "name": "华东师范大学" },
       { "@type": "CollegeOrUniversity", "name": "江苏科技大学苏州理工学院" }
     ],
-    "knowsAbout": ["LeRobot", "VLA Policy", "World Action Model", "Phoenix-MWA", "Sim2Real", "VLM", "π0", "π0.5", "π0.6", "RECAP", "Offline RL", "ACT", "Diffusion Policy", "GR00T", "触觉融合", "LoRA", "机器人真机部署", "异步推理"],
+    "knowsAbout": ["LeRobot", "VLA Policy", "World Action Model", "Phoenix-MWA", "ChainPlanner", "Long-Horizon Planning", "Sim2Real", "VLM", "π0", "π0.5", "π0.6", "RECAP", "Offline RL", "ACT", "Diffusion Policy", "GR00T", "触觉融合", "LoRA", "机器人真机部署", "异步推理"],
     "sameAs": [
       "https://github.com/heliang-pu",
       "https://huggingface.co/puheliang",
@@ -217,7 +217,7 @@
               <ul class="plain-list">
                 <li data-i18n="exp1d4">带队参加 NeurIPS 2026 RoboSynChallenge，获仿真赛道全球总冠军：按任务微调 π0.5，分数主要来自数据（扩充专家数据、失败场景重采、宽域随机化）。</li>
                 <li data-i18n="exp1d5">真机阶段只用真机数据后训练世界动作模型 Phoenix-MWA；搭建带人接管的数据流程，切掉失败段和停顿，解决模型卡住。</li>
-                <li data-i18n="exp1d6">写好只读观测的推理规则和动作块 inpainting，把十个任务封装成仿真、真机通用的一键评测；接入 RynnBrain 规划模型串联长任务。</li>
+                <li data-i18n="exp1d6">写好只读观测的推理规则和动作块 inpainting，把十个任务封装成仿真、真机通用的一键评测；设计 ChainPlanner 长时程规划器，用一句话串联十个技能。</li>
                 <li data-i18n="exp1d1">独立负责 π0.6 RECAP 真机自改进项目：标杆手机插拔任务吞吐约翻倍、失败率约减半。</li>
                 <li data-i18n="exp1d2">从零搭建机械臂 + 智元灵巧手双臂平台，融合触觉使精细操作成功率从 30% 提升至 70%。</li>
               </ul>
@@ -295,6 +295,19 @@
               </div>
             </div>
           </article>
+          <article class="pick">
+            <video class="pick-shot pick-video" controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-goal-only.webp" aria-label="播放：一句只说目的的指令，ChainPlanner 拆成 3 步并依次完成" data-i18n-aria="p5video">
+              <source src="assets/projects/chainplanner-goal-only.mp4" type="video/mp4">
+            </video>
+            <div class="pick-body">
+              <h3 data-i18n="p5t">ChainPlanner：世界动作模型的长时程任务规划器</h3>
+              <p data-i18n="p5s">设计 2B 高层规划器，接在冻结的十任务 Phoenix-MWA 上：一句话指令先拆成技能计划，再用语言记忆跟踪执行到第几步；只用单任务录像拼成随机技能链训练，不采长任务数据。</p>
+              <div class="pick-foot">
+                <span class="pick-result"><strong>22 / 26</strong><span data-i18n="p5r3">真机长任务无人干预完成</span></span>
+                <a class="pick-link" href="projects.html#chainplanner" data-i18n="pickMore">详情 →</a>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -364,7 +377,7 @@
         </div>
         <dl class="skill-rows">
           <div><dt data-i18n="sk1t">模型与训练</dt><dd data-i18n="sk1d">π0 / π0.5 / π0.6 · ACT · Diffusion Policy · GR00T · RECAP（Offline RL + Advantage Conditioning）· LoRA · PyTorch / JAX</dd></div>
-          <div><dt data-i18n="sk2t">前沿方向</dt><dd data-i18n="sk2d">世界动作模型（Phoenix-MWA · InternW0 · OpenWAM）· sim2real · 真机强化学习 · 人在环学习</dd></div>
+          <div><dt data-i18n="sk2t">前沿方向</dt><dd data-i18n="sk2d">世界动作模型（Phoenix-MWA · InternW0 · OpenWAM）· 长时程任务规划 · sim2real · 真机强化学习 · 人在环学习</dd></div>
           <div><dt data-i18n="sk3t">数据与平台</dt><dd data-i18n="sk3d">遥操作 / 外骨骼 / 多相机采集 · 数据清洗 · Replay · LeRobot Dataset · 机械臂 / 灵巧手 / 人形接口适配</dd></div>
           <div><dt data-i18n="sk4t">部署与系统</dt><dd data-i18n="sk4d">Inference server · 异步推理 · RTC · Action Chunk · BF16 推理优化 · DDS / RoboOS 技能调度 · RoboBrain VLM 任务分解</dd></div>
           <div><dt data-i18n="sk5t">真机平台</dt><dd data-i18n="sk5d">傅利叶 GR2 · 智元灵巧手 · 松灵 PiperX / PiPER · 求之 · 汇川 · Manus 数据手套 · Xsens 全身动捕 · Meta Quest 遥操作</dd></div>

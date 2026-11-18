@@ -102,8 +102,8 @@ function toggleLang() {
     if (localStorage.getItem('lang') === 'en') applyLang('en');
   } catch (e) {}
 
-  /* 竞赛页：一次只播一段视频 */
-  var clips = document.querySelectorAll('.clip video');
+  /* 一次只播一段视频（首页、项目页、竞赛页） */
+  var clips = document.querySelectorAll('video');
   clips.forEach(function (video) {
     video.addEventListener('play', function () {
       clips.forEach(function (other) {

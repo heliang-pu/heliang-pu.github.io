@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="蒲贺良的项目详情：π0.6 RECAP 真机自改进、双臂灵巧手触觉融合，以及更多真机与仿真项目、能力矩阵和上手过的真机平台。">
+  <meta name="description" content="蒲贺良的项目详情：π0.6 RECAP 真机自改进、双臂灵巧手触觉融合、ChainPlanner 长时程任务规划，以及更多真机与仿真项目、能力矩阵和上手过的真机平台。">
   <meta name="theme-color" content="#0f766e">
   <meta property="og:title" content="全部项目 - 蒲贺良">
-  <meta property="og:description" content="蒲贺良的项目详情：π0.6 RECAP 真机自改进、双臂灵巧手触觉融合，以及更多真机与仿真项目、能力矩阵和上手过的真机平台。">
+  <meta property="og:description" content="蒲贺良的项目详情：π0.6 RECAP 真机自改进、双臂灵巧手触觉融合、ChainPlanner 长时程任务规划，以及更多真机与仿真项目、能力矩阵和上手过的真机平台。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://heliang-pu.github.io/projects.html">
   <meta property="og:image" content="https://heliang-pu.github.io/assets/og-cover.png">
@@ -14,7 +14,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="全部项目 - 蒲贺良">
-  <meta name="twitter:description" content="蒲贺良的项目详情：π0.6 RECAP 真机自改进、双臂灵巧手触觉融合，以及更多真机与仿真项目、能力矩阵和上手过的真机平台。">
+  <meta name="twitter:description" content="蒲贺良的项目详情：π0.6 RECAP 真机自改进、双臂灵巧手触觉融合、ChainPlanner 长时程任务规划，以及更多真机与仿真项目、能力矩阵和上手过的真机平台。">
   <meta name="twitter:image" content="https://heliang-pu.github.io/assets/og-cover.png">
   <link rel="canonical" href="https://heliang-pu.github.io/projects.html">
   <link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192">
@@ -61,7 +61,7 @@
   <section class="section" id="projects">
           <div class="section-head">
             <h2 data-i18n="secProjects">项目经历</h2>
-            <span class="section-kicker" data-i18n="kickerProjects">从策略到真机，从单臂到双臂</span>
+            <span class="section-kicker" data-i18n="kickerProjects">从单臂到双臂，从单任务到长任务</span>
           </div>
           <div class="project-grid">
             <article class="project-card" id="recap">
@@ -129,6 +129,78 @@
                   </div>
                 </div>
               </div>
+            </article>
+
+            <article class="project-card" id="chainplanner">
+              <div>
+                <h3 id="chainplanner-title" data-i18n="p5t">ChainPlanner：世界动作模型的长时程任务规划器</h3>
+                <p class="desc" data-i18n="p5d">给冻结的十任务世界动作模型 Phoenix-MWA 加上长时程任务的高层规划器。核心想法是不需要任何长任务数据：把训练底层模型时采的单任务回合放进随机技能链，就能监督任意顺序、任意长度、可以重复的技能组合。</p>
+                <ul class="plain-list">
+                  <li data-i18n="p5b1">先拆计划、再跟踪步骤：同一个 2B VLM（RynnBrain1.1-2B + LoRA）开头把一句话拆成带编号的技能计划；执行中每隔几秒判断这一步还在做还是做完了，并更新一行语言记忆（已完成几步、当前进度 s/4）。</li>
+                  <li data-i18n="p5b2">步骤查询不带指令，下一技能始终取自计划：执行不受指令说法影响，同一技能可以连做几次（“按三次铃”），也可以只说目的、不点名技能。连续 N 次判定做完才切换，机械臂回起始姿态后换下一步的提示词。</li>
+                  <li data-i18n="p5b3">只用单任务数据：十个任务共 5,273 个单任务回合（约 42 小时，按回合留出 775 个做测试），合成 15.5 万条技能链训练样本，8 张 A100 训练约 1.5 小时；只用四分之一数据，回放仍完成 300 条中的 231–235 条。</li>
+                  <li data-i18n="p5b4">真机上与世界模型共用一张显卡（约 5 GB，每次回答 0.3–0.6 秒）。对比通用大模型：同一批技能链上，Claude Fable 5.2 完成 73 条中的 19 条，ChainPlanner 完成 62 条。</li>
+                </ul>
+                <a class="section-link project-link" href="https://github.com/heliang-pu/wam-long-horizon-planner" target="_blank" rel="noreferrer" data-i18n="p5code">代码和全部 12 段真机演示（GitHub）→</a>
+              </div>
+              <div class="project-side">
+                <video class="project-shot project-video" controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-goal-only.webp" aria-label="播放：一句只说目的的指令，ChainPlanner 拆成 3 步并依次完成" data-i18n-aria="p5video">
+                  <source src="assets/projects/chainplanner-goal-only.mp4" type="video/mp4">
+                </video>
+                <div class="tech-row">
+                  <span class="tech red">RynnBrain1.1-2B</span>
+                  <span class="tech">LoRA</span>
+                  <span class="tech green">Phoenix-MWA</span>
+                  <span class="tech">VLM Planner</span>
+                  <span class="tech">Language Memory</span>
+                  <span class="tech green">Skill Chaining</span>
+                </div>
+                <div class="result-strip">
+                  <div class="result">
+                    <strong>260 / 300</strong>
+                    <span data-i18n="p5r1v">技能链回放完成（2–10 步），零错误切换</span>
+                  </div>
+                  <div class="result">
+                    <strong>22 / 26</strong>
+                    <span data-i18n="p5r2v">真机多技能回合无人干预完成，最长 5 步</span>
+                  </div>
+                </div>
+              </div>
+              <figure class="project-figure">
+                <img class="lang-zh" src="assets/projects/chainplanner-method-zh.webp" alt="ChainPlanner 方法总览图" width="1520" height="1080" loading="lazy" decoding="async">
+                <img class="lang-en" src="assets/projects/chainplanner-method-en.webp" alt="ChainPlanner method overview" width="1580" height="1080" loading="lazy" decoding="async">
+                <figcaption data-i18n="p5fig">方法总览：规划器只拆一次计划，之后只判断执行到第几步；步骤查询不带指令，下一技能始终取自计划。</figcaption>
+              </figure>
+              <div class="demo-grid">
+                <figure class="clip">
+                  <video controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-five-steps.webp" aria-labelledby="chainplanner-title cp-demo-1">
+                    <source src="assets/projects/chainplanner-five-steps.mp4" type="video/mp4">
+                  </video>
+                  <figcaption>
+                    <strong id="cp-demo-1" data-i18n="p5v1t">五步，含重复技能</strong>
+                    <span data-i18n="p5v1d">先按铃，再开抽屉放番茄，再按两次铃，最后把笔放进笔筒</span>
+                  </figcaption>
+                </figure>
+                <figure class="clip">
+                  <video controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-bell-three-times.webp" aria-labelledby="chainplanner-title cp-demo-2">
+                    <source src="assets/projects/chainplanner-bell-three-times.mp4" type="video/mp4">
+                  </video>
+                  <figcaption>
+                    <strong id="cp-demo-2" data-i18n="p5v2t">按三次铃</strong>
+                    <span data-i18n="p5v2d">同一技能拆成三步，每按一次都判断做完再切</span>
+                  </figcaption>
+                </figure>
+                <figure class="clip">
+                  <video controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-pen-tube-bell.webp" aria-labelledby="chainplanner-title cp-demo-3">
+                    <source src="assets/projects/chainplanner-pen-tube-bell.mp4" type="video/mp4">
+                  </video>
+                  <figcaption>
+                    <strong id="cp-demo-3" data-i18n="p5v3t">换个顺序</strong>
+                    <span data-i18n="p5v3d">先把笔放进笔筒，再插试管，最后按铃</span>
+                  </figcaption>
+                </figure>
+              </div>
+              <p class="demo-note" data-i18n="p5vnote">以上都是 11 月 10 日的真机回合，全程无人接管；视频按控制步回放，不含模型推理停顿。</p>
             </article>
           </div>
         </section>
