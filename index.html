@@ -80,6 +80,7 @@
               <li data-i18n="exp1d4">Led team fmc3-no1 to the overall championship of the NeurIPS 2026 RoboSynChallenge simulation track: one π0.5 per task, with most of the score coming from data (more expert data, resampled failure scenes, wider randomization).</li>
               <li data-i18n="exp1d5">For the real-robot stage, post-trained the world action model Phoenix-MWA on real data only, and built a takeover data pipeline that cuts failed lead-ins and pauses to stop the model from stalling.</li>
               <li data-i18n="exp1d6">Wrote the observation-only inference rules and action-chunk inpainting, packaged all ten tasks as one-command evaluation for both sim and real, and designed ChainPlanner, a long-horizon planner that chains the ten skills from one instruction.</li>
+              <li data-i18n="exp1d7">Built a web console for real-robot evaluation and data collection: switch weights and epochs, log each checkpoint’s success rate, take over by hand, collect without a model and run it from a tablet, so collection, training and evaluation form one loop.</li>
               <li data-i18n="exp1d1">Owned the π0.6 RECAP real-robot self-improvement project end to end: ~2× throughput and ~half the failure rate on a phone plug-in benchmark task.</li>
               <li data-i18n="exp1d2">Built a dual-arm platform with an AgiBot dexterous hand from scratch; tactile fusion raised fine-manipulation success from 30% to 70%.</li>
           </ul>
@@ -221,10 +222,12 @@
       <h2 data-i18n="secSkillRows">Skills</h2>
       <dl class="skill-rows">
         <div><dt data-i18n="sk1t">Models &amp; training</dt><dd data-i18n="sk1d">π0 / π0.5 / π0.6 · ACT · Diffusion Policy · GR00T · RECAP (offline RL + advantage conditioning) · LoRA · PyTorch / JAX</dd></div>
+        <div><dt data-i18n="sk6t">Compute &amp; scale</dt><dd data-i18n="sk6d">Post-trained the Phoenix-MWA world action model on 16 A100s; queue experiments and ablations in parallel across RTX 4090, RTX PRO 6000 and several 8×A100 machines</dd></div>
         <div><dt data-i18n="sk2t">Frontier topics</dt><dd data-i18n="sk2d">World action models (Phoenix-MWA · InternW0 · OpenWAM) · long-horizon planning · sim2real · real-world RL · human-in-the-loop learning</dd></div>
         <div><dt data-i18n="sk3t">Data &amp; platforms</dt><dd data-i18n="sk3d">Teleoperation / exoskeleton / multi-camera capture · data cleaning · replay · LeRobot Dataset · arm, dexterous-hand and humanoid interface adaptation</dd></div>
         <div><dt data-i18n="sk4t">Deployment &amp; systems</dt><dd data-i18n="sk4d">Inference server · async inference · RTC · action chunking · BF16 inference optimization · DDS / RoboOS skill orchestration · RoboBrain VLM task decomposition</dd></div>
         <div><dt data-i18n="sk5t">Robot platforms</dt><dd data-i18n="sk5d">Fourier GR2 · AgiBot dexterous hand · AgileX PiperX / PiPER · Qiuzhi research arm · Inovance · Manus data gloves · Xsens motion capture · Meta Quest teleoperation</dd></div>
+        <div><dt data-i18n="sk7t">Languages</dt><dd data-i18n="sk7d">CET-6 · writes papers and technical reports in English (the ChainPlanner paper, the RoboSynChallenge technical report)</dd></div>
       </dl>
     </section>
 

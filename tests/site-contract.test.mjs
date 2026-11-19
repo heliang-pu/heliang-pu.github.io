@@ -498,7 +498,7 @@ test('work and education rows show the employer and both schools', () => {
   assert.match(experience, /<h3>FMC3-Robotics<\/h3>/);
   assert.match(experience, /<h3 data-i18n="exp2title">East China Normal University<\/h3>/);
   assert.match(experience, /<h3 data-i18n="exp3title">Jiangsu Univ\. of Sci\. &amp; Tech\. Suzhou Institute of Technology<\/h3>/);
-  assert.equal((experience.match(/<li data-i18n="exp1d\d">/g) ?? []).length, 5);
+  assert.equal((experience.match(/<li data-i18n="exp1d\d">/g) ?? []).length, 6);
 });
 
 test('items the owner removed stay off the site', () => {
