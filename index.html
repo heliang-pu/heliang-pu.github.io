@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="蒲贺良，具身智能 / VLA 全栈工程师（FMC3-Robotics）。带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军；π0.6 RECAP 真机自改进，标杆任务吞吐约翻倍、失败率约减半；π0.5 融合触觉，双臂精细操作成功率 30%→70%。">
-  <meta name="theme-color" content="#0f766e">
+  <meta name="theme-color" content="#ffffff">
   <meta property="og:title" content="蒲贺良 - 具身智能 / VLA 全栈工程师">
   <meta property="og:description" content="蒲贺良，具身智能 / VLA 全栈工程师（FMC3-Robotics）。带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军；π0.6 RECAP 真机自改进，标杆任务吞吐约翻倍、失败率约减半；π0.5 融合触觉，双臂精细操作成功率 30%→70%。">
   <meta property="og:type" content="profile">
@@ -23,8 +23,6 @@
   <link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
   <title>蒲贺良 - 具身智能 / VLA 全栈工程师</title>
   <link rel="stylesheet" href="assets/site.css">
   <script type="application/ld+json">
@@ -52,275 +50,130 @@
     ]
   }
   </script>
-  <script>
-    (function () {
-      try {
-        var t = localStorage.getItem('theme');
-        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        if (t === 'dark') document.documentElement.classList.add('theme-dark');
-      } catch (e) {}
-    })();
-  </script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">跳到主内容</a>
-  <div class="scroll-progress" aria-hidden="true"></div>
+  <button class="lang-toggle" type="button" aria-label="Switch language" title="Switch language">EN</button>
 
-  <div class="shell">
-    <div class="site-controls" role="group" aria-label="站点设置" data-i18n-aria="siteControlsAria">
-      <button class="control-btn lang-toggle" type="button" aria-label="Switch language" title="Switch language">EN</button>
-      <button class="control-btn theme-toggle" type="button" aria-pressed="false" aria-label="切换深色 / 浅色模式" title="切换深色 / 浅色模式"><span aria-hidden="true">🌓</span></button>
-    </div>
-
-    <div class="mobile-id">
-      <img src="assets/portrait.jpg" alt="" width="48" height="48" decoding="async">
-      <div class="mobile-id-text">
-        <h1 data-i18n="name">蒲贺良</h1>
-        <span data-i18n="role">具身智能 / VLA 全栈工程师</span>
-      </div>
-    </div>
-
-    <details class="mobile-nav">
-      <summary data-i18n="navTitle">目录</summary>
-      <nav class="mobile-nav-body" aria-label="页面导航" data-i18n-aria="navAria">
-        <div class="mobile-nav-links">
-          <a href="#experience" data-i18n="navExp">工作与教育</a>
-          <a href="#projects" data-i18n="navProjects">项目经历</a>
-          <a href="#competition" data-i18n="navComp">竞赛专栏</a>
-          <a href="#skills" data-i18n="navSkills">专业技能</a>
-          <a href="#awards" data-i18n="navAwards">竞赛与荣誉</a>
-          <a href="projects.html" data-i18n="navAll">全部项目</a>
-        </div>
-        <div class="mobile-profile-links">
-          <a href="mailto:puheliang122@gmail.com">Email</a>
-          <a href="https://github.com/heliang-pu" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer">Hugging Face</a>
-          <a href="https://space.bilibili.com/389273511" target="_blank" rel="noreferrer"><span data-i18n="bilibili">哔哩哔哩</span></a>
-          <a href="https://www.linkedin.com/in/heliang-pu-a26538416/" target="_blank" rel="noreferrer">LinkedIn</a>
-        </div>
-      </nav>
-    </details>
-
-    <aside class="sidebar">
-      <div class="portrait-wrap">
-        <img class="portrait" src="assets/portrait.jpg" alt="蒲贺良头像" width="124" height="165" decoding="async">
-      </div>
-
-      <div class="identity">
+  <main class="page" id="main">
+    <header class="hero">
+      <img class="portrait" src="assets/portrait.jpg" alt="蒲贺良头像" width="600" height="800" decoding="async">
+      <div class="hero-text">
         <h1 data-i18n="name">蒲贺良</h1>
         <p class="role" data-i18n="role">具身智能 / VLA 全栈工程师</p>
-        <p class="pitch" data-i18n="pitch">VLA 策略、世界动作模型和 sim2real，从数据采集、训练、推理部署到技能调度的全链路，落在机械臂、灵巧手和人形机器人上。</p>
-      </div>
-
-      <div class="contact">
-        <a href="mailto:puheliang122@gmail.com" aria-label="邮箱 puheliang122@gmail.com" data-i18n-aria="emailAria"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>puheliang122@gmail.com</a>
-        <a href="https://github.com/heliang-pu" target="_blank" rel="noreferrer" aria-label="GitHub heliang-pu"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg></span>GitHub: heliang-pu</a>
-        <a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer" aria-label="HuggingFace puheliang"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-2.5 8a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm-5.5 4.5s1.5 2 3 2 3-2 3-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="9.5" cy="9.5" r="1.2" fill="currentColor"/><circle cx="14.5" cy="9.5" r="1.2" fill="currentColor"/></svg></span>Hugging Face: puheliang</a>
-        <a href="https://space.bilibili.com/389273511" target="_blank" rel="noreferrer" aria-label="哔哩哔哩主页" data-i18n-aria="bilibiliAria"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.124.929.373.267.249.391.551.391.907 0 .355-.124.657-.373.906L17.813 4.653zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773H5.333zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/></svg></span><span data-i18n="bilibili">哔哩哔哩</span>: 小智-Robotics</a>
-        <a href="https://www.linkedin.com/in/heliang-pu-a26538416/" target="_blank" rel="noreferrer" aria-label="LinkedIn heliang-pu"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></span>LinkedIn: heliang-pu</a>
-      </div>
-
-      <nav class="side-section" aria-label="页面导航" data-i18n-aria="navAria">
-        <p class="side-title" data-i18n="navTitle">目录</p>
-        <div class="nav-links">
-          <a href="#experience" data-i18n="navExp">工作与教育</a>
-          <a href="#projects" data-i18n="navProjects">项目经历</a>
-          <a href="#competition" data-i18n="navComp">竞赛专栏</a>
-          <a href="#skills" data-i18n="navSkills">专业技能</a>
-          <a href="#awards" data-i18n="navAwards">竞赛与荣誉</a>
-          <a href="projects.html" data-i18n="navAll">全部项目</a>
+        <div class="bio">
+          <p data-i18n="bio1">我是 FMC3-Robotics（上海）的具身智能全栈工程师，负责 VLA 策略从数据采集、训练到真机部署的全链路，做过机械臂、灵巧手和人形机器人平台。</p>
+          <p><span data-i18n="bio2a">2026 年带队获 </span><a href="#competition" data-i18n="bio2b">NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军</a><span data-i18n="bio2c">。最近在做长时程任务：设计了 </span><a href="#chainplanner">ChainPlanner</a><span data-i18n="bio2d">，让冻结的世界动作模型用一句话串联多个技能。</span></p>
+          <p data-i18n="bio3">目前在华东师范大学读软件工程硕士（统招非全日制，具身智能方向）；本科是江苏科技大学苏州理工学院，综合排名第一，2024 年国家奖学金。</p>
         </div>
-      </nav>
+        <p class="links"><a href="mailto:puheliang122@gmail.com" data-i18n="linkEmail">邮箱</a><span class="sep">/</span><a href="heliang-pu-resume.pdf" data-i18n="linkCV">简历 PDF</a><span class="sep">/</span><a href="https://github.com/heliang-pu" target="_blank" rel="noreferrer">GitHub</a><span class="sep">/</span><a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer">Hugging Face</a><span class="sep">/</span><a href="https://space.bilibili.com/389273511" target="_blank" rel="noreferrer" data-i18n="bilibili">哔哩哔哩</a><span class="sep">/</span><a href="https://www.linkedin.com/in/heliang-pu-a26538416/" target="_blank" rel="noreferrer">LinkedIn</a></p>
+      </div>
+    </header>
 
-      <div class="side-section">
-        <p class="side-title" data-i18n="techKeywords">技术关键词</p>
-        <div class="chip-list">
-          <span class="chip">LeRobot</span>
-          <span class="chip">ACT</span>
-          <span class="chip">Diffusion Policy</span>
-          <span class="chip">π0 / π0.5 / π0.6</span>
-          <span class="chip">GR00T</span>
-          <span class="chip">VLM / VLA</span>
-          <span class="chip">RECAP · Offline RL</span>
-          <span class="chip" data-i18n="kw_async">异步推理</span>
-          <span class="chip" data-i18n="kw_deploy">机器人真机部署</span>
+    <section class="section" id="experience">
+      <h2 data-i18n="secExp">工作与教育</h2>
+      <div class="exp">
+        <span class="exp-logo exp-mono" aria-hidden="true">FMC3</span>
+        <div>
+          <div class="exp-head"><h3>FMC3-Robotics</h3><span class="when" data-i18n="exp1time">2026.01 - 至今</span></div>
+          <div class="meta"><span data-i18n="exp1title">具身智能全栈工程师</span> · <span data-i18n="exp1loc">上海</span></div>
+          <ul>
+              <li data-i18n="exp1d4">带队参加 NeurIPS 2026 RoboSynChallenge，获仿真赛道全球总冠军：按任务微调 π0.5，分数主要来自数据（扩充专家数据、失败场景重采、宽域随机化）。</li>
+              <li data-i18n="exp1d5">真机阶段只用真机数据后训练世界动作模型 Phoenix-MWA；搭建带人接管的数据流程，切掉失败段和停顿，解决模型卡住。</li>
+              <li data-i18n="exp1d6">写好只读观测的推理规则和动作块 inpainting，把十个任务封装成仿真、真机通用的一键评测；设计 ChainPlanner 长时程规划器，用一句话串联十个技能。</li>
+              <li data-i18n="exp1d1">独立负责 π0.6 RECAP 真机自改进项目：标杆手机插拔任务吞吐约翻倍、失败率约减半。</li>
+              <li data-i18n="exp1d2">从零搭建机械臂 + 智元灵巧手双臂平台，融合触觉使精细操作成功率从 30% 提升至 70%。</li>
+          </ul>
         </div>
       </div>
-
-      <div class="side-section">
-        <p class="side-title" data-i18n="basicInfo">基本信息</p>
-        <div class="chip-list">
-          <span class="chip" data-i18n="edu_degree">华东师大硕士在读</span>
-          <span class="chip" data-i18n="edu_major">软件工程 · 具身智能方向</span>
-          <span class="chip">CET-6</span>
-          <span class="chip" data-i18n="city">上海</span>
+      <div class="exp">
+        <img class="exp-logo" src="assets/east-china-normal-university-emblem.png" alt="华东师范大学校徽" data-i18n-alt="ecnuLogoAlt" width="128" height="128" loading="lazy" decoding="async">
+        <div>
+          <div class="exp-head"><h3 data-i18n="exp2title">华东师范大学</h3><span class="when">2026.09 - 2029.06</span></div>
+          <div class="meta" data-i18n="exp2meta">软件工程硕士 · 统招非全日制 · 具身智能方向</div>
+          <p class="note" data-i18n="exp2d1">2025 年毕业后备考，一次考取；2026.09 入学，边工作边读。</p>
         </div>
       </div>
-    </aside>
+      <div class="exp">
+        <img class="exp-logo" src="assets/suzhou-institute-of-technology-emblem.png" alt="江苏科技大学苏州理工学院校徽" data-i18n-alt="sitLogoAlt" width="128" height="128" loading="lazy" decoding="async">
+        <div>
+          <div class="exp-head"><h3 data-i18n="exp3title">江苏科技大学苏州理工学院</h3><span class="when">2021.09 - 2025.06</span></div>
+          <div class="meta" data-i18n="exp3meta">计算机科学与技术 · 绩点 3.98/5 · 综合排名第一</div>
+          <p class="note" data-i18n="exp3d1">2024 年国家奖学金 · 智能小车实验室负责人。</p>
+        </div>
+      </div>
+    </section>
 
-    <main class="main" id="main">
-      <section class="hero">
-        <svg class="traj-svg" viewBox="0 0 800 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
-          <path id="trajPath" class="traj" pathLength="1" d="M 22 120 C 175 26, 320 26, 430 88 S 660 150, 782 40" />
-          <circle class="traj-wp" cx="22" cy="120" r="3.5" style="animation-delay:.1s"></circle>
-          <circle class="traj-wp" cx="210" cy="46" r="3" style="animation-delay:.9s"></circle>
-          <circle class="traj-wp" cx="430" cy="88" r="3.5" style="animation-delay:1.5s"></circle>
-          <circle class="traj-wp" cx="605" cy="140" r="3" style="animation-delay:2.1s"></circle>
-          <circle class="traj-wp" cx="782" cy="40" r="3.5" style="animation-delay:2.7s"></circle>
-          <g class="traj-effector">
-            <circle r="9" fill="none" stroke="var(--amber)" stroke-width="1.5" opacity="0.6"></circle>
-            <circle r="4" fill="var(--amber)"></circle>
-            <animateMotion dur="4s" begin="0.25s" repeatCount="indefinite" rotate="auto" calcMode="linear">
-              <mpath xlink:href="#trajPath" href="#trajPath"></mpath>
-            </animateMotion>
-          </g>
-        </svg>
-        <p class="eyebrow">Embodied AI Engineer</p>
-        <h2 data-i18n="heroTitle">从仿真到真机，让机器人真正学会干活。</h2>
-        <p class="lead" data-i18n="heroLead">FMC3-Robotics 具身智能全栈工程师，负责 VLA 策略从数据采集、训练到真机部署的全链路。带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军。</p>
-        <div class="hero-actions">
-          <a class="button" href="mailto:puheliang122@gmail.com" data-i18n="btnContact">联系我</a>
-          <a class="button secondary" href="https://github.com/heliang-pu" target="_blank" rel="noreferrer" data-i18n="btnGitHub">查看 GitHub</a>
-          <a class="button secondary" href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer" data-i18n="btnHF">查看模型与数据</a>
-          <a class="button accent" href="heliang-pu-resume.pdf" download data-i18n="btnDownloadPDF">下载 PDF</a>
-        </div>
-        <div class="metric-grid">
-          <div class="metric">
-            <strong>≈2×</strong>
-            <span data-i18n="m1desc">π0.6 RECAP 真机自改进：标杆任务吞吐约翻倍、失败率约减半</span>
-          </div>
-          <div class="metric">
-            <strong>30%→70%</strong>
-            <span data-i18n="m2desc">双臂精细操作成功率：π0.5 融合触觉 + RTC 异步推理</span>
-          </div>
-          <div class="metric">
-            <strong data-i18n="m4val">冠军</strong>
-            <span data-i18n="m4desc">NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军（队长）</span>
-          </div>
-          <div class="metric">
-            <strong data-i18n="m3val">3 类</strong>
-            <span data-i18n="m3desc">机械臂、灵巧手、人形机器人平台适配与部署经验</span>
-          </div>
-        </div>
-      </section>
+    <section class="section" id="projects">
+      <!-- 旧版简历 PDF 写死了这些锚点，内容已搬到 projects.html，这里留着让旧链接落到项目板块 -->
+      <span class="legacy-anchor" id="demo-03" aria-hidden="true"></span>
+      <span class="legacy-anchor" id="demo-04" aria-hidden="true"></span>
+      <span class="legacy-anchor" id="demos" aria-hidden="true"></span>
+      <span class="legacy-anchor" id="demo-02" aria-hidden="true"></span>
+      <span class="legacy-anchor" id="demo-05" aria-hidden="true"></span>
+      <span class="legacy-anchor" id="demo-06" aria-hidden="true"></span>
+      <span class="legacy-anchor" id="demo-08" aria-hidden="true"></span>
+      <span class="legacy-anchor" id="demo-10" aria-hidden="true"></span>
+      <span class="legacy-anchor" id="demo-12" aria-hidden="true"></span>
+      <span class="legacy-anchor" id="demo-09" aria-hidden="true"></span>
+      <div class="section-head">
+        <h2 data-i18n="secProjects">项目经历</h2>
+        <a class="section-link" href="projects.html" data-i18n="allProjects">全部项目 →</a>
+      </div>
+      <p class="lead" data-i18n="projLead">代表项目。黄色底的是最近在做的，鼠标移到视频上会自动播放。</p>
 
-      <section class="section" id="experience">
-        <div class="section-head">
-          <h2 data-i18n="secExp">工作与教育</h2>
+      <article class="item hl" id="chainplanner" data-hover-play>
+        <video class="item-media" controls muted preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-goal-only.webp" aria-label="播放：一句只说目的的指令，ChainPlanner 拆成 3 步并依次完成" data-i18n-aria="p5video">
+          <source src="assets/projects/chainplanner-goal-only.mp4" type="video/mp4">
+        </video>
+        <div>
+          <h3><a href="projects.html#chainplanner" data-i18n="p5t">ChainPlanner：世界动作模型的长时程任务规划器</a></h3>
+          <p class="meta" data-i18n="p5meta">2026 · 接在冻结的十任务 Phoenix-MWA 上 · 真机双臂</p>
+          <p class="item-links"><a href="projects.html#chainplanner" data-i18n="linkDetails">详情</a><span class="sep">/</span><a href="https://github.com/heliang-pu/wam-long-horizon-planner" target="_blank" rel="noreferrer" data-i18n="linkCode">代码</a></p>
+          <p data-i18n="p5s">设计 2B 高层规划器，接在冻结的十任务 Phoenix-MWA 上：一句话指令先拆成技能计划，再用语言记忆跟踪执行到第几步；只用单任务录像拼成随机技能链训练，不采长任务数据。</p>
+          <p class="res" data-i18n="p5res">技能链回放 260 / 300，零错误切换；真机 22 / 26</p>
         </div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="time" data-i18n="exp1time">2026.01 - 至今</div>
-            <div class="timeline-card">
-              <h3 data-i18n="exp1title">具身智能全栈工程师</h3>
-              <div class="meta">FMC3-Robotics · <span data-i18n="exp1loc">上海</span></div>
-              <ul class="plain-list">
-                <li data-i18n="exp1d4">带队参加 NeurIPS 2026 RoboSynChallenge，获仿真赛道全球总冠军：按任务微调 π0.5，分数主要来自数据（扩充专家数据、失败场景重采、宽域随机化）。</li>
-                <li data-i18n="exp1d5">真机阶段只用真机数据后训练世界动作模型 Phoenix-MWA；搭建带人接管的数据流程，切掉失败段和停顿，解决模型卡住。</li>
-                <li data-i18n="exp1d6">写好只读观测的推理规则和动作块 inpainting，把十个任务封装成仿真、真机通用的一键评测；设计 ChainPlanner 长时程规划器，用一句话串联十个技能。</li>
-                <li data-i18n="exp1d1">独立负责 π0.6 RECAP 真机自改进项目：标杆手机插拔任务吞吐约翻倍、失败率约减半。</li>
-                <li data-i18n="exp1d2">从零搭建机械臂 + 智元灵巧手双臂平台，融合触觉使精细操作成功率从 30% 提升至 70%。</li>
-              </ul>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="time">2026.09 - 2029.06</div>
-            <div class="timeline-card">
-              <div class="school-heading">
-                <span class="school-emblem">
-                  <img src="assets/east-china-normal-university-emblem.png" alt="华东师范大学校徽" data-i18n-alt="ecnuLogoAlt" width="512" height="512" loading="lazy" decoding="async">
-                </span>
-                <h3 data-i18n="exp2title">华东师范大学</h3>
-              </div>
-              <div class="meta" data-i18n="exp2meta">软件工程硕士 · 统招非全日制 · 具身智能方向</div>
-              <p class="edu-note" data-i18n="exp2d1">2025 年毕业后备考，一次考取；2026.09 入学，边工作边读。</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="time">2021.09 - 2025.06</div>
-            <div class="timeline-card">
-              <div class="school-heading">
-                <span class="school-emblem">
-                  <img src="assets/suzhou-institute-of-technology-emblem.png" alt="江苏科技大学苏州理工学院校徽" data-i18n-alt="sitLogoAlt" width="512" height="512" loading="lazy" decoding="async">
-                </span>
-                <h3 data-i18n="exp3title">江苏科技大学苏州理工学院</h3>
-              </div>
-              <div class="meta" data-i18n="exp3meta">计算机科学与技术 · 绩点 3.98/5 · 综合排名第一</div>
-              <p class="edu-note" data-i18n="exp3d1">2024 年国家奖学金 · 智能小车实验室负责人。</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      </article>
 
-      <section class="section" id="projects">
-        <!-- 旧版简历 PDF 写死了这些锚点，内容已搬到 projects.html，这里留着让旧链接落到项目板块 -->
-        <span class="legacy-anchor" id="demo-03" aria-hidden="true"></span>
-        <span class="legacy-anchor" id="demo-04" aria-hidden="true"></span>
-        <span class="legacy-anchor" id="demos" aria-hidden="true"></span>
-        <span class="legacy-anchor" id="demo-02" aria-hidden="true"></span>
-        <span class="legacy-anchor" id="demo-05" aria-hidden="true"></span>
-        <span class="legacy-anchor" id="demo-06" aria-hidden="true"></span>
-        <span class="legacy-anchor" id="demo-08" aria-hidden="true"></span>
-        <span class="legacy-anchor" id="demo-10" aria-hidden="true"></span>
-        <span class="legacy-anchor" id="demo-12" aria-hidden="true"></span>
-        <span class="legacy-anchor" id="demo-09" aria-hidden="true"></span>
-        <div class="section-head">
-          <h2 data-i18n="secProjects">项目经历</h2>
-          <a class="section-link" href="projects.html" data-i18n="allProjects">全部项目 →</a>
+      <article class="item" id="recap">
+        <span class="legacy-anchor" id="demo-07" aria-hidden="true"></span>
+        <img class="item-media" src="assets/projects/recap-phone-plug.webp" alt="π0.6 RECAP 真机：松灵 PiperX 单臂手机插拔" data-i18n-alt="p4img" width="1280" height="720" loading="lazy" decoding="async">
+        <div>
+          <h3><a href="projects.html#recap" data-i18n="p4t">π0.6 RECAP 真机自改进（松灵 PiperX 单臂）</a></h3>
+          <p class="meta" data-i18n="p4meta">2026 · FMC3-Robotics · 独立负责</p>
+          <p class="item-links"><a href="projects.html#recap" data-i18n="linkDetails">详情</a></p>
+          <p data-i18n="p4s">在松灵 PiperX 单臂上复现 π0.6 RECAP：200 条示教冷启动，offline RL 加 advantage conditioning，再用自主 rollout 与专家纠错做多轮真机自改进。</p>
+          <p class="res" data-i18n="p4res">标杆任务吞吐 ≈2×，失败率约减半</p>
         </div>
-        <div class="pick-list">
-          <article class="pick">
-            <span class="legacy-anchor" id="demo-07" aria-hidden="true"></span>
-            <img class="pick-shot" src="assets/projects/recap-phone-plug.webp" alt="π0.6 RECAP 真机：松灵 PiperX 单臂手机插拔" data-i18n-alt="p4img" width="1280" height="720" loading="lazy" decoding="async">
-            <div class="pick-body">
-              <h3 data-i18n="p4t">π0.6 RECAP 真机自改进（松灵 PiperX 单臂）</h3>
-              <p data-i18n="p4s">在松灵 PiperX 单臂上复现 π0.6 RECAP：200 条示教冷启动，offline RL 加 advantage conditioning，再用自主 rollout 与专家纠错做多轮真机自改进。</p>
-              <div class="pick-foot">
-                <span class="pick-result"><strong>≈2×</strong><span data-i18n="p4r1v">标杆任务吞吐</span></span>
-                <a class="pick-link" href="projects.html#recap" data-i18n="pickMore">详情 →</a>
-              </div>
-            </div>
-          </article>
-          <article class="pick">
-            <span class="legacy-anchor" id="demo-01" aria-hidden="true"></span>
-            <video class="pick-shot pick-video" controls preload="none" playsinline width="720" height="408" poster="assets/projects/tissue-sorting.webp" aria-label="播放：双臂灵巧手纸巾分拣" data-i18n-aria="p1video">
-              <source src="assets/projects/tissue-sorting.mp4" type="video/mp4">
-            </video>
-            <div class="pick-body">
-              <h3 data-i18n="p1t">机械臂 + 智元灵巧手双臂协作操作</h3>
-              <p data-i18n="p1s">基于 LeRobot 从零搭建机械臂 + 智元灵巧手双臂平台，在 π0.5 中融合触觉 encoder，配合 RTC 异步推理。</p>
-              <div class="pick-foot">
-                <span class="pick-result"><strong>30% → 70%</strong><span data-i18n="p1r1">双臂精细操作成功率提升</span></span>
-                <a class="pick-link" href="projects.html#dual-arm" data-i18n="pickMore">详情 →</a>
-              </div>
-            </div>
-          </article>
-          <article class="pick">
-            <video class="pick-shot pick-video" controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-goal-only.webp" aria-label="播放：一句只说目的的指令，ChainPlanner 拆成 3 步并依次完成" data-i18n-aria="p5video">
-              <source src="assets/projects/chainplanner-goal-only.mp4" type="video/mp4">
-            </video>
-            <div class="pick-body">
-              <h3 data-i18n="p5t">ChainPlanner：世界动作模型的长时程任务规划器</h3>
-              <p data-i18n="p5s">设计 2B 高层规划器，接在冻结的十任务 Phoenix-MWA 上：一句话指令先拆成技能计划，再用语言记忆跟踪执行到第几步；只用单任务录像拼成随机技能链训练，不采长任务数据。</p>
-              <div class="pick-foot">
-                <span class="pick-result"><strong>22 / 26</strong><span data-i18n="p5r3">真机长任务无人干预完成</span></span>
-                <a class="pick-link" href="projects.html#chainplanner" data-i18n="pickMore">详情 →</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
+      </article>
 
-      <section class="section" id="competition">
-        <div class="section-head">
-          <h2 data-i18n="secComp">竞赛专栏</h2>
-          <span class="section-kicker" data-i18n="kickerComp">NeurIPS 2026 RoboSynChallenge · 十个任务的仿真与真机对照</span>
+      <article class="item" id="dual-arm" data-hover-play>
+        <span class="legacy-anchor" id="demo-01" aria-hidden="true"></span>
+        <video class="item-media" controls muted preload="none" playsinline width="720" height="408" poster="assets/projects/tissue-sorting.webp" aria-label="播放：双臂灵巧手纸巾分拣" data-i18n-aria="p1video">
+          <source src="assets/projects/tissue-sorting.mp4" type="video/mp4">
+        </video>
+        <div>
+          <h3><a href="projects.html#dual-arm" data-i18n="p1t">机械臂 + 智元灵巧手双臂协作操作</a></h3>
+          <p class="meta" data-i18n="p1meta">2026 · FMC3-Robotics · 从零搭建</p>
+          <p class="item-links"><a href="projects.html#dual-arm" data-i18n="linkDetails">详情</a></p>
+          <p data-i18n="p1s">基于 LeRobot 从零搭建机械臂 + 智元灵巧手双臂平台，在 π0.5 中融合触觉 encoder，配合 RTC 异步推理。</p>
+          <p class="res" data-i18n="p1res">双臂精细操作成功率 30% → 70%</p>
         </div>
-        <div class="comp-intro">
-          <strong data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军（队长）</strong>
+      </article>
+    </section>
+
+    <section class="section" id="competition">
+      <h2 data-i18n="secComp">竞赛专栏</h2>
+      <article class="item hl">
+        <img class="item-media" src="assets/competition/drawer-open-place-tile.webp" alt="RoboSynChallenge 开抽屉放番茄：左半仿真、右半真机" data-i18n-alt="compImgAlt" width="640" height="240" loading="lazy" decoding="async">
+        <div>
+          <h3 data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军（队长）</h3>
+          <p class="meta" data-i18n="compMeta">fmc3-no1 队 · 10 个双臂操作任务</p>
+          <p class="item-links"><a href="competition.html" data-i18n="compLinkTasks">十个任务仿真 / 真机对照</a><span class="sep">/</span><a href="competition.html#methods" data-i18n="compMethodsLink">比赛方法</a></p>
           <p data-i18n="compDesc">fmc3-no1 队，10 个双臂操作任务：仿真赛按任务微调 π0.5，分数主要来自数据；真机阶段只用真机数据后训练世界动作模型 Phoenix-MWA。</p>
         </div>
-        <div class="task-grid">
+      </article>
+      <div class="task-grid">
           <a class="task-tile" href="competition.html#click-bell">
             <img src="assets/competition/click-bell-tile.webp" alt="" width="640" height="240" loading="lazy" decoding="async">
             <span class="task-tile-text"><span class="task-num">01</span><span data-i18n="tkBell">按铃</span></span>
@@ -361,47 +214,35 @@
             <img src="assets/competition/water-pouring-tile.webp" alt="" width="640" height="240" loading="lazy" decoding="async">
             <span class="task-tile-text"><span class="task-num">10</span><span data-i18n="tkWater">倒水</span></span>
           </a>
-        </div>
-        <div class="task-grid-foot">
-          <p data-i18n="compTileNote">每张图左半仿真、右半真机，点开看并排对照。</p>
-          <span class="foot-links">
-            <a class="section-link" href="competition.html#methods" data-i18n="compMethodsLink">比赛方法 →</a>
-            <a class="button accent" href="competition.html" data-i18n="compOpen">打开十个任务的对照页 →</a>
-          </span>
-        </div>
-      </section>
+      </div>
+      <p class="task-grid-foot" data-i18n="compTileNote">每张图左半仿真、右半真机，点开看并排对照。</p>
+    </section>
 
-      <section class="section" id="skills">
-        <div class="section-head">
-          <h2 data-i18n="secSkillRows">专业技能</h2>
-        </div>
-        <dl class="skill-rows">
-          <div><dt data-i18n="sk1t">模型与训练</dt><dd data-i18n="sk1d">π0 / π0.5 / π0.6 · ACT · Diffusion Policy · GR00T · RECAP（Offline RL + Advantage Conditioning）· LoRA · PyTorch / JAX</dd></div>
-          <div><dt data-i18n="sk2t">前沿方向</dt><dd data-i18n="sk2d">世界动作模型（Phoenix-MWA · InternW0 · OpenWAM）· 长时程任务规划 · sim2real · 真机强化学习 · 人在环学习</dd></div>
-          <div><dt data-i18n="sk3t">数据与平台</dt><dd data-i18n="sk3d">遥操作 / 外骨骼 / 多相机采集 · 数据清洗 · Replay · LeRobot Dataset · 机械臂 / 灵巧手 / 人形接口适配</dd></div>
-          <div><dt data-i18n="sk4t">部署与系统</dt><dd data-i18n="sk4d">Inference server · 异步推理 · RTC · Action Chunk · BF16 推理优化 · DDS / RoboOS 技能调度 · RoboBrain VLM 任务分解</dd></div>
-          <div><dt data-i18n="sk5t">真机平台</dt><dd data-i18n="sk5d">傅利叶 GR2 · 智元灵巧手 · 松灵 PiperX / PiPER · 求之 · 汇川 · Manus 数据手套 · Xsens 全身动捕 · Meta Quest 遥操作</dd></div>
-        </dl>
-      </section>
+    <section class="section" id="skills">
+      <h2 data-i18n="secSkillRows">专业技能</h2>
+      <dl class="skill-rows">
+        <div><dt data-i18n="sk1t">模型与训练</dt><dd data-i18n="sk1d">π0 / π0.5 / π0.6 · ACT · Diffusion Policy · GR00T · RECAP（Offline RL + Advantage Conditioning）· LoRA · PyTorch / JAX</dd></div>
+        <div><dt data-i18n="sk2t">前沿方向</dt><dd data-i18n="sk2d">世界动作模型（Phoenix-MWA · InternW0 · OpenWAM）· 长时程任务规划 · sim2real · 真机强化学习 · 人在环学习</dd></div>
+        <div><dt data-i18n="sk3t">数据与平台</dt><dd data-i18n="sk3d">遥操作 / 外骨骼 / 多相机采集 · 数据清洗 · Replay · LeRobot Dataset · 机械臂 / 灵巧手 / 人形接口适配</dd></div>
+        <div><dt data-i18n="sk4t">部署与系统</dt><dd data-i18n="sk4d">Inference server · 异步推理 · RTC · Action Chunk · BF16 推理优化 · DDS / RoboOS 技能调度 · RoboBrain VLM 任务分解</dd></div>
+        <div><dt data-i18n="sk5t">真机平台</dt><dd data-i18n="sk5d">傅利叶 GR2 · 智元灵巧手 · 松灵 PiperX / PiPER · 求之 · 汇川 · Manus 数据手套 · Xsens 全身动捕 · Meta Quest 遥操作</dd></div>
+      </dl>
+    </section>
 
-      <section class="section" id="awards">
-        <div class="section-head">
-          <h2 data-i18n="secAwards">竞赛与荣誉</h2>
-        </div>
-        <ul class="award-list">
-          <li><span class="award-year" data-i18n="a7y">顶会竞赛</span><span data-i18n="a7l">NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军（队长）· fmc3-no1 队</span></li>
-          <li><span class="award-year" data-i18n="a1y">奖学金</span><span data-i18n="a1l">2024 国家奖学金（综合排名第一）· 国家励志奖学金 · 连续三次人民奖学金</span></li>
-          <li><span class="award-year" data-i18n="a6y">边缘 AI</span><span data-i18n="a6l">ICAN「边缘 AI+行业」挑战赛全国二等奖（队长）</span></li>
-          <li><span class="award-year" data-i18n="a2y">智能车</span><span data-i18n="a2l">全国大学生智能车竞赛：智慧物流创意组全国三等奖 / 华东二等奖（队长）· 智慧医疗创意组华东二等奖</span></li>
-          <li><span class="award-year" data-i18n="a4y">机器人</span><span data-i18n="a4l">航天杯移动机器人 AI 创新技术挑战赛全国三等奖（队长）</span></li>
-          <li><span class="award-year" data-i18n="a5y">科研实践</span><span data-i18n="a5l">江苏省大学生创新创业训练计划项目 · 期刊：基于 OpenMV 的新型智能门锁设计</span></li>
-        </ul>
-      </section>
+    <section class="section" id="awards">
+      <h2 data-i18n="secAwards">竞赛与荣誉</h2>
+      <ul class="award-list">
+        <li><span class="award-year" data-i18n="a7y">顶会竞赛</span><span data-i18n="a7l">NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军（队长）· fmc3-no1 队</span></li>
+        <li><span class="award-year" data-i18n="a1y">奖学金</span><span data-i18n="a1l">2024 国家奖学金（综合排名第一）· 国家励志奖学金 · 连续三次人民奖学金</span></li>
+        <li><span class="award-year" data-i18n="a6y">边缘 AI</span><span data-i18n="a6l">ICAN「边缘 AI+行业」挑战赛全国二等奖（队长）</span></li>
+        <li><span class="award-year" data-i18n="a2y">智能车</span><span data-i18n="a2l">全国大学生智能车竞赛：智慧物流创意组全国三等奖 / 华东二等奖（队长）· 智慧医疗创意组华东二等奖</span></li>
+        <li><span class="award-year" data-i18n="a4y">机器人</span><span data-i18n="a4l">航天杯移动机器人 AI 创新技术挑战赛全国三等奖（队长）</span></li>
+        <li><span class="award-year" data-i18n="a5y">科研实践</span><span data-i18n="a5l">江苏省大学生创新创业训练计划项目 · 期刊：基于 OpenMV 的新型智能门锁设计</span></li>
+      </ul>
+    </section>
 
-      <footer class="footer">© 2026 蒲贺良 · <span data-i18n="footerUpdated">Last updated: 2026.11</span></footer>
-    </main>
-  </div>
-  <button class="control-btn to-top" type="button" aria-label="回到顶部" title="回到顶部"><span aria-hidden="true">↑</span></button>
+    <footer class="footer">© 2026 蒲贺良 · <span data-i18n="footerUpdated">Last updated: 2026.11</span> · <span data-i18n="footerCredit">页面样式参考</span> <a href="https://jonbarron.info/" target="_blank" rel="noreferrer">Jon Barron</a></footer>
+  </main>
 
   <script src="assets/i18n.js"></script>
   <script src="assets/site.js"></script>

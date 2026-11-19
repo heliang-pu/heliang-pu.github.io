@@ -156,82 +156,41 @@ test('styles and scripts live in assets and load in order', () => {
 
     const scripts = tags('script', page).map((tag) => attr(tag, 'src')).filter(Boolean);
     assert.deepEqual(scripts, ['assets/i18n.js', 'assets/site.js']);
-  }
 
-  for (const [selector, handler] of [
-    ['langBtn', 'toggleLang'], ['themeBtn', 'toggleTheme'], ['toTop', 'scrollToTop'],
-  ]) {
-    assert.match(script, new RegExp(`${selector}\\.addEventListener\\('click', ${handler}\\)`));
+    // White single-column pages: one language switch, no theme switch, sidebar or scroll bar.
+    assert.match(page, /<button class="lang-toggle" type="button"/);
+    assert.doesNotMatch(page, /theme-toggle|theme-dark|class="sidebar"|scroll-progress|class="control-btn/);
   }
+  assert.match(script, /langBtn\.addEventListener\('click', toggleLang\)/);
+  assert.doesNotMatch(`${script}\n${css}`, /theme-dark|toggleTheme|applyTheme/);
 });
 
-test('mobile header and navigation follow visible focus order', () => {
-  const controlsIndex = index.indexOf('<div class="site-controls"');
-  const identityIndex = index.indexOf('<div class="mobile-id"');
-  const navigationIndex = index.indexOf('<details class="mobile-nav"');
-  const mainIndex = index.indexOf('<main class="main" id="main">');
-
-  assert.ok(
-    controlsIndex < identityIndex &&
-    identityIndex < navigationIndex &&
-    navigationIndex < mainIndex,
-  );
-
-  const controls = index.match(
-    /<div\s+class="site-controls"[\s\S]*?<\/div>/,
-  )?.[0] ?? '';
-  assert.match(controls, /class="control-btn lang-toggle"/);
-  assert.match(controls, /class="control-btn theme-toggle"/);
-
-  const mobileIdentityTag = index.match(
-    /<div\s+class="mobile-id"[^>]*>/,
-  )?.[0] ?? '';
-  assert.doesNotMatch(mobileIdentityTag, /aria-hidden/);
-  assert.match(
-    index,
-    /<div class="mobile-id">[\s\S]*?<h1 data-i18n="name">/,
-  );
-});
-
-test('mobile navigation is native and contains section and profile links', () => {
-  const details = index.match(
-    /<details class="mobile-nav">([\s\S]*?)<\/details>/,
-  )?.[0] ?? '';
-
-  assert.match(details, /<summary data-i18n="navTitle">/);
-  assert.match(details, /<nav[\s\S]*data-i18n-aria="navAria"/);
-
+test('the homepage opens with the name, photo, a short bio and contact links', () => {
+  const hero = index.match(/<header class="hero">[\s\S]*?<\/header>/)?.[0] ?? '';
+  const escape = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  assert.match(hero, /<h1 data-i18n="name">蒲贺良<\/h1>/);
+  assert.match(hero, /<img class="portrait" src="assets\/portrait\.jpg"/);
+  for (const key of ['bio1', 'bio2a', 'bio2b', 'bio2c', 'bio2d', 'bio3']) {
+    assert.match(hero, new RegExp(`data-i18n="${key}">${escape(dictionary.zh[key])}<`), key);
+  }
   for (const href of [
-    '#experience', '#projects', '#competition', '#skills', '#awards', 'projects.html',
     'mailto:puheliang122@gmail.com',
+    'heliang-pu-resume.pdf',
     'https://github.com/heliang-pu',
     'https://huggingface.co/puheliang',
     'https://space.bilibili.com/389273511',
     'https://www.linkedin.com/in/heliang-pu-a26538416/',
   ]) {
-    const escaped = href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    assert.match(details, new RegExp(`href="${escaped}"`));
+    assert.match(hero, new RegExp(`href="${escape(href)}"`), href);
   }
-});
 
-test('980px layout hides the desktop sidebar without CSS reordering', () => {
-  const mobileCss = mediaBlocks(css, '@media (max-width: 980px)');
-  const controlsBaseIndex = css.indexOf('.site-controls {');
-  const hiddenMobileIndex = css.indexOf('.mobile-id,\n.mobile-nav {');
-  const firstMobileMediaIndex = css.indexOf('@media (max-width: 980px)');
-
-  assert.match(mobileCss, /\.sidebar\s*\{[^}]*display:\s*none/);
-  assert.match(mobileCss, /\.site-controls\s*\{[^}]*position:\s*static/);
-  assert.match(mobileCss, /\.mobile-id\s*\{[^}]*display:\s*flex/);
-  assert.match(mobileCss, /\.mobile-nav\s*\{[^}]*display:\s*block/);
-  assert.doesNotMatch(mobileCss, /\.main\s*\{[^}]*\border\s*:/);
-  assert.doesNotMatch(mobileCss, /\.mobile-id\s*\{[^}]*\border\s*:/);
-  assert.ok(
-    controlsBaseIndex !== -1 &&
-    hiddenMobileIndex !== -1 &&
-    controlsBaseIndex < firstMobileMediaIndex &&
-    hiddenMobileIndex < firstMobileMediaIndex,
-  );
+  // The photo comes first in the markup so phones show it above the name; desktop moves it right.
+  assert.ok(hero.indexOf('class="portrait"') < hero.indexOf('<h1'));
+  const phone = mediaBlocks(css, '@media (max-width: 700px)');
+  assert.match(phone, /\.hero\s*\{[^}]*grid-template-columns:\s*minmax\(0, 1fr\)/);
+  assert.match(css, /\.page,\n\.comp-shell \{\n {2}max-width: 840px;/);
+  // The layout follows Jon Barron's template, and the footer credits it.
+  assert.match(index, /href="https:\/\/jonbarron\.info\/"/);
 });
 
 const competition = index.match(
@@ -245,30 +204,33 @@ const competitionIds = new Set([...competitionPage.matchAll(/\sid="([^"]+)"/g)].
 
 test('the homepage reads like a resume: highlights and entries, details on other pages', () => {
   const sections = [
-    ...index.matchAll(/<section class="(hero|section)"(?: id="([^"]+)")?>/g),
+    ...index.matchAll(/<(?:header|section) class="(hero|section)"(?: id="([^"]+)")?>/g),
   ].map((match) => match[2] ?? match[1]);
   assert.deepEqual(sections, ['hero', 'experience', 'projects', 'competition', 'skills', 'awards']);
 
-  // The long write-ups live on projects.html; the homepage keeps one or two lines per item.
+  // The long write-ups live on projects.html; the homepage keeps one row per project.
   assert.doesNotMatch(index, /class="(?:project-card|capability-grid|platform-grid|more-item)\b/);
   const projectSections = [...projectsPage.matchAll(/<section class="section" id="([^"]+)">/g)].map((m) => m[1]);
   assert.deepEqual(projectSections, ['projects', 'more-projects', 'skills', 'platforms']);
   const projectIds = new Set([...projectsPage.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]));
-  const detailLinks = [...index.matchAll(/href="projects\.html#([^"]+)"/g)].map((match) => match[1]);
-  assert.deepEqual(detailLinks, ['recap', 'dual-arm', 'chainplanner']);
+  const detailLinks = [...new Set([...index.matchAll(/href="projects\.html#([^"]+)"/g)].map((match) => match[1]))];
+  assert.deepEqual(detailLinks, ['chainplanner', 'recap', 'dual-arm']);
   for (const id of detailLinks) assert.ok(projectIds.has(id), `projects.html#${id}`);
   for (const page of [competitionPage, projectsPage]) assert.match(page, /<a class="back-link" href="\.\/#/);
 
   // The homepage only links to the clips, and the old demo wall (Release videos, demos/ pages) stays gone.
-  // Homepage videos: the tissue-sorting clip (dual-arm) and the ChainPlanner demo; the rest live on other pages.
+  // Homepage videos: the ChainPlanner demo and the tissue-sorting clip; the rest live on other pages.
   const homeVideos = [...index.matchAll(/<video\b[^>]*>[\s\S]*?<\/video>/g)].map((match) => match[0]);
   assert.equal(homeVideos.length, 2);
   assert.equal(tags('source').length, 2);
-  const picksWithVideo = [...index.matchAll(/<article class="pick">[\s\S]*?<\/article>/g)]
+  const rowsWithVideo = [...index.matchAll(/<article class="item[^"]*"[^>]*>[\s\S]*?<\/article>/g)]
     .map((match) => match[0])
-    .filter((pick) => pick.includes('<video'))
-    .map((pick) => pick.match(/data-i18n="(p\d+t)"/)?.[1]);
-  assert.deepEqual(picksWithVideo, ['p1t', 'p5t']);
+    .filter((row) => row.includes('<video'))
+    .map((row) => row.match(/data-i18n="(p\d+t)"/)?.[1]);
+  assert.deepEqual(rowsWithVideo, ['p5t', 'p1t']);
+  // The clips have no sound, so hovering a row may start them; the controls stay for touch screens.
+  for (const video of homeVideos) assert.match(tags('video', video)[0], /\smuted\b/);
+  assert.match(script, /\[data-hover-play\]/);
   for (const source of [index, competitionPage, css, script]) {
     assert.doesNotMatch(source, /releases\/download|site-media|demos\/|demo-card|play-badge/);
   }
@@ -401,11 +363,11 @@ test('old resume PDFs still land on the homepage', () => {
 test('project screenshots are static, lazy, and described', () => {
   const shots = [
     ...tags('img', projectsPage).filter((tag) => attr(tag, 'class') === 'project-shot'),
-    ...tags('img').filter((tag) => attr(tag, 'class') === 'pick-shot'),
+    ...tags('img').filter((tag) => attr(tag, 'class') === 'item-media'),
   ];
-  assert.equal(shots.length, 3);
+  assert.equal(shots.length, 4);
   for (const shot of shots) {
-    assert.match(attr(shot, 'src'), /^assets\/projects\/[a-z0-9-]+\.webp$/);
+    assert.match(attr(shot, 'src'), /^assets\/(?:projects|competition)\/[a-z0-9-]+\.webp$/);
     assert.equal(attr(shot, 'loading'), 'lazy');
     assert.ok(Number(attr(shot, 'width')) > 0 && Number(attr(shot, 'height')) > 0);
     assert.ok(attr(shot, 'alt'));
@@ -431,33 +393,30 @@ test('zh and en dictionaries match and every key is used', () => {
   assert.deepEqual(unused, []);
 });
 
-test('hero, sections, and metrics never begin with false content', () => {
-  assert.doesNotMatch(css, /\.hero\s*\{\s*animation:\s*fadeUp/);
-  assert.doesNotMatch(css, /\.main\s*>\s*\.section[^{}]*\{\s*animation:\s*fadeUp/);
-  assert.doesNotMatch(css, /\.reveal\s*\{\s*opacity:\s*0/);
-  assert.doesNotMatch(script, /\bnumObs\b|\brevObs\b/);
-  assert.doesNotMatch(script, /requestAnimationFrame\(step\)/);
-  assert.match(index, /<strong>30%→70%<\/strong>/);
+test('pages never start hidden or animated in', () => {
+  assert.doesNotMatch(css, /animation:\s*fadeUp|\.reveal\s*\{\s*opacity:\s*0/);
+  assert.doesNotMatch(script, /\bnumObs\b|\brevObs\b|requestAnimationFrame\(step\)/);
+  assert.match(index, /data-i18n="p1res">双臂精细操作成功率 30% → 70%</);
 });
 
-test('hero metrics and projects lead with the resume headline results', () => {
-  const metrics = [
-    ...index.matchAll(/<div class="metric">\s*<strong[^>]*>(.*?)<\/strong>/g),
-  ].map((match) => match[1]);
-  assert.deepEqual(metrics.slice(0, 2), ['≈2×', '30%→70%']);
+test('the homepage leads with ChainPlanner and keeps the headline results', () => {
+  const rows = [...index.matchAll(/<article class="item[^"]*"[^>]*>[\s\S]*?<\/article>/g)].map((match) => match[0]);
+  assert.match(rows[0], /<article class="item hl" id="chainplanner"/);
+  assert.match(rows[0], /data-i18n="p5res">[^<]*22 \/ 26/);
+  const recap = rows.find((row) => row.includes('id="recap"')) ?? '';
+  assert.match(recap, /data-i18n="p4res">[^<]*≈2×/);
 
-  const firstPick = index.match(/<article class="pick">[\s\S]*?<\/article>/)?.[0] ?? '';
-  assert.match(firstPick, /data-i18n="p4t">π0\.6 RECAP/);
-  assert.match(firstPick, /<strong>≈2×<\/strong>/);
   const firstProject = projectsPage.match(/<article class="project-card"[^>]*>[\s\S]*?<\/article>/)?.[0] ?? '';
   assert.match(firstProject, /data-i18n="p4t">π0\.6 RECAP/);
   assert.match(firstProject, /<strong>≈2×<\/strong>/);
 });
 
-test('reduced motion and dark skip-link styles are complete', () => {
+test('reduced motion and the skip link are handled', () => {
   const reduced = bracedBlock(css, '@media (prefers-reduced-motion: reduce)');
   assert.match(reduced, /html\s*\{[\s\S]*?scroll-behavior:\s*auto\s*!important/);
-  assert.match(css, /html\.theme-dark\s+\.skip-link:focus\s*\{[^}]*color:\s*#0f172a/);
+  assert.match(css, /\.skip-link:focus\s*\{[^}]*top:\s*12px/);
+  // Hover autoplay stays off when the visitor asks for less motion.
+  assert.match(script, /prefers-reduced-motion: reduce/);
 });
 
 test('favicon, footer date, and local assets are consistent', async () => {
@@ -474,7 +433,6 @@ test('favicon, footer date, and local assets are consistent', async () => {
     ...pages.join('\n').matchAll(/\b(?:src|href|poster)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)"/g),
   ].map((match) => match[1].replace(/^\//, ''));
   const cssRefs = [...css.matchAll(/url\("([^"]+)"\)/g)].map((match) => `assets/${match[1]}`);
-  assert.ok(cssRefs.length >= 2, 'expected the font-face URLs in site.css');
   await Promise.all([...new Set([...pageRefs, ...cssRefs])].map((path) => access(new URL(path, root))));
 });
 
@@ -531,11 +489,13 @@ test('every page anchor linked from the resume PDF exists', async () => {
   }
 });
 
-test('work and education timeline is visible and linked from navigation', () => {
-  assert.match(index, /href="#experience"[^>]*data-i18n="navExp"/);
-  assert.match(index, /<section class="section" id="experience">[\s\S]*?工作与教育/);
-  assert.match(index, /<h3 data-i18n="exp2title">华东师范大学<\/h3>/);
-  assert.match(index, /<h3 data-i18n="exp3title">江苏科技大学苏州理工学院<\/h3>/);
+test('work and education rows show the employer and both schools', () => {
+  const experience = index.match(/<section class="section" id="experience">[\s\S]*?<\/section>/)?.[0] ?? '';
+  assert.match(experience, /<h2 data-i18n="secExp">工作与教育<\/h2>/);
+  assert.match(experience, /<h3>FMC3-Robotics<\/h3>/);
+  assert.match(experience, /<h3 data-i18n="exp2title">华东师范大学<\/h3>/);
+  assert.match(experience, /<h3 data-i18n="exp3title">江苏科技大学苏州理工学院<\/h3>/);
+  assert.equal((experience.match(/<li data-i18n="exp1d\d">/g) ?? []).length, 5);
 });
 
 test('items the owner removed stay off the site', () => {
