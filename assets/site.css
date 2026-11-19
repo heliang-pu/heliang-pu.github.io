@@ -380,6 +380,30 @@ video.item-media {
   font-size: 14px;
 }
 
+/* ---------- 论文：标题、作者（自己加粗）、去向和一句说明 ---------- */
+
+.pub {
+  padding: 10px 12px;
+}
+
+.pub h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.pub p {
+  margin: 2px 0 0;
+}
+
+.pub .venue {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.pub .note {
+  margin-top: 6px;
+}
+
 /* ---------- 技能与荣誉：一行一项 ---------- */
 
 .skill-rows {

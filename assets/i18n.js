@@ -128,6 +128,11 @@ var i18n = {
     cap7t: '评估与失败分析', cap7d: '关注成功率、动作稳定性、Baseline 对比、失败案例归因、数据分布检查与策略泛化表现。',
     cap8t: 'AI 辅助工程开发', cap8d: '结合 Cursor、Claude Code、Codex 提升机器人接口适配、数据脚本开发、训练调参与实验迭代效率。',
     /* awards */
+    secPubs: '论文',
+    pub1venue: 'ACM Computing Surveys · 在审（2026 年 11 月投稿）',
+    pub1note: '第一作者。35 页正文加 50 页补充材料，按「强化学习改策略的哪一部分、反馈怎么变成更新」梳理了 260 篇论文。',
+    pub2venue: 'NeurIPS 2026 RoboSynChallenge 技术报告 · 已提交（2026 年 11 月）',
+    pub2note: '第一作者。冠军方案的技术报告：先量出策略在哪里离开专家数据的分布，再去改生成数据的脚本专家，策略结构不动。',
     secAwards: '竞赛与荣誉',
     a7y: '顶会竞赛',
     a1y: '奖学金',
@@ -331,6 +336,11 @@ var i18n = {
     cap7t: 'Evaluation & Failure Analysis', cap7d: 'Focused on success rate, motion stability, baseline comparison, failure root-cause analysis, data distribution checks, and policy generalization.',
     cap8t: 'AI-Assisted Engineering', cap8d: 'Leveraging Cursor, Claude Code, Codex to boost efficiency in robot interface adaptation, data script development, training tuning, and experiment iteration.',
     /* awards */
+    secPubs: 'Publications',
+    pub1venue: 'ACM Computing Surveys · under review (submitted Nov 2026)',
+    pub1note: 'First author. A 35-page survey with a 50-page supplement that classifies 260 papers by where RL changes the policy (weights, a module on a frozen VLA, or action sampling) and how feedback becomes an update.',
+    pub2venue: 'NeurIPS 2026 RoboSynChallenge technical report · submitted (Nov 2026)',
+    pub2note: 'First author. The report on the winning solution: measure where the policy leaves the expert’s data distribution, then change the scripted expert there while keeping the policy architecture fixed.',
     secAwards: 'Awards',
     a7y: 'NeurIPS',
     a1y: 'Scholarship',

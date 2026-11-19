@@ -220,7 +220,7 @@ test('the homepage reads like a resume: highlights and entries, details on other
   const sections = [
     ...index.matchAll(/<(?:header|section) class="(hero|section)"(?: id="([^"]+)")?>/g),
   ].map((match) => match[2] ?? match[1]);
-  assert.deepEqual(sections, ['hero', 'experience', 'projects', 'competition', 'skills', 'awards']);
+  assert.deepEqual(sections, ['hero', 'experience', 'projects', 'competition', 'publications', 'skills', 'awards']);
 
   // The long write-ups live on projects.html; the homepage keeps one row per project.
   assert.doesNotMatch(index, /class="(?:project-card|capability-grid|platform-grid|more-item)\b/);
@@ -540,4 +540,17 @@ test('pages open in English and remember a switch to Chinese', () => {
   }
   assert.match(script, /localStorage\.getItem\('lang'\) === 'zh'\) applyLang\('zh'\)/);
   assert.doesNotMatch(script, /=== 'en'\) applyLang\('en'\)/);
+});
+
+test('publications list the survey and the competition report, first author in bold', () => {
+  const section = index.match(/<section class="section" id="publications">[\s\S]*?<\/section>/)?.[0] ?? '';
+  const pubs = [...section.matchAll(/<article class="pub">[\s\S]*?<\/article>/g)].map((match) => match[0]);
+  assert.equal(pubs.length, 2);
+  assert.match(pubs[0], /<h3>Reinforcement Learning Post-Training for Vision-Language-Action Models: A Survey<\/h3>/);
+  assert.match(pubs[0], /data-i18n="pub1venue">ACM Computing Surveys · under review/);
+  assert.match(pubs[1], /<h3>Look at the Demonstrator First: Lessons from Ten Bimanual Tasks in RoboSynChallenge 2026<\/h3>/);
+  for (const pub of pubs) assert.match(pub, /<p class="authors"><strong>Heliang Pu<\/strong>, /);
+
+  // Papers in double-blind review stay off the site until they are accepted (the CVPR 2027 submission).
+  for (const source of [...pages, i18nSource]) assert.doesNotMatch(source, /CVPR|openreview/i);
 });
