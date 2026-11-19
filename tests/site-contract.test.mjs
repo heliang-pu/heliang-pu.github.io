@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { access, readFile, stat } from 'node:fs/promises';
 import vm from 'node:vm';
 import { inflateSync } from 'node:zlib';
@@ -152,14 +153,24 @@ for (const [file, page, titleKey, descKey] of [
   });
 }
 
-test('styles and scripts live in assets and load in order', () => {
+test('styles and scripts live in assets, load in order, and carry a hash of their content', async () => {
+  // A page must never pair with a cached older stylesheet or dictionary (GitHub Pages caches for ten
+  // minutes), so each URL ends in ?v=<hash of the file>. scripts/stamp-assets.mjs writes the stamps.
+  const stamped = async (path) =>
+    `${path}?v=${createHash('sha256').update(await read(path, null)).digest('hex').slice(0, 8)}`;
+  const [styleUrl, i18nUrl, scriptUrl] = await Promise.all(
+    ['assets/site.css', 'assets/i18n.js', 'assets/site.js'].map(stamped),
+  );
+  const hint = 'stale asset stamp: run node scripts/stamp-assets.mjs';
+
   for (const page of pages) {
     assert.doesNotMatch(page, /<style\b/);
     assert.doesNotMatch(page, /\sonclick=/);
-    assert.match(page, /<link rel="stylesheet" href="assets\/site\.css">/);
+    const styles = tags('link', page).filter((tag) => attr(tag, 'rel') === 'stylesheet').map((tag) => attr(tag, 'href'));
+    assert.deepEqual(styles, [styleUrl], hint);
 
     const scripts = tags('script', page).map((tag) => attr(tag, 'src')).filter(Boolean);
-    assert.deepEqual(scripts, ['assets/i18n.js', 'assets/site.js']);
+    assert.deepEqual(scripts, [i18nUrl, scriptUrl], hint);
 
     // White single-column pages: one language switch, no theme switch, sidebar or scroll bar.
     assert.match(page, /<button class="lang-toggle" type="button"/);
@@ -426,14 +437,15 @@ test('favicon, footer date, and local assets are consistent', async () => {
   const favicon = tags('link').find((tag) => attr(tag, 'rel') === 'icon');
   assert.equal(attr(favicon, 'href'), '/assets/icon-192.png');
   assert.doesNotMatch(attr(favicon, 'href'), /^data:/);
-  assert.equal((`${index}\n${i18nSource}`.match(/Last updated: 2026\.11/g) ?? []).length, 3);
+  assert.equal((`${index}\n${i18nSource}`.match(/Last updated: 2026\.11/g) ?? []).length, 2);
+  assert.equal(dictionary.zh.footerUpdated, '最后更新：2026.11');
   for (const page of [competitionPage, projectsPage]) {
     assert.equal((page.match(/Last updated: 2026\.11/g) ?? []).length, 1);
   }
   assert.doesNotMatch(`${pages.join('\n')}\n${i18nSource}`, /Last updated: 2026\.(?:08|10)/);
 
   const pageRefs = [
-    ...pages.join('\n').matchAll(/\b(?:src|href|poster)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)"/g),
+    ...pages.join('\n').matchAll(/\b(?:src|href|poster)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)(?:\?v=[0-9a-f]+)?"/g),
   ].map((match) => match[1].replace(/^\//, ''));
   const cssRefs = [...css.matchAll(/url\("([^"]+)"\)/g)].map((match) => `assets/${match[1]}`);
   await Promise.all([...new Set([...pageRefs, ...cssRefs])].map((path) => access(new URL(path, root))));

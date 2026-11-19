@@ -6,9 +6,9 @@
 
 ## 技术栈
 
-- 纯静态单页，原生 HTML / CSS / JS，无构建步骤、无框架依赖
+- 纯静态页面，原生 HTML / CSS / JS，无框架依赖
 - 部署：GitHub Pages（`main` 分支根目录，push 即自动发布）
-- 特性：中英双语 i18n、暗色模式、响应式布局、JSON-LD 结构化数据、SEO（sitemap / robots / Open Graph）
+- 特性：默认英文、可切换中文（i18n），响应式布局，JSON-LD 结构化数据，SEO（sitemap / robots / Open Graph）
 
 ## 本地预览
 
@@ -22,22 +22,33 @@ python3 -m http.server 8000
 ## 目录结构
 
 ```
-index.html              # 页面结构，中文为默认文案
+index.html              # 首页（白底单栏），静态文字是英文
+projects.html           # 全部项目
+competition.html        # RoboSynChallenge 十个任务：仿真与真机对照
 heliang-pu-resume.pdf   # 简历
 assets/
   site.css              # 全部样式
-  site.js               # 主题、语言切换、滚动进度、指标卡高光
+  site.js               # 语言切换、视频播放、竞赛页任务切换
   i18n.js               # 中英文案字典（data-i18n / data-i18n-aria / data-i18n-alt 引用的键）
-  projects/             # 项目卡上的真机截图
+  projects/             # 项目图片和视频
+  competition/          # 竞赛页的视频、封面和首页小图
   logos/                # 真机平台 logo
-  fonts/                # 自托管字体（拉丁子集）
   portrait.jpg          # 头像
+scripts/stamp-assets.mjs  # 给页面里的样式、脚本地址加内容哈希
 404.html  robots.txt  sitemap.xml  site.webmanifest
 ```
 
 ## 改文案
 
-可翻译的文字都带 `data-i18n="键"`：中文直接写在 `index.html` 里（首屏不等脚本就能显示），同一个键在 `assets/i18n.js` 的 `zh` 和 `en` 里各有一份，改中文时两处保持一致。测试会检查每个键在中英文里都存在，并检查 `<title>`、description、Open Graph 分享卡与 `zh` 文案一致（微信等爬虫只读静态 HTML）。
+可翻译的文字都带 `data-i18n="键"`。页面默认英文：英文直接写在三个页面的 HTML 里（不等脚本就能显示，爬虫和分享卡片读到的也是英文），同一个键在 `assets/i18n.js` 的 `en` 和 `zh` 里各有一份，改英文时 HTML 和 `en` 保持一致。访客点右上角的「中」切到中文，浏览器会记住这个选择。中文文案里的技术术语（offline RL、rollout 等）和模型、产品名保留英文原文。测试会检查每个键在中英文里都存在，并检查页面里的静态文字、`<title>`、description、Open Graph 分享卡与 `en` 文案一致。
+
+改完 `assets/site.css`、`assets/i18n.js` 或 `assets/site.js` 后运行：
+
+```bash
+node scripts/stamp-assets.mjs
+```
+
+它把三个页面里这几个文件的地址改成带内容哈希的（`?v=…`）。GitHub Pages 让浏览器把这些文件缓存十分钟，不加哈希的话，刚更新完刷新页面可能拿到新页面配旧文案，新加的内容切到中文时仍显示英文。忘了运行，测试会报错。
 
 ## 简历里的旧链接
 

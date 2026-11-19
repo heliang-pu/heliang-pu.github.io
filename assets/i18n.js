@@ -192,7 +192,7 @@ var i18n = {
     exp1d7: '搭建真机评测与采集的网页控制台：按权重和 epoch 切换测试并记录每个检查点的成功率，支持人工接管、不加载模型直接采集和平板操作，把采集、训练、评测串成一条流水线。',
     p1video: '播放：双臂灵巧手纸巾分拣',
     /* footer & a11y */
-    skip: '跳到主内容', footerUpdated: 'Last updated: 2026.11',
+    skip: '跳到主内容', footerUpdated: '最后更新：2026.11',
     portraitAlt: '蒲贺良头像',
     ecnuLogoAlt: '华东师范大学校徽',
     sitLogoAlt: '江苏科技大学苏州理工学院校徽',
