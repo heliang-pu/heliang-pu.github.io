@@ -2,11 +2,10 @@
 var i18n = {
   zh: {
     /* meta */
-    docTitle: '蒲贺良 - 具身智能 / VLA 全栈工程师',
-    metaDesc: '蒲贺良，具身智能 / VLA 全栈工程师（FMC3-Robotics）。带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军；π0.6 RECAP 真机自改进，标杆任务吞吐约翻倍、失败率约减半；π0.5 融合触觉，双臂精细操作成功率 30%→70%。',
+    docTitle: '蒲贺良 - 具身智能 / VLA 算法工程师',
+    metaDesc: '蒲贺良，具身智能 / VLA 算法工程师（FMC3-Robotics）。带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军；π0.6 RECAP 真机自改进，标杆任务吞吐约翻倍、失败率约减半；π0.5 融合触觉，双臂精细操作成功率 30%→70%。',
     /* sidebar */
-    role: '具身智能 / VLA 全栈工程师',
-    bilibili: '哔哩哔哩',
+    role: '具身智能 / VLA 算法工程师',
     secPlatforms: '真机平台', kickerPlatforms: '上手过的机器人本体、动捕与遥操作硬件',
     ptHumanoid: '人形机器人', ptArm: '协作机械臂', ptResearchArm: '科研机械臂', ptIndustrial: '工业自动化', ptGlove: '数据手套', ptMocap: '全身动捕', ptVR: 'VR 遥操作',
     kw_async: '异步推理',
@@ -16,7 +15,7 @@ var i18n = {
     /* experience */
     secExp: '工作与教育',
     exp1time: '2026.01 - 至今',
-    exp1title: '具身智能全栈工程师', exp1loc: '上海',
+    exp1title: '具身智能算法工程师', exp1loc: '上海',
     exp1d1: '独立负责 π0.6 RECAP 真机自改进项目：标杆手机插拔任务吞吐约翻倍、失败率约减半。',
     exp1d2: '从零搭建机械臂 + 智元灵巧手双臂平台，融合触觉使精细操作成功率从 30% 提升至 70%。',
     exp2title: '华东师范大学', exp2meta: '软件工程硕士 · 统招非全日制 · 具身智能方向',
@@ -46,7 +45,7 @@ var i18n = {
     p5code: '代码和全部 12 段真机演示（GitHub）→', p5r1v: '技能链回放完成（2–10 步），零错误切换', p5r2v: '真机多技能回合无人干预完成，最长 5 步',
     p5fig: '方法总览：规划器只拆一次计划，之后只判断执行到第几步；步骤查询不带指令，下一技能始终取自计划。', p5v1t: '五步，含重复技能', p5v1d: '先按铃，再开抽屉放番茄，再按两次铃，最后把笔放进笔筒', p5v2t: '按三次铃',
     p5v2d: '同一技能拆成三步，每按一次都判断做完再切', p5v3t: '换个顺序', p5v3d: '先把笔放进笔筒，再插试管，最后按铃', p5vnote: '以上都是 11 月 10 日的真机回合，全程无人接管；视频按控制步回放，不含模型推理停顿。',
-    bio1: '我是 FMC3-Robotics（上海）的具身智能全栈工程师，负责 VLA 策略从数据采集、训练到真机部署的全链路，做过机械臂、灵巧手和人形机器人平台。',
+    bio1: '我是 FMC3-Robotics（上海）的具身智能算法工程师，负责 VLA 策略从数据采集、训练到真机部署的全链路，做过机械臂、灵巧手和人形机器人平台。',
     bio2a: '2026 年带队获 ',
     bio2b: 'NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军',
     bio2c: '。最近在做长时程任务：设计了 ',
@@ -194,11 +193,10 @@ var i18n = {
   },
   en: {
     /* meta */
-    docTitle: 'Puheliang - Embodied AI / VLA Full-Stack Engineer',
-    metaDesc: 'Puheliang, Embodied AI / VLA full-stack engineer at FMC3-Robotics. Led the team that won the NeurIPS 2026 RoboSynChallenge simulation track; π0.6 RECAP self-improvement on a real robot (~2× throughput, ~half the failures on the benchmark task); tactile fusion in π0.5 lifted dual-arm fine-manipulation success from 30% to 70%.',
+    docTitle: 'Puheliang - Robot Learning Engineer (Embodied AI / VLA)',
+    metaDesc: 'Puheliang, robot learning engineer (embodied AI / VLA) at FMC3-Robotics. Led the team that won the NeurIPS 2026 RoboSynChallenge simulation track; π0.6 RECAP self-improvement on a real robot (~2× throughput, ~half the failures on the benchmark task); tactile fusion in π0.5 lifted dual-arm fine-manipulation success from 30% to 70%.',
     /* sidebar */
-    role: 'Embodied AI / VLA Full-Stack Engineer',
-    bilibili: 'Bilibili',
+    role: 'Robot Learning Engineer · Embodied AI / VLA',
     secPlatforms: 'Hardware Platforms', kickerPlatforms: 'Robots, mocap & teleop hardware I have worked on',
     ptHumanoid: 'Humanoid Robot', ptArm: 'Collaborative Arm', ptResearchArm: 'Research Arm', ptIndustrial: 'Industrial Automation', ptGlove: 'Data Glove', ptMocap: 'Motion Capture', ptVR: 'VR Teleoperation',
     kw_async: 'Async Inference',
@@ -208,7 +206,7 @@ var i18n = {
     /* experience */
     secExp: 'Experience',
     exp1time: '2026.01 - Present',
-    exp1title: 'Embodied AI Full-Stack Engineer', exp1loc: 'Shanghai',
+    exp1title: 'Robot Learning Engineer (Embodied AI)', exp1loc: 'Shanghai',
     exp1d1: 'Owned the π0.6 RECAP real-robot self-improvement project end to end: ~2× throughput and ~half the failure rate on a phone plug-in benchmark task.',
     exp1d2: 'Built a dual-arm platform with an AgiBot dexterous hand from scratch; tactile fusion raised fine-manipulation success from 30% to 70%.',
     exp2title: 'East China Normal University', exp2meta: 'M.S. in Software Engineering · Part-time (national entrance exam) · Embodied AI',
@@ -244,7 +242,7 @@ var i18n = {
     p5v2t: 'Press the bell three times', p5v2d: 'One skill becomes three steps; each press is confirmed before the next',
     p5v3t: 'A different order', p5v3d: 'Put the pen in the holder, insert the test tube, then press the bell',
     p5vnote: 'All are real-robot episodes from Nov 10 with no human takeover; the videos replay at the control rate, without model inference pauses.',
-    bio1: 'I am an embodied AI full-stack engineer at FMC3-Robotics in Shanghai. I own VLA policies from data collection and training to real-robot deployment, on robotic arms, dexterous hands and humanoids.',
+    bio1: 'I am a robot learning engineer working on embodied AI at FMC3-Robotics in Shanghai. I own VLA policies from data collection and training to real-robot deployment, on robotic arms, dexterous hands and humanoids.',
     bio2a: 'In 2026 I led the team that won the ',
     bio2b: 'NeurIPS 2026 RoboSynChallenge simulation track',
     bio2c: '. Lately I work on long-horizon tasks: I designed ',

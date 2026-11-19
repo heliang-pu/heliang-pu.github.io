@@ -178,7 +178,6 @@ test('the homepage opens with the name, photo, a short bio and contact links', (
     'heliang-pu-resume.pdf',
     'https://github.com/heliang-pu',
     'https://huggingface.co/puheliang',
-    'https://space.bilibili.com/389273511',
     'https://www.linkedin.com/in/heliang-pu-a26538416/',
   ]) {
     assert.match(hero, new RegExp(`href="${escape(href)}"`), href);
@@ -505,5 +504,9 @@ test('items the owner removed stay off the site', () => {
     assert.doesNotMatch(source, /独立复现 π0\.6 RECAP|Reproduced π0\.6 RECAP on a real robot/i, name);
     assert.doesNotMatch(source, /id="gr2"|projects\.html#gr2|货物搬运与技能调度|Cargo Handling/, name);
     assert.doesNotMatch(source, /BEHAVIOR-1K|爆米花|Popcorn/, name);
+    // 2026-11-18: the job title is algorithm (robot learning) engineer, not full-stack engineer.
+    assert.doesNotMatch(source, /全栈工程师|full-stack engineer/i, name);
+    // 2026-11-18: no Bilibili link on the site.
+    assert.doesNotMatch(source, /bilibili|哔哩哔哩/i, name);
   }
 });
