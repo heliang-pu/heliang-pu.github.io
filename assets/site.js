@@ -1,4 +1,4 @@
-/* 语言切换、视频播放和竞赛页的任务切换。文案字典 i18n 见 assets/i18n.js（需先加载）。 */
+/* 语言切换（默认英文）、视频播放和竞赛页的任务切换。文案字典 i18n 见 assets/i18n.js（需先加载）。 */
 
 function applyLang(lang) {
   var t = i18n[lang];
@@ -49,9 +49,9 @@ function toggleLang() {
   var langBtn = document.querySelector('.lang-toggle');
   if (langBtn) langBtn.addEventListener('click', toggleLang);
 
-  /* restore saved language */
+  /* 页面默认英文（静态文字就是英文）；之前切到中文的访客，下次进来还是中文 */
   try {
-    if (localStorage.getItem('lang') === 'en') applyLang('en');
+    if (localStorage.getItem('lang') === 'zh') applyLang('zh');
   } catch (e) {}
 
   /* 一次只播一段视频（首页、项目页、竞赛页） */

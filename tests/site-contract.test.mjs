@@ -29,6 +29,10 @@ function attr(tag, name) {
   )?.[2];
 }
 
+// Dictionary text as it is written in the HTML (the pages are static English).
+const htmlText = (value) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const htmlAttr = (value) => htmlText(value).replace(/"/g, '&quot;');
+
 function tags(name, source = index) {
   return [...source.matchAll(new RegExp(`<${name}\\b[^>]*>`, 'gi'))]
     .map((match) => match[0]);
@@ -116,35 +120,35 @@ test('canonical, robots, and sitemap use one production host', () => {
   assert.doesNotMatch(sitemap, /<lastmod\b/i);
 });
 
-test('static title and share cards match the zh copy that crawlers read', () => {
+test('static title and share cards match the English copy that crawlers read', () => {
   const meta = (key, value) =>
     attr(tags('meta').find((tag) => attr(tag, key) === value), 'content');
 
-  assert.equal(index.match(/<title>(.*?)<\/title>/)?.[1], dictionary.zh.docTitle);
-  assert.equal(meta('name', 'description'), dictionary.zh.metaDesc);
-  assert.equal(meta('property', 'og:title'), dictionary.zh.docTitle);
-  assert.equal(meta('property', 'og:description'), dictionary.zh.metaDesc);
-  assert.equal(meta('name', 'twitter:title'), dictionary.zh.docTitle);
-  assert.equal(meta('name', 'twitter:description'), dictionary.zh.metaDesc);
+  assert.equal(index.match(/<title>(.*?)<\/title>/)?.[1], htmlAttr(dictionary.en.docTitle));
+  assert.equal(meta('name', 'description'), htmlAttr(dictionary.en.metaDesc));
+  assert.equal(meta('property', 'og:title'), htmlAttr(dictionary.en.docTitle));
+  assert.equal(meta('property', 'og:description'), htmlAttr(dictionary.en.metaDesc));
+  assert.equal(meta('name', 'twitter:title'), htmlAttr(dictionary.en.docTitle));
+  assert.equal(meta('name', 'twitter:description'), htmlAttr(dictionary.en.metaDesc));
 });
 
 for (const [file, page, titleKey, descKey] of [
   ['competition.html', competitionPage, 'compDocTitle', 'compMetaDesc'],
   ['projects.html', projectsPage, 'projDocTitle', 'projMetaDesc'],
 ]) {
-  test(`${file} title and share cards match its zh copy`, () => {
+  test(`${file} title and share cards match its English copy`, () => {
     const meta = (key, value) =>
       attr(tags('meta', page).find((tag) => attr(tag, key) === value), 'content');
     const canonical = tags('link', page).find((tag) => attr(tag, 'rel') === 'canonical');
 
     assert.equal(attr(canonical, 'href'), `https://heliang-pu.github.io/${file}`);
     assert.match(page, new RegExp(`<body data-i18n-title="${titleKey}" data-i18n-desc="${descKey}">`));
-    assert.equal(page.match(/<title>(.*?)<\/title>/)?.[1], dictionary.zh[titleKey]);
-    assert.equal(meta('property', 'og:title'), dictionary.zh[titleKey]);
-    assert.equal(meta('name', 'twitter:title'), dictionary.zh[titleKey]);
-    assert.equal(meta('name', 'description'), dictionary.zh[descKey]);
-    assert.equal(meta('property', 'og:description'), dictionary.zh[descKey]);
-    assert.equal(meta('name', 'twitter:description'), dictionary.zh[descKey]);
+    assert.equal(page.match(/<title>(.*?)<\/title>/)?.[1], htmlText(dictionary.en[titleKey]));
+    assert.equal(meta('property', 'og:title'), htmlAttr(dictionary.en[titleKey]));
+    assert.equal(meta('name', 'twitter:title'), htmlAttr(dictionary.en[titleKey]));
+    assert.equal(meta('name', 'description'), htmlAttr(dictionary.en[descKey]));
+    assert.equal(meta('property', 'og:description'), htmlAttr(dictionary.en[descKey]));
+    assert.equal(meta('name', 'twitter:description'), htmlAttr(dictionary.en[descKey]));
   });
 }
 
@@ -168,10 +172,10 @@ test('styles and scripts live in assets and load in order', () => {
 test('the homepage opens with the name, photo, a short bio and contact links', () => {
   const hero = index.match(/<header class="hero">[\s\S]*?<\/header>/)?.[0] ?? '';
   const escape = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  assert.match(hero, /<h1 data-i18n="name">蒲贺良<\/h1>/);
+  assert.match(hero, /<h1 data-i18n="name">Puheliang<\/h1>/);
   assert.match(hero, /<img class="portrait" src="assets\/portrait\.jpg"/);
   for (const key of ['bio1', 'bio2a', 'bio2b', 'bio2c', 'bio2d', 'bio3']) {
-    assert.match(hero, new RegExp(`data-i18n="${key}">${escape(dictionary.zh[key])}<`), key);
+    assert.match(hero, new RegExp(`data-i18n="${key}">${escape(htmlText(dictionary.en[key]))}<`), key);
   }
   for (const href of [
     'mailto:puheliang122@gmail.com',
@@ -322,7 +326,7 @@ test('project videos are same-origin, load on demand, and stay small', async () 
       assert.match(tag, /\splaysinline\b/);
       const ariaKey = attr(tag, 'data-i18n-aria');
       if (ariaKey) {
-        assert.equal(attr(tag, 'aria-label'), dictionary.zh[ariaKey]);
+        assert.equal(attr(tag, 'aria-label'), htmlAttr(dictionary.en[ariaKey]));
       } else {
         for (const id of attr(tag, 'aria-labelledby').split(' ')) {
           assert.match(page, new RegExp(`\\sid="${id}"`), `${src} label #${id}`);
@@ -370,7 +374,7 @@ test('project screenshots are static, lazy, and described', () => {
     assert.equal(attr(shot, 'loading'), 'lazy');
     assert.ok(Number(attr(shot, 'width')) > 0 && Number(attr(shot, 'height')) > 0);
     assert.ok(attr(shot, 'alt'));
-    assert.equal(attr(shot, 'alt'), dictionary.zh[attr(shot, 'data-i18n-alt')]);
+    assert.equal(attr(shot, 'alt'), htmlAttr(dictionary.en[attr(shot, 'data-i18n-alt')]));
   }
 });
 
@@ -395,7 +399,7 @@ test('zh and en dictionaries match and every key is used', () => {
 test('pages never start hidden or animated in', () => {
   assert.doesNotMatch(css, /animation:\s*fadeUp|\.reveal\s*\{\s*opacity:\s*0/);
   assert.doesNotMatch(script, /\bnumObs\b|\brevObs\b|requestAnimationFrame\(step\)/);
-  assert.match(index, /data-i18n="p1res">双臂精细操作成功率 30% → 70%</);
+  assert.match(index, /data-i18n="p1res">Dual-arm fine manipulation success 30% → 70%</);
 });
 
 test('the homepage leads with ChainPlanner and keeps the headline results', () => {
@@ -490,10 +494,10 @@ test('every page anchor linked from the resume PDF exists', async () => {
 
 test('work and education rows show the employer and both schools', () => {
   const experience = index.match(/<section class="section" id="experience">[\s\S]*?<\/section>/)?.[0] ?? '';
-  assert.match(experience, /<h2 data-i18n="secExp">工作与教育<\/h2>/);
+  assert.match(experience, /<h2 data-i18n="secExp">Experience<\/h2>/);
   assert.match(experience, /<h3>FMC3-Robotics<\/h3>/);
-  assert.match(experience, /<h3 data-i18n="exp2title">华东师范大学<\/h3>/);
-  assert.match(experience, /<h3 data-i18n="exp3title">江苏科技大学苏州理工学院<\/h3>/);
+  assert.match(experience, /<h3 data-i18n="exp2title">East China Normal University<\/h3>/);
+  assert.match(experience, /<h3 data-i18n="exp3title">Jiangsu Univ\. of Sci\. &amp; Tech\. Suzhou Institute of Technology<\/h3>/);
   assert.equal((experience.match(/<li data-i18n="exp1d\d">/g) ?? []).length, 5);
 });
 
@@ -508,5 +512,20 @@ test('items the owner removed stay off the site', () => {
     assert.doesNotMatch(source, /全栈工程师|full-stack engineer/i, name);
     // 2026-11-18: no Bilibili link on the site.
     assert.doesNotMatch(source, /bilibili|哔哩哔哩/i, name);
+    // 2026-11-18: the ECNU note no longer says "admitted on the first attempt".
+    assert.doesNotMatch(source, /一次考取|first attempt/i, name);
   }
+});
+
+test('pages open in English and remember a switch to Chinese', () => {
+  for (const page of pages) {
+    assert.match(page, /<html lang="en">/);
+    assert.match(page, /<button class="lang-toggle" type="button"[^>]*>中<\/button>/);
+    // Every translatable text is already the English one, so nothing flashes in Chinese first.
+    for (const [, key, text] of page.matchAll(/\sdata-i18n="([^"]+)"[^>]*>([^<]*)</g)) {
+      assert.equal(text, htmlText(dictionary.en[key]), key);
+    }
+  }
+  assert.match(script, /localStorage\.getItem\('lang'\) === 'zh'\) applyLang\('zh'\)/);
+  assert.doesNotMatch(script, /=== 'en'\) applyLang\('en'\)/);
 });

@@ -8,6 +8,7 @@ var i18n = {
     role: '具身智能 / VLA 算法工程师',
     secPlatforms: '真机平台', kickerPlatforms: '上手过的机器人本体、动捕与遥操作硬件',
     ptHumanoid: '人形机器人', ptArm: '协作机械臂', ptResearchArm: '科研机械臂', ptIndustrial: '工业自动化', ptGlove: '数据手套', ptMocap: '全身动捕', ptVR: 'VR 遥操作',
+    pnFourier: '傅利叶', pnAgibot: '智元', pnAgilex: '松灵', pnQiuzhi: '求之', pnInovance: '汇川',
     kw_async: '异步推理',
     name: '蒲贺良',
     /* hero */
@@ -19,7 +20,7 @@ var i18n = {
     exp1d1: '独立负责 π0.6 RECAP 真机自改进项目：标杆手机插拔任务吞吐约翻倍、失败率约减半。',
     exp1d2: '从零搭建机械臂 + 智元灵巧手双臂平台，融合触觉使精细操作成功率从 30% 提升至 70%。',
     exp2title: '华东师范大学', exp2meta: '软件工程硕士 · 统招非全日制 · 具身智能方向',
-    exp2d1: '2025 年毕业后备考，一次考取；2026.09 入学，边工作边读。',
+    exp2d1: '2025 年毕业后备考；2026.09 入学，边工作边读。',
     exp3title: '江苏科技大学苏州理工学院', exp3meta: '计算机科学与技术 · 绩点 3.98/5 · 综合排名第一',
     exp3d1: '2024 年国家奖学金 · 智能小车实验室负责人。',
     /* projects */
@@ -199,6 +200,7 @@ var i18n = {
     role: 'Robot Learning Engineer · Embodied AI / VLA',
     secPlatforms: 'Hardware Platforms', kickerPlatforms: 'Robots, mocap & teleop hardware I have worked on',
     ptHumanoid: 'Humanoid Robot', ptArm: 'Collaborative Arm', ptResearchArm: 'Research Arm', ptIndustrial: 'Industrial Automation', ptGlove: 'Data Glove', ptMocap: 'Motion Capture', ptVR: 'VR Teleoperation',
+    pnFourier: 'Fourier', pnAgibot: 'AgiBot', pnAgilex: 'AgileX', pnQiuzhi: 'Qiuzhi', pnInovance: 'Inovance',
     kw_async: 'Async Inference',
     name: 'Puheliang',
     /* hero */
@@ -210,7 +212,7 @@ var i18n = {
     exp1d1: 'Owned the π0.6 RECAP real-robot self-improvement project end to end: ~2× throughput and ~half the failure rate on a phone plug-in benchmark task.',
     exp1d2: 'Built a dual-arm platform with an AgiBot dexterous hand from scratch; tactile fusion raised fine-manipulation success from 30% to 70%.',
     exp2title: 'East China Normal University', exp2meta: 'M.S. in Software Engineering · Part-time (national entrance exam) · Embodied AI',
-    exp2d1: 'Admitted on the first attempt after a year of exam prep; enrolled in Sep 2026 while working full-time.',
+    exp2d1: 'Admitted after a year of exam prep; enrolled in Sep 2026 while working full-time.',
     exp3title: 'Jiangsu Univ. of Sci. & Tech. Suzhou Institute of Technology', exp3meta: 'Computer Science & Technology · GPA 3.98/5 · Ranked #1',
     exp3d1: '2024 National Scholarship · led the smart-car lab.',
     /* projects */
