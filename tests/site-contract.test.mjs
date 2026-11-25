@@ -208,7 +208,7 @@ test('the homepage opens with the name, photo, a short bio and contact links', (
 });
 
 const competition = index.match(
-  /<section class="section" id="competition">[\s\S]*?<\/section>/,
+  /<div class="project-group" id="competition">[\s\S]*?<p class="task-grid-foot"[\s\S]*?<\/p>\s*<\/div>/,
 )?.[0] ?? '';
 
 const panels = [
@@ -220,7 +220,7 @@ test('the homepage reads like a resume: highlights and entries, details on other
   const sections = [
     ...index.matchAll(/<(?:header|section) class="(hero|section)"(?: id="([^"]+)")?>/g),
   ].map((match) => match[2] ?? match[1]);
-  assert.deepEqual(sections, ['hero', 'experience', 'projects', 'competition', 'publications', 'skills', 'awards']);
+  assert.deepEqual(sections, ['hero', 'experience', 'projects', 'publications', 'skills', 'awards']);
 
   // The long write-ups live on projects.html; the homepage keeps one row per project.
   assert.doesNotMatch(index, /class="(?:project-card|capability-grid|platform-grid|more-item)\b/);
@@ -228,20 +228,20 @@ test('the homepage reads like a resume: highlights and entries, details on other
   assert.deepEqual(projectSections, ['projects', 'more-projects', 'skills', 'platforms']);
   const projectIds = new Set([...projectsPage.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]));
   const detailLinks = [...new Set([...index.matchAll(/href="projects\.html#([^"]+)"/g)].map((match) => match[1]))];
-  assert.deepEqual(detailLinks, ['chainplanner', 'recap', 'dual-arm']);
+  assert.deepEqual(detailLinks, ['robosyn', 'chainplanner', 'recap', 'dual-arm', 'tablet-tap']);
   for (const id of detailLinks) assert.ok(projectIds.has(id), `projects.html#${id}`);
   for (const page of [competitionPage, projectsPage]) assert.match(page, /<a class="back-link" href="\.\/#/);
 
   // The homepage only links to the clips, and the old demo wall (Release videos, demos/ pages) stays gone.
-  // Homepage videos: the ChainPlanner demo and the tissue-sorting clip; the rest live on other pages.
+  // Homepage videos: ChainPlanner, tissue-sorting, and tablet-tap; the rest live on other pages.
   const homeVideos = [...index.matchAll(/<video\b[^>]*>[\s\S]*?<\/video>/g)].map((match) => match[0]);
-  assert.equal(homeVideos.length, 2);
-  assert.equal(tags('source').length, 2);
+  assert.equal(homeVideos.length, 3);
+  assert.equal(tags('source').length, 3);
   const rowsWithVideo = [...index.matchAll(/<article class="item[^"]*"[^>]*>[\s\S]*?<\/article>/g)]
     .map((match) => match[0])
     .filter((row) => row.includes('<video'))
     .map((row) => row.match(/data-i18n="(p\d+t)"/)?.[1]);
-  assert.deepEqual(rowsWithVideo, ['p5t', 'p1t']);
+  assert.deepEqual(rowsWithVideo, ['p5t', 'p1t', 'p6t']);
   // The clips have no sound, so hovering a row may start them; the controls stay for touch screens.
   for (const video of homeVideos) assert.match(tags('video', video)[0], /\smuted\b/);
   assert.match(script, /\[data-hover-play\]/);
@@ -322,6 +322,7 @@ test('project videos are same-origin, load on demand, and stay small', async () 
     'chainplanner-five-steps',
     'chainplanner-bell-three-times',
     'chainplanner-pen-tube-bell',
+    'tablet-tap-demo',
   ];
   const seen = new Set();
   for (const page of [index, projectsPage]) {
@@ -379,7 +380,7 @@ test('project screenshots are static, lazy, and described', () => {
     ...tags('img', projectsPage).filter((tag) => attr(tag, 'class') === 'project-shot'),
     ...tags('img').filter((tag) => attr(tag, 'class') === 'item-media'),
   ];
-  assert.equal(shots.length, 4);
+  assert.equal(shots.length, 5);
   for (const shot of shots) {
     assert.match(attr(shot, 'src'), /^assets\/(?:projects|competition)\/[a-z0-9-]+\.webp$/);
     assert.equal(attr(shot, 'loading'), 'lazy');
@@ -413,16 +414,17 @@ test('pages never start hidden or animated in', () => {
   assert.match(index, /data-i18n="p1res">Dual-arm fine manipulation success 30% → 70%</);
 });
 
-test('the homepage leads with ChainPlanner and keeps the headline results', () => {
+test('the homepage leads with RoboSynChallenge and ChainPlanner and keeps the headline results', () => {
   const rows = [...index.matchAll(/<article class="item[^"]*"[^>]*>[\s\S]*?<\/article>/g)].map((match) => match[0]);
-  assert.match(rows[0], /<article class="item hl" id="chainplanner"/);
-  assert.match(rows[0], /data-i18n="p5res">[^<]*22 \/ 26/);
+  assert.match(rows[0], /data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge/);
+  assert.match(rows[1], /<article class="item hl" id="chainplanner"/);
+  assert.match(rows[1], /data-i18n="p5res">[^<]*22 \/ 26/);
   const recap = rows.find((row) => row.includes('id="recap"')) ?? '';
   assert.match(recap, /data-i18n="p4res">[^<]*≈2×/);
 
   const firstProject = projectsPage.match(/<article class="project-card"[^>]*>[\s\S]*?<\/article>/)?.[0] ?? '';
-  assert.match(firstProject, /data-i18n="p4t">π0\.6 RECAP/);
-  assert.match(firstProject, /<strong>≈2×<\/strong>/);
+  assert.match(firstProject, /id="robosyn"/);
+  assert.match(firstProject, /data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge/);
 });
 
 test('reduced motion and the skip link are handled', () => {

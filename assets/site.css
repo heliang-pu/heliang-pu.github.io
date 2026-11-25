@@ -380,6 +380,11 @@ video.item-media {
   font-size: 14px;
 }
 
+.project-group {
+  scroll-margin-top: 16px;
+  margin-bottom: 14px;
+}
+
 /* ---------- 论文：标题、作者（自己加粗）、去向和一句说明 ---------- */
 
 .pub {
@@ -551,6 +556,14 @@ video.item-media {
 .project-shot.project-video {
   aspect-ratio: auto;
   object-fit: contain;
+}
+
+#robosyn .project-shot {
+  aspect-ratio: 8 / 3;
+}
+
+.project-card .item-links {
+  margin-top: 10px;
 }
 
 .tech-row {

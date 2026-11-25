@@ -24,7 +24,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <title>Puheliang - Robot Learning Engineer (Embodied AI / VLA)</title>
-  <link rel="stylesheet" href="assets/site.css?v=b2593693">
+  <link rel="stylesheet" href="assets/site.css?v=460af742">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,7 +41,7 @@
       { "@type": "CollegeOrUniversity", "name": "华东师范大学" },
       { "@type": "CollegeOrUniversity", "name": "江苏科技大学苏州理工学院" }
     ],
-    "knowsAbout": ["LeRobot", "VLA Policy", "World Action Model", "Phoenix-MWA", "ChainPlanner", "Long-Horizon Planning", "Sim2Real", "VLM", "π0", "π0.5", "π0.6", "RECAP", "Offline RL", "ACT", "Diffusion Policy", "GR00T", "触觉融合", "LoRA", "机器人真机部署", "异步推理"],
+    "knowsAbout": ["LeRobot", "VLA Policy", "World Action Model", "Phoenix-MWA", "ChainPlanner", "Long-Horizon Planning", "Sim2Real", "VLM", "π0", "π0.5", "π0.6", "RECAP", "Offline RL", "ACT", "Diffusion Policy", "GR00T", "触觉融合", "LoRA", "机器人真机部署", "异步推理", "运动学与轨迹规划", "手眼标定", "GUI Agent"],
     "sameAs": [
       "https://github.com/heliang-pu",
       "https://huggingface.co/puheliang",
@@ -63,7 +63,7 @@
         <div class="bio">
           <p data-i18n="bio1">I am a robot learning engineer working on embodied AI at FMC3-Robotics in Shanghai. I own VLA policies from data collection and training to real-robot deployment, on robotic arms, dexterous hands and humanoids.</p>
           <p><span data-i18n="bio2a">In 2026 I led the team that won the </span><a href="#competition" data-i18n="bio2b">NeurIPS 2026 RoboSynChallenge simulation track</a><span data-i18n="bio2c">. Lately I work on long-horizon tasks: I designed </span><a href="#chainplanner">ChainPlanner</a><span data-i18n="bio2d">, which lets a frozen world action model chain several skills from one instruction.</span></p>
-          <p data-i18n="bio3">I am also a part-time M.S. student in software engineering (embodied AI) at East China Normal University. I did my bachelor’s at Suzhou Institute of Technology, Jiangsu University of Science and Technology, ranked first overall, with the 2024 National Scholarship.</p>
+          <p data-i18n="bio3">I am also a part-time M.S. student in software engineering (embodied robot manipulation) at East China Normal University. I did my bachelor’s at Suzhou Institute of Technology, Jiangsu University of Science and Technology, ranked first overall, with the 2024 National Scholarship.</p>
         </div>
         <p class="links"><a href="mailto:puheliang122@gmail.com" data-i18n="linkEmail">Email</a><span class="sep">/</span><a href="heliang-pu-resume.pdf" data-i18n="linkCV">CV (PDF)</a><span class="sep">/</span><a href="https://github.com/heliang-pu" target="_blank" rel="noreferrer">GitHub</a><span class="sep">/</span><a href="https://huggingface.co/puheliang" target="_blank" rel="noreferrer">Hugging Face</a><span class="sep">/</span><a href="https://www.linkedin.com/in/heliang-pu-a26538416/" target="_blank" rel="noreferrer">LinkedIn</a></p>
       </div>
@@ -90,7 +90,7 @@
         <img class="exp-logo" src="assets/east-china-normal-university-emblem.png" alt="East China Normal University emblem" data-i18n-alt="ecnuLogoAlt" width="128" height="128" loading="lazy" decoding="async">
         <div>
           <div class="exp-head"><h3 data-i18n="exp2title">East China Normal University</h3><span class="when">2026.09 - 2029.06</span></div>
-          <div class="meta" data-i18n="exp2meta">M.S. in Software Engineering · Part-time (national entrance exam) · Embodied AI</div>
+          <div class="meta" data-i18n="exp2meta">M.S. in Software Engineering · Part-time (national entrance exam) · Embodied Robot Manipulation</div>
           <p class="note" data-i18n="exp2d1">Admitted after a year of exam prep; enrolled in Sep 2026 while working full-time.</p>
         </div>
       </div>
@@ -122,58 +122,17 @@
       </div>
       <p class="lead" data-i18n="projLead">Selected projects. Highlighted ones are recent; hover over a video to play it.</p>
 
-      <article class="item hl" id="chainplanner" data-hover-play>
-        <video class="item-media" controls muted preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-goal-only.webp" aria-label="Play: ChainPlanner splits an instruction that only states the goal into 3 steps and completes them" data-i18n-aria="p5video">
-          <source src="assets/projects/chainplanner-goal-only.mp4" type="video/mp4">
-        </video>
-        <div>
-          <h3><a href="projects.html#chainplanner" data-i18n="p5t">ChainPlanner: Long-Horizon Planning for World Action Models</a></h3>
-          <p class="meta" data-i18n="p5meta">2026 · on top of the frozen ten-task Phoenix-MWA · real dual-arm robot</p>
-          <p class="item-links"><a href="projects.html#chainplanner" data-i18n="linkDetails">details</a><span class="sep">/</span><a href="https://github.com/heliang-pu/wam-long-horizon-planner" target="_blank" rel="noreferrer" data-i18n="linkCode">code</a></p>
-          <p data-i18n="p5s">Designed a 2B high-level planner on top of the frozen ten-task Phoenix-MWA: one instruction becomes a skill plan, and a language memory tracks the current step. Trained only on random chains built from single-task episodes, with no long-horizon data.</p>
-          <p class="res" data-i18n="p5res">Chain replay 260 / 300 with no wrong switch; real robot 22 / 26</p>
-        </div>
-      </article>
-
-      <article class="item" id="recap">
-        <span class="legacy-anchor" id="demo-07" aria-hidden="true"></span>
-        <img class="item-media" src="assets/projects/recap-phone-plug.webp" alt="π0.6 RECAP on a real AgileX PiperX arm: phone plug-in" data-i18n-alt="p4img" width="1280" height="720" loading="lazy" decoding="async">
-        <div>
-          <h3><a href="projects.html#recap" data-i18n="p4t">π0.6 RECAP Real-Robot Self-Improvement (AgileX PiperX Arm)</a></h3>
-          <p class="meta" data-i18n="p4meta">2026 · FMC3-Robotics · owned end to end</p>
-          <p class="item-links"><a href="projects.html#recap" data-i18n="linkDetails">details</a></p>
-          <p data-i18n="p4s">Reproduced π0.6 RECAP on an AgileX PiperX arm: 200 demonstrations for a cold start, offline RL with advantage conditioning, then several rounds of real-robot self-improvement from autonomous rollouts and expert corrections.</p>
-          <p class="res" data-i18n="p4res">Benchmark throughput ≈2×, failures roughly halved</p>
-        </div>
-      </article>
-
-      <article class="item" id="dual-arm" data-hover-play>
-        <span class="legacy-anchor" id="demo-01" aria-hidden="true"></span>
-        <video class="item-media" controls muted preload="none" playsinline width="720" height="408" poster="assets/projects/tissue-sorting.webp" aria-label="Play: dual-arm dexterous-hand tissue sorting" data-i18n-aria="p1video">
-          <source src="assets/projects/tissue-sorting.mp4" type="video/mp4">
-        </video>
-        <div>
-          <h3><a href="projects.html#dual-arm" data-i18n="p1t">Robotic Arm + AgiBot Dexterous Hand Dual-Arm Collaboration</a></h3>
-          <p class="meta" data-i18n="p1meta">2026 · FMC3-Robotics · built from scratch</p>
-          <p class="item-links"><a href="projects.html#dual-arm" data-i18n="linkDetails">details</a></p>
-          <p data-i18n="p1s">Built a dual-arm platform with an AgiBot dexterous hand from scratch on LeRobot, fused a tactile encoder into π0.5, and paired it with RTC async inference.</p>
-          <p class="res" data-i18n="p1res">Dual-arm fine manipulation success 30% → 70%</p>
-        </div>
-      </article>
-    </section>
-
-    <section class="section" id="competition">
-      <h2 data-i18n="secComp">Competition</h2>
-      <article class="item hl">
-        <img class="item-media" src="assets/competition/drawer-open-place-tile.webp" alt="RoboSynChallenge drawer task: simulation on the left, real robot on the right" data-i18n-alt="compImgAlt" width="640" height="240" loading="lazy" decoding="async">
-        <div>
-          <h3 data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge: Overall Champion, Simulation Track (Team Lead)</h3>
-          <p class="meta" data-i18n="compMeta">Team fmc3-no1 · ten dual-arm manipulation tasks</p>
-          <p class="item-links"><a href="competition.html" data-i18n="compLinkTasks">ten tasks, sim vs. real</a><span class="sep">/</span><a href="competition.html#methods" data-i18n="compMethodsLink">methods</a></p>
-          <p data-i18n="compDesc">Team fmc3-no1, ten bimanual manipulation tasks: one π0.5 fine-tuned per task in simulation, with most of the score coming from data; on real robots, the world action model Phoenix-MWA post-trained on real data only.</p>
-        </div>
-      </article>
-      <div class="task-grid">
+      <div class="project-group" id="competition">
+        <article class="item hl">
+          <img class="item-media" src="assets/competition/drawer-open-place-tile.webp" alt="RoboSynChallenge drawer task: simulation on the left, real robot on the right" data-i18n-alt="compImgAlt" width="640" height="240" loading="lazy" decoding="async">
+          <div>
+            <h3><a href="projects.html#robosyn" data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge: Overall Champion, Simulation Track (Team Lead)</a></h3>
+            <p class="meta" data-i18n="compMeta">Team fmc3-no1 · ten dual-arm manipulation tasks</p>
+            <p class="item-links"><a href="projects.html#robosyn" data-i18n="linkDetails">details</a><span class="sep">/</span><a href="competition.html" data-i18n="compLinkTasks">ten tasks, sim vs. real</a><span class="sep">/</span><a href="competition.html#methods" data-i18n="compMethodsLink">methods</a></p>
+            <p data-i18n="compDesc">Team fmc3-no1, ten bimanual manipulation tasks: one π0.5 fine-tuned per task in simulation, with most of the score coming from data; on real robots, the world action model Phoenix-MWA post-trained on real data only.</p>
+          </div>
+        </article>
+        <div class="task-grid">
           <a class="task-tile" href="competition.html#click-bell">
             <img src="assets/competition/click-bell-tile.webp" alt="" width="640" height="240" loading="lazy" decoding="async">
             <span class="task-tile-text"><span class="task-num">01</span><span data-i18n="tkBell">Ring the bell</span></span>
@@ -214,8 +173,60 @@
             <img src="assets/competition/water-pouring-tile.webp" alt="" width="640" height="240" loading="lazy" decoding="async">
             <span class="task-tile-text"><span class="task-num">10</span><span data-i18n="tkWater">Pour water</span></span>
           </a>
+        </div>
+        <p class="task-grid-foot" data-i18n="compTileNote">Each image: simulation on the left, real robot on the right. Open one to compare them side by side.</p>
       </div>
-      <p class="task-grid-foot" data-i18n="compTileNote">Each image: simulation on the left, real robot on the right. Open one to compare them side by side.</p>
+
+      <article class="item hl" id="chainplanner" data-hover-play>
+        <video class="item-media" controls muted preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-goal-only.webp" aria-label="Play: ChainPlanner splits an instruction that only states the goal into 3 steps and completes them" data-i18n-aria="p5video">
+          <source src="assets/projects/chainplanner-goal-only.mp4" type="video/mp4">
+        </video>
+        <div>
+          <h3><a href="projects.html#chainplanner" data-i18n="p5t">ChainPlanner: Long-Horizon Planning for World Action Models</a></h3>
+          <p class="meta" data-i18n="p5meta">2026 · on top of the frozen ten-task Phoenix-MWA · real dual-arm robot</p>
+          <p class="item-links"><a href="projects.html#chainplanner" data-i18n="linkDetails">details</a><span class="sep">/</span><a href="https://github.com/heliang-pu/wam-long-horizon-planner" target="_blank" rel="noreferrer" data-i18n="linkCode">code</a></p>
+          <p data-i18n="p5s">Designed a 2B high-level planner on top of the frozen ten-task Phoenix-MWA: one instruction becomes a skill plan, and a language memory tracks the current step. Trained only on random chains built from single-task episodes, with no long-horizon data.</p>
+          <p class="res" data-i18n="p5res">Chain replay 260 / 300 with no wrong switch; real robot 22 / 26</p>
+        </div>
+      </article>
+
+      <article class="item" id="recap">
+        <span class="legacy-anchor" id="demo-07" aria-hidden="true"></span>
+        <img class="item-media" src="assets/projects/recap-phone-plug.webp" alt="π0.6 RECAP on a real AgileX PiperX arm: phone plug-in" data-i18n-alt="p4img" width="1280" height="720" loading="lazy" decoding="async">
+        <div>
+          <h3><a href="projects.html#recap" data-i18n="p4t">π0.6 RECAP Real-Robot Self-Improvement (AgileX PiperX Arm)</a></h3>
+          <p class="meta" data-i18n="p4meta">2026 · FMC3-Robotics · owned end to end</p>
+          <p class="item-links"><a href="projects.html#recap" data-i18n="linkDetails">details</a></p>
+          <p data-i18n="p4s">Reproduced π0.6 RECAP on an AgileX PiperX arm: 200 demonstrations for a cold start, offline RL with advantage conditioning, then several rounds of real-robot self-improvement from autonomous rollouts and expert corrections.</p>
+          <p class="res" data-i18n="p4res">Benchmark throughput ≈2×, failures roughly halved</p>
+        </div>
+      </article>
+
+      <article class="item" id="dual-arm" data-hover-play>
+        <span class="legacy-anchor" id="demo-01" aria-hidden="true"></span>
+        <video class="item-media" controls muted preload="none" playsinline width="720" height="408" poster="assets/projects/tissue-sorting.webp" aria-label="Play: dual-arm dexterous-hand tissue sorting" data-i18n-aria="p1video">
+          <source src="assets/projects/tissue-sorting.mp4" type="video/mp4">
+        </video>
+        <div>
+          <h3><a href="projects.html#dual-arm" data-i18n="p1t">Robotic Arm + AgiBot Dexterous Hand Dual-Arm Collaboration</a></h3>
+          <p class="meta" data-i18n="p1meta">2026 · FMC3-Robotics · built from scratch</p>
+          <p class="item-links"><a href="projects.html#dual-arm" data-i18n="linkDetails">details</a></p>
+          <p data-i18n="p1s">Built a dual-arm platform with an AgiBot dexterous hand from scratch on LeRobot, fused a tactile encoder into π0.5, and paired it with RTC async inference.</p>
+          <p class="res" data-i18n="p1res">Dual-arm fine manipulation success 30% → 70%</p>
+        </div>
+      </article>
+
+      <article class="item" id="tablet-tap" data-hover-play>
+        <video class="item-media" controls muted preload="none" playsinline width="1280" height="720" poster="assets/projects/tablet-tap-demo.webp" aria-label="Play: PiPER arm using a stylus to operate an Android tablet via camera and GUI-Owl-1.5" data-i18n-aria="p6video">
+          <source src="assets/projects/tablet-tap-demo.mp4" type="video/mp4">
+        </video>
+        <div>
+          <h3><a href="projects.html#tablet-tap" data-i18n="p6t">PiPER Arm Operating an Android Tablet with a GUI Agent</a></h3>
+          <p class="meta" data-i18n="p6meta">2026 · camera-only (no ADB) · real single-arm robot</p>
+          <p class="item-links"><a href="projects.html#tablet-tap" data-i18n="linkDetails">details</a><span class="sep">/</span><a href="https://github.com/heliang-pu/Robot-use-tablet" target="_blank" rel="noreferrer" data-i18n="linkCode">code</a></p>
+          <p data-i18n="p6s">Spoken or typed instructions (SenseVoiceSmall) drive a PiPER arm holding a 3D-printed compliant stylus to operate an Android tablet using cameras alone: GUI-Owl-1.5 plans taps and swipes on rectified wrist-camera views, backed by Pinocchio IK, hand-eye calibration, ArUco tracking, and leave-one-out tap-error correction.</p>
+        </div>
+      </article>
     </section>
 
     <section class="section" id="publications">
@@ -241,6 +252,7 @@
         <div><dt data-i18n="sk6t">Compute &amp; scale</dt><dd data-i18n="sk6d">Post-trained the Phoenix-MWA world action model on 16 A100s; queue experiments and ablations in parallel across RTX 4090, RTX PRO 6000 and several 8×A100 machines</dd></div>
         <div><dt data-i18n="sk2t">Frontier topics</dt><dd data-i18n="sk2d">World action models (Phoenix-MWA · InternW0 · OpenWAM) · long-horizon planning · sim2real · real-world RL · human-in-the-loop learning</dd></div>
         <div><dt data-i18n="sk3t">Data &amp; platforms</dt><dd data-i18n="sk3d">Teleoperation / exoskeleton / multi-camera capture · data cleaning · replay · LeRobot Dataset · arm, dexterous-hand and humanoid interface adaptation</dd></div>
+        <div><dt data-i18n="sk8t">Control &amp; calibration</dt><dd data-i18n="sk8d">Pinocchio / URDF forward &amp; inverse kinematics · joint &amp; Cartesian trajectory planning · speed, collision and firmware safety limits · eye-in-hand / eye-to-hand calibration · ArUco pose tracking · tap-error compensation · parametric CAD / 3D-printed tooling</dd></div>
         <div><dt data-i18n="sk4t">Deployment &amp; systems</dt><dd data-i18n="sk4d">Inference server · async inference · RTC · action chunking · BF16 inference optimization · DDS / RoboOS skill orchestration · RoboBrain VLM task decomposition</dd></div>
         <div><dt data-i18n="sk5t">Robot platforms</dt><dd data-i18n="sk5d">Fourier GR2 · AgiBot dexterous hand · AgileX PiperX / PiPER · Qiuzhi research arm · Inovance · Manus data gloves · Xsens motion capture · Meta Quest teleoperation</dd></div>
         <div><dt data-i18n="sk7t">Languages</dt><dd data-i18n="sk7d">CET-6 · writes papers and technical reports in English (the ChainPlanner paper, the RoboSynChallenge technical report)</dd></div>
@@ -262,7 +274,7 @@
     <footer class="footer">© 2026 <span data-i18n="name">Puheliang</span> · <span data-i18n="footerUpdated">Last updated: 2026.11</span> · <span data-i18n="footerCredit">Design adapted from</span> <a href="https://jonbarron.info/" target="_blank" rel="noreferrer">Jon Barron</a></footer>
   </main>
 
-  <script src="assets/i18n.js?v=1e5b0a68"></script>
+  <script src="assets/i18n.js?v=48b35a04"></script>
   <script src="assets/site.js?v=7cc8cdeb"></script>
 </body>
 </html>
