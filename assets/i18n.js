@@ -3,7 +3,7 @@ var i18n = {
   zh: {
     /* meta */
     docTitle: '蒲贺良 - 具身智能算法工程师（VLA / WAM）',
-    metaDesc: '蒲贺良，具身智能算法工程师（VLA / WAM，FMC3-Robotics）。带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军并落地世界动作模型真机部署；π0.6 RECAP 真机自改进，标杆任务吞吐约翻倍、失败率约减半；π0.5 融合触觉，双臂精细操作成功率 30%→70%。',
+    metaDesc: '蒲贺良，具身智能算法工程师（VLA / WAM，FMC³ Robotics）。带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军并落地世界动作模型真机部署；π0.6 RECAP 真机自改进，标杆任务吞吐约翻倍、失败率约减半；π0.5 融合触觉，双臂精细操作成功率 30%→70%。',
     /* sidebar */
     name: '蒲贺良',
     role: '具身智能算法工程师 · VLA / WAM',
@@ -24,7 +24,7 @@ var i18n = {
     city: '上海',
     /* hero */
     heroTitle: '从仿真到真机，让机器人真正学会干活。',
-    heroLead: 'FMC3-Robotics 具身智能算法工程师（VLA / WAM），负责从数据采集、训练 / 后训练到真机部署的全链路。带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军。',
+    heroLead: 'FMC³ Robotics 具身智能算法工程师（VLA / WAM），负责从数据采集、训练 / 后训练到真机部署的全链路。带队获 NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军。',
     btnContact: '联系我',
     btnGitHub: '查看 GitHub',
     btnHF: '查看模型与数据',
@@ -223,6 +223,7 @@ var i18n = {
     themeLabel: '切换深色 / 浅色模式',
     toTopLabel: '回到顶部',
     portraitAlt: '蒲贺良头像',
+    fmc3LogoAlt: 'FMC³ Robotics 标志',
     ecnuLogoAlt: '华东师范大学校徽',
     sitLogoAlt: '江苏科技大学苏州理工学院校徽',
     emailAria: '邮箱 puheliang122@gmail.com',
@@ -232,7 +233,7 @@ var i18n = {
   en: {
     /* meta */
     docTitle: 'Puheliang - Robot Learning Engineer (VLA / WAM)',
-    metaDesc: 'Puheliang, robot learning engineer (VLA / WAM) at FMC3-Robotics. Led the team that won the NeurIPS 2026 RoboSynChallenge simulation track and deployed world action models on real robots; π0.6 RECAP self-improvement on a real robot (~2× throughput, ~half the failures on the benchmark task); tactile fusion in π0.5 lifted dual-arm fine-manipulation success from 30% to 70%.',
+    metaDesc: 'Puheliang, robot learning engineer (VLA / WAM) at FMC³ Robotics. Led the team that won the NeurIPS 2026 RoboSynChallenge simulation track and deployed world action models on real robots; π0.6 RECAP self-improvement on a real robot (~2× throughput, ~half the failures on the benchmark task); tactile fusion in π0.5 lifted dual-arm fine-manipulation success from 30% to 70%.',
     /* sidebar */
     name: 'Puheliang',
     role: 'Robot Learning Engineer · VLA / WAM',
@@ -253,7 +254,7 @@ var i18n = {
     city: 'Shanghai',
     /* hero */
     heroTitle: 'From simulation to the real world: robots that actually get work done.',
-    heroLead: 'Robot learning engineer (VLA / WAM) at FMC3-Robotics, owning embodied AI pipelines from data collection and post-training to real-robot deployment. Led the team that won the NeurIPS 2026 RoboSynChallenge simulation track.',
+    heroLead: 'Robot learning engineer (VLA / WAM) at FMC³ Robotics, owning embodied AI pipelines from data collection and post-training to real-robot deployment. Led the team that won the NeurIPS 2026 RoboSynChallenge simulation track.',
     btnContact: 'Contact Me',
     btnGitHub: 'View GitHub',
     btnHF: 'View Models & Data',
@@ -452,6 +453,7 @@ var i18n = {
     themeLabel: 'Toggle dark / light mode',
     toTopLabel: 'Back to top',
     portraitAlt: 'Portrait of Puheliang',
+    fmc3LogoAlt: 'FMC³ Robotics logo',
     ecnuLogoAlt: 'East China Normal University emblem',
     sitLogoAlt: 'Jiangsu University of Science and Technology Suzhou Institute of Technology emblem',
     emailAria: 'Email puheliang122@gmail.com',

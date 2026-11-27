@@ -488,6 +488,10 @@ video {
   font-size: 0.92rem;
 }
 
+.timeline-card .meta a:hover {
+  text-decoration: underline;
+}
+
 .plain-list {
   margin: 12px 0 0;
   padding: 0;

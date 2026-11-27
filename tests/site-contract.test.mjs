@@ -515,7 +515,7 @@ test('every page anchor linked from the resume PDF exists', async () => {
 test('work and education rows show the employer and both schools', () => {
   const experience = index.match(/<section class="section" id="experience">[\s\S]*?<\/section>/)?.[0] ?? '';
   assert.match(experience, /<h2 data-i18n="secExp">Experience<\/h2>/);
-  assert.match(experience, /<div class="meta">FMC3-Robotics ·/);
+  assert.match(experience, /FMC³ Robotics/);
   assert.match(experience, /<h3 data-i18n="exp2title">East China Normal University<\/h3>/);
   assert.match(experience, /<h3 data-i18n="exp3title">Jiangsu Univ\. of Sci\. &amp; Tech\. Suzhou Institute of Technology<\/h3>/);
   assert.equal((experience.match(/<li data-i18n="exp1d\d">/g) ?? []).length, 6);
