@@ -55,7 +55,7 @@
                 <p class="desc" data-i18n="p0d">Led team fmc3-no1 across ten bimanual manipulation tasks on the AgileX CobotMagic platform (two PiPER arms, three RGB cameras), winning the simulation track overall championship and taking the system through to autonomous real-robot execution.</p>
                 <ul class="plain-list">
                   <li data-i18n="p0b1">Simulation track (data-driven π0.5): fine-tuned one π0.5 per task (openpi / JAX); doubled scripted-expert data to ~20k judged episodes, replayed failure scenes with adjusted experts, applied wide domain randomization (pose ×1.6, noise ×2, 300 textures, moving top camera), and tuned per-task execution horizons.</li>
-                  <li data-i18n="p0b2">Real-robot world action model: used a digital twin to pinpoint wrist-camera pose shift as the sim2real bottleneck, then post-trained Phoenix-MWA (Wan2.2-5B video + ~1B action expert) on 16 A100s using real data only.</li>
+                  <li data-i18n="p0b2">Real-robot world action model: used a digital twin to pinpoint wrist-camera pose shift as the sim2real bottleneck, then post-trained Phoenix-MWA (Wan2.2-5B video + ~1B action expert) on 32 A100s using real data only.</li>
                   <li data-i18n="p0b3">Takeover data pipeline &amp; inference rules: built a web console for checkpoint evaluation, leader-arm takeover and tablet control; trimmed failed lead-ins and collapsed pauses over 0.5 s to fix stalling, and added observation-only adapter rules plus RTC soft-mask action-chunk inpainting.</li>
                   <li data-i18n="p0b4">Evaluation packaging &amp; technical report: packaged all ten tasks for one-command sim/real evaluation and wrote (first author) the winning team's technical report.</li>
                 </ul>
@@ -66,7 +66,7 @@
                 <div class="tech-row">
                   <span class="tech red">π0.5 (JAX)</span>
                   <span class="tech green">Phoenix-MWA</span>
-                  <span class="tech">16×A100</span>
+                  <span class="tech">32×A100</span>
                   <span class="tech">EmbodiChain</span>
                   <span class="tech">Action Inpainting</span>
                   <span class="tech green">Web Console</span>
@@ -397,7 +397,7 @@
     <footer class="footer">© 2026 <span data-i18n="name">Puheliang</span> · <span data-i18n="footerUpdated">Last updated: 2026.11</span></footer>
   </div>
 
-  <script src="assets/i18n.js?v=a31cfc63"></script>
+  <script src="assets/i18n.js?v=b07de319"></script>
   <script src="assets/site.js?v=7cc8cdeb"></script>
 </body>
 </html>

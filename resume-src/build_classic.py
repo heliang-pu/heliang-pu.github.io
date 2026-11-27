@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""构建参考经典宋体排版的中文简历 PDF（2 页 A4），修复文字层部首码点并校验全字符保真。
+"""构建参考经典宋体排版的中文简历 PDF（支持 2 页完整版 / 1 页精简版），修复文字层部首码点并校验全字符保真。
 
 用法：
-  /opt/homebrew/bin/python3.11 resume-src/build_classic.py [--out PATH]
+  /opt/homebrew/bin/python3.11 resume-src/build_classic.py [--src HTML] [--pages N] [--out PATH]
 """
 import argparse
 import datetime
@@ -18,7 +18,6 @@ from pypdf import PdfReader, PdfWriter
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
-import build  # noqa: E402
 from build import CHROME, LIMIT, fix_text_layer, is_radical, to_unicode_streams  # noqa: E402
 
 
@@ -56,7 +55,7 @@ def print_html(src: pathlib.Path, out: pathlib.Path, profile: pathlib.Path) -> N
             "--no-pdf-header-footer",
             f"--user-data-dir={profile}",
             f"--print-to-pdf={out}",
-            src.as_uri(),
+            src.resolve().as_uri(),
         ],
         check=True,
         capture_output=True,
@@ -65,23 +64,25 @@ def print_html(src: pathlib.Path, out: pathlib.Path, profile: pathlib.Path) -> N
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--src", type=pathlib.Path, default=HERE / "resume-classic.html")
+    parser.add_argument("--pages", type=int, default=2)
     parser.add_argument(
         "--out",
         type=pathlib.Path,
-        default=ROOT / "outputs" / "蒲贺良_具身智能算法工程师_简历.pdf",
+        default=ROOT / "heliang-pu-resume.pdf",
     )
     args = parser.parse_args()
     args.out.parent.mkdir(parents=True, exist_ok=True)
 
-    src_html = HERE / "resume-classic.html"
+    src_html = args.src.resolve()
     html_chars = body_zh_chars(src_html.read_text(encoding="utf-8"))
 
     with tempfile.TemporaryDirectory() as tmp:
         raw_pdf = pathlib.Path(tmp) / "raw.pdf"
         print_html(src_html, raw_pdf, pathlib.Path(tmp) / "profile")
         reader = PdfReader(raw_pdf)
-        if len(reader.pages) != 2:
-            sys.exit(f"resume-classic.html printed {len(reader.pages)} pages; expected exactly 2 A4 pages")
+        if len(reader.pages) != args.pages:
+            sys.exit(f"{src_html.name} printed {len(reader.pages)} pages; expected exactly {args.pages} A4 page(s)")
 
         writer = PdfWriter()
         for page in reader.pages:
@@ -103,7 +104,7 @@ def main() -> None:
     extracted = "\n".join(page.extract_text() for page in out_reader.pages)
     size = args.out.stat().st_size
     print(
-        f"wrote {args.out} ({size / 1024:.1f} KiB, {len(out_reader.pages)} pages); "
+        f"wrote {args.out} ({size / 1024:.1f} KiB, {len(out_reader.pages)} page(s)); "
         f"repaired {fixed} ToUnicode maps, patched {kou_patched} Songti-kou map(s)"
     )
 

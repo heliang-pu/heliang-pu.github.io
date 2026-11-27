@@ -401,7 +401,7 @@
               <h3 data-i18n="mRealT">Real robot: a world action model trained on real data</h3>
               <ul class="plain-list">
               <li data-i18n="mReal1">A digital twin traced the sim-to-real failure to the wrist-camera pose, so we kept the organizers' camera layout on our bench and fixed the model with real data.</li>
-              <li data-i18n="mReal2">After comparing π0.5 with three world action models, chose Phoenix-MWA (a Wan2.2-5B video expert coupled with a ~1B-parameter action expert, 32 steps per call) and post-trained it on real data only on 16 A100s.</li>
+              <li data-i18n="mReal2">After comparing π0.5 with three world action models, chose Phoenix-MWA (a Wan2.2-5B video expert coupled with a ~1B-parameter action expert, 32 steps per call) and post-trained it on real data only on 32 A100s.</li>
               <li data-i18n="mReal3">A web console runs the policy; operators take over with leader arms, and every takeover becomes training data.</li>
               <li data-i18n="mReal4">Cut the failed lead-in before each takeover, collapsed pauses over 0.5 s to one frame and dropped static tails: the main fix for stalls.</li>
               <li data-i18n="mReal5">Observation-only rules live in the policy adapter: per-task gripper clamp thresholds, masking the top camera and nudging forward when stuck, joint limits and per-step caps.</li>
@@ -416,7 +416,7 @@
     <footer class="footer">© 2026 <span data-i18n="name">Puheliang</span> · <span data-i18n="footerUpdated">Last updated: 2026.11</span></footer>
   </div>
 
-  <script src="assets/i18n.js?v=a31cfc63"></script>
+  <script src="assets/i18n.js?v=b07de319"></script>
   <script src="assets/site.js?v=7cc8cdeb"></script>
 </body>
 </html>

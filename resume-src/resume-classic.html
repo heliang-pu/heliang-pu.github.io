@@ -390,10 +390,9 @@
     <section class="sec">
       <h2 class="sec-title">个人概述</h2>
       <ul class="bullets">
-        <li>华东师范大学软件工程硕士（具身机器人操作方向）在读，现任 FMC3-Robotics 具身智能算法工程师，负责 <b>VLA 与世界动作模型（WAM）</b> 从数据采集、训练 / 后训练到真机部署的全链路，覆盖机械臂、灵巧手与人形机器人平台。</li>
-        <li>带队获 <b>NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军</b>；擅长从策略分布偏移与失败案例定位数据与系统瓶颈，打通仿真数据扩增、真机接管纠错与 16×A100 多卡后训练闭环。</li>
-        <li>兼具前沿策略研发与传统机器人工程落地能力：完成 π0.6 RECAP 真机自改进、π0.5 触觉融合与 ChainPlanner 长时程规划，并掌握 Pinocchio / URDF 运动学、手眼标定、误差补偿与 3D 打印末端工装设计。</li>
-        <li>重视技术沉淀与开源实践，以第一作者完成 NeurIPS 2026 RoboSynChallenge 冠军技术报告，并开源长时程规划与真机操控项目。</li>
+        <li>华东师范大学软件工程硕士（具身机器人操作方向）在读，现任 FMC3-Robotics 具身智能算法工程师，负责 <b>VLA 与世界动作模型（WAM）</b> 从数据闭环、多卡训练 / 后训练到真机部署的全链路，覆盖机械臂、灵巧手与人形机器人平台。</li>
+        <li>带队获 <b>NeurIPS 2026 RoboSynChallenge 仿真赛道全球总冠军</b>（第一作者技术报告）；擅长通过分布偏移诊断与真机接管纠错驱动数据闭环，具备 32×A100 分布式后训练、Offline RL（RECAP）与无参时序记忆（SLA-MEM）等算法迭代经验。</li>
+        <li>兼具前沿策略研发与传统机器人工程落地能力：完成双臂触觉融合与长时程规划落地，掌握 Pinocchio / URDF 运动学、手眼标定与误差补偿，并开源长时程规划与真机操控项目。</li>
       </ul>
     </section>
 
@@ -424,7 +423,7 @@
           <div class="entry-time">2026.01 - 至今</div>
         </div>
         <ul class="bullets">
-          <li><b>核心研发职责</b>：负责具身操作方向 VLA 与世界动作模型（WAM）全链路研发，覆盖数据闭环、策略训练与 16×A100 后训练、前沿算法复现及多形态真机部署（机械臂、灵巧手、人形机器人）。</li>
+          <li><b>核心研发职责</b>：负责具身操作方向 VLA 与世界动作模型（WAM）全链路研发，覆盖数据闭环、策略训练与 32×A100 后训练、前沿算法复现及多形态真机部署（机械臂、灵巧手、人形机器人）。</li>
           <li><b>竞赛带队攻坚</b>：担任 fmc3-no1 队长带队参加 NeurIPS 2026 RoboSynChallenge，统筹仿真数据策略、多款世界模型横向选型及多机算力调度（4090、RTX PRO 6000、多台 8×A100 并行消融），获仿真赛道全球总冠军。</li>
           <li><b>平台与工具链</b>：主导搭建真机评测与采集网页控制台，支持权重 / epoch 切换、分检查点成功率记录、主臂人工接管、无模型采集与平板操控，将采集、训练与一键评测打通为标准化闭环流水线。</li>
         </ul>
@@ -436,12 +435,12 @@
 
       <div class="entry">
         <div class="entry-head">
-          <div class="entry-main"><b>NeurIPS 2026 RoboSynChallenge 十项双臂任务</b> - 队长<span class="sep">|</span><span class="tech-inline">π0.5 (JAX)、Phoenix-MWA、16×A100、EmbodiChain</span></div>
+          <div class="entry-main"><b>NeurIPS 2026 RoboSynChallenge 十项双臂任务</b> - 队长<span class="sep">|</span><span class="tech-inline">π0.5 (JAX)、Phoenix-MWA、32×A100、EmbodiChain</span></div>
           <div class="entry-time">2026</div>
         </div>
         <ul class="bullets">
           <li><b>仿真数据闭环</b>：按任务微调 π0.5（预测 50 步增量关节动作，EMA 0.99）；多 seed 扩充通过官方判定的脚本专家数据至约 2 万组，在失败场景重放并施加宽域随机化（位姿 ×1.6、噪声 ×2、300 种纹理、顶摄扰动），按任务调优执行步数夺得总冠军。</li>
-          <li><b>真机世界模型</b>：用数字孪生定位到腕部相机位姿差异为 sim2real 失效根因；横向对比后选定 Phoenix-MWA（Wan2.2-5B 视频专家 + ~1B 动作专家），在 16×A100 上纯真机数据后训练完成自主运行。</li>
+          <li><b>真机世界模型</b>：用数字孪生定位到腕部相机位姿差异为 sim2real 失效根因；横向对比后选定 Phoenix-MWA（Wan2.2-5B 视频专家 + ~1B 动作专家），在 32×A100 上纯真机数据后训练完成自主运行。</li>
           <li><b>接管与防卡死</b>：搭建主臂人工接管回流管道，切掉接管前失败段并将 0.5 s 以上停顿压成单帧、剔除结尾静止帧解决卡死；在适配器加入只读观测推理规则与基于 RTC 软掩码的动作块 inpainting（免重训消除跳变），并封装十任务一键评测。</li>
         </ul>
       </div>
@@ -516,17 +515,18 @@
           <div class="entry-time">2026</div>
         </div>
         <ul class="bullets">
-          <li><b>纯视觉闭环</b>：语音 / 文字指令（SenseVoiceSmall）驱动 PiPER 机械臂夹持 3D 打印 5 mm 弹性行程电容笔夹，全程仅靠相机看屏操控平板（无 ADB、不截屏）；腕部相机拍屏拉正并支持双角度合成去反光，GUI-Owl-1.5 规划点按、长按、滑动、打字等多步交互。</li>
-          <li><b>运动学标定</b>：基于 Pinocchio 与固件实测限位 URDF 解算正逆运动学，规划悬停平移与法向垂直下压安全轨迹（含单步限幅、速度缩放与碰撞检查）；实现棋盘格眼在手外与 14 位姿眼在手上腕部标定、ArUco 实时平板位姿追踪及自动探触留一法点按误差补偿（平移 / 线性 / 二次）。</li>
+          <li><b>纯视觉闭环</b>：语音 / 文字指令（SenseVoiceSmall）驱动 PiPER 机械臂夹持 3D 打印 5 mm 弹性行程电容笔夹，全程仅靠相机看屏操控平板（无 ADB、不截屏）；腕部相机高清拍屏拉正（屏宽 1100–1300 px，支持双角度去反光），vLLM 部署 GUI-Owl-1.5（单步 <b>0.75–1.5 s</b>）规划点按、长按、滑动与打字等多步交互。</li>
+          <li><b>运动学标定</b>：基于 Pinocchio 与固件实测限位 URDF 解算正逆运动学，规划悬停平移与法向垂直下压安全轨迹（含单步限幅、速度缩放与碰撞检查）；实现棋盘格眼在手外（真机角点重投影误差 <b>0.11 px</b>、法线帧间重复性 <b>0.02°</b>）与 14 位姿眼在手上腕部标定、ArUco 实时跟踪及留一法点按误差补偿。</li>
           <li><b>工程与排练</b>：采用端口与适配器分层架构并配依赖规则单测；交付统一网页控制台（标定、指令执行、三路录像）及无硬件离线软件排练台架，代码与 3D 打印 CAD 文件完整开源。</li>
         </ul>
       </div>
     </section>
 
     <section class="sec">
-      <h2 class="sec-title">技术报告</h2>
+      <h2 class="sec-title">技术报告与研究方法</h2>
       <ul class="bullets">
-        <li><b>Look at the Demonstrator First: Lessons from Ten Bimanual Tasks in RoboSynChallenge 2026</b> — <b>Heliang Pu</b>（第一作者）, Zhihai He, Cheng Chi, Yeyi Chen, Limeng Wang · <span class="pub-venue">NeurIPS 2026 RoboSynChallenge Technical Report</span>（已提交，2026.11）。系统总结冠军队在不改动策略架构前提下，通过策略分布偏移诊断迭代脚本专家与数据闭环的方法论。</li>
+        <li><b>Look at the Demonstrator First: Lessons from Ten Bimanual Tasks in RoboSynChallenge 2026</b> — <b>Heliang Pu</b>（第一作者）, Zhihai He, Cheng Chi, Yeyi Chen, Limeng Wang · <span class="pub-venue">NeurIPS 2026 RoboSynChallenge Technical Report</span>（已提交，2026.11）。总结冠军队在不改动策略架构前提下，通过分布偏移诊断迭代脚本专家与数据闭环的方法论。</li>
+        <li><b>VLA 短时视频记忆（SLA-MEM，无额外参数）</b>：针对操作策略缺乏历史上下文问题，在零新增参数条件下引入短时视频记忆增强时序建模，仿真十场景平均成功率相对原版 SLA 由 <b>22.0% 提升至 28.5%</b>。</li>
       </ul>
     </section>
 
@@ -535,19 +535,19 @@
       <table class="skill-table">
         <tr>
           <td class="sk-key">VLA 与世界动作模型</td>
-          <td>熟悉世界动作模型（Phoenix-MWA、InternW0、OpenWAM）与 VLA / 模仿学习策略（π0 / π0.5 / π0.6、ACT、Diffusion Policy、GR00T），具备 16×A100 后训练、Offline RL（RECAP + Advantage Conditioning）、LoRA 微调、触觉融合与长时程 VLM 规划实战经验；熟练使用 PyTorch / JAX。</td>
+          <td>熟悉世界动作模型（Phoenix-MWA、InternW0、OpenWAM）与 VLA / 模仿学习策略（π0 / π0.5 / π0.6、ACT、Diffusion Policy、GR00T），理解 Flow Matching 与动作分块范式；具备 32×A100 分布式训练 / 后训练（DDP）、Offline RL（RECAP + Advantage Conditioning）、LoRA 微调、触觉融合、时序记忆（SLA-MEM）与长时程 VLM 规划实战经验。</td>
         </tr>
         <tr>
           <td class="sk-key">数据工程与仿真评测</td>
-          <td>掌握遥操作 / 外骨骼 / 多相机数据采集、清洗、接管失败段截断、Replay 与 LeRobot Dataset 规范；熟练使用 EmbodiChain、MuJoCo 开展仿真评测、数字孪生相机对齐、宽域域随机化、脚本专家数据生成与离线软件全流程排练。</td>
+          <td>掌握遥操作 / 外骨骼 / 多相机数据采集、清洗、接管失败段截断、Replay 与 LeRobot Dataset 规范；熟练使用 EmbodiChain、MuJoCo、Isaac Sim 开展仿真评测、数字孪生相机对齐、宽域随机化、脚本专家数据生成与离线软件全流程排练。</td>
         </tr>
         <tr>
           <td class="sk-key">传统控制与精密标定</td>
           <td>掌握 Pinocchio / URDF 正逆运动学、关节与笛卡尔轨迹规划及速度 / 碰撞 / 固件限位安全保护；具备眼在手上 / 眼在手外手眼标定、ArUco 位姿追踪、留一法点按误差建模补偿及 CAD / 3D 打印末端工装设计能力。</td>
         </tr>
         <tr>
-          <td class="sk-key">部署推理与硬件系统</td>
-          <td>熟悉真机推理服务、异步推理、RTC 动作块 inpainting、BF16 加速与 DDS / RoboOS 技能调度；上手过松灵 PiPER / PiperX、智元灵巧手、傅利叶 GR2、求之、汇川及 Manus 数据手套 / Xsens 动捕 / Meta Quest 遥操硬件；CET-6，具备英文论文与技术报告撰写能力。</td>
+          <td class="sk-key">工程栈与真机部署</td>
+          <td>熟练使用 Python、PyTorch / JAX、Linux、Git；具备真机推理服务（vLLM）、异步推理、RTC 动作块 inpainting、多相机批处理 + BF16 加速与 DDS / RoboOS 技能调度经验；上手松灵 PiPER / PiperX、智元灵巧手、傅利叶 GR2、求之、汇川及动捕 / VR 遥操平台；CET-6，具备英文技术报告撰写能力。</td>
         </tr>
       </table>
     </section>

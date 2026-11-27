@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>蒲贺良 - 具身智能算法工程师（VLA / WAM）简历（单页版）</title>
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #1c1c1c;
+    font-family: "Songti SC", "STSong", "SimSun", "Georgia", "Times New Roman", serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  .sheet {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    padding: 9mm 13mm 9mm;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 210mm;
+    height: 82mm;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .sheet-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .header {
+    position: relative;
+    min-height: 28mm;
+    padding-top: 0.5mm;
+    padding-right: 24mm;
+    padding-left: 12mm;
+    text-align: center;
+    margin-bottom: 2mm;
+  }
+
+  .name {
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    line-height: 1.15;
+    color: #111;
+  }
+
+  .subtitle {
+    margin-top: 1mm;
+    font-size: 9.8pt;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #1f1f1f;
+  }
+
+  .contact {
+    margin-top: 1.5mm;
+    font-size: 8.2pt;
+    line-height: 1.58;
+    color: #2b2b2b;
+  }
+
+  .contact-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0 3px;
+  }
+
+  .contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 2.5px;
+    white-space: nowrap;
+  }
+
+  .contact-item svg {
+    width: 8.8px;
+    height: 8.8px;
+    flex: none;
+    fill: #222;
+  }
+
+  .dot {
+    color: #777;
+    margin: 0 2px;
+  }
+
+  .photo-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 22mm;
+    padding-top: 1mm;
+    border-top: 1.3px solid #3a3a3a;
+  }
+
+  .photo {
+    display: block;
+    width: 22mm;
+    height: 28.2mm;
+    object-fit: cover;
+    object-position: center 15%;
+    border: 0.6px solid #d4d7dc;
+    background: #fff;
+  }
+
+  .sec {
+    margin-top: 2.3mm;
+  }
+
+  .sec-title {
+    font-size: 10.6pt;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0.03em;
+    color: #111;
+    padding-bottom: 0.7mm;
+    margin-bottom: 1.3mm;
+    border-bottom: 1.2px solid #222;
+  }
+
+  .entry + .entry {
+    margin-top: 1.8mm;
+  }
+
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 8.75pt;
+    line-height: 1.38;
+    color: #1c1c1c;
+    margin-bottom: 0.4mm;
+  }
+
+  .entry-main {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .entry-main b {
+    font-weight: 700;
+    color: #111;
+  }
+
+  .entry-main .sep {
+    margin: 0 3px;
+    color: #666;
+  }
+
+  .entry-main .tech-inline {
+    color: #333;
+    font-size: 8.2pt;
+  }
+
+  .entry-time {
+    flex: none;
+    font-size: 8.2pt;
+    color: #333;
+    white-space: nowrap;
+  }
+
+  .entry-link {
+    font-size: 7.8pt;
+    color: #444;
+    border-bottom: 0.5px solid #999;
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+
+  .bullets li {
+    position: relative;
+    padding-left: 9.5px;
+    font-size: 8.2pt;
+    line-height: 1.42;
+    color: #262626;
+    text-align: justify;
+  }
+
+  .bullets li + li {
+    margin-top: 0.5mm;
+  }
+
+  .bullets li::before {
+    content: "•";
+    position: absolute;
+    left: 1px;
+    top: 0;
+    font-weight: 700;
+    color: #222;
+  }
+
+  .bullets li b {
+    font-weight: 700;
+    color: #111;
+  }
+
+  .edu-item + .edu-item {
+    margin-top: 0.8mm;
+  }
+
+  .skill-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.3mm;
+  }
+
+  .skill-table td {
+    padding: 0.9mm 0;
+    vertical-align: top;
+    font-size: 8.15pt;
+    line-height: 1.42;
+    color: #262626;
+    text-align: justify;
+  }
+
+  .skill-table td.sk-key {
+    width: 31mm;
+    padding-right: 3mm;
+    font-weight: 700;
+    color: #111;
+    white-space: nowrap;
+    text-align: left;
+  }
+</style>
+</head>
+<body>
+
+<section class="sheet">
+  <svg class="bg-pattern" viewBox="0 0 794 310" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="fade1p" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+        <stop offset="72%" stop-color="#ffffff" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+      </linearGradient>
+    </defs>
+    <g stroke="#e6e8ec" stroke-width="1" fill="none">
+      <path d="M -20 90 L 90 -20 M -20 130 L 130 -20 M -20 170 L 170 -20 M -20 210 L 210 -20"/>
+      <path d="M 490 -20 L 820 310 M 535 -20 L 820 265 M 580 -20 L 820 220 M 625 -20 L 820 175 M 670 -20 L 820 130"/>
+      <path d="M 440 150 L 610 -20 M 485 180 L 685 -20"/>
+    </g>
+    <rect x="0" y="0" width="794" height="310" fill="url(#fade1p)"/>
+  </svg>
+
+  <div class="sheet-inner">
+    <header class="header">
+      <h1 class="name">蒲贺良</h1>
+      <p class="subtitle">具身智能算法工程师（VLA / WAM）</p>
+      <div class="contact">
+        <div class="contact-row">
+          <span class="contact-item">
+            <svg viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58z"/></svg>
+            18037995507
+          </span>
+          <span class="dot">·</span>
+          <span class="contact-item">
+            <svg viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/></svg>
+            <a href="mailto:puheliang122@gmail.com">puheliang122@gmail.com</a>
+          </span>
+          <span class="dot">·</span>
+          <span class="contact-item">
+            <svg viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
+            上海
+          </span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-item">
+            <svg viewBox="0 0 16 16"><path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z"/><path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z"/></svg>
+            华东师范大学 | 硕士（在读）
+          </span>
+          <span class="dot">·</span>
+          <span class="contact-item">
+            <svg viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z"/></svg>
+            <a href="https://heliang-pu.github.io/">主页与视频 heliang-pu.github.io</a>
+          </span>
+          <span class="dot">·</span>
+          <span class="contact-item">
+            <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg>
+            <a href="https://github.com/heliang-pu">github.com/heliang-pu</a>
+          </span>
+        </div>
+      </div>
+      <div class="photo-wrap">
+        <img class="photo" src="../assets/portrait.jpg" alt="蒲贺良证件照">
+      </div>
+    </header>
+
+    <section class="sec">
+      <h2 class="sec-title">教育背景</h2>
+      <div class="edu-item">
+        <div class="entry-head">
+          <div class="entry-main"><b>华东师范大学</b> - 软件工程 · 硕士（统招非全日制 · 具身机器人操作方向）</div>
+          <div class="entry-time">2026.09 - 2029.06</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="entry-head">
+          <div class="entry-main"><b>江苏科技大学苏州理工学院</b> - 计算机科学与技术 · 本科 · GPA 3.98 / 5.0（综合排名第一）</div>
+          <div class="entry-time">2021.09 - 2025.06</div>
+        </div>
+        <ul class="bullets">
+          <li><b>荣誉奖项</b>：2024 年国家奖学金、国家励志奖学金、连续三次人民奖学金；智能小车实验室负责人；ICAN 边缘 AI 全国二等奖、智能车与航天杯全国三等奖。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2 class="sec-title">工作经历</h2>
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-main"><b>FMC3-Robotics</b> - 具身智能算法工程师（VLA / WAM）<span class="sep">|</span><span class="tech-inline">上海 · 机械臂、灵巧手、人形机器人</span></div>
+          <div class="entry-time">2026.01 - 至今</div>
+        </div>
+        <ul class="bullets">
+          <li><b>核心职责</b>：负责具身操作方向 VLA 与世界动作模型（WAM）全链路研发（数据闭环、32×A100 分布式训练 / 后训练、算法复现与真机部署）；担任 NeurIPS 2026 RoboSynChallenge 冠军队队长并统筹多机 8×A100 / 4090 / PRO 6000 并行实验。</li>
+          <li><b>工程闭环</b>：主导搭建真机评测与采集网页控制台（权重 / epoch 切换、分检查点成功率记录、主臂接管、无模型采集与平板操控）及统一一键评测工具链。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2 class="sec-title">核心项目经历</h2>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-main"><b>NeurIPS 2026 RoboSynChallenge 十项双臂任务</b> - 队长 &amp; 一作技术报告<span class="sep">|</span><span class="tech-inline">π0.5 (JAX)、Phoenix-MWA、32×A100、EmbodiChain</span></div>
+          <div class="entry-time">2026</div>
+        </div>
+        <ul class="bullets">
+          <li><b>仿真数据闭环</b>：按任务微调 π0.5（预测 50 步增量关节动作，EMA 0.99），扩展脚本专家数据至约 2 万组，在失败场景重放并施加宽域随机化（位姿 ×1.6、噪声 ×2、300 种纹理、顶摄扰动），按任务调优执行步数夺得<b>仿真赛道全球总冠军</b>。</li>
+          <li><b>真机世界模型</b>：数字孪生定位腕部相机位姿偏差为 sim2real 根因；对比 π0.5 与三款 WAM 后选定 Phoenix-MWA，在 32×A100 上纯真机数据后训练完成十项任务自主运行；搭建主臂接管截断与去停顿管道根治卡死，并引入免重训 RTC 软掩码动作块 inpainting。</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-main"><b>ChainPlanner：世界动作模型长时程规划器</b> - 核心设计<span class="sep">|</span><span class="tech-inline">RynnBrain1.1-2B、LoRA、Phoenix-MWA、语言记忆</span><a class="entry-link" href="https://github.com/heliang-pu/wam-long-horizon-planner">GitHub</a></div>
+          <div class="entry-time">2026</div>
+        </div>
+        <ul class="bullets">
+          <li><b>架构与训练</b>：在冻结的十任务 Phoenix-MWA 上构建 2B VLM 高层规划器（先拆编号计划再定时跟踪步骤与语言记忆，支持重复技能与隐式目标）；无需长任务数据，由 5,273 条单任务回合随机拼接 15.5 万条技能链，8×A100 训练约 1.5 h 收敛。</li>
+          <li><b>真机指标</b>：与世界模型共享单卡（~5 GB，0.3–0.6 s / 次）；回放完成 <b>260 / 300</b> 条链（2–10 步，零错切），真机无人干预完成 <b>22 / 26</b> 个多技能回合（最长 5 步），同批链路远超通用大模型基线（62/73 vs. 19/73）。</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-main"><b>π0.6 RECAP 真机自改进 &amp; 双臂灵巧手触觉融合</b> - 独立负责<span class="sep">|</span><span class="tech-inline">π0.6、Offline RL、LeRobot、π0.5、Tactile Encoder、RTC</span></div>
+          <div class="entry-time">2026</div>
+        </div>
+        <ul class="bullets">
+          <li><b>真机自改进</b>：在松灵 PiperX 单臂冷启动 200 条手机插拔示教，完整复现 π0.6（RECAP）offline RL + advantage conditioning 流程，通过自主 rollout、专家纠错与 value function 迭代配合异步推理，实现标杆任务<b>吞吐约翻倍、失败率约减半</b>。</li>
+          <li><b>触觉双臂协作</b>：基于 LeRobot 从零搭建机械臂 + 智元灵巧手双臂适配层（遥操 / 采集 / 推理 / 回放），训练对比 ACT、Diffusion Policy 与 π0.5；引入 tactile encoder 融合触觉反馈并配 RTC 异步推理，双臂精细操作成功率由 <b>30% 提升至 70%</b>。</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-main"><b>PiPER 机械臂 + GUI Agent 操控平板 &amp; 时序记忆研究</b> - 独立开源<span class="sep">|</span><span class="tech-inline">GUI-Owl-1.5、Pinocchio IK、手眼标定、SLA-MEM</span><a class="entry-link" href="https://github.com/heliang-pu/Robot-use-tablet">GitHub</a></div>
+          <div class="entry-time">2026</div>
+        </div>
+        <ul class="bullets">
+          <li><b>纯视觉操控</b>：语音 / 文字指令（SenseVoiceSmall）驱动 PiPER 夹持 3D 打印 5 mm 弹性笔夹纯相机操控安卓平板（无 ADB）；腕部高清看屏（1100–1300 px，双角度去反光）+ vLLM GUI-Owl-1.5（0.75–1.5 s / 步）+ Pinocchio IK、手眼标定（重投影 <b>0.11 px</b>）、ArUco 追踪与留一法误差补偿，配套分层单测与离线软件排练台架。</li>
+          <li><b>时序记忆法</b>：提出无额外参数的 VLA 短时视频记忆机制（SLA-MEM），仿真十场景平均成功率相对原版 SLA 由 <b>22.0% 提升至 28.5%</b>。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2 class="sec-title">专业技能</h2>
+      <table class="skill-table">
+        <tr>
+          <td class="sk-key">VLA 与世界动作模型</td>
+          <td>熟悉 WAM（Phoenix-MWA、InternW0、OpenWAM）与 VLA / 模仿学习（π0 / π0.5 / π0.6、ACT、Diffusion Policy、GR00T），理解 Flow Matching 与动作分块；具备 32×A100 分布式训练（DDP）、Offline RL（RECAP）、LoRA、触觉融合、时序记忆（SLA-MEM）与 VLM 长时程规划经验。</td>
+        </tr>
+        <tr>
+          <td class="sk-key">数据与仿真评测</td>
+          <td>掌握遥操 / 外骨骼 / 多相机采集清洗、接管截断与 LeRobot Dataset；熟练使用 EmbodiChain、MuJoCo、Isaac Sim 开展仿真评测、数字孪生相机对齐、宽域随机化、脚本专家生成与软件排练。</td>
+        </tr>
+        <tr>
+          <td class="sk-key">传统控制与标定</td>
+          <td>掌握 Pinocchio / URDF 正逆运动学、轨迹规划与速度 / 碰撞 / 固件限位安全保护；具备眼在手上 / 手外手眼标定、ArUco 位姿追踪、留一法点按误差补偿及 CAD / 3D 打印末端工装设计能力。</td>
+        </tr>
+        <tr>
+          <td class="sk-key">工程栈与真机部署</td>
+          <td>熟练使用 Python、PyTorch / JAX、Linux、Git；具备 vLLM 推理服务、异步推理、RTC 动作块 inpainting、多相机批处理 + BF16 加速与 DDS / RoboOS 调度经验；上手松灵 PiPER / PiperX、智元灵巧手、傅利叶 GR2、求之、汇川及动捕 / VR 遥操硬件；CET-6。</td>
+        </tr>
+      </table>
+    </section>
+  </div>
+</section>
+
+</body>
+</html>
