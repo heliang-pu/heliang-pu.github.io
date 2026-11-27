@@ -1,4 +1,22 @@
-/* 语言切换（默认英文）、视频播放和竞赛页的任务切换。文案字典 i18n 见 assets/i18n.js（需先加载）。 */
+/* 主题切换、语言切换（默认英文）、滚动进度、视频播放、指标卡高光与竞赛页任务切换。
+   文案字典 i18n 见 assets/i18n.js（需先加载）。 */
+
+function applyTheme(t) {
+  document.documentElement.classList.toggle('theme-dark', t === 'dark');
+  try { localStorage.setItem('theme', t); } catch (e) {}
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.setAttribute('aria-pressed', String(t === 'dark'));
+}
+
+function toggleTheme() {
+  var isDark = document.documentElement.classList.contains('theme-dark');
+  applyTheme(isDark ? 'light' : 'dark');
+}
+
+function scrollToTop() {
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: 0, behavior: rm ? 'auto' : 'smooth' });
+}
 
 function applyLang(lang) {
   var t = i18n[lang];
@@ -35,8 +53,19 @@ function applyLang(lang) {
   if (twTitle) twTitle.content = title;
   var twDesc = document.querySelector('meta[name="twitter:description"]');
   if (twDesc) twDesc.content = desc;
+  /* control buttons */
   var langBtn = document.querySelector('.lang-toggle');
   if (langBtn) langBtn.textContent = lang === 'zh' ? 'EN' : '中';
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    themeBtn.setAttribute('aria-label', t.themeLabel);
+    themeBtn.setAttribute('title', t.themeLabel);
+  }
+  var toTopBtn = document.querySelector('.to-top');
+  if (toTopBtn) {
+    toTopBtn.setAttribute('aria-label', t.toTopLabel);
+    toTopBtn.setAttribute('title', t.toTopLabel);
+  }
   try { localStorage.setItem('lang', lang); } catch (e) {}
 }
 
@@ -46,8 +75,28 @@ function toggleLang() {
 }
 
 (function () {
+  var toTop = document.querySelector('.to-top');
+  var bar = document.querySelector('.scroll-progress');
+  var themeBtn = document.querySelector('.theme-toggle');
   var langBtn = document.querySelector('.lang-toggle');
+  if (themeBtn) {
+    themeBtn.setAttribute('aria-pressed', String(document.documentElement.classList.contains('theme-dark')));
+    themeBtn.addEventListener('click', toggleTheme);
+  }
   if (langBtn) langBtn.addEventListener('click', toggleLang);
+  if (toTop) toTop.addEventListener('click', scrollToTop);
+
+  function onScroll() {
+    var y = window.scrollY || document.documentElement.scrollTop || 0;
+    if (toTop) toTop.classList.toggle('show', y > 400);
+    if (bar) {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
 
   /* 页面默认英文（静态文字就是英文）；之前切到中文的访客，下次进来还是中文 */
   try {
@@ -64,7 +113,7 @@ function toggleLang() {
     });
   });
 
-  /* 首页项目行：鼠标移上去就播放（这些视频没有声音），移开暂停。
+  /* 首页项目卡片：鼠标移上去就播放（这些视频没有声音），移开暂停。
      触屏和减少动态效果的设置下不自动播，照常点播放按钮。 */
   var canHover = window.matchMedia && matchMedia('(hover: hover)').matches &&
     !matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -107,4 +156,13 @@ function toggleLang() {
     window.addEventListener('hashchange', showTask);
     showTask();
   }
+
+  /* 指标卡跟随鼠标高光（触摸设备无 pointermove hover，自然不触发） */
+  document.querySelectorAll('.metric').forEach(function (card) {
+    card.addEventListener('pointermove', function (e) {
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
 })();

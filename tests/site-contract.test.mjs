@@ -172,43 +172,49 @@ test('styles and scripts live in assets, load in order, and carry a hash of thei
     const scripts = tags('script', page).map((tag) => attr(tag, 'src')).filter(Boolean);
     assert.deepEqual(scripts, [i18nUrl, scriptUrl], hint);
 
-    // White single-column pages: one language switch, no theme switch, sidebar or scroll bar.
-    assert.match(page, /<button class="lang-toggle" type="button"/);
-    assert.doesNotMatch(page, /theme-toggle|theme-dark|class="sidebar"|scroll-progress|class="control-btn/);
+    // Two-column graph-paper card pages: language + theme controls, scroll progress bar, back-to-top button.
+    assert.match(page, /<button class="control-btn lang-toggle" type="button"/);
+    assert.match(page, /<button class="control-btn theme-toggle" type="button"/);
+    assert.match(page, /<div class="scroll-progress" aria-hidden="true"><\/div>/);
+    assert.match(page, /<button class="control-btn to-top" type="button"/);
+    assert.match(page, /document\.documentElement\.classList\.add\('theme-dark'\)/);
   }
   assert.match(script, /langBtn\.addEventListener\('click', toggleLang\)/);
-  assert.doesNotMatch(`${script}\n${css}`, /theme-dark|toggleTheme|applyTheme/);
+  assert.match(script, /themeBtn\.addEventListener\('click', toggleTheme\)/);
+  assert.match(script, /toTop\.addEventListener\('click', scrollToTop\)/);
+  assert.match(css, /html\.theme-dark\s*\{/);
 });
 
-test('the homepage opens with the name, photo, a short bio and contact links', () => {
-  const hero = index.match(/<header class="hero">[\s\S]*?<\/header>/)?.[0] ?? '';
+test('the homepage uses the two-column graph-paper layout with sidebar, hero metrics and controls', () => {
+  const sidebar = index.match(/<aside class="sidebar">[\s\S]*?<\/aside>/)?.[0] ?? '';
+  const hero = index.match(/<section class="hero">[\s\S]*?<\/section>/)?.[0] ?? '';
   const escape = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  assert.match(hero, /<h1 data-i18n="name">Puheliang<\/h1>/);
-  assert.match(hero, /<img class="portrait" src="assets\/portrait\.jpg"/);
-  for (const key of ['bio1', 'bio2a', 'bio2b', 'bio2c', 'bio2d', 'bio3']) {
-    assert.match(hero, new RegExp(`data-i18n="${key}">${escape(htmlText(dictionary.en[key]))}<`), key);
-  }
+  assert.match(sidebar, /<h1 data-i18n="name">Puheliang<\/h1>/);
+  assert.match(sidebar, /<img class="portrait" src="assets\/portrait\.jpg"/);
+  assert.match(sidebar, new RegExp(`data-i18n="pitch">${escape(htmlText(dictionary.en.pitch))}<`));
   for (const href of [
     'mailto:puheliang122@gmail.com',
-    'heliang-pu-resume.pdf',
     'https://github.com/heliang-pu',
     'https://huggingface.co/puheliang',
     'https://www.linkedin.com/in/heliang-pu-a26538416/',
   ]) {
-    assert.match(hero, new RegExp(`href="${escape(href)}"`), href);
+    assert.match(sidebar, new RegExp(`href="${escape(href)}"`), href);
   }
+  assert.match(hero, new RegExp(`data-i18n="heroTitle">${escape(htmlText(dictionary.en.heroTitle))}<`));
+  assert.match(hero, new RegExp(`data-i18n="heroLead">${escape(htmlText(dictionary.en.heroLead))}<`));
+  assert.match(hero, /href="heliang-pu-resume\.pdf"/);
+  assert.equal((hero.match(/<div class="metric">/g) ?? []).length, 4);
+  assert.match(hero, /<strong>32×A100<\/strong>/);
 
-  // The photo comes first in the markup so phones show it above the name; desktop moves it right.
-  assert.ok(hero.indexOf('class="portrait"') < hero.indexOf('<h1'));
-  const phone = mediaBlocks(css, '@media (max-width: 700px)');
-  assert.match(phone, /\.hero\s*\{[^}]*grid-template-columns:\s*minmax\(0, 1fr\)/);
-  assert.match(css, /\.page,\n\.comp-shell \{\n {2}max-width: 840px;/);
-  // The layout follows Jon Barron's template, and the footer credits it.
-  assert.match(index, /href="https:\/\/jonbarron\.info\/"/);
+  assert.match(index, /<div class="mobile-id">/);
+  assert.match(index, /<details class="mobile-nav">/);
+  assert.match(css, /grid-template-columns:\s*330px minmax\(0, 1fr\)/);
+  const tablet = mediaBlocks(css, '@media (max-width: 980px)');
+  assert.match(tablet, /\.sidebar\s*\{\s*display:\s*none;/);
 });
 
 const competition = index.match(
-  /<div class="project-group" id="competition">[\s\S]*?<p class="task-grid-foot"[\s\S]*?<\/p>\s*<\/div>/,
+  /<div class="project-group" id="competition">[\s\S]*?<div class="task-grid-foot">[\s\S]*?<\/div>\s*<\/div>/,
 )?.[0] ?? '';
 
 const panels = [
@@ -237,7 +243,7 @@ test('the homepage reads like a resume: highlights and entries, details on other
   const homeVideos = [...index.matchAll(/<video\b[^>]*>[\s\S]*?<\/video>/g)].map((match) => match[0]);
   assert.equal(homeVideos.length, 3);
   assert.equal(tags('source').length, 3);
-  const rowsWithVideo = [...index.matchAll(/<article class="item[^"]*"[^>]*>[\s\S]*?<\/article>/g)]
+  const rowsWithVideo = [...index.matchAll(/<article class="pick[^"]*"[^>]*>[\s\S]*?<\/article>/g)]
     .map((match) => match[0])
     .filter((row) => row.includes('<video'))
     .map((row) => row.match(/data-i18n="(p\d+t)"/)?.[1]);
@@ -378,7 +384,7 @@ test('old resume PDFs still land on the homepage', () => {
 test('project screenshots are static, lazy, and described', () => {
   const shots = [
     ...tags('img', projectsPage).filter((tag) => attr(tag, 'class') === 'project-shot'),
-    ...tags('img').filter((tag) => attr(tag, 'class') === 'item-media'),
+    ...tags('img').filter((tag) => attr(tag, 'class') === 'pick-shot'),
   ];
   assert.equal(shots.length, 5);
   for (const shot of shots) {
@@ -411,16 +417,16 @@ test('zh and en dictionaries match and every key is used', () => {
 test('pages never start hidden or animated in', () => {
   assert.doesNotMatch(css, /animation:\s*fadeUp|\.reveal\s*\{\s*opacity:\s*0/);
   assert.doesNotMatch(script, /\bnumObs\b|\brevObs\b|requestAnimationFrame\(step\)/);
-  assert.match(index, /data-i18n="p1res">Dual-arm fine manipulation success 30% → 70%</);
+  assert.match(index, /<strong>30% → 70%<\/strong><span data-i18n="p1r1">/);
 });
 
 test('the homepage leads with RoboSynChallenge and ChainPlanner and keeps the headline results', () => {
-  const rows = [...index.matchAll(/<article class="item[^"]*"[^>]*>[\s\S]*?<\/article>/g)].map((match) => match[0]);
+  const rows = [...index.matchAll(/<article class="pick[^"]*"[^>]*>[\s\S]*?<\/article>/g)].map((match) => match[0]);
   assert.match(rows[0], /data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge/);
-  assert.match(rows[1], /<article class="item hl" id="chainplanner"/);
-  assert.match(rows[1], /data-i18n="p5res">[^<]*22 \/ 26/);
+  assert.match(rows[1], /<article class="pick" id="chainplanner"/);
+  assert.match(rows[1], /<strong>22 \/ 26<\/strong>/);
   const recap = rows.find((row) => row.includes('id="recap"')) ?? '';
-  assert.match(recap, /data-i18n="p4res">[^<]*≈2×/);
+  assert.match(recap, /<strong>≈2×<\/strong>/);
 
   const firstProject = projectsPage.match(/<article class="project-card"[^>]*>[\s\S]*?<\/article>/)?.[0] ?? '';
   assert.match(firstProject, /id="robosyn"/);
@@ -430,7 +436,7 @@ test('the homepage leads with RoboSynChallenge and ChainPlanner and keeps the he
 test('reduced motion and the skip link are handled', () => {
   const reduced = bracedBlock(css, '@media (prefers-reduced-motion: reduce)');
   assert.match(reduced, /html\s*\{[\s\S]*?scroll-behavior:\s*auto\s*!important/);
-  assert.match(css, /\.skip-link:focus\s*\{[^}]*top:\s*12px/);
+  assert.match(css, /\.skip-link:focus\s*\{[^}]*top:\s*16px/);
   // Hover autoplay stays off when the visitor asks for less motion.
   assert.match(script, /prefers-reduced-motion: reduce/);
 });
@@ -509,7 +515,7 @@ test('every page anchor linked from the resume PDF exists', async () => {
 test('work and education rows show the employer and both schools', () => {
   const experience = index.match(/<section class="section" id="experience">[\s\S]*?<\/section>/)?.[0] ?? '';
   assert.match(experience, /<h2 data-i18n="secExp">Experience<\/h2>/);
-  assert.match(experience, /<h3>FMC3-Robotics<\/h3>/);
+  assert.match(experience, /<div class="meta">FMC3-Robotics ·/);
   assert.match(experience, /<h3 data-i18n="exp2title">East China Normal University<\/h3>/);
   assert.match(experience, /<h3 data-i18n="exp3title">Jiangsu Univ\. of Sci\. &amp; Tech\. Suzhou Institute of Technology<\/h3>/);
   assert.equal((experience.match(/<li data-i18n="exp1d\d">/g) ?? []).length, 6);
@@ -534,7 +540,7 @@ test('items the owner removed stay off the site', () => {
 test('pages open in English and remember a switch to Chinese', () => {
   for (const page of pages) {
     assert.match(page, /<html lang="en">/);
-    assert.match(page, /<button class="lang-toggle" type="button"[^>]*>中<\/button>/);
+    assert.match(page, /<button class="control-btn lang-toggle" type="button"[^>]*>中<\/button>/);
     // Every translatable text is already the English one, so nothing flashes in Chinese first.
     for (const [, key, text] of page.matchAll(/\sdata-i18n="([^"]+)"[^>]*>([^<]*)</g)) {
       assert.equal(text, htmlText(dictionary.en[key]), key);
