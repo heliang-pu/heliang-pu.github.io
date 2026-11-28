@@ -34,7 +34,6 @@ assets/
   i18n.js               # 中英文案字典（data-i18n / data-i18n-aria / data-i18n-alt 引用的键）
   projects/             # 项目图片和视频
   competition/          # 竞赛页的视频、封面和首页小图
-  publications/         # 论文综述机制分类总图
   logos/                # 真机平台 logo
   portrait.jpg          # 头像
 scripts/stamp-assets.mjs  # 给页面里的样式、脚本地址加内容哈希

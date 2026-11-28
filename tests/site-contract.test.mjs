@@ -555,6 +555,8 @@ test('items the owner removed stay off the site', () => {
     assert.doesNotMatch(source, /bilibili|哔哩哔哩/i, name);
     // 2026-11-18: the ECNU note no longer says "admitted on the first attempt".
     assert.doesNotMatch(source, /一次考取|first attempt/i, name);
+    // 2026-11-28: the CSUR VLA RL survey was removed from the site on request.
+    assert.doesNotMatch(source, /ACM Computing Surveys|vla-rl-survey-taxonomy|Reinforcement Learning Post-Training for Vision-Language-Action Models/i, name);
   }
 });
 
@@ -571,17 +573,13 @@ test('pages open in English and remember a switch to Chinese', () => {
   assert.doesNotMatch(script, /=== 'en'\) applyLang\('en'\)/);
 });
 
-test('publications list the survey with taxonomy figure and competition report with methods & weights', async () => {
+test('publications list the competition report with methods & weights, first author in bold', () => {
   const section = index.match(/<section class="section" id="publications">[\s\S]*?<\/section>/)?.[0] ?? '';
   const pubs = [...section.matchAll(/<article class="pub">[\s\S]*?<\/article>/g)].map((match) => match[0]);
-  assert.equal(pubs.length, 2);
-  assert.match(pubs[0], /<h3>Reinforcement Learning Post-Training for Vision-Language-Action Models: A Survey<\/h3>/);
-  assert.match(pubs[0], /data-i18n="pub1venue">ACM Computing Surveys · under review/);
-  assert.match(pubs[0], /assets\/publications\/vla-rl-survey-taxonomy\.webp/);
-  await access(new URL('assets/publications/vla-rl-survey-taxonomy.webp', root));
-  assert.match(pubs[1], /<h3>Look at the Demonstrator First: Lessons from Ten Bimanual Tasks in RoboSynChallenge 2026<\/h3>/);
-  assert.match(pubs[1], /href="competition\.html#methods"/);
-  assert.match(pubs[1], /href="https:\/\/huggingface\.co\/puheliang\/RoboSynChallenge-fmc3-no1-real"/);
+  assert.equal(pubs.length, 1);
+  assert.match(pubs[0], /<h3>Look at the Demonstrator First: Lessons from Ten Bimanual Tasks in RoboSynChallenge 2026<\/h3>/);
+  assert.match(pubs[0], /href="competition\.html#methods"/);
+  assert.match(pubs[0], /href="https:\/\/huggingface\.co\/puheliang\/RoboSynChallenge-fmc3-no1-real"/);
   for (const pub of pubs) assert.match(pub, /<p class="authors"><strong>Heliang Pu<\/strong>, /);
 
   // Papers in double-blind review stay off the site until they are accepted (the CVPR 2027 submission).
