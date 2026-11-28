@@ -1,8 +1,8 @@
 {
-  "name": "蒲贺良 · 具身智能 / VLA 工程师",
-  "short_name": "蒲贺良",
-  "description": "具身智能 / VLA 工程师，专注 LeRobot、VLA Policy 与机器人真机部署。",
-  "lang": "zh-CN",
+  "name": "Heliang Pu (蒲贺良) · Robot Learning Engineer (VLA / WAM)",
+  "short_name": "Heliang Pu",
+  "description": "Robot learning engineer at FMC³ Robotics and M.S. student at ECNU, building and evaluating real-robot VLA and World Action Model policies.",
+  "lang": "en",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f6f5ef",

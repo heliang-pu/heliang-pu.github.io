@@ -1,4 +1,4 @@
-/* 主题切换、语言切换（默认英文）、滚动进度、视频播放、指标卡高光与竞赛页任务切换。
+/* 主题切换、语言切换（默认英文）、滚动进度与目录高亮、视频播放、邮箱复制与竞赛页任务切换。
    文案字典 i18n 见 assets/i18n.js（需先加载）。 */
 
 function applyTheme(t) {
@@ -66,6 +66,10 @@ function applyLang(lang) {
     toTopBtn.setAttribute('aria-label', t.toTopLabel);
     toTopBtn.setAttribute('title', t.toTopLabel);
   }
+  var copyBtn = document.querySelector('.copy-btn');
+  if (copyBtn && !copyBtn.classList.contains('copied')) {
+    copyBtn.textContent = t.copyEmail;
+  }
   try { localStorage.setItem('lang', lang); } catch (e) {}
 }
 
@@ -113,6 +117,80 @@ function toggleLang() {
     });
   });
 
+  /* 首屏按钮点击直接播放 ChainPlanner 三步演示视频 */
+  var watchBtn = document.getElementById('hero-watch');
+  var heroVideo = document.getElementById('hero-video');
+  if (watchBtn && heroVideo) {
+    watchBtn.addEventListener('click', function () {
+      var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      heroVideo.scrollIntoView({ behavior: rm ? 'auto' : 'smooth', block: 'center' });
+      var playing = heroVideo.play();
+      if (playing && playing.catch) playing.catch(function () {});
+    });
+  }
+
+  /* 邮箱一键复制 */
+  var copyBtn = document.querySelector('.copy-btn');
+  if (copyBtn) {
+    var resetTimer = null;
+    copyBtn.addEventListener('click', function () {
+      var email = copyBtn.getAttribute('data-copy') || 'puheliang122@gmail.com';
+      var cur = document.documentElement.lang === 'zh-CN' ? 'zh' : 'en';
+      var done = function () {
+        var t = i18n[cur];
+        copyBtn.classList.add('copied');
+        copyBtn.textContent = t.copiedEmail;
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(function () {
+          var langNow = document.documentElement.lang === 'zh-CN' ? 'zh' : 'en';
+          var tNow = i18n[langNow];
+          copyBtn.classList.remove('copied');
+          copyBtn.textContent = tNow.copyEmail;
+        }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(done, done);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = email;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        done();
+      }
+    });
+  }
+
+  /* 侧边栏目录滚动高亮（Scroll-Spy） */
+  var navAnchors = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+  if (navAnchors.length && window.IntersectionObserver) {
+    var navMap = {};
+    var observed = [];
+    navAnchors.forEach(function (a) {
+      var id = a.getAttribute('href').slice(1);
+      var sec = document.getElementById(id);
+      if (sec) {
+        navMap[id] = a;
+        observed.push(sec);
+      }
+    });
+    var setActive = function (id) {
+      navAnchors.forEach(function (a) {
+        a.classList.toggle('active', a === navMap[id]);
+      });
+    };
+    if (observed.length) setActive(observed[0].id);
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-18% 0px -65% 0px', threshold: 0 });
+    observed.forEach(function (sec) { io.observe(sec); });
+  }
+
   /* 首页项目卡片：鼠标移上去就播放（这些视频没有声音），移开暂停。
      触屏和减少动态效果的设置下不自动播，照常点播放按钮。 */
   var canHover = window.matchMedia && matchMedia('(hover: hover)').matches &&
@@ -156,13 +234,4 @@ function toggleLang() {
     window.addEventListener('hashchange', showTask);
     showTask();
   }
-
-  /* 指标卡跟随鼠标高光（触摸设备无 pointermove hover，自然不触发） */
-  document.querySelectorAll('.metric').forEach(function (card) {
-    card.addEventListener('pointermove', function (e) {
-      var r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    });
-  });
 })();

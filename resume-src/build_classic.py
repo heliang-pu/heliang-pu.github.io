@@ -71,6 +71,8 @@ def main() -> None:
         type=pathlib.Path,
         default=ROOT / "heliang-pu-resume.pdf",
     )
+    parser.add_argument("--title", default="蒲贺良 - 具身智能算法工程师（VLA / WAM）简历")
+    parser.add_argument("--author", default="蒲贺良")
     args = parser.parse_args()
     args.out.parent.mkdir(parents=True, exist_ok=True)
 
@@ -92,8 +94,8 @@ def main() -> None:
         now = datetime.datetime.now().astimezone().strftime("D:%Y%m%d%H%M%S%z")
         writer.add_metadata(
             {
-                "/Title": "蒲贺良 - 具身智能算法工程师（VLA / WAM）简历",
-                "/Author": "蒲贺良",
+                "/Title": args.title,
+                "/Author": args.author,
                 "/ModDate": now[:-2] + "'" + now[-2:] + "'",
             }
         )

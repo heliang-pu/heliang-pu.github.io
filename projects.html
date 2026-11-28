@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Project details by Puheliang: NeurIPS 2026 RoboSynChallenge (simulation champion &amp; real-robot WAM), ChainPlanner long-horizon planning, π0.6 RECAP real-robot self-improvement, tactile fusion on a dual-arm dexterous platform, camera-only GUI-agent tablet operation, plus more projects, a capability matrix and hardware platforms.">
+  <meta name="description" content="Project details by Heliang Pu: ChainPlanner long-horizon planning, NeurIPS 2026 RoboSynChallenge (simulation champion &amp; 32×A100 real-robot WAM), π0.6 RECAP real-robot self-improvement, dual-arm tactile fusion + RTC, camera-only GUI-agent tablet operation, plus more projects, a capability matrix and hardware platforms.">
   <meta name="theme-color" content="#0f766e">
-  <meta property="og:title" content="All projects - Puheliang">
-  <meta property="og:description" content="Project details by Puheliang: NeurIPS 2026 RoboSynChallenge (simulation champion &amp; real-robot WAM), ChainPlanner long-horizon planning, π0.6 RECAP real-robot self-improvement, tactile fusion on a dual-arm dexterous platform, camera-only GUI-agent tablet operation, plus more projects, a capability matrix and hardware platforms.">
+  <meta property="og:title" content="All projects - Heliang Pu">
+  <meta property="og:description" content="Project details by Heliang Pu: ChainPlanner long-horizon planning, NeurIPS 2026 RoboSynChallenge (simulation champion &amp; 32×A100 real-robot WAM), π0.6 RECAP real-robot self-improvement, dual-arm tactile fusion + RTC, camera-only GUI-agent tablet operation, plus more projects, a capability matrix and hardware platforms.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://heliang-pu.github.io/projects.html">
   <meta property="og:image" content="https://heliang-pu.github.io/assets/og-cover.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="All projects - Puheliang">
-  <meta name="twitter:description" content="Project details by Puheliang: NeurIPS 2026 RoboSynChallenge (simulation champion &amp; real-robot WAM), ChainPlanner long-horizon planning, π0.6 RECAP real-robot self-improvement, tactile fusion on a dual-arm dexterous platform, camera-only GUI-agent tablet operation, plus more projects, a capability matrix and hardware platforms.">
+  <meta name="twitter:title" content="All projects - Heliang Pu">
+  <meta name="twitter:description" content="Project details by Heliang Pu: ChainPlanner long-horizon planning, NeurIPS 2026 RoboSynChallenge (simulation champion &amp; 32×A100 real-robot WAM), π0.6 RECAP real-robot self-improvement, dual-arm tactile fusion + RTC, camera-only GUI-agent tablet operation, plus more projects, a capability matrix and hardware platforms.">
   <meta name="twitter:image" content="https://heliang-pu.github.io/assets/og-cover.png">
   <link rel="canonical" href="https://heliang-pu.github.io/projects.html">
   <link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192">
@@ -22,8 +22,8 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <title>All projects - Puheliang</title>
-  <link rel="stylesheet" href="assets/site.css?v=be2fab4e">
+  <title>All projects - Heliang Pu</title>
+  <link rel="stylesheet" href="assets/site.css?v=ebff7e64">
   <script>
     (function () {
       try {
@@ -50,7 +50,7 @@
       <h1 data-i18n="projPageTitle">All projects</h1>
       <p class="page-desc" data-i18n="projPageDesc">The homepage keeps to the highlights. Here are the full write-ups, plus more projects, a capability matrix and the hardware I have worked with.</p>
       <nav class="page-toc" aria-label="On this page" data-i18n-aria="projTocAria">
-        <a href="#projects" data-i18n="secProjects">Projects</a>
+        <a href="#projects" data-i18n="secProjects">Selected Projects</a>
         <a href="#more-projects" data-i18n="secMore">More Projects</a>
         <a href="#skills" data-i18n="secSkills">Capabilities</a>
         <a href="#platforms" data-i18n="secPlatforms">Hardware Platforms</a>
@@ -58,362 +58,362 @@
     </header>
 
     <main class="task-list" id="main">
-  <section class="section" id="projects">
-          <div class="section-head">
-            <h2 data-i18n="secProjects">Projects</h2>
-            <span class="section-kicker" data-i18n="kickerProjects">From one arm to two, from single tasks to long-horizon ones</span>
-          </div>
-          <div class="project-grid">
-            <article class="project-card" id="robosyn">
-              <div>
-                <h3 data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge: Overall Champion, Simulation Track (Team Lead)</h3>
-                <p class="desc" data-i18n="p0d">Led team fmc3-no1 across ten bimanual manipulation tasks on the AgileX CobotMagic platform (two PiPER arms, three RGB cameras), winning the simulation track overall championship and taking the system through to autonomous real-robot execution.</p>
-                <ul class="plain-list">
-                  <li data-i18n="p0b1">Simulation track (data-driven π0.5): fine-tuned one π0.5 per task (openpi / JAX); doubled scripted-expert data to ~20k judged episodes, replayed failure scenes with adjusted experts, applied wide domain randomization (pose ×1.6, noise ×2, 300 textures, moving top camera), and tuned per-task execution horizons.</li>
-                  <li data-i18n="p0b2">Real-robot world action model: used a digital twin to pinpoint wrist-camera pose shift as the sim2real bottleneck, then post-trained Phoenix-MWA (Wan2.2-5B video + ~1B action expert) on 32 A100s using real data only.</li>
-                  <li data-i18n="p0b3">Takeover data pipeline &amp; inference rules: built a web console for checkpoint evaluation, leader-arm takeover and tablet control; trimmed failed lead-ins and collapsed pauses over 0.5 s to fix stalling, and added observation-only adapter rules plus RTC soft-mask action-chunk inpainting.</li>
-                  <li data-i18n="p0b4">Evaluation packaging &amp; technical report: packaged all ten tasks for one-command sim/real evaluation and wrote (first author) the winning team's technical report.</li>
-                </ul>
-                <p class="item-links"><a href="competition.html" data-i18n="compLinkTasks">ten tasks, sim vs. real</a><span class="sep">/</span><a href="competition.html#methods" data-i18n="compMethodsLink">Methods →</a></p>
+      <section class="section" id="projects">
+        <div class="section-head">
+          <h2 data-i18n="secProjects">Selected Projects</h2>
+          <span class="section-kicker" data-i18n="kickerProjects">Method design, real-robot failure diagnosis &amp; post-training</span>
+        </div>
+        <div class="project-grid">
+          <article class="project-card" id="chainplanner">
+            <div>
+              <h3 id="chainplanner-title" data-i18n="p5t">ChainPlanner: Long-Horizon Planning for World Action Models</h3>
+              <p class="desc" data-i18n="p5d">A high-level planner that lets the frozen ten-task world action model Phoenix-MWA carry out long-horizon tasks. The key idea is that no long-horizon data is needed: placing the single-task episodes already collected for the low-level model into random skill chains supervises any order, length and repetition of skills.</p>
+              <ul class="plain-list">
+                <li data-i18n="p5b1">Plan once, then track steps (G5): one 2B VLM (RynnBrain1.1-2B + LoRA) first turns the instruction into a numbered skill plan, then every few seconds decides whether the current step is still running or done and updates a one-line language memory (steps finished, progress s/4).</li>
+                <li data-i18n="p5b2">The step query never sees the instruction and the next skill always comes from the plan, so execution does not depend on phrasing, a skill can repeat ("press the bell three times"), and an instruction may state only the goal. A switch needs N agreeing answers in a row; the arms then return home and the next step starts with its own prompt.</li>
+                <li data-i18n="p5b3">Single-task data only: 5,273 single-task episodes of ten tasks (about 42 h, 775 held out by episode for testing) yield 155k chain samples, trained in about 1.5 h on eight A100s. In offline closed-loop replay with explicit skill names, G5 completes 260 / 300 chains (2–10 skills) with 0 / 1,500 wrong switches (231–235 / 300 with 25% of the data).</li>
+                <li data-i18n="p5b4">On the robot it shares one GPU with the world model (~5 GB, 0.3–0.6 s per answer). Across two planner versions (G2 + G5), 22 of 26 real-robot multi-skill episodes completed without intervention (up to 5 skills). On the same held-out offline chains, ChainPlanner completes 62 / 73 vs. 19 / 73 for a general-purpose frontier model.</li>
+              </ul>
+              <a class="section-link project-link" href="https://github.com/heliang-pu/wam-long-horizon-planner" target="_blank" rel="noreferrer" data-i18n="p5code">Code and all 12 real-robot demos (GitHub) →</a>
+            </div>
+            <div class="project-side">
+              <video class="project-shot project-video" controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-goal-only.webp" aria-label="Play: ChainPlanner splits an instruction that only states the goal into 3 steps and completes them" data-i18n-aria="p5video">
+                <source src="assets/projects/chainplanner-goal-only.mp4" type="video/mp4">
+              </video>
+              <div class="tech-row">
+                <span class="tech red">RynnBrain1.1-2B</span>
+                <span class="tech">LoRA</span>
+                <span class="tech green">Phoenix-MWA</span>
+                <span class="tech">VLM Planner</span>
+                <span class="tech">Language Memory</span>
+                <span class="tech green">Skill Chaining</span>
               </div>
-              <div class="project-side">
-                <img class="project-shot" src="assets/competition/drawer-open-place-tile.webp" alt="RoboSynChallenge drawer task: simulation on the left, real robot on the right" data-i18n-alt="compImgAlt" width="640" height="240" loading="lazy" decoding="async">
-                <div class="tech-row">
-                  <span class="tech red">π0.5 (JAX)</span>
-                  <span class="tech green">Phoenix-MWA</span>
-                  <span class="tech">32×A100</span>
-                  <span class="tech">EmbodiChain</span>
-                  <span class="tech">Action Inpainting</span>
-                  <span class="tech green">Web Console</span>
+              <div class="result-strip">
+                <div class="result">
+                  <strong>260 / 300</strong>
+                  <span data-i18n="p5r1v">G5 offline replay (explicit skill names, 2–10 skills, 0/1,500 wrong switches)</span>
                 </div>
-                <div class="result-strip">
-                  <div class="result">
-                    <strong data-i18n="p0r1k">#1 Overall</strong>
-                    <span data-i18n="p0r1v">Simulation track champion (team lead)</span>
-                  </div>
-                  <div class="result">
-                    <strong data-i18n="p0r2k">10 Tasks</strong>
-                    <span data-i18n="p0r2v">Bimanual sim &amp; real-robot closed loop</span>
-                  </div>
+                <div class="result">
+                  <strong>22 / 26</strong>
+                  <span data-i18n="p5r2v">real-robot multi-skill episodes completed without intervention across two planner versions (up to 5 skills)</span>
                 </div>
               </div>
-            </article>
-
-            <article class="project-card" id="chainplanner">
-              <div>
-                <h3 id="chainplanner-title" data-i18n="p5t">ChainPlanner: Long-Horizon Planning for World Action Models</h3>
-                <p class="desc" data-i18n="p5d">A high-level planner that lets the frozen ten-task world action model Phoenix-MWA carry out long-horizon tasks. The key idea is that no long-horizon data is needed: placing the single-task episodes already collected for the low-level model into random skill chains supervises any order, length and repetition of skills.</p>
-                <ul class="plain-list">
-                  <li data-i18n="p5b1">Plan once, then track steps: one 2B VLM (RynnBrain1.1-2B + LoRA) first turns the instruction into a numbered skill plan, then every few seconds decides whether the current step is still running or done and updates a one-line language memory (steps finished, progress s/4).</li>
-                  <li data-i18n="p5b2">The step query never sees the instruction and the next skill always comes from the plan, so execution does not depend on phrasing, a skill can repeat ("press the bell three times"), and an instruction may state only the goal. A switch needs N agreeing answers in a row; the arms then return home and the next step starts with its own prompt.</li>
-                  <li data-i18n="p5b3">Single-task data only: 5,273 single-task episodes of ten tasks (about 42 h, 775 held out by episode for testing) yield 155k chain samples, trained in about 1.5 h on eight A100s. With a quarter of the data it still completes 231–235 of 300 chains in replay.</li>
-                  <li data-i18n="p5b4">On the robot it shares one GPU with the world model (about 5 GB, 0.3–0.6 s per answer). Against a general-purpose model on the same chains, Claude Fable 5.2 completes 19 of 73 and ChainPlanner 62.</li>
-                </ul>
-                <a class="section-link project-link" href="https://github.com/heliang-pu/wam-long-horizon-planner" target="_blank" rel="noreferrer" data-i18n="p5code">Code and all 12 real-robot demos (GitHub) →</a>
-              </div>
-              <div class="project-side">
-                <video class="project-shot project-video" controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-goal-only.webp" aria-label="Play: ChainPlanner splits an instruction that only states the goal into 3 steps and completes them" data-i18n-aria="p5video">
-                  <source src="assets/projects/chainplanner-goal-only.mp4" type="video/mp4">
+            </div>
+            <figure class="project-figure">
+              <img class="lang-zh" src="assets/projects/chainplanner-method-zh.webp" alt="ChainPlanner 方法总览图" width="1520" height="1080" loading="lazy" decoding="async">
+              <img class="lang-en" src="assets/projects/chainplanner-method-en.webp" alt="ChainPlanner method overview" width="1580" height="1080" loading="lazy" decoding="async">
+              <figcaption data-i18n="p5fig">Overview: the planner writes the plan once and then only tracks the current step; the step query never sees the instruction, and the next skill always comes from the plan.</figcaption>
+            </figure>
+            <div class="demo-grid">
+              <figure class="clip">
+                <video controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-five-steps.webp" aria-labelledby="chainplanner-title cp-demo-1">
+                  <source src="assets/projects/chainplanner-five-steps.mp4" type="video/mp4">
                 </video>
-                <div class="tech-row">
-                  <span class="tech red">RynnBrain1.1-2B</span>
-                  <span class="tech">LoRA</span>
-                  <span class="tech green">Phoenix-MWA</span>
-                  <span class="tech">VLM Planner</span>
-                  <span class="tech">Language Memory</span>
-                  <span class="tech green">Skill Chaining</span>
-                </div>
-                <div class="result-strip">
-                  <div class="result">
-                    <strong>260 / 300</strong>
-                    <span data-i18n="p5r1v">chains completed in replay (2–10 skills), no wrong switch</span>
-                  </div>
-                  <div class="result">
-                    <strong>22 / 26</strong>
-                    <span data-i18n="p5r2v">real-robot multi-skill episodes without intervention, up to 5 skills</span>
-                  </div>
-                </div>
-              </div>
-              <figure class="project-figure">
-                <img class="lang-zh" src="assets/projects/chainplanner-method-zh.webp" alt="ChainPlanner 方法总览图" width="1520" height="1080" loading="lazy" decoding="async">
-                <img class="lang-en" src="assets/projects/chainplanner-method-en.webp" alt="ChainPlanner method overview" width="1580" height="1080" loading="lazy" decoding="async">
-                <figcaption data-i18n="p5fig">Overview: the planner writes the plan once and then only tracks the current step; the step query never sees the instruction, and the next skill always comes from the plan.</figcaption>
+                <figcaption>
+                  <strong id="cp-demo-1" data-i18n="p5v1t">Five steps with a repeated skill</strong>
+                  <span data-i18n="p5v1d">Press the bell, put the tomato in the drawer, press the bell twice, then put the pen in the holder</span>
+                </figcaption>
               </figure>
-              <div class="demo-grid">
-                <figure class="clip">
-                  <video controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-five-steps.webp" aria-labelledby="chainplanner-title cp-demo-1">
-                    <source src="assets/projects/chainplanner-five-steps.mp4" type="video/mp4">
-                  </video>
-                  <figcaption>
-                    <strong id="cp-demo-1" data-i18n="p5v1t">Five steps with a repeated skill</strong>
-                    <span data-i18n="p5v1d">Press the bell, put the tomato in the drawer, press the bell twice, then put the pen in the holder</span>
-                  </figcaption>
-                </figure>
-                <figure class="clip">
-                  <video controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-bell-three-times.webp" aria-labelledby="chainplanner-title cp-demo-2">
-                    <source src="assets/projects/chainplanner-bell-three-times.mp4" type="video/mp4">
-                  </video>
-                  <figcaption>
-                    <strong id="cp-demo-2" data-i18n="p5v2t">Press the bell three times</strong>
-                    <span data-i18n="p5v2d">One skill becomes three steps; each press is confirmed before the next</span>
-                  </figcaption>
-                </figure>
-                <figure class="clip">
-                  <video controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-pen-tube-bell.webp" aria-labelledby="chainplanner-title cp-demo-3">
-                    <source src="assets/projects/chainplanner-pen-tube-bell.mp4" type="video/mp4">
-                  </video>
-                  <figcaption>
-                    <strong id="cp-demo-3" data-i18n="p5v3t">A different order</strong>
-                    <span data-i18n="p5v3d">Put the pen in the holder, insert the test tube, then press the bell</span>
-                  </figcaption>
-                </figure>
-              </div>
-              <p class="demo-note" data-i18n="p5vnote">All are real-robot episodes from Nov 10 with no human takeover; the videos replay at the control rate, without model inference pauses.</p>
-            </article>
-
-            <article class="project-card" id="recap">
-              <div>
-                <h3 data-i18n="p4t">π0.6 RECAP Real-Robot Self-Improvement (AgileX PiperX Arm)</h3>
-                <p class="desc" data-i18n="p4d">Owned end to end. Reproduced and deployed π0.6 (RECAP) self-improvement on an AgileX PiperX single-arm platform, using phone plug-in as the benchmark task, so the policy keeps learning from autonomous rollouts and expert corrections on the real robot and gradually surpasses the demonstrations.</p>
-                <ul class="plain-list">
-                  <li data-i18n="p4b1">Brought up the arm, gripper, multi-camera rig, and teleoperation pipeline; collected and cleaned 200 demonstrations as cold-start data.</li>
-                  <li data-i18n="p4b2">Reproduced the RECAP recipe: offline-RL pre-training with advantage conditioning, fusing demonstrations, autonomous rollouts, and expert interventions.</li>
-                  <li data-i18n="p4b3">Collected autonomous rollouts after deployment, logged failures and injected human corrections, and fine-tuned the value function for better advantage estimates; action chunking and async inference cut execution latency across several real-robot improvement rounds.</li>
-                </ul>
-              </div>
-              <div class="project-side">
-                <img class="project-shot" src="assets/projects/recap-phone-plug.webp" alt="π0.6 RECAP on a real AgileX PiperX arm: phone plug-in" data-i18n-alt="p4img" width="1280" height="720" loading="lazy" decoding="async">
-                <div class="tech-row">
-                  <span class="tech red">π0.6</span>
-                  <span class="tech">RECAP</span>
-                  <span class="tech">Advantage Conditioning</span>
-                  <span class="tech green">Offline RL</span>
-                  <span class="tech">Action Chunking</span>
-                  <span class="tech green" data-i18n="kw_async">Async Inference</span>
-                </div>
-                <div class="result-strip">
-                  <div class="result">
-                    <strong>≈2×</strong>
-                    <span data-i18n="p4r1v">Benchmark-task throughput</span>
-                  </div>
-                  <div class="result">
-                    <strong>≈−50%</strong>
-                    <span data-i18n="p4r2v">Benchmark-task failure rate</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" id="dual-arm">
-              <div>
-                <h3 data-i18n="p1t">Robotic Arm + AgiBot Dexterous Hand Dual-Arm Collaboration</h3>
-                <p class="desc" data-i18n="p1d">Built a dual-arm platform with a tactile-sensing AgiBot dexterous hand from scratch on LeRobot, wrapping hardware interfaces into a reusable robot adaptation layer and adding tactile feedback for much steadier fine manipulation.</p>
-                <ul class="plain-list">
-                  <li data-i18n="p1b1">Independently adapted the four modules—teleoperation, data collection, inference, and replay—into a reusable robot adaptation layer.</li>
-                  <li data-i18n="p1b2">Collected dual-arm coordinated grasping and fine-manipulation data; trained and deployed ACT, Diffusion Policy, and π0.5 policies on the real robot.</li>
-                  <li data-i18n="p1b3">Added a tactile encoder to π0.5 to fuse touch signals; RTC and async inference cut latency and improved timing consistency between the two arms.</li>
-                </ul>
-              </div>
-              <div class="project-side">
-                <img class="project-shot" src="assets/projects/dual-arm-dexterous.webp" alt="Real dual-arm grasping with a dexterous hand" data-i18n-alt="p1img" width="720" height="960" loading="lazy" decoding="async">
-                <div class="tech-row">
-                  <span class="tech green">LeRobot</span>
-                  <span class="tech">ACT</span>
-                  <span class="tech">Diffusion Policy</span>
-                  <span class="tech red">π0.5</span>
-                  <span class="tech">Tactile Encoder</span>
-                  <span class="tech green">LoRA</span>
-                  <span class="tech">RTC</span>
-                </div>
-                <div class="result-strip">
-                  <div class="result">
-                    <strong>30% → 70%</strong>
-                    <span data-i18n="p1r1">Dual-arm fine manipulation success rate</span>
-                  </div>
-                  <div class="result">
-                    <strong data-i18n="p1r2k">4 Modules</strong>
-                    <span data-i18n="p1r2v">Teleop / capture / inference / replay layer</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" id="tablet-tap">
-              <div>
-                <h3 data-i18n="p6t">PiPER Arm Operating an Android Tablet with a GUI Agent</h3>
-                <p class="desc" data-i18n="p6d">An end-to-end voice- and text-driven robot system where a PiPER arm operates an Android tablet with a 3D-printed compliant stylus using cameras alone—no ADB and no screen capture from the tablet. Combines a GUI agent with classical robot kinematics, hand-eye calibration, error modeling, and safety guards.</p>
-                <ul class="plain-list">
-                  <li data-i18n="p6b1">Camera-only GUI loop: SenseVoiceSmall transcribes voice commands; a wrist camera captures high-res screen views (with two-view glare removal, while a top camera tracks coarse pose and movement), and GUI-Owl-1.5 outputs tap, long-press, swipe, back, and home actions.</li>
-                  <li data-i18n="p6b2">Classical kinematics, trajectory planning &amp; safety: computes forward/inverse kinematics with Pinocchio on a firmware-calibrated URDF; enforces hover-plane transit, perpendicular press, per-step and velocity limits, collision checks, force-limited grasping, and fault recovery.</li>
-                  <li data-i18n="p6b3">Hand-eye calibration, error correction &amp; tooling: supports checkerboard eye-to-hand and 14-pose eye-in-hand wrist calibration, real-time ArUco tablet tracking, automated probing with leave-one-out tap-error compensation (translation / linear / quadratic), and parametric CAD 3D-printed compliant stylus holder (5 mm flex travel) and angled stand.</li>
-                  <li data-i18n="p6b4">Clean architecture &amp; rehearsal: ports-and-adapters layered codebase with dependency-rule unit tests, a unified web console for calibration, command execution and 3-camera recording, plus a full-pipeline software rehearsal harness that runs without hardware.</li>
-                </ul>
-                <a class="section-link project-link" href="https://github.com/heliang-pu/Robot-use-tablet" target="_blank" rel="noreferrer" data-i18n="p6code">Code, CAD files, and real-robot demo (GitHub) →</a>
-              </div>
-              <div class="project-side">
-                <video class="project-shot project-video" controls preload="none" playsinline width="1280" height="720" poster="assets/projects/tablet-tap-demo.webp" aria-label="Play: PiPER arm using a stylus to operate an Android tablet via camera and GUI-Owl-1.5" data-i18n-aria="p6video">
-                  <source src="assets/projects/tablet-tap-demo.mp4" type="video/mp4">
+              <figure class="clip">
+                <video controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-bell-three-times.webp" aria-labelledby="chainplanner-title cp-demo-2">
+                  <source src="assets/projects/chainplanner-bell-three-times.mp4" type="video/mp4">
                 </video>
-                <div class="tech-row">
-                  <span class="tech red">GUI-Owl-1.5</span>
-                  <span class="tech">SenseVoiceSmall</span>
-                  <span class="tech green">Pinocchio IK</span>
-                  <span class="tech">Hand-Eye Calib</span>
-                  <span class="tech">ArUco</span>
-                  <span class="tech green">CAD / 3D Print</span>
+                <figcaption>
+                  <strong id="cp-demo-2" data-i18n="p5v2t">Press the bell three times</strong>
+                  <span data-i18n="p5v2d">One skill becomes three steps; each press is confirmed before the next</span>
+                </figcaption>
+              </figure>
+              <figure class="clip">
+                <video controls preload="none" playsinline width="1280" height="720" poster="assets/projects/chainplanner-pen-tube-bell.webp" aria-labelledby="chainplanner-title cp-demo-3">
+                  <source src="assets/projects/chainplanner-pen-tube-bell.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                  <strong id="cp-demo-3" data-i18n="p5v3t">A different order</strong>
+                  <span data-i18n="p5v3d">Put the pen in the holder, insert the test tube, then press the bell</span>
+                </figcaption>
+              </figure>
+            </div>
+            <p class="demo-note" data-i18n="p5vnote">All are real-robot episodes from Nov 10 with no human takeover; the videos replay at the control rate, without model inference pauses.</p>
+          </article>
+
+          <article class="project-card" id="robosyn">
+            <div>
+              <h3 data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge: Overall Champion, Simulation Track (Team Lead)</h3>
+              <p class="desc" data-i18n="p0d">Led team fmc3-no1 across ten bimanual manipulation tasks on the AgileX CobotMagic platform (two PiPER arms, three RGB cameras), winning the simulation track overall championship and taking the system through to autonomous real-robot execution.</p>
+              <ul class="plain-list">
+                <li data-i18n="p0b1">Simulation track (data-driven π0.5): fine-tuned one π0.5 per task (openpi / JAX); doubled scripted-expert data to ~20k judged episodes, replayed failure scenes with adjusted experts, applied wide domain randomization (pose ×1.6, noise ×2, 300 textures, moving top camera), and tuned per-task execution horizons.</li>
+                <li data-i18n="p0b2">Real-robot world action model: used a digital twin to pinpoint wrist-camera pose shift as the sim2real bottleneck, then post-trained Phoenix-MWA (Wan2.2-5B video + ~1B action expert) on 32 A100s using real data only.</li>
+                <li data-i18n="p0b3">Takeover data pipeline &amp; inference rules: built a web console for checkpoint evaluation, leader-arm takeover and tablet control; found that failed pre-takeover lead-ins and pauses over 0.5 s taught the policy to stall, fixed it by trimming failed segments and collapsing pauses, and added observation-only adapter rules plus RTC soft-mask action-chunk inpainting.</li>
+                <li data-i18n="p0b4">Evaluation packaging &amp; technical report: packaged all ten tasks for one-command sim/real evaluation and wrote (first author) the winning team's technical report.</li>
+              </ul>
+              <p class="item-links"><a href="competition.html" data-i18n="compLinkTasks">ten tasks, sim vs. real</a><span class="sep">/</span><a href="competition.html#methods" data-i18n="compMethodsLink">Methods</a><span class="sep">/</span><a href="https://huggingface.co/puheliang/RoboSynChallenge-fmc3-no1-real" target="_blank" rel="noreferrer" data-i18n="compLinkWeights">Real-robot weights</a></p>
+            </div>
+            <div class="project-side">
+              <img class="project-shot" src="assets/competition/drawer-open-place-tile.webp" alt="RoboSynChallenge drawer task: simulation on the left, real robot on the right" data-i18n-alt="compImgAlt" width="640" height="240" loading="lazy" decoding="async">
+              <div class="tech-row">
+                <span class="tech red">π0.5 (JAX)</span>
+                <span class="tech green">Phoenix-MWA</span>
+                <span class="tech">32×A100</span>
+                <span class="tech">EmbodiChain</span>
+                <span class="tech">Action Inpainting</span>
+                <span class="tech green">Web Console</span>
+              </div>
+              <div class="result-strip">
+                <div class="result">
+                  <strong data-i18n="p0r1k">#1 Overall</strong>
+                  <span data-i18n="p0r1v">Simulation track champion (team lead)</span>
                 </div>
-                <div class="result-strip">
-                  <div class="result">
-                    <strong data-i18n="p6r1k">Camera-Only</strong>
-                    <span data-i18n="p6r1v">No ADB or tablet screen capture</span>
-                  </div>
-                  <div class="result">
-                    <strong data-i18n="p6r2k">Open-Ended GUI</strong>
-                    <span data-i18n="p6r2v">Voice or text: tap, long-press, swipe, typing &amp; multi-step tasks</span>
-                  </div>
+                <div class="result">
+                  <strong data-i18n="p0r2k">10 Tasks</strong>
+                  <span data-i18n="p0r2v">Real-robot WAM post-trained on 32×A100</span>
                 </div>
               </div>
-            </article>
-          </div>
-        </section>
+            </div>
+          </article>
 
-  <section class="section" id="more-projects">
-          <div class="section-head">
-            <h2 data-i18n="secMore">More Projects</h2>
-            <span class="section-kicker" data-i18n="kickerMore">Real-robot deployment, method reproduction, and simulation</span>
-          </div>
-          <div class="capability-grid">
-            <article class="capability more-item" id="demo-10">
-              <div class="more-head"><h3 data-i18n="more1t">PiPER Dual-Arm Sim2Real Pen Handover</h3><span class="kind" data-i18n="kindSimReal">Sim / Real</span></div>
-              <p data-i18n="more1d">Combined camera-pose alignment, a digital twin, and mixed simulation / real training to run pen pick-up, handover, and placement on dual PiPER arms.</p>
-            </article>
-            <article class="capability more-item" id="demo-06">
-              <div class="more-head"><h3 data-i18n="more2t">π0.5 JAX Dual-Arm Tissue Sorting</h3><span class="kind" data-i18n="kindReal">Real robot</span></div>
-              <p data-i18n="more2d">Ran tissue sorting with the JAX version of π0.5, using async inference and RTC to make real-robot motion smoother and more responsive.</p>
-            </article>
-            <article class="capability more-item" id="demo-02">
-              <div class="more-head"><h3 data-i18n="more3t">Visual Keypoint Retargeting to a Dexterous Hand</h3><span class="kind" data-i18n="kindReal">Real robot</span></div>
-              <p data-i18n="more3d">Extracted hand keypoints and joint posture from RGB video and retargeted them to a robot dexterous hand for stable, accurate in-hand finger opposition.</p>
-            </article>
-            <article class="capability more-item" id="demo-05">
-              <div class="more-head"><h3 data-i18n="more4t">Minimax Tic-Tac-Toe with π0.5 Placement</h3><span class="kind" data-i18n="kindReal">Real robot</span></div>
-              <p data-i18n="more4d">Minimax picks the move and π0.5 places the piece using visual prompts, compensating for weak language following with visual localization.</p>
-            </article>
-            <article class="capability more-item" id="demo-08">
-              <div class="more-head"><h3 data-i18n="more5t">openpi Reproduction of π0.5 Subtask Decomposition</h3><span class="kind sim" data-i18n="kindSim">Simulation</span></div>
-              <p data-i18n="more5d">Reproduced the subtask decomposition introduced in π0.5 but not open-sourced, splitting a two-mug placement task into trackable stages and completing it in simulation.</p>
-            </article>
-            <article class="capability more-item">
-              <div class="more-head"><h3 data-i18n="more7t">Unitree G1 RL Locomotion</h3><span class="kind sim" data-i18n="kindSim">Simulation</span></div>
-              <p data-i18n="more7d">Trained a rough-terrain velocity-tracking policy for Unitree G1 with PPO in MuJoCo Playground (official baseline configuration, 181M simulation steps).</p>
-            </article>
-          </div>
-        </section>
+          <article class="project-card" id="recap">
+            <div>
+              <h3 data-i18n="p4t">π0.6 RECAP Real-Robot Self-Improvement (AgileX PiperX Arm)</h3>
+              <p class="desc" data-i18n="p4d">Owned end to end. Reproduced and deployed π0.6 (RECAP) self-improvement on an AgileX PiperX single-arm platform using phone plug-in as the benchmark task, improving over the 200-demo cold-start baseline through autonomous rollouts, expert corrections, and async action-chunk execution.</p>
+              <ul class="plain-list">
+                <li data-i18n="p4b1">Brought up the arm, gripper, multi-camera rig, and teleoperation pipeline; collected and cleaned 200 demonstrations as the cold-start dataset and baseline.</li>
+                <li data-i18n="p4b2">Reproduced the RECAP recipe: offline-RL pre-training with advantage conditioning, fusing demonstrations, autonomous rollouts, and expert interventions.</li>
+                <li data-i18n="p4b3">Collected autonomous rollouts after deployment, logged failures and injected human corrections, and fine-tuned the value function for better advantage estimates; relative to the 200-demo cold-start baseline, combining RECAP rounds with action chunking and async inference achieved ~2× throughput and roughly halved the failure rate.</li>
+              </ul>
+            </div>
+            <div class="project-side">
+              <img class="project-shot" src="assets/projects/recap-phone-plug.webp" alt="π0.6 RECAP on a real AgileX PiperX arm: phone plug-in" data-i18n-alt="p4img" width="1280" height="720" loading="lazy" decoding="async">
+              <div class="tech-row">
+                <span class="tech red">π0.6</span>
+                <span class="tech">RECAP</span>
+                <span class="tech">Advantage Conditioning</span>
+                <span class="tech green">Offline RL</span>
+                <span class="tech">Action Chunking</span>
+                <span class="tech green" data-i18n="kw_async">Async Inference</span>
+              </div>
+              <div class="result-strip">
+                <div class="result">
+                  <strong>≈2×</strong>
+                  <span data-i18n="p4r1v">Benchmark throughput (vs. 200-demo cold-start baseline, w/ async inference)</span>
+                </div>
+                <div class="result">
+                  <strong>≈−50%</strong>
+                  <span data-i18n="p4r2v">Benchmark failure rate (vs. cold-start baseline)</span>
+                </div>
+              </div>
+            </div>
+          </article>
 
-  <section class="section" id="skills">
-          <div class="section-head">
-            <h2 data-i18n="secSkills">Capabilities</h2>
-            <span class="section-kicker" data-i18n="kickerSkills">Models, Control, Data &amp; Deployment in Closed Loop</span>
-          </div>
-          <div class="capability-grid">
-            <div class="capability">
-              <h3 data-i18n="cap1t">Data Collection &amp; Dataset Engineering</h3>
-              <p data-i18n="cap1d">Teleoperation, exoskeleton capture, multi-camera data, data cleaning, replay, LeRobot Dataset, and demonstration management.</p>
+          <article class="project-card" id="dual-arm">
+            <div>
+              <h3 data-i18n="p1t">Robotic Arm + AgiBot Dexterous Hand Dual-Arm Collaboration</h3>
+              <p class="desc" data-i18n="p1d">Built a dual-arm platform with a tactile-sensing AgiBot dexterous hand from scratch on LeRobot, wrapping hardware interfaces into a reusable robot adaptation layer and combining tactile feedback with RTC async inference for steadier fine manipulation.</p>
+              <ul class="plain-list">
+                <li data-i18n="p1b1">Independently adapted the four modules—teleoperation, data collection, inference, and replay—into a reusable robot adaptation layer.</li>
+                <li data-i18n="p1b2">Collected dual-arm coordinated grasping and fine-manipulation data; trained and deployed ACT, Diffusion Policy, and π0.5 policies on the real robot.</li>
+                <li data-i18n="p1b3">Added a tactile encoder to π0.5 and paired it with RTC async inference to reduce latency and improve bimanual timing, raising overall dual-arm fine-manipulation system success from 30% to 70%.</li>
+              </ul>
             </div>
-            <div class="capability">
-              <h3 data-i18n="cap2t">Robot Platform Adaptation</h3>
-              <p data-i18n="cap2d">Adapted get_state / send_action, cameras, grippers, tactile sensors, and control interfaces across robotic arms, dexterous hands, and humanoid platforms.</p>
+            <div class="project-side">
+              <img class="project-shot" src="assets/projects/dual-arm-dexterous.webp" alt="Real dual-arm grasping with a dexterous hand" data-i18n-alt="p1img" width="720" height="960" loading="lazy" decoding="async">
+              <div class="tech-row">
+                <span class="tech green">LeRobot</span>
+                <span class="tech">ACT</span>
+                <span class="tech">Diffusion Policy</span>
+                <span class="tech red">π0.5</span>
+                <span class="tech">Tactile Encoder</span>
+                <span class="tech green">LoRA</span>
+                <span class="tech">RTC</span>
+              </div>
+              <div class="result-strip">
+                <div class="result">
+                  <strong>30% → 70%</strong>
+                  <span data-i18n="p1r1">System success after adding tactile encoder + RTC</span>
+                </div>
+                <div class="result">
+                  <strong data-i18n="p1r2k">4 Modules</strong>
+                  <span data-i18n="p1r2v">Teleop / capture / inference / replay layer</span>
+                </div>
+              </div>
             </div>
-            <div class="capability">
-              <h3 data-i18n="cap3t">Policy Model Training</h3>
-              <p data-i18n="cap3d">Training, post-training, and benchmarking across world action models (Phoenix-MWA / InternW0 / OpenWAM) and VLA / imitation policies (ACT, Diffusion Policy, π0 / π0.5 / π0.6, GR00T), including a reproduction of RECAP's offline-RL and advantage-conditioning self-improvement loop.</p>
-            </div>
-            <div class="capability">
-              <h3 data-i18n="cap4t">Real-Robot Inference &amp; Real-Time Execution</h3>
-              <p data-i18n="cap4d">Built inference servers supporting async inference, RTC, action chunk execution, latency optimization, and real-device closed-loop testing.</p>
-            </div>
-            <div class="capability">
-              <h3 data-i18n="cap9t">Classical Robot Control &amp; Calibration</h3>
-              <p data-i18n="cap9d">Pinocchio / URDF forward &amp; inverse kinematics, joint and Cartesian trajectory planning, velocity / collision / firmware-limit safety guards, eye-in-hand &amp; eye-to-hand calibration, ArUco pose tracking, error modeling &amp; compensation, and 3D-printed end-effector tooling.</p>
-            </div>
-            <div class="capability">
-              <h3 data-i18n="cap10t">Simulation, Digital Twin &amp; Sim2Real</h3>
-              <p data-i18n="cap10d">EmbodiChain and MuJoCo evaluation, digital-twin camera alignment, wide domain randomization, scripted-expert data generation, and offline software rehearsal harnesses.</p>
-            </div>
-            <div class="capability">
-              <h3 data-i18n="cap5t">Multimodal Perception &amp; Fusion</h3>
-              <p data-i18n="cap5d">Multimodal state input and feedback fusion with RGB cameras, wrist cameras, tactile encoder, VLM / RoboBrain VLM.</p>
-            </div>
-            <div class="capability">
-              <h3 data-i18n="cap6t">Skill Orchestration &amp; Task Planning</h3>
-              <p data-i18n="cap6d">Integrated RoboOS skill invocation, high-level task decomposition, multi-skill orchestration, and sorting flow control.</p>
-            </div>
-            <div class="capability">
-              <h3 data-i18n="cap7t">Evaluation &amp; Failure Analysis</h3>
-              <p data-i18n="cap7d">Focused on success rate, motion stability, baseline comparison, failure root-cause analysis, data distribution checks, and policy generalization.</p>
-            </div>
-            <div class="capability">
-              <h3 data-i18n="cap8t">AI-Assisted Engineering</h3>
-              <p data-i18n="cap8d">Leveraging Cursor, Claude Code, Codex to boost efficiency in robot interface adaptation, data script development, training tuning, and experiment iteration.</p>
-            </div>
-          </div>
-        </section>
+          </article>
 
-  <section class="section" id="platforms">
-          <div class="section-head">
-            <h2 data-i18n="secPlatforms">Hardware Platforms</h2>
-            <span class="section-kicker" data-i18n="kickerPlatforms">Robots, mocap &amp; teleop hardware I have worked on</span>
+          <article class="project-card" id="tablet-tap">
+            <div>
+              <h3 data-i18n="p6t">PiPER Arm Operating an Android Tablet with a GUI Agent</h3>
+              <p class="desc" data-i18n="p6d">An end-to-end voice- and text-driven robot system where a PiPER arm operates an Android tablet with a 3D-printed compliant stylus using cameras alone—no ADB and no screen capture from the tablet. Combines a GUI agent with classical robot kinematics, hand-eye calibration, error modeling, and safety guards.</p>
+              <ul class="plain-list">
+                <li data-i18n="p6b1">Camera-only GUI loop: SenseVoiceSmall transcribes voice commands; a wrist camera captures rectified high-res screen views (1100–1300 px screen width, dual-view glare removal; top camera tracks coarse pose), and vLLM-served GUI-Owl-1.5 (0.75–1.5 s/step) plans tap, long-press, swipe, typing, back, and home actions.</li>
+                <li data-i18n="p6b2">Classical kinematics, trajectory planning &amp; safety: computes forward/inverse kinematics with Pinocchio on a firmware-calibrated URDF; enforces hover-plane transit, perpendicular press, per-step and velocity limits, collision checks, force-limited grasping, and fault recovery.</li>
+                <li data-i18n="p6b3">Hand-eye calibration, error correction &amp; tooling: checkerboard eye-to-hand calibration (0.11 px corner reprojection error, 0.02° frame-to-frame normal repeatability), 14-pose eye-in-hand wrist calibration, real-time ArUco tracking, leave-one-out adaptive tap-error compensation, and 3D-printed 5 mm compliant stylus holder &amp; stand.</li>
+                <li data-i18n="p6b4">Clean architecture &amp; rehearsal: ports-and-adapters layered codebase with dependency-rule unit tests, a unified web console for calibration, command execution and 3-camera recording, plus a full-pipeline software rehearsal harness that runs without hardware.</li>
+              </ul>
+              <a class="section-link project-link" href="https://github.com/heliang-pu/Robot-use-tablet" target="_blank" rel="noreferrer" data-i18n="p6code">Code, CAD files, and real-robot demo (GitHub) →</a>
+            </div>
+            <div class="project-side">
+              <video class="project-shot project-video" controls preload="none" playsinline width="1280" height="720" poster="assets/projects/tablet-tap-demo.webp" aria-label="Play: PiPER arm using a stylus to operate an Android tablet via camera and GUI-Owl-1.5" data-i18n-aria="p6video">
+                <source src="assets/projects/tablet-tap-demo.mp4" type="video/mp4">
+              </video>
+              <div class="tech-row">
+                <span class="tech red">GUI-Owl-1.5</span>
+                <span class="tech">SenseVoiceSmall</span>
+                <span class="tech green">Pinocchio IK</span>
+                <span class="tech">Hand-Eye Calib</span>
+                <span class="tech">ArUco</span>
+                <span class="tech green">CAD / 3D Print</span>
+              </div>
+              <div class="result-strip">
+                <div class="result">
+                  <strong data-i18n="p6r1k">Camera-Only</strong>
+                  <span data-i18n="p6r1v">No ADB · 0.11 px calib · 0.75–1.5 s/step</span>
+                </div>
+                <div class="result">
+                  <strong data-i18n="p6r2k">Open-Ended GUI</strong>
+                  <span data-i18n="p6r2v">Voice or text: tap, long-press, swipe, typing &amp; multi-step tasks</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="more-projects">
+        <div class="section-head">
+          <h2 data-i18n="secMore">More Projects</h2>
+          <span class="section-kicker" data-i18n="kickerMore">Real-robot deployment, method reproduction, and simulation</span>
+        </div>
+        <div class="capability-grid">
+          <article class="capability more-item" id="demo-10">
+            <div class="more-head"><h3 data-i18n="more1t">PiPER Dual-Arm Sim2Real Pen Handover</h3><span class="kind" data-i18n="kindSimReal">Sim / Real</span></div>
+            <p data-i18n="more1d">Combined camera-pose alignment, a digital twin, and mixed simulation / real training to run pen pick-up, handover, and placement on dual PiPER arms.</p>
+          </article>
+          <article class="capability more-item" id="demo-06">
+            <div class="more-head"><h3 data-i18n="more2t">π0.5 JAX Dual-Arm Tissue Sorting</h3><span class="kind" data-i18n="kindReal">Real robot</span></div>
+            <p data-i18n="more2d">Ran tissue sorting with the JAX version of π0.5, using async inference and RTC to make real-robot motion smoother and more responsive.</p>
+          </article>
+          <article class="capability more-item" id="demo-02">
+            <div class="more-head"><h3 data-i18n="more3t">Visual Keypoint Retargeting to a Dexterous Hand</h3><span class="kind" data-i18n="kindReal">Real robot</span></div>
+            <p data-i18n="more3d">Extracted hand keypoints and joint posture from RGB video and retargeted them to a robot dexterous hand for stable, accurate in-hand finger opposition.</p>
+          </article>
+          <article class="capability more-item" id="demo-05">
+            <div class="more-head"><h3 data-i18n="more4t">Minimax Tic-Tac-Toe with π0.5 Placement</h3><span class="kind" data-i18n="kindReal">Real robot</span></div>
+            <p data-i18n="more4d">Minimax picks the move and π0.5 places the piece using visual prompts, compensating for weak language following with visual localization.</p>
+          </article>
+          <article class="capability more-item" id="demo-08">
+            <div class="more-head"><h3 data-i18n="more5t">openpi Reproduction of π0.5 Subtask Decomposition</h3><span class="kind sim" data-i18n="kindSim">Simulation</span></div>
+            <p data-i18n="more5d">Reproduced the subtask decomposition introduced in π0.5 but not open-sourced, splitting a two-mug placement task into trackable stages and completing it in simulation.</p>
+          </article>
+          <article class="capability more-item">
+            <div class="more-head"><h3 data-i18n="more7t">Unitree G1 RL Locomotion</h3><span class="kind sim" data-i18n="kindSim">Simulation</span></div>
+            <p data-i18n="more7d">Trained a rough-terrain velocity-tracking policy for Unitree G1 with PPO in MuJoCo Playground (official baseline configuration, 181M simulation steps).</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="section-head">
+          <h2 data-i18n="secSkills">Capabilities</h2>
+          <span class="section-kicker" data-i18n="kickerSkills">Models, Control, Data &amp; Deployment in Closed Loop</span>
+        </div>
+        <div class="capability-grid">
+          <div class="capability">
+            <h3 data-i18n="cap1t">Data Collection &amp; Dataset Engineering</h3>
+            <p data-i18n="cap1d">Teleoperation, exoskeleton capture, multi-camera data, data cleaning, replay, LeRobot Dataset, and demonstration management.</p>
           </div>
-          <div class="platform-grid">
-            <div class="platform">
-              <span class="platform-icon"><img src="assets/logos/fourier.png" alt="" loading="lazy"></span>
-              <strong class="platform-name" data-i18n="pnFourier">Fourier</strong>
-              <span class="platform-tag" data-i18n="ptHumanoid">Humanoid Robot</span>
-            </div>
-            <div class="platform">
-              <span class="platform-icon"><img src="assets/logos/agibot.png" alt="" loading="lazy"></span>
-              <strong class="platform-name" data-i18n="pnAgibot">AgiBot</strong>
-              <span class="platform-tag" data-i18n="ptHumanoid">Humanoid Robot</span>
-            </div>
-            <div class="platform">
-              <span class="platform-icon"><img src="assets/logos/agilex.png" alt="" loading="lazy"></span>
-              <strong class="platform-name" data-i18n="pnAgilex">AgileX</strong>
-              <span class="platform-tag" data-i18n="ptArm">Collaborative Arm</span>
-            </div>
-            <div class="platform">
-              <span class="platform-icon"><img src="assets/logos/discover.png" alt="" loading="lazy"></span>
-              <strong class="platform-name" data-i18n="pnQiuzhi">Qiuzhi</strong>
-              <span class="platform-tag" data-i18n="ptResearchArm">Research Arm</span>
-            </div>
-            <div class="platform">
-              <span class="platform-icon"><img src="assets/logos/inovance.png" alt="" loading="lazy"></span>
-              <strong class="platform-name" data-i18n="pnInovance">Inovance</strong>
-              <span class="platform-tag" data-i18n="ptIndustrial">Industrial Automation</span>
-            </div>
-            <div class="platform">
-              <span class="platform-icon"><img src="assets/logos/manus.png" alt="" loading="lazy"></span>
-              <strong class="platform-name">Manus</strong>
-              <span class="platform-tag" data-i18n="ptGlove">Data Glove</span>
-            </div>
-            <div class="platform">
-              <span class="platform-icon"><img src="assets/logos/xsens.png" alt="" loading="lazy"></span>
-              <strong class="platform-name">Xsens</strong>
-              <span class="platform-tag" data-i18n="ptMocap">Motion Capture</span>
-            </div>
-            <div class="platform">
-              <span class="platform-icon"><img src="assets/logos/meta.png" alt="" loading="lazy"></span>
-              <strong class="platform-name">Meta Quest</strong>
-              <span class="platform-tag" data-i18n="ptVR">VR Teleoperation</span>
-            </div>
+          <div class="capability">
+            <h3 data-i18n="cap2t">Robot Platform Adaptation</h3>
+            <p data-i18n="cap2d">Adapted get_state / send_action, cameras, grippers, tactile sensors, and control interfaces across robotic arms, dexterous hands, and humanoid platforms.</p>
           </div>
-        </section>
+          <div class="capability">
+            <h3 data-i18n="cap3t">Policy Model Training</h3>
+            <p data-i18n="cap3d">Training, post-training, and benchmarking across world action models (Phoenix-MWA / InternW0 / OpenWAM) and VLA / imitation policies (ACT, Diffusion Policy, π0 / π0.5 / π0.6, GR00T), including a reproduction of RECAP's offline-RL and advantage-conditioning self-improvement loop.</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap4t">Real-Robot Inference &amp; Real-Time Execution</h3>
+            <p data-i18n="cap4d">Built inference servers supporting async inference, RTC, action chunk execution, latency optimization, and real-device closed-loop testing.</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap9t">Classical Robot Control &amp; Calibration</h3>
+            <p data-i18n="cap9d">Pinocchio / URDF forward &amp; inverse kinematics, joint and Cartesian trajectory planning, velocity / collision / firmware-limit safety guards, eye-in-hand &amp; eye-to-hand calibration, ArUco pose tracking, error modeling &amp; compensation, and 3D-printed end-effector tooling.</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap10t">Simulation, Digital Twin &amp; Sim2Real</h3>
+            <p data-i18n="cap10d">EmbodiChain and MuJoCo evaluation, digital-twin camera alignment, wide domain randomization, scripted-expert data generation, and offline software rehearsal harnesses.</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap5t">Multimodal Perception &amp; Fusion</h3>
+            <p data-i18n="cap5d">Multimodal state input and feedback fusion with RGB cameras, wrist cameras, tactile encoder, VLM / RoboBrain VLM.</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap6t">Skill Orchestration &amp; Task Planning</h3>
+            <p data-i18n="cap6d">Integrated RoboOS skill invocation, high-level task decomposition, multi-skill orchestration, and sorting flow control.</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap7t">Evaluation &amp; Failure Analysis</h3>
+            <p data-i18n="cap7d">Focused on success rate, motion stability, baseline comparison, failure root-cause analysis, data distribution checks, and policy generalization.</p>
+          </div>
+          <div class="capability">
+            <h3 data-i18n="cap8t">AI-Assisted Engineering</h3>
+            <p data-i18n="cap8d">Leveraging Cursor, Claude Code, Codex to boost efficiency in robot interface adaptation, data script development, training tuning, and experiment iteration.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="platforms">
+        <div class="section-head">
+          <h2 data-i18n="secPlatforms">Hardware Platforms</h2>
+          <span class="section-kicker" data-i18n="kickerPlatforms">Robots, mocap &amp; teleop hardware I have worked on</span>
+        </div>
+        <div class="platform-grid">
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/fourier.png" alt="" loading="lazy"></span>
+            <strong class="platform-name" data-i18n="pnFourier">Fourier</strong>
+            <span class="platform-tag" data-i18n="ptHumanoid">Humanoid Robot</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/agibot.png" alt="" loading="lazy"></span>
+            <strong class="platform-name" data-i18n="pnAgibot">AgiBot</strong>
+            <span class="platform-tag" data-i18n="ptHumanoid">Humanoid Robot</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/agilex.png" alt="" loading="lazy"></span>
+            <strong class="platform-name" data-i18n="pnAgilex">AgileX</strong>
+            <span class="platform-tag" data-i18n="ptArm">Collaborative Arm</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/discover.png" alt="" loading="lazy"></span>
+            <strong class="platform-name" data-i18n="pnQiuzhi">Qiuzhi</strong>
+            <span class="platform-tag" data-i18n="ptResearchArm">Research Arm</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/inovance.png" alt="" loading="lazy"></span>
+            <strong class="platform-name" data-i18n="pnInovance">Inovance</strong>
+            <span class="platform-tag" data-i18n="ptIndustrial">Industrial Automation</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/manus.png" alt="" loading="lazy"></span>
+            <strong class="platform-name">Manus</strong>
+            <span class="platform-tag" data-i18n="ptGlove">Data Glove</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/xsens.png" alt="" loading="lazy"></span>
+            <strong class="platform-name">Xsens</strong>
+            <span class="platform-tag" data-i18n="ptMocap">Motion Capture</span>
+          </div>
+          <div class="platform">
+            <span class="platform-icon"><img src="assets/logos/meta.png" alt="" loading="lazy"></span>
+            <strong class="platform-name">Meta Quest</strong>
+            <span class="platform-tag" data-i18n="ptVR">VR Teleoperation</span>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer class="footer">© 2026 <span data-i18n="name">Puheliang</span> · <span data-i18n="footerUpdated">Last updated: 2026.11</span></footer>
+    <footer class="footer">© 2026 <span data-i18n="name">Heliang Pu</span> · <span data-i18n="footerUpdated">Last updated: 2026.11</span></footer>
   </div>
   <button class="control-btn to-top" type="button" aria-label="Back to top" title="Back to top"><span aria-hidden="true">↑</span></button>
 
-  <script src="assets/i18n.js?v=149b06b6"></script>
-  <script src="assets/site.js?v=f735e44d"></script>
+  <script src="assets/i18n.js?v=a73f1fac"></script>
+  <script src="assets/site.js?v=a5c90034"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # heliang-pu.github.io
 
-蒲贺良的个人主页 / 在线简历 —— 具身智能算法工程师（VLA / WAM）。
+Heliang Pu（蒲贺良）的个人主页 / 在线简历 —— FMC³ Robotics 具身智能算法工程师（VLA / WAM）、华东师范大学硕士在读。
 
 🔗 **在线访问:** https://heliang-pu.github.io/
 
@@ -8,7 +8,7 @@
 
 - 纯静态页面，原生 HTML / CSS / JS，无框架依赖
 - 部署：GitHub Pages（`main` 分支根目录，push 即自动发布）
-- 特性：默认英文、可切换中文（i18n），响应式布局，JSON-LD 结构化数据，SEO（sitemap / robots / Open Graph）
+- 特性：方格纸双栏卡片布局、深浅色主题切换、默认英文 / 可切换中文（i18n）、侧边栏滚动高亮与邮箱一键复制、JSON-LD 结构化数据、SEO（sitemap / robots / Open Graph）
 
 ## 本地预览
 
@@ -22,16 +22,19 @@ python3 -m http.server 8000
 ## 目录结构
 
 ```
-index.html              # 首页（白底单栏），静态文字是英文
-projects.html           # 全部项目
-competition.html        # RoboSynChallenge 十个任务：仿真与真机对照
-heliang-pu-resume.pdf   # 简历
+index.html              # 首页（方格纸双栏卡片，首屏真机演示），静态文字是英文
+projects.html           # 全部项目详情、能力矩阵与真机平台
+competition.html        # RoboSynChallenge 十个任务：仿真与真机对照 + 比赛方法
+heliang-pu-cv-en.pdf    # 英文 CV（PDF）
+heliang-pu-resume.pdf   # 中文简历（PDF）
+resume-src/             # 简历 HTML 源码与编译脚本
 assets/
-  site.css              # 全部样式
-  site.js               # 语言切换、视频播放、竞赛页任务切换
+  site.css              # 全部样式（含深色模式）
+  site.js               # 主题/语言切换、滚动高亮、邮箱复制、视频播放与竞赛页任务切换
   i18n.js               # 中英文案字典（data-i18n / data-i18n-aria / data-i18n-alt 引用的键）
   projects/             # 项目图片和视频
   competition/          # 竞赛页的视频、封面和首页小图
+  publications/         # 论文综述机制分类总图
   logos/                # 真机平台 logo
   portrait.jpg          # 头像
 scripts/stamp-assets.mjs  # 给页面里的样式、脚本地址加内容哈希
@@ -60,4 +63,4 @@ node scripts/stamp-assets.mjs
 node --test tests/site-contract.test.mjs
 ```
 
-测试会解析简历 PDF 里指向主页的链接，逐个确认锚点存在。
+测试会校验双语字典、静态英文一致性、资源哈希、媒体体积以及中英文两份简历 PDF 指向站点的所有锚点。

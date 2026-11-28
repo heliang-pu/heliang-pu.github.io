@@ -185,13 +185,14 @@ test('styles and scripts live in assets, load in order, and carry a hash of thei
   assert.match(css, /html\.theme-dark\s*\{/);
 });
 
-test('the homepage uses the two-column graph-paper layout with sidebar, hero metrics and controls', () => {
+test('the homepage uses the two-column graph-paper layout with sidebar, video-first hero and controls', () => {
   const sidebar = index.match(/<aside class="sidebar">[\s\S]*?<\/aside>/)?.[0] ?? '';
   const hero = index.match(/<section class="hero">[\s\S]*?<\/section>/)?.[0] ?? '';
   const escape = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  assert.match(sidebar, /<h1 data-i18n="name">Puheliang<\/h1>/);
+  assert.match(sidebar, /<h1><span data-i18n="name">Heliang Pu<\/span><span class="name-sub" data-i18n="nameSub">蒲贺良<\/span><\/h1>/);
   assert.match(sidebar, /<img class="portrait" src="assets\/portrait\.jpg"/);
   assert.match(sidebar, new RegExp(`data-i18n="pitch">${escape(htmlText(dictionary.en.pitch))}<`));
+  assert.match(sidebar, /class="copy-btn"[^>]*data-copy="puheliang122@gmail\.com"/);
   for (const href of [
     'mailto:puheliang122@gmail.com',
     'https://github.com/heliang-pu',
@@ -200,11 +201,13 @@ test('the homepage uses the two-column graph-paper layout with sidebar, hero met
   ]) {
     assert.match(sidebar, new RegExp(`href="${escape(href)}"`), href);
   }
-  assert.match(hero, new RegExp(`data-i18n="heroTitle">${escape(htmlText(dictionary.en.heroTitle))}<`));
-  assert.match(hero, new RegExp(`data-i18n="heroLead">${escape(htmlText(dictionary.en.heroLead))}<`));
+  assert.match(hero, new RegExp(`data-i18n="heroIntro">${escape(htmlText(dictionary.en.heroIntro))}<`));
+  assert.match(hero, /id="hero-video"[\s\S]*?assets\/projects\/chainplanner-goal-only\.mp4/);
+  assert.match(hero, /id="hero-watch"/);
+  assert.match(hero, /href="https:\/\/github\.com\/heliang-pu\/wam-long-horizon-planner"/);
+  assert.match(hero, /href="heliang-pu-cv-en\.pdf"/);
   assert.match(hero, /href="heliang-pu-resume\.pdf"/);
-  assert.equal((hero.match(/<div class="metric">/g) ?? []).length, 4);
-  assert.match(hero, /<strong>32×A100<\/strong>/);
+  assert.equal((hero.match(/<div class="metric">/g) ?? []).length, 0);
 
   assert.match(index, /<div class="mobile-id">/);
   assert.match(index, /<details class="mobile-nav">/);
@@ -222,11 +225,11 @@ const panels = [
 ].map((match) => ({ id: match[1], html: match[0] }));
 const competitionIds = new Set([...competitionPage.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]));
 
-test('the homepage reads like a resume: highlights and entries, details on other pages', () => {
+test('the homepage leads with demos, projects and publications, details on other pages', () => {
   const sections = [
     ...index.matchAll(/<(?:header|section) class="(hero|section)"(?: id="([^"]+)")?>/g),
   ].map((match) => match[2] ?? match[1]);
-  assert.deepEqual(sections, ['hero', 'experience', 'projects', 'publications', 'skills', 'awards']);
+  assert.deepEqual(sections, ['hero', 'projects', 'publications', 'experience', 'skills', 'awards']);
 
   // The long write-ups live on projects.html; the homepage keeps one row per project.
   assert.doesNotMatch(index, /class="(?:project-card|capability-grid|platform-grid|more-item)\b/);
@@ -234,15 +237,15 @@ test('the homepage reads like a resume: highlights and entries, details on other
   assert.deepEqual(projectSections, ['projects', 'more-projects', 'skills', 'platforms']);
   const projectIds = new Set([...projectsPage.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]));
   const detailLinks = [...new Set([...index.matchAll(/href="projects\.html#([^"]+)"/g)].map((match) => match[1]))];
-  assert.deepEqual(detailLinks, ['robosyn', 'chainplanner', 'recap', 'dual-arm', 'tablet-tap']);
+  assert.deepEqual(detailLinks, ['chainplanner', 'robosyn', 'recap', 'dual-arm', 'tablet-tap']);
   for (const id of detailLinks) assert.ok(projectIds.has(id), `projects.html#${id}`);
   for (const page of [competitionPage, projectsPage]) assert.match(page, /<a class="back-link" href="\.\/#/);
 
   // The homepage only links to the clips, and the old demo wall (Release videos, demos/ pages) stays gone.
-  // Homepage videos: ChainPlanner, tissue-sorting, and tablet-tap; the rest live on other pages.
+  // Homepage videos: hero ChainPlanner 3-step, ChainPlanner 5-step, tissue-sorting, and tablet-tap.
   const homeVideos = [...index.matchAll(/<video\b[^>]*>[\s\S]*?<\/video>/g)].map((match) => match[0]);
-  assert.equal(homeVideos.length, 3);
-  assert.equal(tags('source').length, 3);
+  assert.equal(homeVideos.length, 4);
+  assert.equal(tags('source').length, 4);
   const rowsWithVideo = [...index.matchAll(/<article class="pick[^"]*"[^>]*>[\s\S]*?<\/article>/g)]
     .map((match) => match[0])
     .filter((row) => row.includes('<video'))
@@ -420,17 +423,20 @@ test('pages never start hidden or animated in', () => {
   assert.match(index, /<strong>30% → 70%<\/strong><span data-i18n="p1r1">/);
 });
 
-test('the homepage leads with RoboSynChallenge and ChainPlanner and keeps the headline results', () => {
+test('the homepage leads with ChainPlanner, RoboSynChallenge and RECAP with defensible results', () => {
   const rows = [...index.matchAll(/<article class="pick[^"]*"[^>]*>[\s\S]*?<\/article>/g)].map((match) => match[0]);
-  assert.match(rows[0], /data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge/);
-  assert.match(rows[1], /<article class="pick" id="chainplanner"/);
-  assert.match(rows[1], /<strong>22 \/ 26<\/strong>/);
+  assert.match(rows[0], /<article class="pick" id="chainplanner"/);
+  assert.match(rows[0], /<strong data-i18n="p5r3k">22 of 26<\/strong>/);
+  assert.match(rows[1], /data-i18n="compBadge">RoboSynChallenge 2026 · 1st Place, Simulation Track · Team Lead/);
+  assert.match(rows[1], /href="competition\.html"/);
+  assert.match(rows[1], /href="competition\.html#methods"/);
+  assert.match(rows[1], /href="https:\/\/huggingface\.co\/puheliang\/RoboSynChallenge-fmc3-no1-real"/);
   const recap = rows.find((row) => row.includes('id="recap"')) ?? '';
   assert.match(recap, /<strong>≈2×<\/strong>/);
 
   const firstProject = projectsPage.match(/<article class="project-card"[^>]*>[\s\S]*?<\/article>/)?.[0] ?? '';
-  assert.match(firstProject, /id="robosyn"/);
-  assert.match(firstProject, /data-i18n="compTitle">NeurIPS 2026 RoboSynChallenge/);
+  assert.match(firstProject, /id="chainplanner"/);
+  assert.match(projectsPage, /id="robosyn"[\s\S]*?https:\/\/huggingface\.co\/puheliang\/RoboSynChallenge-fmc3-no1-real/);
 });
 
 test('reduced motion and the skip link are handled', () => {
@@ -453,7 +459,7 @@ test('favicon, footer date, and local assets are consistent', async () => {
   assert.doesNotMatch(`${pages.join('\n')}\n${i18nSource}`, /Last updated: 2026\.(?:08|10)/);
 
   const pageRefs = [
-    ...pages.join('\n').matchAll(/\b(?:src|href|poster)="(\/?assets\/[^"#?]+|heliang-pu-resume\.pdf)(?:\?v=[0-9a-f]+)?"/g),
+    ...pages.join('\n').matchAll(/\b(?:src|href|poster)="(\/?assets\/[^"#?]+|heliang-pu-(?:resume|cv-en)\.pdf)(?:\?v=[0-9a-f]+)?"/g),
   ].map((match) => match[1].replace(/^\//, ''));
   const cssRefs = [...css.matchAll(/url\("([^"]+)"\)/g)].map((match) => `assets/${match[1]}`);
   await Promise.all([...new Set([...pageRefs, ...cssRefs])].map((path) => access(new URL(path, root))));
@@ -493,22 +499,37 @@ for (const path of [
   });
 }
 
-test('resume PDF is at most 3 MiB', async () => {
-  const size = (await stat(new URL('heliang-pu-resume.pdf', root))).size;
-  assert.ok(
-    size <= 3 * 1024 * 1024,
-    `resume is ${size} bytes; expected at most 3 MiB`,
-  );
+test('both Chinese and English resume PDFs are at most 3 MiB', async () => {
+  for (const file of ['heliang-pu-resume.pdf', 'heliang-pu-cv-en.pdf']) {
+    const size = (await stat(new URL(file, root))).size;
+    assert.ok(
+      size <= 3 * 1024 * 1024,
+      `${file} is ${size} bytes; expected at most 3 MiB`,
+    );
+  }
 });
 
-test('every page anchor linked from the resume PDF exists', async () => {
-  const siteLinks = pdfLinkTargets(await read('heliang-pu-resume.pdf', null))
-    .map((uri) => new URL(uri))
-    .filter((url) => url.hostname === 'heliang-pu.github.io');
+test('every page anchor linked from both resume PDFs exists', async () => {
+  const pageByPath = new Map([
+    ['/', index],
+    ['/index.html', index],
+    ['/projects.html', projectsPage],
+    ['/competition.html', competitionPage],
+  ]);
+  for (const file of ['heliang-pu-resume.pdf', 'heliang-pu-cv-en.pdf']) {
+    const siteLinks = pdfLinkTargets(await read(file, null))
+      .map((uri) => new URL(uri))
+      .filter((url) => url.hostname === 'heliang-pu.github.io');
 
-  assert.ok(siteLinks.length > 0, 'resume PDF has no links to the site');
-  for (const id of new Set(siteLinks.filter((url) => url.hash).map((url) => url.hash.slice(1)))) {
-    assert.match(index, new RegExp(`\\sid="${id}"`), `resume links to #${id}`);
+    assert.ok(siteLinks.length > 0, `${file} has no links to the site`);
+    for (const url of siteLinks) {
+      const targetPage = pageByPath.get(url.pathname);
+      assert.ok(targetPage, `${file} links to unknown path ${url.pathname}`);
+      if (url.hash) {
+        const id = url.hash.slice(1);
+        assert.match(targetPage, new RegExp(`\\sid="${id}"`), `${file} links to ${url.pathname}#${id}`);
+      }
+    }
   }
 });
 
@@ -550,13 +571,17 @@ test('pages open in English and remember a switch to Chinese', () => {
   assert.doesNotMatch(script, /=== 'en'\) applyLang\('en'\)/);
 });
 
-test('publications list the survey and the competition report, first author in bold', () => {
+test('publications list the survey with taxonomy figure and competition report with methods & weights', async () => {
   const section = index.match(/<section class="section" id="publications">[\s\S]*?<\/section>/)?.[0] ?? '';
   const pubs = [...section.matchAll(/<article class="pub">[\s\S]*?<\/article>/g)].map((match) => match[0]);
   assert.equal(pubs.length, 2);
   assert.match(pubs[0], /<h3>Reinforcement Learning Post-Training for Vision-Language-Action Models: A Survey<\/h3>/);
   assert.match(pubs[0], /data-i18n="pub1venue">ACM Computing Surveys · under review/);
+  assert.match(pubs[0], /assets\/publications\/vla-rl-survey-taxonomy\.webp/);
+  await access(new URL('assets/publications/vla-rl-survey-taxonomy.webp', root));
   assert.match(pubs[1], /<h3>Look at the Demonstrator First: Lessons from Ten Bimanual Tasks in RoboSynChallenge 2026<\/h3>/);
+  assert.match(pubs[1], /href="competition\.html#methods"/);
+  assert.match(pubs[1], /href="https:\/\/huggingface\.co\/puheliang\/RoboSynChallenge-fmc3-no1-real"/);
   for (const pub of pubs) assert.match(pub, /<p class="authors"><strong>Heliang Pu<\/strong>, /);
 
   // Papers in double-blind review stay off the site until they are accepted (the CVPR 2027 submission).
